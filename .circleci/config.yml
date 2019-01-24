@@ -1,39 +1,31 @@
-# This is a sample build configuration for Java (Gradle).
-# Check our guides at https://confluence.atlassian.com/x/zd-5Mw for more examples.
-# Only use spaces to indent your .yml configuration.
-# -----
-# You can specify a custom docker image from Docker Hub as your build environment.
-image: java:8
-
-pipelines:
-  default:
-    - step:
-        caches:
-          - gradle
-          - android-sdk
-
-        script:
-          # Download and unzip android sdk
-          - wget --quiet --output-document=android-sdk.zip https://dl.google.com/android/repository/sdk-tools-linux-3859397.zip
-          - unzip -o -qq android-sdk.zip -d android-sdk
-
-          # Define Android Home and add PATHs
-          - export ANDROID_HOME="/opt/atlassian/pipelines/agent/build/android-sdk"
-          - export PATH="$ANDROID_HOME/tools:$ANDROID_HOME/tools/bin:$ANDROID_HOME/platform-tools:$PATH"
-
-          # Download packages.
-          - yes | sdkmanager "platform-tools"
-          - yes | sdkmanager "platforms;android-27"
-          - yes | sdkmanager "build-tools;27.0.3"
-          - yes | sdkmanager "extras;android;m2repository"
-          - yes | sdkmanager "extras;google;m2repository"
-          - yes | sdkmanager "extras;google;instantapps"
-          - yes | sdkmanager --licenses
-
-          # Build apk
-          - chmod a+x ./gradlew
-          - ./gradlew assembleDebug
-
-definitions:
-    caches:
-      android-sdk: android-sdk
+version: 2
+jobs:
+  build:
+    working_directory: ~/code
+    docker:
+      - image: circleci/android:api-25-alpha
+    environment:
+      JVM_OPTS: -Xmx3200m
+    steps:
+      - checkout
+      - restore_cache:
+          key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
+#      - run:
+#         name: Chmod permissions #if permission for Gradlew Dependencies fail, use this.
+#         command: sudo chmod +x ./gradlew
+      - run:
+          name: Download Dependencies
+          command: ./gradlew androidDependencies
+      - save_cache:
+          paths:
+            - ~/.gradle
+          key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
+      - run:
+          name: Run Tests
+          command: ./gradlew lint test
+      - store_artifacts: # for display in Artifacts: https://circleci.com/docs/2.0/artifacts/
+          path: app/build/reports
+          destination: reports
+      - store_test_results: # for display in Test Summary: https://circleci.com/docs/2.0/collect-test-data/
+          path: app/build/test-results
+      # See https://circleci.com/docs/2.0/deployment-integrations/ for deploy examples
