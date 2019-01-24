@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -28,6 +29,12 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        if (savedInstanceState == null) {
+            //Open standard fragment when start the app for the first time.
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new StandardFragment()).commit();
+            navigationView.setCheckedItem(R.id.nav_standard_mode);
+        }
     }
 
     @Override
@@ -41,28 +48,19 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
-
-    @SuppressWarnings("StatementWithEmptyBody")
-    @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
         int id = item.getItemId();
 
         if (id == R.id.nav_standard_mode) {
-
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new StandardFragment()).commit();
         } else if (id == R.id.nav_programmer_mode) {
-
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ProgrammerFragment()).commit();
         } else if (id == R.id.nav_themes) {
-
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ThemesFragment()).commit();
         } else if (id == R.id.nav_share) {
-
+            Toast.makeText(this, "Share this app with friends!", Toast.LENGTH_SHORT).show();
         } else if (id == R.id.nav_about) {
-
+            Toast.makeText(this, "Developed for you by Annushka Project", Toast.LENGTH_SHORT).show();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
