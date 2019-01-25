@@ -2,9 +2,8 @@ package com.annushkaproject.programmerscalculator;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.widget.Button;
 
-public class SquareButton extends Button {
+public class SquareButton extends android.support.v7.widget.AppCompatButton {
     Context context = getContext();
     int width = context.getResources().getDisplayMetrics().widthPixels;
 
