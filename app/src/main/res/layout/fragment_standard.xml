@@ -3,13 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:custom="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/relativeLayout"
+    android:id="@+id/constraintLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/white"
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <com.annushkaproject.programmerscalculator.SquareButton
+        <com.annushkaproject.programmerscalculator.CalculatorButton
             android:id="@+id/buttonEquals"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -17,7 +17,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             custom:layout_constraintEnd_toEndOf="parent" />
 
-        <com.annushkaproject.programmerscalculator.SquareButton
+        <com.annushkaproject.programmerscalculator.CalculatorButton
             android:id="@+id/button0"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -25,7 +25,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/buttonComma" />
 
-        <com.annushkaproject.programmerscalculator.SquareButton
+        <com.annushkaproject.programmerscalculator.CalculatorButton
             android:id="@+id/buttonComma"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -33,7 +33,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/buttonEquals" />
 
-        <com.annushkaproject.programmerscalculator.SquareButton
+        <com.annushkaproject.programmerscalculator.CalculatorButton
             android:id="@+id/buttonSign"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -41,7 +41,7 @@
             app:layout_constraintEnd_toStartOf="@+id/button0"
             custom:layout_constraintBottom_toBottomOf="parent" />
 
-        <com.annushkaproject.programmerscalculator.SquareButton
+        <com.annushkaproject.programmerscalculator.CalculatorButton
             android:id="@+id/button1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -49,7 +49,7 @@
             app:layout_constraintBottom_toTopOf="@+id/buttonSign"
             app:layout_constraintEnd_toStartOf="@+id/button2" />
 
-        <com.annushkaproject.programmerscalculator.SquareButton
+        <com.annushkaproject.programmerscalculator.CalculatorButton
             android:id="@+id/button3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -57,7 +57,7 @@
             app:layout_constraintBottom_toTopOf="@+id/buttonComma"
             app:layout_constraintEnd_toStartOf="@+id/buttonPlus" />
 
-        <com.annushkaproject.programmerscalculator.SquareButton
+        <com.annushkaproject.programmerscalculator.CalculatorButton
             android:id="@+id/button2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -65,7 +65,7 @@
             app:layout_constraintBottom_toTopOf="@+id/button0"
             app:layout_constraintEnd_toStartOf="@+id/button3" />
 
-        <com.annushkaproject.programmerscalculator.SquareButton
+        <com.annushkaproject.programmerscalculator.CalculatorButton
             android:id="@+id/buttonPlus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -73,7 +73,7 @@
             app:layout_constraintBottom_toTopOf="@+id/buttonEquals"
             custom:layout_constraintEnd_toEndOf="parent" />
 
-        <com.annushkaproject.programmerscalculator.SquareButton
+        <com.annushkaproject.programmerscalculator.CalculatorButton
             android:id="@+id/button4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -81,7 +81,7 @@
             app:layout_constraintBottom_toTopOf="@+id/button1"
             app:layout_constraintEnd_toStartOf="@+id/button5" />
 
-        <com.annushkaproject.programmerscalculator.SquareButton
+        <com.annushkaproject.programmerscalculator.CalculatorButton
             android:id="@+id/buttonMinus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -89,7 +89,7 @@
             app:layout_constraintBottom_toTopOf="@+id/buttonPlus"
             custom:layout_constraintEnd_toEndOf="parent" />
 
-        <com.annushkaproject.programmerscalculator.SquareButton
+        <com.annushkaproject.programmerscalculator.CalculatorButton
             android:id="@+id/button6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -97,7 +97,7 @@
             app:layout_constraintBottom_toTopOf="@+id/button3"
             app:layout_constraintEnd_toStartOf="@+id/buttonMinus" />
 
-        <com.annushkaproject.programmerscalculator.SquareButton
+        <com.annushkaproject.programmerscalculator.CalculatorButton
             android:id="@+id/button5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -105,7 +105,7 @@
             app:layout_constraintBottom_toTopOf="@+id/button2"
             app:layout_constraintEnd_toStartOf="@+id/button6" />
 
-        <com.annushkaproject.programmerscalculator.SquareButton
+        <com.annushkaproject.programmerscalculator.CalculatorButton
             android:id="@+id/buttonClear"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -114,7 +114,7 @@
             app:layout_constraintBottom_toTopOf="@+id/button7"
             app:layout_constraintEnd_toStartOf="@+id/buttonPi" />
 
-        <com.annushkaproject.programmerscalculator.SquareButton
+        <com.annushkaproject.programmerscalculator.CalculatorButton
             android:id="@+id/buttonPi"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -122,7 +122,7 @@
             app:layout_constraintBottom_toTopOf="@+id/button8"
             app:layout_constraintEnd_toStartOf="@+id/buttonPercent" />
 
-        <com.annushkaproject.programmerscalculator.SquareButton
+        <com.annushkaproject.programmerscalculator.CalculatorButton
             android:id="@+id/buttonPercent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -130,7 +130,7 @@
             app:layout_constraintBottom_toTopOf="@+id/button9"
             app:layout_constraintEnd_toStartOf="@+id/buttonDivide" />
 
-        <com.annushkaproject.programmerscalculator.SquareButton
+        <com.annushkaproject.programmerscalculator.CalculatorButton
             android:id="@+id/buttonDivide"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -138,7 +138,7 @@
             app:layout_constraintBottom_toTopOf="@+id/buttonMultiply"
             custom:layout_constraintEnd_toEndOf="parent" />
 
-        <com.annushkaproject.programmerscalculator.SquareButton
+        <com.annushkaproject.programmerscalculator.CalculatorButton
             android:id="@+id/button7"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -146,7 +146,7 @@
             app:layout_constraintBottom_toTopOf="@+id/button4"
             app:layout_constraintEnd_toStartOf="@+id/button8" />
 
-        <com.annushkaproject.programmerscalculator.SquareButton
+        <com.annushkaproject.programmerscalculator.CalculatorButton
             android:id="@+id/button8"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -154,7 +154,7 @@
             app:layout_constraintBottom_toTopOf="@+id/button5"
             app:layout_constraintEnd_toStartOf="@+id/button9" />
 
-        <com.annushkaproject.programmerscalculator.SquareButton
+        <com.annushkaproject.programmerscalculator.CalculatorButton
             android:id="@+id/button9"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -162,7 +162,7 @@
             app:layout_constraintBottom_toTopOf="@+id/button6"
             app:layout_constraintEnd_toStartOf="@+id/buttonMultiply" />
 
-        <com.annushkaproject.programmerscalculator.SquareButton
+        <com.annushkaproject.programmerscalculator.CalculatorButton
             android:id="@+id/buttonMultiply"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

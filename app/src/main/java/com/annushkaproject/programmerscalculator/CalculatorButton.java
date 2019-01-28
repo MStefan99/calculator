@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
 
-public class SquareButton extends android.support.v7.widget.AppCompatButton {
+public class CalculatorButton extends android.support.v7.widget.AppCompatButton {
 
     Context context = getContext();
     int verticalNumber;
@@ -14,11 +14,9 @@ public class SquareButton extends android.support.v7.widget.AppCompatButton {
     int width = context.getResources().getDisplayMetrics().widthPixels;
     int height = context.getResources().getDisplayMetrics().heightPixels;
 
-    public SquareButton(Context context) {
-        super(context);
-    }
+    public CalculatorButton(Context context) { super(context); }
 
-    public SquareButton(Context context, AttributeSet attrs) {
+    public CalculatorButton(Context context, AttributeSet attrs) {
         super(context, attrs);
         TypedArray a = context.getTheme().obtainStyledAttributes(
                 attrs,
@@ -37,7 +35,7 @@ public class SquareButton extends android.support.v7.widget.AppCompatButton {
         }
     }
 
-    public SquareButton(Context context, AttributeSet attrs, int defStyleAttr) {
+    public CalculatorButton(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 
@@ -47,7 +45,7 @@ public class SquareButton extends android.support.v7.widget.AppCompatButton {
         int maxWidth = width / this.getHorizontalNumber();
         int maxHeight = Math.round(height * ( 1f - this.getTopOffset() ) / this.getVerticalNumber());
         int minDimension = Math.min(maxWidth, maxHeight);
-        setMeasuredDimension(minDimension, minDimension);
+        setMeasuredDimension(maxWidth, maxHeight);
     }
 
     public void setVerticalNumber(int height) { this.verticalNumber = height; }
