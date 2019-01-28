@@ -5,16 +5,12 @@ import android.content.res.TypedArray;
 import android.util.AttributeSet;
 
 public class CalculatorButton extends android.support.v7.widget.AppCompatButton {
-
-    Context context = getContext();
-    int verticalNumber;
-    int horizontalNumber;
-    float topOffset;
-
-    int width = context.getResources().getDisplayMetrics().widthPixels;
-    int height = context.getResources().getDisplayMetrics().heightPixels;
-
-    public CalculatorButton(Context context) { super(context); }
+    private Context context = getContext();
+    private int verticalNumber;
+    private int horizontalNumber;
+    private float topOffset;
+    private int width = context.getResources().getDisplayMetrics().widthPixels;
+    private int height = context.getResources().getDisplayMetrics().heightPixels;
 
     public CalculatorButton(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -22,7 +18,6 @@ public class CalculatorButton extends android.support.v7.widget.AppCompatButton 
                 attrs,
                 R.styleable.SquareButton,
                 0, 0);
-
         try {
             int horizontalNumber = a.getInteger(R.styleable.SquareButton_horizontalNumber, 4);
             setHorizontalNumber(horizontalNumber);
@@ -35,10 +30,6 @@ public class CalculatorButton extends android.support.v7.widget.AppCompatButton 
         }
     }
 
-    public CalculatorButton(Context context, AttributeSet attrs, int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
-    }
-
     @Override
     public void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
@@ -48,15 +39,27 @@ public class CalculatorButton extends android.support.v7.widget.AppCompatButton 
         setMeasuredDimension(maxWidth, maxHeight);
     }
 
-    public void setVerticalNumber(int height) { this.verticalNumber = height; }
+    public void setVerticalNumber(int height) {
+        this.verticalNumber = height;
+    }
 
-    public void setTopOffset(float offset) { this.topOffset = offset; }
+    public void setTopOffset(float offset) {
+        this.topOffset = offset;
+    }
 
-    public void setHorizontalNumber(int width) { this.horizontalNumber = width; }
+    public void setHorizontalNumber(int width) {
+        this.horizontalNumber = width;
+    }
 
-    public int getVerticalNumber() { return this.verticalNumber; }
+    public int getVerticalNumber() {
+        return this.verticalNumber;
+    }
 
-    public float getTopOffset() { return this.topOffset; }
+    public float getTopOffset() {
+        return this.topOffset;
+    }
 
-    public int getHorizontalNumber() { return this.horizontalNumber; }
+    public int getHorizontalNumber() {
+        return this.horizontalNumber;
+    }
 }
