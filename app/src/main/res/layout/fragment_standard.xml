@@ -187,11 +187,8 @@
             android:layout_height="41dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
-            android:text="←"
+            android:text="Del"
             android:textAlignment="viewStart"
-            android:textIsSelectable="true"
-            android:textSize="24sp"
-            android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/buttonDivide"
             app:layout_constraintEnd_toEndOf="parent" />
 

@@ -22,15 +22,12 @@
 
     <Button
         android:id="@+id/buttonDel"
-        android:layout_width="48dp"
+        android:layout_width="66dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        android:text="←"
+        android:text="Del"
         android:textAlignment="viewStart"
-        android:textIsSelectable="true"
-        android:textSize="24sp"
-        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/buttonAND"
         app:layout_constraintEnd_toEndOf="parent" />
 
