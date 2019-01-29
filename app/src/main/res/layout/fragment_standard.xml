@@ -1,14 +1,195 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraintLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/holo_red_light">
+    android:background="@android:color/white"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Standard Fragment"
-        android:textSize="30sp"
-        android:layout_centerInParent="true"/>
+        <com.annushkaproject.programmerscalculator.CalculatorButton
+            android:id="@+id/buttonEquals"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="="
+            app:layout_constraintBottom_toBottomOf="parent"
+            custom:layout_constraintEnd_toEndOf="parent" />
 
-</RelativeLayout>
+        <com.annushkaproject.programmerscalculator.CalculatorButton
+            android:id="@+id/button0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/buttonComma" />
+
+        <com.annushkaproject.programmerscalculator.CalculatorButton
+            android:id="@+id/buttonComma"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="."
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/buttonEquals" />
+
+        <com.annushkaproject.programmerscalculator.CalculatorButton
+            android:id="@+id/buttonSign"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="+/-"
+            app:layout_constraintEnd_toStartOf="@+id/button0"
+            custom:layout_constraintBottom_toBottomOf="parent" />
+
+        <com.annushkaproject.programmerscalculator.CalculatorButton
+            android:id="@+id/button1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1"
+            app:layout_constraintBottom_toTopOf="@+id/buttonSign"
+            app:layout_constraintEnd_toStartOf="@+id/button2" />
+
+        <com.annushkaproject.programmerscalculator.CalculatorButton
+            android:id="@+id/button3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="3"
+            app:layout_constraintBottom_toTopOf="@+id/buttonComma"
+            app:layout_constraintEnd_toStartOf="@+id/buttonPlus" />
+
+        <com.annushkaproject.programmerscalculator.CalculatorButton
+            android:id="@+id/button2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2"
+            app:layout_constraintBottom_toTopOf="@+id/button0"
+            app:layout_constraintEnd_toStartOf="@+id/button3" />
+
+        <com.annushkaproject.programmerscalculator.CalculatorButton
+            android:id="@+id/buttonPlus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="+"
+            app:layout_constraintBottom_toTopOf="@+id/buttonEquals"
+            custom:layout_constraintEnd_toEndOf="parent" />
+
+        <com.annushkaproject.programmerscalculator.CalculatorButton
+            android:id="@+id/button4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="4"
+            app:layout_constraintBottom_toTopOf="@+id/button1"
+            app:layout_constraintEnd_toStartOf="@+id/button5" />
+
+        <com.annushkaproject.programmerscalculator.CalculatorButton
+            android:id="@+id/buttonMinus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="-"
+            app:layout_constraintBottom_toTopOf="@+id/buttonPlus"
+            custom:layout_constraintEnd_toEndOf="parent" />
+
+        <com.annushkaproject.programmerscalculator.CalculatorButton
+            android:id="@+id/button6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="6"
+            app:layout_constraintBottom_toTopOf="@+id/button3"
+            app:layout_constraintEnd_toStartOf="@+id/buttonMinus" />
+
+        <com.annushkaproject.programmerscalculator.CalculatorButton
+            android:id="@+id/button5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="5"
+            app:layout_constraintBottom_toTopOf="@+id/button2"
+            app:layout_constraintEnd_toStartOf="@+id/button6" />
+
+        <com.annushkaproject.programmerscalculator.CalculatorButton
+            android:id="@+id/buttonClear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="0dp"
+            android:text="C"
+            app:layout_constraintBottom_toTopOf="@+id/button7"
+            app:layout_constraintEnd_toStartOf="@+id/buttonPi" />
+
+        <com.annushkaproject.programmerscalculator.CalculatorButton
+            android:id="@+id/buttonPi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="π"
+            app:layout_constraintBottom_toTopOf="@+id/button8"
+            app:layout_constraintEnd_toStartOf="@+id/buttonPercent" />
+
+        <com.annushkaproject.programmerscalculator.CalculatorButton
+            android:id="@+id/buttonPercent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="%"
+            app:layout_constraintBottom_toTopOf="@+id/button9"
+            app:layout_constraintEnd_toStartOf="@+id/buttonDivide" />
+
+        <com.annushkaproject.programmerscalculator.CalculatorButton
+            android:id="@+id/buttonDivide"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="÷"
+            app:layout_constraintBottom_toTopOf="@+id/buttonMultiply"
+            custom:layout_constraintEnd_toEndOf="parent" />
+
+        <com.annushkaproject.programmerscalculator.CalculatorButton
+            android:id="@+id/button7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="7"
+            app:layout_constraintBottom_toTopOf="@+id/button4"
+            app:layout_constraintEnd_toStartOf="@+id/button8" />
+
+        <com.annushkaproject.programmerscalculator.CalculatorButton
+            android:id="@+id/button8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="8"
+            app:layout_constraintBottom_toTopOf="@+id/button5"
+            app:layout_constraintEnd_toStartOf="@+id/button9" />
+
+        <com.annushkaproject.programmerscalculator.CalculatorButton
+            android:id="@+id/button9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="9"
+            app:layout_constraintBottom_toTopOf="@+id/button6"
+            app:layout_constraintEnd_toStartOf="@+id/buttonMultiply" />
+
+        <com.annushkaproject.programmerscalculator.CalculatorButton
+            android:id="@+id/buttonMultiply"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="×"
+            app:layout_constraintBottom_toTopOf="@+id/buttonMinus"
+            custom:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="8dp"
+            android:text="TextView"
+            android:textSize="30sp"
+            app:layout_constraintEnd_toStartOf="@+id/button"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="50dp"
+            android:layout_height="41dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:text="Del"
+            android:textAlignment="viewStart"
+            app:layout_constraintBottom_toTopOf="@+id/buttonDivide"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+</android.support.constraint.ConstraintLayout>

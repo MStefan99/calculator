@@ -1,14 +1,392 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraintLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/holo_blue_dark">
+    android:background="@android:color/white"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
     <TextView
+        android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Programmer Fragment"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="8dp"
+        android:text="TextView"
         android:textSize="30sp"
-        android:layout_centerInParent="true"/>
+        app:layout_constraintEnd_toStartOf="@+id/buttonDel"
+        custom:layout_constraintTop_toTopOf="parent" />
 
-</RelativeLayout>
+    <Button
+        android:id="@+id/buttonDel"
+        android:layout_width="66dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="Del"
+        android:textAlignment="viewStart"
+        app:layout_constraintBottom_toTopOf="@+id/buttonAND"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <com.annushkaproject.programmerscalculator.CalculatorButton
+        android:id="@+id/buttonEquals"
+        android:layout_width="85dp"
+        android:layout_height="wrap_content"
+        android:text="="
+        app:horizontalNumber="5"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:verticalNumber="6"
+        custom:layout_constraintEnd_toEndOf="parent" />
+
+    <com.annushkaproject.programmerscalculator.CalculatorButton
+        android:id="@+id/buttonPlus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="+"
+        app:horizontalNumber="5"
+        app:layout_constraintBottom_toTopOf="@+id/buttonEquals"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:verticalNumber="6" />
+
+    <com.annushkaproject.programmerscalculator.CalculatorButton
+        android:id="@+id/buttonMinus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="-"
+        app:horizontalNumber="5"
+        app:layout_constraintBottom_toTopOf="@+id/buttonPlus"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:verticalNumber="6" />
+
+    <com.annushkaproject.programmerscalculator.CalculatorButton
+        android:id="@+id/buttonMultiply"
+        android:layout_width="90dp"
+        android:layout_height="wrap_content"
+        android:text="x"
+        app:horizontalNumber="5"
+        app:layout_constraintBottom_toTopOf="@+id/buttonMinus"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:verticalNumber="6" />
+
+    <com.annushkaproject.programmerscalculator.CalculatorButton
+        android:id="@+id/buttonDivide"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="/"
+        app:horizontalNumber="5"
+        app:layout_constraintBottom_toTopOf="@+id/buttonMultiply"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:verticalNumber="6" />
+
+    <com.annushkaproject.programmerscalculator.CalculatorButton
+        android:id="@+id/button0"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0"
+        app:horizontalNumber="5"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/buttonComma"
+        app:verticalNumber="6" />
+
+    <com.annushkaproject.programmerscalculator.CalculatorButton
+        android:id="@+id/button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="1"
+        app:horizontalNumber="5"
+        app:layout_constraintBottom_toTopOf="@+id/buttonSign"
+        app:layout_constraintEnd_toStartOf="@+id/button2"
+        app:verticalNumber="6" />
+
+    <com.annushkaproject.programmerscalculator.CalculatorButton
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="2"
+        app:horizontalNumber="5"
+        app:layout_constraintBottom_toTopOf="@+id/button0"
+        app:layout_constraintEnd_toStartOf="@+id/button3"
+        app:verticalNumber="6" />
+
+    <com.annushkaproject.programmerscalculator.CalculatorButton
+        android:id="@+id/button3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="3"
+        app:horizontalNumber="5"
+        app:layout_constraintBottom_toTopOf="@+id/buttonComma"
+        app:layout_constraintEnd_toStartOf="@+id/buttonPlus"
+        app:verticalNumber="6" />
+
+    <com.annushkaproject.programmerscalculator.CalculatorButton
+        android:id="@+id/button4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="4"
+        app:horizontalNumber="5"
+        app:layout_constraintBottom_toTopOf="@+id/button1"
+        app:layout_constraintEnd_toStartOf="@+id/button5"
+        app:verticalNumber="6" />
+
+    <com.annushkaproject.programmerscalculator.CalculatorButton
+        android:id="@+id/button5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="5"
+        app:horizontalNumber="5"
+        app:layout_constraintBottom_toTopOf="@+id/button2"
+        app:layout_constraintEnd_toStartOf="@+id/button6"
+        app:verticalNumber="6" />
+
+    <com.annushkaproject.programmerscalculator.CalculatorButton
+        android:id="@+id/button6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="6"
+        app:horizontalNumber="5"
+        app:layout_constraintBottom_toTopOf="@+id/button3"
+        app:layout_constraintEnd_toStartOf="@+id/buttonMinus"
+        app:verticalNumber="6" />
+
+    <com.annushkaproject.programmerscalculator.CalculatorButton
+        android:id="@+id/button7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="7"
+        app:horizontalNumber="5"
+        app:layout_constraintBottom_toTopOf="@+id/button4"
+        app:layout_constraintEnd_toStartOf="@+id/button8"
+        app:verticalNumber="6" />
+
+    <com.annushkaproject.programmerscalculator.CalculatorButton
+        android:id="@+id/button8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="8"
+        app:horizontalNumber="5"
+        app:layout_constraintBottom_toTopOf="@+id/button5"
+        app:layout_constraintEnd_toStartOf="@+id/button9"
+        app:verticalNumber="6" />
+
+    <com.annushkaproject.programmerscalculator.CalculatorButton
+        android:id="@+id/button9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="9"
+        app:horizontalNumber="5"
+        app:layout_constraintBottom_toTopOf="@+id/button6"
+        app:layout_constraintEnd_toStartOf="@+id/buttonMultiply"
+        app:verticalNumber="6" />
+
+    <com.annushkaproject.programmerscalculator.CalculatorButton
+        android:id="@+id/buttonComma"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="."
+        app:horizontalNumber="5"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/buttonEquals"
+        app:verticalNumber="6" />
+
+    <com.annushkaproject.programmerscalculator.CalculatorButton
+        android:id="@+id/buttonSign"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="+/-"
+        app:horizontalNumber="5"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/button0"
+        app:verticalNumber="6" />
+
+    <com.annushkaproject.programmerscalculator.CalculatorButton
+        android:id="@+id/buttonA"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="A"
+        app:horizontalNumber="5"
+        app:layout_constraintBottom_toTopOf="@+id/buttonB"
+        app:layout_constraintEnd_toStartOf="@+id/buttonMod"
+        app:verticalNumber="6" />
+
+    <com.annushkaproject.programmerscalculator.CalculatorButton
+        android:id="@+id/buttonB"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="B"
+        app:horizontalNumber="5"
+        app:layout_constraintBottom_toTopOf="@+id/buttonC"
+        app:layout_constraintEnd_toStartOf="@+id/buttonLSH"
+        app:verticalNumber="6" />
+
+    <com.annushkaproject.programmerscalculator.CalculatorButton
+        android:id="@+id/buttonC"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="C"
+        app:horizontalNumber="5"
+        app:layout_constraintBottom_toTopOf="@+id/buttonD"
+        app:layout_constraintEnd_toStartOf="@+id/button7"
+        app:verticalNumber="6" />
+
+    <com.annushkaproject.programmerscalculator.CalculatorButton
+        android:id="@+id/buttonD"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="D"
+        app:horizontalNumber="5"
+        app:layout_constraintBottom_toTopOf="@+id/buttonE"
+        app:layout_constraintEnd_toStartOf="@+id/button4"
+        app:verticalNumber="6" />
+
+    <com.annushkaproject.programmerscalculator.CalculatorButton
+        android:id="@+id/buttonE"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="E"
+        app:horizontalNumber="5"
+        app:layout_constraintBottom_toTopOf="@+id/buttonF"
+        app:layout_constraintEnd_toStartOf="@+id/button1"
+        app:verticalNumber="6" />
+
+    <com.annushkaproject.programmerscalculator.CalculatorButton
+        android:id="@+id/buttonF"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="F"
+        app:horizontalNumber="5"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/buttonSign"
+        app:verticalNumber="6" />
+
+    <com.annushkaproject.programmerscalculator.CalculatorButton
+        android:id="@+id/buttonAND"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="And"
+        app:horizontalNumber="5"
+        app:layout_constraintBottom_toTopOf="@+id/buttonDivide"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:verticalNumber="6" />
+
+    <com.annushkaproject.programmerscalculator.CalculatorButton
+        android:id="@+id/buttonNOT"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Not"
+        app:horizontalNumber="5"
+        app:layout_constraintBottom_toTopOf="@+id/button9"
+        app:layout_constraintEnd_toStartOf="@+id/buttonDivide"
+        app:verticalNumber="6" />
+
+    <com.annushkaproject.programmerscalculator.CalculatorButton
+        android:id="@+id/buttonXOR"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Xor"
+        app:horizontalNumber="5"
+        app:layout_constraintBottom_toTopOf="@+id/buttonRSH"
+        app:layout_constraintEnd_toStartOf="@+id/buttonOR"
+        app:verticalNumber="6" />
+
+    <com.annushkaproject.programmerscalculator.CalculatorButton
+        android:id="@+id/buttonOR"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Or"
+        app:horizontalNumber="5"
+        app:layout_constraintBottom_toTopOf="@+id/buttonNOT"
+        app:layout_constraintEnd_toStartOf="@+id/buttonAND"
+        app:verticalNumber="6" />
+
+    <com.annushkaproject.programmerscalculator.CalculatorButton
+        android:id="@+id/buttonRSH"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Rsh"
+        app:horizontalNumber="5"
+        app:layout_constraintBottom_toTopOf="@+id/button8"
+        app:layout_constraintEnd_toStartOf="@+id/buttonNOT"
+        app:verticalNumber="6" />
+
+    <com.annushkaproject.programmerscalculator.CalculatorButton
+        android:id="@+id/buttonLSH"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Lsh"
+        app:horizontalNumber="5"
+        app:layout_constraintBottom_toTopOf="@+id/button7"
+        app:layout_constraintEnd_toStartOf="@+id/buttonRSH"
+        app:verticalNumber="6" />
+
+    <com.annushkaproject.programmerscalculator.CalculatorButton
+        android:id="@+id/buttonMod"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Mod"
+        app:horizontalNumber="5"
+        app:layout_constraintBottom_toTopOf="@+id/buttonLSH"
+        app:layout_constraintEnd_toStartOf="@+id/buttonXOR"
+        app:verticalNumber="6" />
+
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="73dp"
+        android:layout_height="104dp"
+        app:layout_constraintBottom_toTopOf="@+id/buttonA"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <RadioButton
+            android:id="@+id/radioButtonHex"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="HEX" />
+
+        <RadioButton
+            android:id="@+id/radioButtonDec"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:checked="true"
+            android:text="DEC" />
+
+        <RadioButton
+            android:id="@+id/radioButtonOct"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="OCT" />
+
+        <RadioButton
+            android:id="@+id/radioButtonBin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="BIN" />
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/buttonMode"
+        android:layout_width="63dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="Mode"
+        app:layout_constraintBottom_toTopOf="@+id/buttonMod"
+        app:layout_constraintStart_toEndOf="@+id/radioGroup" />
+
+    <Button
+        android:id="@+id/buttonLength"
+        android:layout_width="75dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="QWORD"
+        app:layout_constraintBottom_toTopOf="@+id/buttonXOR"
+        app:layout_constraintStart_toEndOf="@+id/buttonMode" />
+
+
+</android.support.constraint.ConstraintLayout>
