@@ -235,8 +235,8 @@
             android:layout_width="0dp"
             android:layout_height="40dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="24dp"
             android:text="0"
             android:textAlignment="textEnd"
             android:textSize="30sp"
@@ -248,12 +248,11 @@
             android:id="@+id/buttonDel"
             android:layout_width="50dp"
             android:layout_height="41dp"
-            android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
             android:text="Del"
             android:textAlignment="viewStart"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/inputField" />
+            app:layout_constraintTop_toTopOf="@+id/inputField" />
 
         <Button
             android:id="@+id/buttonAcos"
