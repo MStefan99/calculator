@@ -24,7 +24,7 @@
 
     <Button
         android:id="@+id/buttonDel"
-        android:layout_width="55dp"
+        android:layout_width="wrap_content"
         android:layout_height="40dp"
         android:layout_marginEnd="8dp"
         android:text="Del"
@@ -76,11 +76,12 @@
         android:id="@+id/buttonDivide"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginTop="8dp"
         android:text="/"
         app:layout_constraintBottom_toTopOf="@+id/buttonMultiply"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/buttonNOT"
-        app:layout_constraintTop_toBottomOf="@+id/buttonAND" />
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
 
     <Button
         android:id="@+id/button0"
@@ -159,7 +160,7 @@
         android:text="7"
         app:layout_constraintBottom_toTopOf="@+id/button4"
         app:layout_constraintEnd_toStartOf="@+id/button8"
-        app:layout_constraintStart_toEndOf="@+id/buttonC"
+        app:layout_constraintStart_toEndOf="@id/buttonOR"
         app:layout_constraintTop_toBottomOf="@+id/buttonLSH" />
 
     <Button
@@ -208,9 +209,10 @@
         android:layout_height="0dp"
         android:text="A"
         app:layout_constraintBottom_toTopOf="@+id/buttonB"
-        app:layout_constraintEnd_toStartOf="@+id/buttonMod"
+        app:layout_constraintEnd_toStartOf="@id/buttonD"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonAND" />
 
     <Button
         android:id="@+id/buttonB"
@@ -218,7 +220,8 @@
         android:layout_height="0dp"
         android:text="B"
         app:layout_constraintBottom_toTopOf="@+id/buttonC"
-        app:layout_constraintEnd_toStartOf="@+id/buttonLSH"
+        app:layout_constraintEnd_toStartOf="@id/buttonE"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonA" />
 
@@ -227,8 +230,9 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:text="C"
-        app:layout_constraintBottom_toTopOf="@+id/buttonD"
-        app:layout_constraintEnd_toStartOf="@+id/button7"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/buttonF"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonB" />
 
@@ -239,8 +243,9 @@
         android:text="D"
         app:layout_constraintBottom_toTopOf="@+id/buttonE"
         app:layout_constraintEnd_toStartOf="@+id/button4"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonC" />
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@id/buttonA"
+        app:layout_constraintTop_toBottomOf="@+id/buttonOR" />
 
     <Button
         android:id="@+id/buttonE"
@@ -249,7 +254,8 @@
         android:text="E"
         app:layout_constraintBottom_toTopOf="@+id/buttonF"
         app:layout_constraintEnd_toStartOf="@+id/button1"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@id/buttonB"
         app:layout_constraintTop_toBottomOf="@+id/buttonD" />
 
     <Button
@@ -259,7 +265,8 @@
         android:text="F"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/buttonSign"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@id/buttonC"
         app:layout_constraintTop_toBottomOf="@+id/buttonE" />
 
     <Button
@@ -267,29 +274,33 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:text="And"
-        app:layout_constraintBottom_toTopOf="@+id/buttonDivide"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/buttonOR"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
+        app:layout_constraintBottom_toTopOf="@+id/buttonA"
+        app:layout_constraintEnd_toStartOf="@id/buttonOR"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonMod" />
 
     <Button
         android:id="@+id/buttonNOT"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginTop="8dp"
         android:text="Not"
         app:layout_constraintBottom_toTopOf="@+id/button9"
         app:layout_constraintEnd_toStartOf="@+id/buttonDivide"
         app:layout_constraintStart_toEndOf="@+id/buttonRSH"
-        app:layout_constraintTop_toBottomOf="@+id/buttonOR" />
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
 
     <Button
         android:id="@+id/buttonXOR"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginTop="8dp"
         android:text="Xor"
-        app:layout_constraintBottom_toTopOf="@+id/buttonRSH"
-        app:layout_constraintEnd_toStartOf="@+id/buttonOR"
-        app:layout_constraintStart_toEndOf="@+id/buttonMod"
+        app:layout_constraintBottom_toTopOf="@+id/buttonOR"
+        app:layout_constraintEnd_toStartOf="@id/buttonLSH"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@id/buttonMod"
         app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
 
     <Button
@@ -297,39 +308,44 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:text="Or"
-        app:layout_constraintBottom_toTopOf="@+id/buttonNOT"
-        app:layout_constraintEnd_toStartOf="@+id/buttonAND"
-        app:layout_constraintStart_toEndOf="@+id/buttonXOR"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
+        app:layout_constraintBottom_toTopOf="@+id/buttonD"
+        app:layout_constraintEnd_toStartOf="@id/button7"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@id/buttonAND"
+        app:layout_constraintTop_toBottomOf="@+id/buttonXOR" />
 
     <Button
         android:id="@+id/buttonRSH"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginTop="8dp"
         android:text="Rsh"
         app:layout_constraintBottom_toTopOf="@+id/button8"
         app:layout_constraintEnd_toStartOf="@+id/buttonNOT"
         app:layout_constraintStart_toEndOf="@+id/buttonLSH"
-        app:layout_constraintTop_toBottomOf="@+id/buttonXOR" />
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
 
     <Button
         android:id="@+id/buttonLSH"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginTop="8dp"
         android:text="Lsh"
         app:layout_constraintBottom_toTopOf="@+id/button7"
         app:layout_constraintEnd_toStartOf="@+id/buttonRSH"
-        app:layout_constraintStart_toEndOf="@+id/buttonB"
-        app:layout_constraintTop_toBottomOf="@+id/buttonMod" />
+        app:layout_constraintStart_toEndOf="@id/buttonXOR"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
 
     <Button
         android:id="@+id/buttonMod"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginTop="8dp"
         android:text="Mod"
-        app:layout_constraintBottom_toTopOf="@+id/buttonLSH"
-        app:layout_constraintEnd_toStartOf="@+id/buttonXOR"
-        app:layout_constraintStart_toEndOf="@+id/buttonA"
+        app:layout_constraintBottom_toTopOf="@+id/buttonAND"
+        app:layout_constraintEnd_toStartOf="@id/buttonXOR"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
 
     <RadioGroup
