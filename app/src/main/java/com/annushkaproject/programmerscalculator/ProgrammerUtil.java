@@ -57,4 +57,18 @@ public class ProgrammerUtil {
         }
         return 0;
     }
+
+    public static long not(NumberLength mode, long value){
+        switch(mode) {
+            case QWORD:
+                return ~value;
+            case DWORD:
+                return (int) ~value;
+            case WORD:
+                return (short) (~(short) value);
+            case BYTE:
+                return (byte) (~(byte) value);
+        }
+        return 0;
+    }
 }
