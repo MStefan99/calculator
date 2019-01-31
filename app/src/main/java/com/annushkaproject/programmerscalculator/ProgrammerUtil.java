@@ -29,4 +29,32 @@ public class ProgrammerUtil {
         }
         return 0;
     }
+
+    public static long lsh(NumberLength mode, long value, int shift){
+        switch(mode) {
+            case QWORD:
+                return value << shift;
+            case DWORD:
+                return (int) (value << shift);
+            case WORD:
+                return (short) ((short) value << shift);
+            case BYTE:
+                return (byte) ((byte) value << shift);
+        }
+        return 0;
+    }
+
+    public static long rsh(NumberLength mode, long value, int shift){
+        switch(mode) {
+            case QWORD:
+                return value >> shift;
+            case DWORD:
+                return (int) ( value >> shift);
+            case WORD:
+                return (short) ((short) value >> shift);
+            case BYTE:
+                return (byte) ((byte) value >> shift);
+        }
+        return 0;
+    }
 }
