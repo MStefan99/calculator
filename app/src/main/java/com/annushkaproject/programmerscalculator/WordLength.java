@@ -1,6 +1,6 @@
 package com.annushkaproject.programmerscalculator;
 
-public enum NumberLength {
+public enum WordLength {
     QWORD,
     DWORD,
     WORD,

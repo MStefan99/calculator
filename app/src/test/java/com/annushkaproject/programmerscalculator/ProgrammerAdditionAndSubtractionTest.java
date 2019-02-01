@@ -2,7 +2,7 @@ package com.annushkaproject.programmerscalculator;
 
 import org.junit.Test;
 
-import static com.annushkaproject.programmerscalculator.NumberLength.*;
+import static com.annushkaproject.programmerscalculator.WordLength.*;
 import static org.junit.Assert.*;
 
 /**

@@ -3,12 +3,12 @@ package com.annushkaproject.programmerscalculator;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-import static com.annushkaproject.programmerscalculator.NumberLength.*;
+import static com.annushkaproject.programmerscalculator.WordLength.*;
 
 public class ProgrammerNotTest {
     @Test
     public void notTestBasic_isCorrect() {
-        for (NumberLength mode: NumberLength.values()) {
+        for (WordLength mode: WordLength.values()) {
             assertEquals(-2, ProgrammerUtil.not(mode, 1));
             assertEquals(-1, ProgrammerUtil.not(mode, 0));
             assertEquals(0, ProgrammerUtil.not(mode, -1));

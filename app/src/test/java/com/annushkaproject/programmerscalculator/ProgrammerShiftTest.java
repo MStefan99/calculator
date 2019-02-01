@@ -3,7 +3,7 @@ package com.annushkaproject.programmerscalculator;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-import static com.annushkaproject.programmerscalculator.NumberLength.*;
+import static com.annushkaproject.programmerscalculator.WordLength.*;
 
 public class ProgrammerShiftTest {
     @Test
