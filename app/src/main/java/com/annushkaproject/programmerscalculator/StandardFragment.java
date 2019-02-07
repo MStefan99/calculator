@@ -20,6 +20,7 @@ public class StandardFragment extends Fragment {
 
     private CalculationModel calcModel = new CalculationModel();
     private boolean secondValueInputStarted = false;
+    private boolean secondValueInputInProgress = false;
 
     private String packageName;
 
@@ -181,16 +182,27 @@ public class StandardFragment extends Fragment {
         if (secondValueInputStarted) {
             newString = number;
             secondValueInputStarted = false;
+            secondValueInputInProgress = true;
         } else {
             newString = textView.getText().toString() + number;
         }
 
         textView.setText(newString);
+
+        if (secondValueInputInProgress) {
+            calcModel.setSecondValue(Double.parseDouble(textView.getText().toString()));
+        } else {
+            calcModel.setFirstValue(Double.parseDouble(textView.getText().toString()));
+        }
     }
 
     private void usePressedOperator(Operator operator) {
-        double value = Double.parseDouble(textView.getText().toString());
-        calcModel.setFirstValue(value);
+        boolean readyToCalcOneSide = calcModel.getOperator() != null && !calcModel.getOperator().requiresTwoValues() && calcModel.getFirstValue() != null;
+        boolean readyToCalcTwoSides = calcModel.getOperator() != null && calcModel.getFirstValue() != null && calcModel.getSecondValue() != null;
+        if (readyToCalcOneSide || readyToCalcTwoSides) {
+            calculateResult();
+        }
+
         calcModel.setOperator(operator);
 
         if (operator == Operator.PERCENT) {
@@ -205,7 +217,6 @@ public class StandardFragment extends Fragment {
             return;
         }
 
-        calcModel.setSecondValue(Double.parseDouble(textView.getText().toString()));
         calculateResult();
     }
 
@@ -214,6 +225,8 @@ public class StandardFragment extends Fragment {
         setTextViewValue(result);
 
         calcModel.resetCalcState();
+        secondValueInputInProgress = false;
+
         calcModel.setFirstValue(result);
     }
 
