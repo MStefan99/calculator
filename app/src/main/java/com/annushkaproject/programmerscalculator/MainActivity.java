@@ -32,7 +32,9 @@ public class MainActivity extends AppCompatActivity
 
         if (savedInstanceState == null) {
             //Open standard fragment when start the app for the first time.
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new StandardFragment()).commit();
+            StandardFragment standardFragment = new StandardFragment();
+            standardFragment.setupFragment(getPackageName());
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, standardFragment).commit();
             navigationView.setCheckedItem(R.id.nav_standard_mode);
         }
     }
@@ -52,7 +54,9 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_standard_mode) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new StandardFragment()).commit();
+            StandardFragment standardFragment = new StandardFragment();
+            standardFragment.setupFragment(getPackageName());
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, standardFragment).commit();
         } else if (id == R.id.nav_programmer_mode) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ProgrammerFragment()).commit();
         } else if (id == R.id.nav_themes) {
