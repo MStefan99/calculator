@@ -11,8 +11,9 @@ public class ProgrammerUtil {
                 return (short) (value1 + value2);
             case BYTE:
                 return (byte) (value1 + value2);
+            default:
+                return 0;
         }
-        return 0;
     }
 
     public static long changeSign(WordLength mode, long value) {
@@ -25,8 +26,9 @@ public class ProgrammerUtil {
                 return (short) -value;
             case BYTE:
                 return (byte) -value;
+            default:
+                return 0;
         }
-        return 0;
     }
 
     public static long lsh(WordLength mode, long value, int shift) {
@@ -39,8 +41,9 @@ public class ProgrammerUtil {
                 return (short) ((short) value << shift);
             case BYTE:
                 return (byte) ((byte) value << shift);
+            default:
+                return 0;
         }
-        return 0;
     }
 
     public static long rsh(WordLength mode, long value, int shift) {
@@ -53,8 +56,9 @@ public class ProgrammerUtil {
                 return (short) ((short) value >> shift);
             case BYTE:
                 return (byte) ((byte) value >> shift);
+            default:
+                return 0;
         }
-        return 0;
     }
 
     public static long not(WordLength mode, long value) {
@@ -67,8 +71,9 @@ public class ProgrammerUtil {
                 return (short) (~(short) value);
             case BYTE:
                 return (byte) (~(byte) value);
+            default:
+                return 0;
         }
-        return 0;
     }
 
     public static long or(WordLength mode, long value1, long value2) {
@@ -81,8 +86,9 @@ public class ProgrammerUtil {
                 return (short) (value1 | value2);
             case BYTE:
                 return (byte) (value1 | value2);
+            default:
+                return 0;
         }
-        return 0;
     }
 
     public static long xor(WordLength mode, long value1, long value2) {
@@ -95,8 +101,9 @@ public class ProgrammerUtil {
                 return (short) (value1 ^ value2);
             case BYTE:
                 return (byte) (value1 ^ value2);
+            default:
+                return 0;
         }
-        return 0;
     }
 
     public static long and(WordLength mode, long value1, long value2) {
@@ -109,8 +116,9 @@ public class ProgrammerUtil {
                 return (short) (value1 & value2);
             case BYTE:
                 return (byte) (value1 & value2);
+            default:
+                return 0;
         }
-        return 0;
     }
 
     public static long mod(WordLength mode, long dividend, long divider) {
@@ -123,8 +131,9 @@ public class ProgrammerUtil {
                 return (short) dividend % divider;
             case BYTE:
                 return (byte) dividend % divider;
+            default:
+                return 0;
         }
-        return 0;
     }
     
     public static long multiply(WordLength mode, long value1, long value2) {
@@ -137,8 +146,9 @@ public class ProgrammerUtil {
                 return (short) ((short) value1 * (short) value2);
             case BYTE:
                 return (byte) ((byte) value1 * (byte) value2);
+            default:
+                return 0;
         }
-        return 0;
     }
 
     public static long divide(WordLength mode, long dividend, long divider) {
@@ -151,7 +161,8 @@ public class ProgrammerUtil {
                 return (short) ((short) dividend / (short) divider);
             case BYTE:
                 return (byte) ((byte) dividend / (byte) divider);
+            default:
+                return 0;
         }
-        return 0;
     }
 }
