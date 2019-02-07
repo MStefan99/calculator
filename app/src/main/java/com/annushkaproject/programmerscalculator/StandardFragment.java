@@ -34,7 +34,7 @@ public class StandardFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        this.textView = getView().findViewById(R.id.inputField);
+        textView = getView().findViewById(R.id.inputField);
 
         fillNumberButtons();
         fillOperatorButtons();
@@ -52,7 +52,7 @@ public class StandardFragment extends Fragment {
     private void fillNumberButtons() {
         for (int i = 0; i < 10; i++) {
             Button button = getView().findViewById(getResources().getIdentifier("button" + i, "id",
-                    this.packageName));
+                    packageName));
             button.setOnClickListener(new View.OnClickListener() {
                                           @Override
                                           public void onClick(View v) {
@@ -63,7 +63,8 @@ public class StandardFragment extends Fragment {
                                           }
                                       }
             );
-            this.numberButtons.add(button);
+
+            numberButtons.add(button);
         }
 
         //Adding "." button separately
@@ -84,7 +85,7 @@ public class StandardFragment extends Fragment {
     }
 
     private String currentString() {
-        return this.textView.getText().toString();
+        return textView.getText().toString();
     }
 
     private void fillOperatorButtons() {
@@ -96,7 +97,7 @@ public class StandardFragment extends Fragment {
         this.operatorButtons.add(getView().findViewById(R.id.buttonMultiply));
         this.operatorButtons.add(getView().findViewById(R.id.buttonPercent));
 
-        for (Button button : this.operatorButtons) {
+        for (Button button : operatorButtons) {
             button.setOnClickListener(new View.OnClickListener() {
                                           @Override
                                           public void onClick(View v) {
@@ -173,29 +174,29 @@ public class StandardFragment extends Fragment {
 
     private void usePressedNumber(String number) {
         if (currentString().equals("0") && !number.equals(".")) {
-            this.textView.setText(""); //clear text view from 0 value.
+            textView.setText(""); //clear text view from 0 value.
         }
 
         String newString;
-        if (this.secondValueInputStarted) {
+        if (secondValueInputStarted) {
             newString = number;
-            this.secondValueInputStarted = false;
+            secondValueInputStarted = false;
         } else {
-            newString = this.textView.getText().toString() + number;
+            newString = textView.getText().toString() + number;
         }
 
-        this.textView.setText(newString);
+        textView.setText(newString);
     }
 
     private void usePressedOperator(Operator operator) {
-        double value = Double.parseDouble(this.textView.getText().toString());
-        this.calcModel.setFirstValue(value);
-        this.calcModel.setOperator(operator);
+        double value = Double.parseDouble(textView.getText().toString());
+        calcModel.setFirstValue(value);
+        calcModel.setOperator(operator);
 
         if (operator == Operator.PERCENT) {
             calculateResult();
         } else {
-            this.secondValueInputStarted = true;
+            secondValueInputStarted = true;
         }
     }
 
@@ -204,25 +205,25 @@ public class StandardFragment extends Fragment {
             return;
         }
 
-        this.calcModel.setSecondValue(Double.parseDouble(this.textView.getText().toString()));
+        calcModel.setSecondValue(Double.parseDouble(textView.getText().toString()));
         calculateResult();
     }
 
     private void calculateResult() {
-        double result = StandardOperationsUtil.calculateWithData(this.calcModel);
+        double result = StandardOperationsUtil.calculateWithData(calcModel);
         setTextViewValue(result);
 
-        this.calcModel.resetCalcState();
-        this.calcModel.setFirstValue(result);
+        calcModel.resetCalcState();
+        calcModel.setFirstValue(result);
     }
 
     private void setTextViewValue(Double value) {
         boolean isWholeValue = value % 1 == 0;
 
         if (isWholeValue) {
-            this.textView.setText(String.format("%.0f", value));
+            textView.setText(String.format("%.0f", value));
         } else {
-            this.textView.setText(Double.toString(value));
+            textView.setText(Double.toString(value));
         }
     }
 
