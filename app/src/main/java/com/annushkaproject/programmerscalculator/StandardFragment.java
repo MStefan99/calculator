@@ -28,6 +28,19 @@ public class StandardFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        super.onCreateView(inflater, container, savedInstanceState);
+        if (packageName == null) {
+            packageName = savedInstanceState.getString("PACKAGE_NAME");
+            if (savedInstanceState.getBoolean("FIRST_VALUE_SAVED")) {
+                calcModel.setFirstValue(savedInstanceState.getDouble("FIRST_VALUE"));
+            }
+            if (savedInstanceState.getBoolean("OPERATOR_SAVED")) {
+                calcModel.setOperator(Operator.getOperatorByNumber(savedInstanceState.getInt("OPERATOR")));
+            }
+            if (savedInstanceState.getBoolean("SECOND_VALUE_SAVED")) {
+                calcModel.setSecondValue(savedInstanceState.getDouble("SECOND_VALUE"));
+            }
+        }
         return inflater.inflate(R.layout.fragment_standard, container, false);
     }
 
@@ -44,6 +57,27 @@ public class StandardFragment extends Fragment {
         setupDeleteButton();
         setupClearButton();
         setupSignButton();
+    }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putString("PACKAGE_NAME", packageName);
+        boolean firstValuePresent = calcModel.getFirstValue() != null;
+        boolean operatorPresent = calcModel.getOperator() != null;
+        boolean secondValuePresent = calcModel.getSecondValue() != null;
+        if (firstValuePresent) {
+            outState.putDouble("FIRST_VALUE", calcModel.getFirstValue().getNumber());
+        }
+        if (operatorPresent) {
+            outState.putInt("OPERATOR", Operator.getNumberByOperator(calcModel.getOperator()));
+        }
+        if (secondValuePresent) {
+            outState.putDouble("SECOND_VALUE", calcModel.getSecondValue().getNumber());
+        }
+        outState.putBoolean("FIRST_VALUE_SAVED", firstValuePresent);
+        outState.putBoolean("OPERATOR_SAVED", operatorPresent);
+        outState.putBoolean("SECOND_VALUE_SAVED", secondValuePresent);
     }
 
     public void setupFragment(String packageName) {

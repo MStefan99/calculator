@@ -39,7 +39,7 @@ public enum Operator {
         }
     }
 
-    public int getNumberByOperator(Operator operator) {
+    public static int getNumberByOperator(Operator operator) {
         switch (operator) {
             case ADD:
                 return 0;
@@ -52,12 +52,14 @@ public enum Operator {
             case PERCENT:
                 return 4;
             default:
-                return 5;
+                return -1;
         }
     }
 
-    public Operator getOperatorByNumber(int number) {
+    public static Operator getOperatorByNumber(int number) {
         switch (number) {
+            case -1:
+                return UNKNOWN;
             case 0:
                 return ADD;
             case 1:
