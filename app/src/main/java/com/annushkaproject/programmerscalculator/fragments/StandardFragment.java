@@ -1,4 +1,4 @@
-package com.annushkaproject.programmerscalculator;
+package com.annushkaproject.programmerscalculator.fragments;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -9,6 +9,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+
+import com.annushkaproject.programmerscalculator.R;
+import com.annushkaproject.programmerscalculator.model.CalculationModel;
+import com.annushkaproject.programmerscalculator.model.Operator;
+import com.annushkaproject.programmerscalculator.utils.StandardOperationsUtil;
 
 import java.util.ArrayList;
 

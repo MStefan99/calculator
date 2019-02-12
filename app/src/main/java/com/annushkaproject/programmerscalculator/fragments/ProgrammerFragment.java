@@ -1,4 +1,4 @@
-package com.annushkaproject.programmerscalculator;
+package com.annushkaproject.programmerscalculator.fragments;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -8,11 +8,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class ThemesFragment extends Fragment {
+import com.annushkaproject.programmerscalculator.R;
+
+public class ProgrammerFragment extends Fragment {
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_themes, container, false);
+        return inflater.inflate(R.layout.fragment_programmer, container, false);
     }
 }

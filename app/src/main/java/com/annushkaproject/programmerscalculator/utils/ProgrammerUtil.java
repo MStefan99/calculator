@@ -1,4 +1,6 @@
-package com.annushkaproject.programmerscalculator;
+package com.annushkaproject.programmerscalculator.utils;
+
+import com.annushkaproject.programmerscalculator.model.WordLength;
 
 public class ProgrammerUtil {
     public static long addSubtract(WordLength mode, long value1, long value2) {

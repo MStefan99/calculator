@@ -1,4 +1,4 @@
-package com.annushkaproject.programmerscalculator;
+package com.annushkaproject.programmerscalculator.activities;
 
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -7,9 +7,13 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
+
+import com.annushkaproject.programmerscalculator.fragments.ProgrammerFragment;
+import com.annushkaproject.programmerscalculator.R;
+import com.annushkaproject.programmerscalculator.fragments.StandardFragment;
+import com.annushkaproject.programmerscalculator.fragments.ThemesFragment;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {

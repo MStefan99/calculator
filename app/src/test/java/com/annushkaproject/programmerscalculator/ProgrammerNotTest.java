@@ -1,9 +1,12 @@
 package com.annushkaproject.programmerscalculator;
 
+import com.annushkaproject.programmerscalculator.model.WordLength;
+import com.annushkaproject.programmerscalculator.utils.ProgrammerUtil;
+
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-import static com.annushkaproject.programmerscalculator.WordLength.*;
+import static com.annushkaproject.programmerscalculator.model.WordLength.*;
 
 public class ProgrammerNotTest {
     @Test

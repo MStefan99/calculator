@@ -1,9 +1,11 @@
 package com.annushkaproject.programmerscalculator;
 
 
+import com.annushkaproject.programmerscalculator.utils.ProgrammerUtil;
+
 import org.junit.Test;
 
-import static com.annushkaproject.programmerscalculator.WordLength.*;
+import static com.annushkaproject.programmerscalculator.model.WordLength.*;
 import static org.junit.Assert.*;
 
 public class ProgrammerSignChangeTest {

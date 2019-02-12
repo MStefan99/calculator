@@ -1,4 +1,4 @@
-package com.annushkaproject.programmerscalculator;
+package com.annushkaproject.programmerscalculator.model;
 
 public enum Operator {
     ADD,

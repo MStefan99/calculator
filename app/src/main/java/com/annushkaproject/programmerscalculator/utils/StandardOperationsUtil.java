@@ -1,4 +1,7 @@
-package com.annushkaproject.programmerscalculator;
+package com.annushkaproject.programmerscalculator.utils;
+
+import com.annushkaproject.programmerscalculator.model.CalculationModel;
+import com.annushkaproject.programmerscalculator.model.Operator;
 
 public class StandardOperationsUtil {
 
