@@ -2,7 +2,9 @@ package com.annushkaproject.programmerscalculator.utils;
 
 import android.app.Activity;
 import android.content.SharedPreferences;
+import android.support.annotation.Nullable;
 
+import com.annushkaproject.programmerscalculator.Interfaces.AppearanceUpdateInterface;
 import com.annushkaproject.programmerscalculator.model.ThemeSetting;
 
 public class SharedPreferencesUtil {
@@ -27,6 +29,15 @@ public class SharedPreferencesUtil {
         int value = preferences.getInt(THEME_SETTING_KEY, ThemeSetting.getNumberByThemeSetting(ThemeSetting.LIGHT));
 
         return ThemeSetting.getThemeSettingByNumber(value);
+    }
+
+    public void onPreferencesUpdated(@Nullable AppearanceUpdateInterface updateInterface) {
+        //TODO: check update
+        if (updateInterface == null) {
+            //TODO: handle error
+        }
+
+        updateInterface.needUpdateAppearance();
     }
 
 }
