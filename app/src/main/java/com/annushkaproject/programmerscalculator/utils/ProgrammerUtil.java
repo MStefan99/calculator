@@ -1,8 +1,40 @@
 package com.annushkaproject.programmerscalculator.utils;
 
+import com.annushkaproject.programmerscalculator.model.CalculationModel;
 import com.annushkaproject.programmerscalculator.model.WordLength;
 
 public class ProgrammerUtil {
+    public static double calculateWithData(CalculationModel data) {
+        switch (data.getOperator()) {
+            case ADD:
+                return addSubtract(data.getWordLength(), (long) data.getFirstValue().getNumber(), (long) data.getSecondValue().getNumber());
+            case SUBSTRUCT:
+                return addSubtract(data.getWordLength(), (long) data.getFirstValue().getNumber(), - (long) data.getSecondValue().getNumber());
+            case MULTIPLY:
+                return multiply(data.getWordLength(), (long) data.getFirstValue().getNumber(), (long) data.getSecondValue().getNumber());
+            case DIVIDE:
+                return divide(data.getWordLength(), (long) data.getFirstValue().getNumber(), (long) data.getSecondValue().getNumber());
+            case LSH:
+                return lsh(data.getWordLength(), (long) data.getFirstValue().getNumber(), (int) data.getSecondValue().getNumber());
+            case RSH:
+                return rsh(data.getWordLength(), (long) data.getFirstValue().getNumber(), (int) data.getSecondValue().getNumber());
+            case OR:
+                return or(data.getWordLength(), (long) data.getFirstValue().getNumber(), (long) data.getSecondValue().getNumber());
+            case XOR:
+                return xor(data.getWordLength(), (long) data.getFirstValue().getNumber(), (long) data.getSecondValue().getNumber());
+            case AND:
+                return and(data.getWordLength(), (long) data.getFirstValue().getNumber(), (long) data.getSecondValue().getNumber());
+            case MOD:
+                return mod(data.getWordLength(), (long) data.getFirstValue().getNumber(), (long) data.getSecondValue().getNumber());
+            case CHANGE_SIGN:
+                return changeSign(data.getWordLength(), (long) data.getFirstValue().getNumber());
+            case NOT:
+                return not(data.getWordLength(), (long) data.getFirstValue().getNumber());
+            default:
+                return 0;
+        }
+    }
+
     public static long addSubtract(WordLength mode, long value1, long value2) {
         switch(mode) {
             case QWORD:
@@ -137,7 +169,7 @@ public class ProgrammerUtil {
                 return 0;
         }
     }
-    
+
     public static long multiply(WordLength mode, long value1, long value2) {
         switch(mode) {
             case QWORD:

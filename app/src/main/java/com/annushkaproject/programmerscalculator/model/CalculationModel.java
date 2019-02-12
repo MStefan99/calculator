@@ -5,11 +5,13 @@ public class CalculationModel {
     private Value firstValue;
     private Value secondValue;
     private Operator operator;
+    private WordLength wordLength;
 
     public CalculationModel() {
         this.firstValue = null;
         this.secondValue = null;
         this.operator = null;
+        this.wordLength = WordLength.QWORD;
     }
 
     //getters
@@ -25,6 +27,10 @@ public class CalculationModel {
         return this.operator;
     }
 
+    public WordLength getWordLength() {
+        return wordLength;
+    }
+
     //setters
     public void setFirstValue(double value) {
         this.firstValue = new Value(value);
@@ -36,6 +42,10 @@ public class CalculationModel {
 
     public void setOperator(Operator operator) {
         this.operator = operator;
+    }
+
+    public void setWordLength(WordLength wordLength) {
+        this.wordLength = wordLength;
     }
 
     //reset methods
