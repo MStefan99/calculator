@@ -11,13 +11,15 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.annushkaproject.programmerscalculator.R;
+import com.annushkaproject.programmerscalculator.model.CalculationModel;
 import com.annushkaproject.programmerscalculator.model.Operator;
 import com.annushkaproject.programmerscalculator.utils.CalculationUtil;
+import com.annushkaproject.programmerscalculator.utils.InstanceStateUtil;
 
 public class ProgrammerFragment extends Fragment {
 
     private TextView textView;
-    private CalculationUtil buttonUtil = new CalculationUtil();
+    private CalculationModel calcModel = new CalculationModel();
 
     private String packageName;
 
@@ -27,15 +29,7 @@ public class ProgrammerFragment extends Fragment {
         super.onCreateView(inflater, container, savedInstanceState);
         if (packageName == null) {
             packageName = savedInstanceState.getString("PACKAGE_NAME");
-            if (savedInstanceState.getBoolean("FIRST_VALUE_SAVED")) {
-                buttonUtil.getCalcModel().setFirstValue(savedInstanceState.getDouble("FIRST_VALUE"));
-            }
-            if (savedInstanceState.getBoolean("OPERATOR_SAVED")) {
-                buttonUtil.getCalcModel().setOperator(Operator.getOperatorByNumber(savedInstanceState.getInt("OPERATOR")));
-            }
-            if (savedInstanceState.getBoolean("SECOND_VALUE_SAVED")) {
-                buttonUtil.getCalcModel().setSecondValue(savedInstanceState.getDouble("SECOND_VALUE"));
-            }
+            calcModel = InstanceStateUtil.restoreSavedInstance(savedInstanceState);
         }
         return inflater.inflate(R.layout.fragment_programmer, container, false);
     }
@@ -58,22 +52,7 @@ public class ProgrammerFragment extends Fragment {
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putString("PACKAGE_NAME", packageName);
-        boolean firstValuePresent = buttonUtil.getCalcModel().getFirstValue() != null;
-        boolean operatorPresent = buttonUtil.getCalcModel().getOperator() != null;
-        boolean secondValuePresent = buttonUtil.getCalcModel().getSecondValue() != null;
-        if (firstValuePresent) {
-            outState.putDouble("FIRST_VALUE", buttonUtil.getCalcModel().getFirstValue().getNumber());
-        }
-        if (operatorPresent) {
-            outState.putInt("OPERATOR", Operator.getNumberByOperator(buttonUtil.getCalcModel().getOperator()));
-        }
-        if (secondValuePresent) {
-            outState.putDouble("SECOND_VALUE", buttonUtil.getCalcModel().getSecondValue().getNumber());
-        }
-        outState.putBoolean("FIRST_VALUE_SAVED", firstValuePresent);
-        outState.putBoolean("OPERATOR_SAVED", operatorPresent);
-        outState.putBoolean("SECOND_VALUE_SAVED", secondValuePresent);
+        InstanceStateUtil.saveInstanceState(outState, calcModel, packageName);
     }
 
     public void setupFragment(String packageName) {
