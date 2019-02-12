@@ -8,7 +8,7 @@ public enum ThemeSetting {
     AUTO,
     UNKNOWN;
 
-    public int getNumberByThemeSetting(ThemeSetting themeSetting) {
+    public static int getNumberByThemeSetting(ThemeSetting themeSetting) {
         switch (themeSetting) {
             case LIGHT:
                 return 0;
@@ -22,7 +22,7 @@ public enum ThemeSetting {
         }
     }
 
-    public ThemeSetting getThemeSettingByNumber(int number) {
+    public static ThemeSetting getThemeSettingByNumber(int number) {
         switch (number) {
             case 0:
                 return ThemeSetting.LIGHT;
