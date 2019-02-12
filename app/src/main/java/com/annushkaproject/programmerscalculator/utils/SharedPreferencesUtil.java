@@ -2,7 +2,7 @@ package com.annushkaproject.programmerscalculator.utils;
 
 import android.app.Activity;
 import android.content.SharedPreferences;
-import android.support.annotation.Nullable;
+import android.util.Log;
 
 import com.annushkaproject.programmerscalculator.Interfaces.AppearanceUpdateInterface;
 import com.annushkaproject.programmerscalculator.model.ThemeSetting;
@@ -11,6 +11,7 @@ public class SharedPreferencesUtil {
 
     private static final String PREF = "Preferences";
     private static final String THEME_SETTING_KEY = "ThemeSettingKey";
+    private static final String PREFERENCES_LOG_TAG = "PreferencesLog";
 
     private SharedPreferences preferences;
     private SharedPreferences.Editor preferencesEditor;
@@ -31,13 +32,15 @@ public class SharedPreferencesUtil {
         return ThemeSetting.getThemeSettingByNumber(value);
     }
 
-    public void onPreferencesUpdated(@Nullable AppearanceUpdateInterface updateInterface) {
-        //TODO: check update
+    public void onPreferencesUpdated(AppearanceUpdateInterface updateInterface) {
         if (updateInterface == null) {
-            //TODO: handle error
+            Log.d(PREFERENCES_LOG_TAG, "onPreferencesUpdated: updateInterface is null");
+            return;
         }
 
-        updateInterface.needUpdateAppearance();
-    }
+        preferences.registerOnSharedPreferenceChangeListener((prefs, key) -> {
+            updateInterface.needUpdateAppearance(loadThemeSetting());
+        });
 
+    }
 }
