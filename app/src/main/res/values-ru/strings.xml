@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="app_name">Программистский калькулятор</string>
+    <string name="action_settings">Настройки</string>
+    <string name="nav_drawer_standard">Стандартный</string>
+    <string name="nav_drawer_programmer">Программистский</string>
+    <string name="nav_themes">Оформление</string>
+    <string name="nav_share">Поделиться</string>
+    <string name="nav_about">О приложении</string>
+    <string name="nav_contacts">Контакты</string>
+</resources>
