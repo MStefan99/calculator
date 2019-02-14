@@ -5,15 +5,14 @@ public class Value {
     private double number;
 
     public Value(double value) {
-        this.number = value;
+        number = value;
+    }
+
+    private Value() {
     }
 
     public double getNumber() {
-        return this.number;
-    }
-
-    public void setNumber(double number) {
-        this.number = number;
+        return number;
     }
 
 }

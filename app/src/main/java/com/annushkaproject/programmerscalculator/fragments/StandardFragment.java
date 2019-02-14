@@ -25,7 +25,6 @@ public class StandardFragment extends Fragment {
 
     private CalculationModel calcModel = new CalculationModel();
     private boolean secondValueInputStarted = false;
-    private boolean secondValueInputInProgress = false;
 
     private String packageName;
 
@@ -93,15 +92,12 @@ public class StandardFragment extends Fragment {
         for (int i = 0; i < 10; i++) {
             Button button = getView().findViewById(getResources().getIdentifier("button" + i, "id",
                     packageName));
-            button.setOnClickListener(new View.OnClickListener() {
-                                          @Override
-                                          public void onClick(View v) {
-                                              Button button = (Button)v;
-                                              System.out.println(button.getText().toString());
+            button.setOnClickListener(v -> {
+                Button button1 = (Button)v;
+                System.out.println(button1.getText().toString());
 
-                                              usePressedNumber(button.getText().toString());
-                                          }
-                                      }
+                usePressedNumber(button1.getText().toString());
+            }
             );
 
             numberButtons.add(button);
@@ -109,17 +105,14 @@ public class StandardFragment extends Fragment {
 
         //Adding "." button separately
         Button button = getView().findViewById(R.id.buttonComma);
-        button.setOnClickListener(new View.OnClickListener() {
-                                      @Override
-                                      public void onClick(View v) {
-                                          Button button = (Button)v;
-                                          System.out.println(button.getText().toString());
+        button.setOnClickListener(v -> {
+            Button button12 = (Button)v;
+            System.out.println(button12.getText().toString());
 
-                                          if (!currentString().contains(".")) {
-                                              usePressedNumber(button.getText().toString());
-                                          }
-                                      }
-                                  }
+            if (!currentString().contains(".")) {
+                usePressedNumber(button12.getText().toString());
+            }
+        }
         );
         this.numberButtons.add(button);
     }
@@ -138,16 +131,13 @@ public class StandardFragment extends Fragment {
         this.operatorButtons.add(getView().findViewById(R.id.buttonPercent));
 
         for (Button button : operatorButtons) {
-            button.setOnClickListener(new View.OnClickListener() {
-                                          @Override
-                                          public void onClick(View v) {
-                                              Button button = (Button)v;
-                                              System.out.println(button.getText().toString());
+            button.setOnClickListener(v -> {
+                Button button1 = (Button)v;
+                System.out.println(button1.getText().toString());
 
-                                              Operator operator = Operator.operatorForTitle(button.getText().toString());
-                                              usePressedOperator(operator);
-                                          }
-                                      }
+                Operator operator = Operator.operatorForTitle(button1.getText().toString());
+                usePressedOperator(operator);
+            }
 
             );
         }
@@ -155,60 +145,53 @@ public class StandardFragment extends Fragment {
 
     private void setupCalculateButton() {
         Button equalsButton = getView().findViewById(R.id.buttonEquals);
-        equalsButton.setOnClickListener(new View.OnClickListener() {
-                                            @Override
-                                            public void onClick(View v) {
-                                                Button button = (Button)v;
-                                                System.out.println(button.getText().toString());
+        equalsButton.setOnClickListener(v -> {
+            Button button = (Button)v;
+            System.out.println(button.getText().toString());
 
-                                                useEqualsOperator();
-                                            }
-                                        }
+            useEqualsOperator();
+        }
         );
     }
 
     private void setupDeleteButton() {
         Button delButton = getView().findViewById(R.id.buttonDel);
-        delButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String currentString = currentString();
-                if (currentString.length() > 1) {
-                    currentString = currentString.substring(0, currentString.length() - 1);
-                    textView.setText(currentString);
-                } else {
-                    setTextViewValue(0.0);
-                }
+        delButton.setOnClickListener(v -> {
+            String currentString = currentString();
+            if (currentString.length() > 1) {
+                currentString = currentString.substring(0, currentString.length() - 1);
+                updateText(currentString);
+            } else {
+                updateText(calcModel.textForValue(0.0));
             }
         });
     }
 
     private void setupClearButton() {
         Button clearButton = getView().findViewById(R.id.buttonClear);
-        clearButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                setTextViewValue(0.0);
-                calcModel.resetCalcState();
-            }
+        clearButton.setOnClickListener(v -> {
+            calcModel.resetCalcState();
+            updateText(calcModel.textForValue(0.0));
         });
     }
 
     public void setupSignButton() {
         Button signButton = getView().findViewById(R.id.buttonSign);
-        signButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                double currentValue = Double.parseDouble(currentString());
-                String updatedString = currentString();
-                if (currentValue > 0) {
-                    updatedString = "-" + updatedString;
-                } else {
-                    updatedString = updatedString.substring(1);
-                }
+        signButton.setOnClickListener(v -> {
+            double currentValue = Double.parseDouble(currentString());
 
-                textView.setText(updatedString);
+            if (currentValue == 0) { //do not make "-0"
+                return;
             }
+
+            String updatedString = currentString();
+            if (currentValue > 0) {
+                updatedString = "-" + updatedString;
+            } else {
+                updatedString = updatedString.substring(1);
+            }
+
+            updateText(updatedString);
         });
     }
 
@@ -221,34 +204,37 @@ public class StandardFragment extends Fragment {
         if (secondValueInputStarted) {
             newString = number;
             secondValueInputStarted = false;
-            secondValueInputInProgress = true;
         } else {
             newString = textView.getText().toString() + number;
         }
 
-        textView.setText(newString);
-
-        if (secondValueInputInProgress) {
-            calcModel.setSecondValue(Double.parseDouble(textView.getText().toString()));
-        } else {
-            calcModel.setFirstValue(Double.parseDouble(textView.getText().toString()));
-        }
+        updateText(newString);
     }
 
     private void usePressedOperator(Operator operator) {
-        boolean readyToCalcOneSide = calcModel.getOperator() != null && !calcModel.getOperator().requiresTwoValues() && calcModel.getFirstValue() != null;
-        boolean readyToCalcTwoSides = calcModel.getOperator() != null && calcModel.getFirstValue() != null && calcModel.getSecondValue() != null;
-        if (readyToCalcOneSide || readyToCalcTwoSides) {
-            calculateResult();
+        boolean readyToSaveOperator = calcModel.getFirstValue() != null;
+        if (!readyToSaveOperator) {
+            return;
         }
 
-        calcModel.setOperator(operator);
+        boolean readyToCalcOneSide = !operator.requiresTwoValues() &&
+                                     calcModel.getFirstValue() != null;
+        if (readyToCalcOneSide) {
+            calcModel.setOperator(operator);
+            calculateResult();
+            return;
+        }
 
-        if (operator == Operator.PERCENT) {
+        boolean readyToCalcTwoSides = calcModel.getOperator() != null &&
+                                      calcModel.getFirstValue() != null &&
+                                      calcModel.getSecondValue() != null;
+        if (readyToCalcTwoSides) {
             calculateResult();
         } else {
             secondValueInputStarted = true;
         }
+
+        calcModel.setOperator(operator);
     }
 
     private void useEqualsOperator() {
@@ -261,22 +247,18 @@ public class StandardFragment extends Fragment {
 
     private void calculateResult() {
         double result = StandardOperationsUtil.calculateWithData(calcModel);
-        setTextViewValue(result);
 
         calcModel.resetCalcState();
-        secondValueInputInProgress = false;
 
-        calcModel.setFirstValue(result);
+        calcModel.updateAfterCalculation(result);
+        updateText(calcModel.textForValue(result));
+
+        secondValueInputStarted = true;
     }
 
-    private void setTextViewValue(Double value) {
-        boolean isWholeValue = value % 1 == 0;
-
-        if (isWholeValue) {
-            textView.setText(String.format("%.0f", value));
-        } else {
-            textView.setText(Double.toString(value));
-        }
+    private void updateText(String updatedText) {
+        textView.setText(updatedText);
+        calcModel.updateValues(updatedText);
     }
 
 }
