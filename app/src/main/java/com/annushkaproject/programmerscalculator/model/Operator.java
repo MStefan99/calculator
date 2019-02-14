@@ -78,6 +78,7 @@ public enum Operator {
             case SUBSTRUCT:
             case MULTIPLY:
             case DIVIDE:
+            case POWER:
                 return true;
 
             default:
@@ -97,6 +98,37 @@ public enum Operator {
                 return 3;
             case PERCENT:
                 return 4;
+            case ARCSIN:
+                return 5;
+            case ARCCOS:
+                return 6;
+            case ARCTAN:
+                return 7;
+            case SIN:
+                return 8;
+            case COS:
+                return 9;
+            case TAN:
+                return 10;
+            case LN:
+                return 11;
+            case LOG:
+                return 12;
+            case DENOMINATOR:
+                return 13;
+            case EXPONENT_POWER:
+                return 14;
+            case SQUARE:
+                return 15;
+            case POWER:
+                return 16;
+            case MODULE:
+                return 17;
+            case SQUARE_ROOT:
+                return 18;
+            case FACTORIAL:
+                return 19;
+                
             default:
                 return -1;
         }
@@ -116,6 +148,37 @@ public enum Operator {
                 return DIVIDE;
             case 4:
                 return PERCENT;
+            case 5:
+                return ARCSIN;
+            case 6:
+                return ARCCOS;
+            case 7:
+                return ARCTAN;
+            case 8:
+                return SIN;
+            case 9:
+                return COS;
+            case 10:
+                return TAN;
+            case 11:
+                return LN;
+            case 12:
+                return LOG;
+            case 13:
+                return DENOMINATOR;
+            case 14:
+                return EXPONENT_POWER;
+            case 15:
+                return SQUARE;
+            case 16:
+                return POWER;
+            case 17:
+                return MODULE;
+            case 18:
+                return SQUARE_ROOT;
+            case 19:
+                return FACTORIAL;
+
             default:
                 return UNKNOWN;
         }
