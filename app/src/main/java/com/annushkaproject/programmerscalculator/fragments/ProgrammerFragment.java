@@ -15,11 +15,14 @@ import com.annushkaproject.programmerscalculator.model.CalculationModel;
 import com.annushkaproject.programmerscalculator.model.Operator;
 import com.annushkaproject.programmerscalculator.utils.CalculationUtil;
 import com.annushkaproject.programmerscalculator.utils.InstanceStateUtil;
+import com.annushkaproject.programmerscalculator.utils.ProgrammerUtil;
+import com.annushkaproject.programmerscalculator.utils.StandardOperationsUtil;
 
 public class ProgrammerFragment extends Fragment {
 
     private TextView textView;
     private CalculationModel calcModel = new CalculationModel();
+    private boolean secondValueInputStarted = false;
 
     private String packageName;
 
@@ -64,8 +67,7 @@ public class ProgrammerFragment extends Fragment {
             Button button = getView().findViewById(getResources().getIdentifier("button" + i,
                     "id", packageName));
             button.setOnClickListener((v) -> {
-                System.out.println(((Button)v).getText().toString());
-                // TODO: handle button clicks
+                usePressedNumber(((Button)v).getText().toString());
             });
         }
     }
@@ -89,8 +91,8 @@ public class ProgrammerFragment extends Fragment {
         for (int buttonID : operatorButtonIDs) {
             Button button = getView().findViewById(buttonID);
             button.setOnClickListener((v) -> {
-                System.out.println(button.getText().toString());
-                // TODO: handle button clicks
+                Operator operator = Operator.operatorForTitle(button.getText().toString());
+                usePressedOperator(operator);
             });
         }
     }
@@ -100,24 +102,111 @@ public class ProgrammerFragment extends Fragment {
         equalsButton.setOnClickListener(v -> {
             Button button = (Button)v;
             System.out.println(button.getText().toString());
-            // TODO: handle button clicks
+            useEqualsOperator();
         });
     }
 
     private void setupDeleteButton() {
         Button delButton = getView().findViewById(R.id.buttonDel);
         delButton.setOnClickListener(v -> {
-            System.out.println(delButton.getText().toString());
-            // TODO: handle button clicks
+            String currentString = currentString();
+            if (currentString.length() > 1) {
+                currentString = currentString.substring(0, currentString.length() - 1);
+                updateText(currentString);
+            } else {
+                updateText(calcModel.textForValue(0.0));
+            }
         });
     }
 
     public void setupSignButton() {
         Button signButton = getView().findViewById(R.id.buttonSign);
         signButton.setOnClickListener(v -> {
-            System.out.println(signButton.getText().toString());
-            // TODO: handle button clicks
+            double currentValue = Double.parseDouble(currentString());
+
+            if (currentValue == 0) { //do not make "-0"
+                return;
+            }
+
+            String updatedString = currentString();
+            if (currentValue > 0) {
+                updatedString = "-" + updatedString;
+            } else {
+                updatedString = updatedString.substring(1);
+            }
+
+            updateText(updatedString);
         });
+    }
+
+    private String currentString() {
+        return textView.getText().toString();
+    }
+
+    private void usePressedNumber(String number) {
+        if (currentString().equals("0") && !number.equals(".")) {
+            textView.setText(""); //clear text view from 0 value.
+        }
+
+        String newString;
+        if (secondValueInputStarted) {
+            newString = number;
+            secondValueInputStarted = false;
+        } else {
+            newString = textView.getText().toString() + number;
+        }
+
+        updateText(newString);
+    }
+
+    private void usePressedOperator(Operator operator) {
+        boolean readyToSaveOperator = calcModel.getFirstValue() != null;
+        if (!readyToSaveOperator) {
+            return;
+        }
+
+        boolean readyToCalcOneSide = !operator.requiresTwoValues() &&
+                calcModel.getFirstValue() != null;
+        if (readyToCalcOneSide) {
+            calcModel.setOperator(operator);
+            calculateResult();
+            return;
+        }
+
+        boolean readyToCalcTwoSides = calcModel.getOperator() != null &&
+                calcModel.getFirstValue() != null &&
+                calcModel.getSecondValue() != null;
+        if (readyToCalcTwoSides) {
+            calculateResult();
+        } else {
+            secondValueInputStarted = true;
+        }
+
+        calcModel.setOperator(operator);
+    }
+
+    private void useEqualsOperator() {
+        if (calcModel.getOperator() == null) {
+            return;
+        }
+
+        calculateResult();
+    }
+
+    private void calculateResult() {
+        double result = ProgrammerUtil.calculateWithData(calcModel);
+
+        calcModel.resetCalcState();
+
+        calcModel.updateAfterCalculation(result);
+        updateText(calcModel.textForValue(result));
+
+        secondValueInputStarted = true;
+    }
+
+    private void updateText(String updatedText) {
+        textView.setText(updatedText);
+        calcModel.updateValues(updatedText);
     }
 
     private void setTextViewValue(Double value) {
