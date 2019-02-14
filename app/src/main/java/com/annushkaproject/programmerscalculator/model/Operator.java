@@ -128,7 +128,7 @@ public enum Operator {
                 return 18;
             case FACTORIAL:
                 return 19;
-                
+
             default:
                 return -1;
         }
