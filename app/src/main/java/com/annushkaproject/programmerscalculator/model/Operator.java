@@ -6,6 +6,21 @@ public enum Operator {
     MULTIPLY,
     DIVIDE,
     PERCENT,
+    ARCSIN,
+    ARCCOS,
+    ARCTAN,
+    SIN,
+    COS,
+    TAN,
+    LN,
+    LOG,
+    DENOMINATOR,
+    EXPONENT_POWER,
+    SQUARE,
+    POWER,
+    MODULE,
+    SQUARE_ROOT,
+    FACTORIAL,
     UNKNOWN;
 
     public static Operator operatorForTitle(String title) {
@@ -20,6 +35,37 @@ public enum Operator {
                 return Operator.DIVIDE;
             case "%":
                 return Operator.PERCENT;
+            case "sinˉ¹":
+                return Operator.ARCSIN;
+            case "cosˉ¹":
+                return Operator.ARCCOS;
+            case "tanˉ¹":
+                return Operator.ARCTAN;
+            case "sin":
+                return Operator.SIN;
+            case "cos":
+                return Operator.COS;
+            case "tan":
+                return Operator.TAN;
+            case "ln":
+                return Operator.LN;
+            case "log":
+                return Operator.LOG;
+            case "1/x":
+                return Operator.DENOMINATOR;
+            case "eˣ":
+                return Operator.EXPONENT_POWER;
+            case "x²":
+                return Operator.SQUARE;
+            case "xʸ":
+                return Operator.POWER;
+            case "|x|":
+                return Operator.MODULE;
+            case "√":
+                return Operator.SQUARE_ROOT;
+            case "x!":
+                return Operator.FACTORIAL;
+
 
                 default:
                     return Operator.UNKNOWN;
