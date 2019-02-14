@@ -16,15 +16,15 @@ public class CalculationModel {
 
     //getters
     public Value getFirstValue() {
-        return this.firstValue;
+        return firstValue;
     }
 
     public Value getSecondValue() {
-        return this.secondValue;
+        return secondValue;
     }
 
     public Operator getOperator() {
-        return this.operator;
+        return operator;
     }
 
     public WordLength getWordLength() {
@@ -32,12 +32,14 @@ public class CalculationModel {
     }
 
     //setters
+    //TODO: remove
     public void setFirstValue(double value) {
-        this.firstValue = new Value(value);
+        firstValue = new Value(value);
     }
 
+    //TODO: remove
     public void setSecondValue(double value) {
-        this.secondValue = new Value(value);
+        secondValue = new Value(value);
     }
 
     public void setOperator(Operator operator) {
@@ -48,23 +50,32 @@ public class CalculationModel {
         this.wordLength = wordLength;
     }
 
-    //reset methods
-    public void resetFirstValue() {
-        this.firstValue = null;
-    }
-
-    public void resetSecondValue() {
-        this.secondValue = null;
-    }
-
-    public void resetOperator() {
-        this.operator = null;
-    }
-
+    //reset state
+    //TODO: make private
     public void resetCalcState() {
-        resetFirstValue();
-        resetSecondValue();
-        resetOperator();
+        firstValue = null;
+        secondValue = null;
+        operator = null;
+    }    
+
+    //update states
+    public void updateValues(String text) {
+        if (operator == null) {
+            setFirstValue(Double.parseDouble(text));
+        } else {
+            setSecondValue(Double.parseDouble(text));
+        }
+    }
+
+    public void updateAfterCalculation(double calculationResult) {
+        resetCalcState();
+        setFirstValue(calculationResult);
+    }
+
+    public String textForValue(double value) {
+        boolean isWholeValue = value % 1 == 0;
+
+        return isWholeValue ? String.format("%.0f", value) : (Double.toString(value));
     }
 
 }

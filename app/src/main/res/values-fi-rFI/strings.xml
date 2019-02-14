@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="app_name">Ohjelmoijan laskin</string>
+    <string name="action_settings">Asetukset</string>
+    <string name="nav_drawer_standard">Standardi</string>
+    <string name="nav_drawer_programmer">Ohjelmoija</string>
+    <string name="nav_themes">Teemat</string>
+    <string name="nav_share">Jaa</string>
+    <string name="nav_about">Meistä</string>
+    <string name="nav_contacts">Ota Yhteyttä</string>
+</resources>

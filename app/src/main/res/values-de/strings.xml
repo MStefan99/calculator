@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="navigation_drawer_open">Navigationsschublade öffnen</string>
+    <string name="navigation_drawer_close">Navigationsleiste schließen</string>
+
+    <string name="app_name">Programmierrechner</string>
+    <string name="action_settings">Einstellungen</string>
+    <string name="nav_drawer_standard">Standard</string>
+    <string name="nav_drawer_programmer">Programmier</string>
+    <string name="nav_themes">Themen</string>
+    <string name="nav_share">Aktie</string>
+    <string name="nav_about">Über</string>
+    <string name="nav_contacts">Kontakten</string>
+</resources>
