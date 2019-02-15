@@ -21,8 +21,8 @@ import com.annushkaproject.programmerscalculator.utils.StandardOperationsUtil;
 import java.util.ArrayList;
 
 public class StandardFragment extends Fragment {
-
-    private static final int TOAST_DURATION = 1;
+    
+    private static final int MAX_NUMBER_OF_DIGITS = 20;
 
     private TextView textView;
     private ArrayList<Button> numberButtons = new ArrayList<>();
@@ -282,7 +282,7 @@ public class StandardFragment extends Fragment {
     }
 
     private void updateText(String updatedText) {
-        if (updatedText.length() == 20) {
+        if (updatedText.length() == MAX_NUMBER_OF_DIGITS) {
             showDigitsLimitWarning();
             return;
         }
@@ -293,7 +293,7 @@ public class StandardFragment extends Fragment {
 
     private void showDigitsLimitWarning() {
         Context context = getActivity().getApplicationContext();
-        Toast.makeText(context, R.string.max_digits_warning, TOAST_DURATION).show();
+        Toast.makeText(context, R.string.max_digits_warning, Toast.LENGTH_SHORT).show();
     }
 
     private boolean isInLandscapeOrientation() {
