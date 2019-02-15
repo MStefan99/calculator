@@ -11,17 +11,15 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.annushkaproject.programmerscalculator.R;
-import com.annushkaproject.programmerscalculator.model.CalculationModel;
 import com.annushkaproject.programmerscalculator.model.Operator;
-import com.annushkaproject.programmerscalculator.utils.CalculationUtil;
+import com.annushkaproject.programmerscalculator.model.ProgrammerCalcModel;
 import com.annushkaproject.programmerscalculator.utils.InstanceStateUtil;
 import com.annushkaproject.programmerscalculator.utils.ProgrammerUtil;
-import com.annushkaproject.programmerscalculator.utils.StandardOperationsUtil;
 
 public class ProgrammerFragment extends Fragment {
 
     private TextView textView;
-    private CalculationModel calcModel = new CalculationModel();
+    private ProgrammerCalcModel calcModel = new ProgrammerCalcModel();
     private boolean secondValueInputStarted = false;
 
     private String packageName;
@@ -32,7 +30,7 @@ public class ProgrammerFragment extends Fragment {
         super.onCreateView(inflater, container, savedInstanceState);
         if (packageName == null) {
             packageName = savedInstanceState.getString("PACKAGE_NAME");
-            calcModel = InstanceStateUtil.restoreSavedInstance(savedInstanceState);
+            calcModel = InstanceStateUtil.restoreProgrammerSavedInstance(savedInstanceState);
         }
         return inflater.inflate(R.layout.fragment_programmer, container, false);
     }

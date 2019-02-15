@@ -28,9 +28,20 @@ public enum Operator {
                 return Operator.DIVIDE;
             case "%":
                 return Operator.PERCENT;
-
-                default:
-                    return Operator.UNKNOWN;
+            case "And":
+                return Operator.AND;
+            case "Or":
+                return Operator.OR;
+            case "Xor":
+                return Operator.XOR;
+            case "Not":
+                return Operator.NOT;
+            case "Lsh":
+                return Operator.LSH;
+            case "Rsh":
+                return Operator.RSH;
+            default:
+                return Operator.UNKNOWN;
         }
     }
 
