@@ -1,47 +1,50 @@
 package com.annushkaproject.programmerscalculator;
 
+import com.annushkaproject.programmerscalculator.model.ProgrammerCalcModel;
+import com.annushkaproject.programmerscalculator.model.Value;
 import com.annushkaproject.programmerscalculator.utils.ProgrammerUtil;
 
 import org.junit.Test;
 
+import static com.annushkaproject.programmerscalculator.model.Operator.MULTIPLY;
 import static com.annushkaproject.programmerscalculator.model.WordLength.*;
 import static org.junit.Assert.*;
 
 public class ProgrammerMultiplyTest {
     @Test
     public void programmerMultiplicationQWORD_isCorrect() {
-        assertEquals(25, ProgrammerUtil.multiply(QWORD, 5, 5));
-        assertEquals(-25, ProgrammerUtil.multiply(QWORD, -5, 5));
-        assertEquals(0x8000000000000000L, ProgrammerUtil.multiply(QWORD, 0x4000000000000000L, 2));
-        assertEquals(0, ProgrammerUtil.multiply(QWORD, 0x8000000000000000L, 0x8000000000000000L));
-        assertEquals(0xFFFFFFFFFFFFFFFEL, ProgrammerUtil.multiply(QWORD, 0x7FFFFFFFFFFFFFFFL, 2));
-        assertEquals(0x7FFFFFFFFFFFFFFEL, ProgrammerUtil.multiply(QWORD, 0x3FFFFFFFFFFFFFFFL, 2));
+        assertEquals(25, ProgrammerUtil.calculateWithData(new ProgrammerCalcModel(new Value(5), new Value(5), MULTIPLY, QWORD)));
+        assertEquals(-25, ProgrammerUtil.calculateWithData(new ProgrammerCalcModel(new Value(-5), new Value(5), MULTIPLY, QWORD)));
+        assertEquals(0x8000000000000000L, ProgrammerUtil.calculateWithData(new ProgrammerCalcModel(new Value(0x4000000000000000L), new Value(2), MULTIPLY, QWORD)));
+        assertEquals(0, ProgrammerUtil.calculateWithData(new ProgrammerCalcModel(new Value(0x8000000000000000L), new Value(0x8000000000000000L), MULTIPLY, QWORD)));
+        assertEquals(0xFFFFFFFFFFFFFFFEL, ProgrammerUtil.calculateWithData(new ProgrammerCalcModel(new Value(0x7FFFFFFFFFFFFFFFL), new Value(2), MULTIPLY, QWORD)));
+        assertEquals(0x7FFFFFFFFFFFFFFEL, ProgrammerUtil.calculateWithData(new ProgrammerCalcModel(new Value(0x3FFFFFFFFFFFFFFFL), new Value(2), MULTIPLY, QWORD)));
     }
     @Test
     public void programmerMultiplicationDWORD_isCorrect() {
-        assertEquals(25, ProgrammerUtil.multiply(DWORD, 5, 5));
-        assertEquals(-25, ProgrammerUtil.multiply(DWORD, -5, 5));
-        assertEquals(0x80000000, ProgrammerUtil.multiply(DWORD, 0x40000000, 2));
-        assertEquals(0, ProgrammerUtil.multiply(DWORD, 0x80000000, 0x80000000));
-        assertEquals(0xFFFFFFFE, ProgrammerUtil.multiply(DWORD, 0x7FFFFFFF, 2));
-        assertEquals(0x7FFFFFFE, ProgrammerUtil.multiply(DWORD, 0x3FFFFFFF, 2));
+        assertEquals(25, ProgrammerUtil.calculateWithData(new ProgrammerCalcModel(new Value(5), new Value(5), MULTIPLY, DWORD)));
+        assertEquals(-25, ProgrammerUtil.calculateWithData(new ProgrammerCalcModel(new Value(-5), new Value(5), MULTIPLY, DWORD)));
+        assertEquals(0x80000000, ProgrammerUtil.calculateWithData(new ProgrammerCalcModel(new Value(0x40000000), new Value(2), MULTIPLY, DWORD)));
+        assertEquals(0, ProgrammerUtil.calculateWithData(new ProgrammerCalcModel(new Value(0x80000000), new Value(0x80000000), MULTIPLY, DWORD)));
+        assertEquals(0xFFFFFFFE, ProgrammerUtil.calculateWithData(new ProgrammerCalcModel(new Value(0x7FFFFFFF), new Value(2), MULTIPLY, DWORD)));
+        assertEquals(0x7FFFFFFE, ProgrammerUtil.calculateWithData(new ProgrammerCalcModel(new Value(0x3FFFFFFF), new Value(2), MULTIPLY, DWORD)));
     }
     @Test
     public void programmerMultiplicationWORD_isCorrect() {
-        assertEquals((short) 25, ProgrammerUtil.multiply(WORD, 5, 5));
-        assertEquals((short) -25, ProgrammerUtil.multiply(WORD, -5, 5));
-        assertEquals((short) 0x8000, ProgrammerUtil.multiply(WORD, 0x4000, 2));
-        assertEquals((short) 0, ProgrammerUtil.multiply(WORD, 0x8000, 0x8000));
-        assertEquals((short) 0xFFFE, ProgrammerUtil.multiply(WORD, 0x7FFF, 2));
-        assertEquals((short) 0x7FFE, ProgrammerUtil.multiply(WORD, 0x3FFF, 2));
+        assertEquals((short) 25, ProgrammerUtil.calculateWithData(new ProgrammerCalcModel(new Value(5), new Value(5), MULTIPLY, WORD)));
+        assertEquals((short) -25, ProgrammerUtil.calculateWithData(new ProgrammerCalcModel(new Value(-5), new Value(5), MULTIPLY, WORD)));
+        assertEquals((short) 0x8000, ProgrammerUtil.calculateWithData(new ProgrammerCalcModel(new Value(0x4000), new Value(2), MULTIPLY, WORD)));
+        assertEquals((short) 0, ProgrammerUtil.calculateWithData(new ProgrammerCalcModel(new Value(0x8000), new Value(0x8000), MULTIPLY, WORD)));
+        assertEquals((short) 0xFFFE, ProgrammerUtil.calculateWithData(new ProgrammerCalcModel(new Value(0x7FFF), new Value(2), MULTIPLY, WORD)));
+        assertEquals((short) 0x7FFE, ProgrammerUtil.calculateWithData(new ProgrammerCalcModel(new Value(0x3FFF), new Value(2), MULTIPLY, WORD)));
     }
     @Test
     public void programmerMultiplicationBYTE_isCorrect() {
-        assertEquals((byte) 25, ProgrammerUtil.multiply(BYTE, 5, 5));
-        assertEquals((byte) -25, ProgrammerUtil.multiply(BYTE, -5, 5));
-        assertEquals((byte) 0x80, ProgrammerUtil.multiply(BYTE, 0x40, 2));
-        assertEquals((byte) 0, ProgrammerUtil.multiply(BYTE, 0x80, 0x80));
-        assertEquals((byte) 0xFE, ProgrammerUtil.multiply(BYTE, 0x7F, 2));
-        assertEquals((byte) 0x7E, ProgrammerUtil.multiply(BYTE, 0x3F, 2));
+        assertEquals((byte) 25, ProgrammerUtil.calculateWithData(new ProgrammerCalcModel(new Value(5), new Value(5), MULTIPLY, BYTE)));
+        assertEquals((byte) -25, ProgrammerUtil.calculateWithData(new ProgrammerCalcModel(new Value(-5), new Value(5), MULTIPLY, BYTE)));
+        assertEquals((byte) 0x80, ProgrammerUtil.calculateWithData(new ProgrammerCalcModel(new Value(0x40), new Value(2), MULTIPLY, BYTE)));
+        assertEquals((byte) 0, ProgrammerUtil.calculateWithData(new ProgrammerCalcModel(new Value(0x80), new Value(0x80), MULTIPLY, BYTE)));
+        assertEquals((byte) 0xFE, ProgrammerUtil.calculateWithData(new ProgrammerCalcModel(new Value(0x7F), new Value(2), MULTIPLY, BYTE)));
+        assertEquals((byte) 0x7E, ProgrammerUtil.calculateWithData(new ProgrammerCalcModel(new Value(0x3F), new Value(2), MULTIPLY, BYTE)));
     }
 }

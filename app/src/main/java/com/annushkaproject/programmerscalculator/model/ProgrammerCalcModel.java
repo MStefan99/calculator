@@ -19,6 +19,11 @@ public class ProgrammerCalcModel extends CalculationModel {
         this.wordLength = QWORD;
     }
 
+    public ProgrammerCalcModel(Value firstValue, Operator operator, WordLength wordLength) {
+        super(firstValue, operator);
+        this.wordLength = wordLength;
+    }
+
     public ProgrammerCalcModel(Value firstValue, Value secondValue, Operator operator, WordLength wordLength) {
         super(firstValue, secondValue, operator);
         this.wordLength = wordLength;

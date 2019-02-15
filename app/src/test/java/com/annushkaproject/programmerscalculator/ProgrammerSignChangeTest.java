@@ -1,48 +1,51 @@
 package com.annushkaproject.programmerscalculator;
 
 
+import com.annushkaproject.programmerscalculator.model.ProgrammerCalcModel;
+import com.annushkaproject.programmerscalculator.model.Value;
 import com.annushkaproject.programmerscalculator.utils.ProgrammerUtil;
 
 import org.junit.Test;
 
+import static com.annushkaproject.programmerscalculator.model.Operator.CHANGE_SIGN;
 import static com.annushkaproject.programmerscalculator.model.WordLength.*;
 import static org.junit.Assert.*;
 
 public class ProgrammerSignChangeTest {
     @Test
     public void programmerSignChangeQWORD_isCorrect() {
-        assertEquals(-5, ProgrammerUtil.changeSign(QWORD, 5));
-        assertEquals(5, ProgrammerUtil.changeSign(QWORD, -5));
-        assertEquals(0xC000000000000000L, ProgrammerUtil.changeSign(QWORD, 0x4000000000000000L));
-        assertEquals(0x8000000000000000L, ProgrammerUtil.changeSign(QWORD, 0x8000000000000000L));
-        assertEquals(0x8000000000000001L, ProgrammerUtil.changeSign(QWORD, 0x7FFFFFFFFFFFFFFFL));
-        assertEquals(1, ProgrammerUtil.changeSign(QWORD, 0xFFFFFFFFFFFFFFFFL));
+        assertEquals(-5, ProgrammerUtil.calculateWithData(new ProgrammerCalcModel(new Value(5), CHANGE_SIGN, QWORD)));
+        assertEquals(5, ProgrammerUtil.calculateWithData(new ProgrammerCalcModel(new Value(-5), CHANGE_SIGN, QWORD)));
+        assertEquals(0xC000000000000000L, ProgrammerUtil.calculateWithData(new ProgrammerCalcModel(new Value(0x4000000000000000L), CHANGE_SIGN, QWORD)));
+        assertEquals(0x8000000000000000L, ProgrammerUtil.calculateWithData(new ProgrammerCalcModel(new Value(0x8000000000000000L), CHANGE_SIGN, QWORD)));
+        assertEquals(0x8000000000000001L, ProgrammerUtil.calculateWithData(new ProgrammerCalcModel(new Value(0x7FFFFFFFFFFFFFFFL), CHANGE_SIGN, QWORD)));
+        assertEquals(1, ProgrammerUtil.calculateWithData(new ProgrammerCalcModel(new Value(0xFFFFFFFFFFFFFFFFL), CHANGE_SIGN, QWORD)));
     }
     @Test
     public void programmerSignChangeDWORD_isCorrect() {
-        assertEquals(-5, ProgrammerUtil.changeSign(DWORD, 5));
-        assertEquals(5, ProgrammerUtil.changeSign(DWORD, -5));
-        assertEquals(0xC0000000, ProgrammerUtil.changeSign(DWORD, 0x40000000));
-        assertEquals(0x80000000, ProgrammerUtil.changeSign(DWORD, 0x80000000));
-        assertEquals(0x80000001, ProgrammerUtil.changeSign(DWORD, 0x7FFFFFFF));
-        assertEquals(1, ProgrammerUtil.changeSign(DWORD, 0xFFFFFFFF));
+        assertEquals(-5, ProgrammerUtil.calculateWithData(new ProgrammerCalcModel(new Value(5), CHANGE_SIGN, DWORD)));
+        assertEquals(5, ProgrammerUtil.calculateWithData(new ProgrammerCalcModel(new Value(-5), CHANGE_SIGN, DWORD)));
+        assertEquals(0xC0000000, ProgrammerUtil.calculateWithData(new ProgrammerCalcModel(new Value(0x40000000), CHANGE_SIGN, DWORD)));
+        assertEquals(0x80000000, ProgrammerUtil.calculateWithData(new ProgrammerCalcModel(new Value(0x80000000), CHANGE_SIGN, DWORD)));
+        assertEquals(0x80000001, ProgrammerUtil.calculateWithData(new ProgrammerCalcModel(new Value(0x7FFFFFFF), CHANGE_SIGN, DWORD)));
+        assertEquals(1, ProgrammerUtil.calculateWithData(new ProgrammerCalcModel(new Value(0xFFFFFFFF), CHANGE_SIGN, DWORD)));
     }
     @Test
     public void programmerSignChangeWORD_isCorrect() {
-        assertEquals((short) -5, ProgrammerUtil.changeSign(WORD, 5));
-        assertEquals((short) 5, ProgrammerUtil.changeSign(WORD, -5));
-        assertEquals((short) 0xC000, ProgrammerUtil.changeSign(WORD,0x4000));
-        assertEquals((short) 0x8000, ProgrammerUtil.changeSign(WORD,0x8000));
-        assertEquals((short) 0x8001, ProgrammerUtil.changeSign(WORD,0x7FFF));
-        assertEquals((short) 1, ProgrammerUtil.changeSign(WORD,0xFFFF));
+        assertEquals((short) -5, ProgrammerUtil.calculateWithData(new ProgrammerCalcModel(new Value(5), CHANGE_SIGN, WORD)));
+        assertEquals((short) 5, ProgrammerUtil.calculateWithData(new ProgrammerCalcModel(new Value(-5), CHANGE_SIGN, WORD)));
+        assertEquals((short) 0xC000, ProgrammerUtil.calculateWithData(new ProgrammerCalcModel(new Value(0x4000), CHANGE_SIGN, WORD)));
+        assertEquals((short) 0x8000, ProgrammerUtil.calculateWithData(new ProgrammerCalcModel(new Value(0x8000), CHANGE_SIGN, WORD)));
+        assertEquals((short) 0x8001, ProgrammerUtil.calculateWithData(new ProgrammerCalcModel(new Value(0x7FFF), CHANGE_SIGN, WORD)));
+        assertEquals((short) 1, ProgrammerUtil.calculateWithData(new ProgrammerCalcModel(new Value(0xFFFF), CHANGE_SIGN, WORD)));
     }
     @Test
     public void programmerSignChangeBYTE_isCorrect() {
-        assertEquals((byte) -5, ProgrammerUtil.changeSign(BYTE, 5));
-        assertEquals((byte) 5, ProgrammerUtil.changeSign(BYTE, -5));
-        assertEquals((byte) 0xC0, ProgrammerUtil.changeSign(BYTE,0x40));
-        assertEquals((byte) 0x80, ProgrammerUtil.changeSign(BYTE,0x80));
-        assertEquals((byte) 0x81, ProgrammerUtil.changeSign(BYTE,0x7F));
-        assertEquals((byte) 1, ProgrammerUtil.changeSign(BYTE,0xFF));
+        assertEquals((byte) -5, ProgrammerUtil.calculateWithData(new ProgrammerCalcModel(new Value(5), CHANGE_SIGN, BYTE)));
+        assertEquals((byte) 5, ProgrammerUtil.calculateWithData(new ProgrammerCalcModel(new Value(-5), CHANGE_SIGN, BYTE)));
+        assertEquals((byte) 0xC0, ProgrammerUtil.calculateWithData(new ProgrammerCalcModel(new Value(0x40), CHANGE_SIGN, BYTE)));
+        assertEquals((byte) 0x80, ProgrammerUtil.calculateWithData(new ProgrammerCalcModel(new Value(0x80), CHANGE_SIGN, BYTE)));
+        assertEquals((byte) 0x81, ProgrammerUtil.calculateWithData(new ProgrammerCalcModel(new Value(0x7F), CHANGE_SIGN, BYTE)));
+        assertEquals((byte) 1, ProgrammerUtil.calculateWithData(new ProgrammerCalcModel(new Value(0xFF), CHANGE_SIGN, BYTE)));
     }
 }

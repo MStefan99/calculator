@@ -1,8 +1,13 @@
 package com.annushkaproject.programmerscalculator;
 
+import com.annushkaproject.programmerscalculator.model.ProgrammerCalcModel;
+import com.annushkaproject.programmerscalculator.model.Value;
 import com.annushkaproject.programmerscalculator.utils.ProgrammerUtil;
 
 import org.junit.Test;
+
+import static com.annushkaproject.programmerscalculator.model.Operator.LSH;
+import static com.annushkaproject.programmerscalculator.model.Operator.RSH;
 import static org.junit.Assert.*;
 
 import static com.annushkaproject.programmerscalculator.model.WordLength.*;
@@ -10,54 +15,54 @@ import static com.annushkaproject.programmerscalculator.model.WordLength.*;
 public class ProgrammerShiftTest {
     @Test
     public void lshTestQWORD_isCorrect() {
-        assertEquals(0x2, ProgrammerUtil.lsh(QWORD, 0x1, 1));
-        assertEquals(0x8000000000000000L, ProgrammerUtil.lsh(QWORD, 0x1, 63));
-        assertEquals(0, ProgrammerUtil.lsh(QWORD, 0x8000000000000000L, 1));
+        assertEquals(0x2, ProgrammerUtil.calculateWithData(new ProgrammerCalcModel(new Value(0x1), new Value(1), LSH, QWORD)));
+        assertEquals(0x8000000000000000L, ProgrammerUtil.calculateWithData(new ProgrammerCalcModel(new Value(0x1), new Value(63), LSH, QWORD)));
+        assertEquals(0, ProgrammerUtil.calculateWithData(new ProgrammerCalcModel(new Value(0x8000000000000000L), new Value(1), LSH, QWORD)));
     }
     @Test
     public void lshTestDWORD_isCorrect() {
-        assertEquals(0x2, ProgrammerUtil.lsh(DWORD, 0x1, 1));
-        assertEquals(0x80000000, ProgrammerUtil.lsh(DWORD, 0x1, 31));
-        assertEquals(0, ProgrammerUtil.lsh(DWORD, 0x80000000, 1));
+        assertEquals(0x2, ProgrammerUtil.calculateWithData(new ProgrammerCalcModel(new Value(0x1), new Value(1), LSH, DWORD)));
+        assertEquals(0x80000000, ProgrammerUtil.calculateWithData(new ProgrammerCalcModel(new Value(0x1), new Value(31), LSH, DWORD)));
+        assertEquals(0, ProgrammerUtil.calculateWithData(new ProgrammerCalcModel(new Value(0x80000000), new Value(1), LSH, DWORD)));
     }
     @Test
     public void lshTestWORD_isCorrect() {
-        assertEquals((short) 0x2, ProgrammerUtil.lsh(WORD, 0x1, 1));
-        assertEquals((short) 0x8000, ProgrammerUtil.lsh(WORD, 0x1, 15));
-        assertEquals((short) 0, ProgrammerUtil.lsh(WORD, 0x8000, 1));
+        assertEquals((short) 0x2, ProgrammerUtil.calculateWithData(new ProgrammerCalcModel(new Value(0x1), new Value(1), LSH, WORD)));
+        assertEquals((short) 0x8000, ProgrammerUtil.calculateWithData(new ProgrammerCalcModel(new Value(0x1), new Value(15), LSH, WORD)));
+        assertEquals((short) 0, ProgrammerUtil.calculateWithData(new ProgrammerCalcModel(new Value(0x8000), new Value(1), LSH, WORD)));
     }
     @Test
     public void lshTestBYTE_isCorrect() {
-        assertEquals((byte) 0x2, ProgrammerUtil.lsh(BYTE, 0x1, 1));
-        assertEquals((byte) 0x80, ProgrammerUtil.lsh(BYTE, 0x1, 7));
-        assertEquals((byte) 0, ProgrammerUtil.lsh(BYTE,0x80, 1));
+        assertEquals((byte) 0x2, ProgrammerUtil.calculateWithData(new ProgrammerCalcModel(new Value(0x1), new Value(1), LSH, BYTE)));
+        assertEquals((byte) 0x80, ProgrammerUtil.calculateWithData(new ProgrammerCalcModel(new Value(0x1), new Value(7), LSH, BYTE)));
+        assertEquals((byte) 0, ProgrammerUtil.calculateWithData(new ProgrammerCalcModel(new Value(0x80), new Value(1), LSH, BYTE)));
     }
     @Test
     public void rshTestQWORD_isCorrect() {
-        assertEquals(0x1, ProgrammerUtil.rsh(QWORD, 0x2, 1));
-        assertEquals(0xFFFFFFFFFFFFFFFFL, ProgrammerUtil.rsh(QWORD, 0x8000000000000000L, 63));
-        assertEquals(0, ProgrammerUtil.rsh(QWORD, 0x7FFFFFFFFFFFFFFFL, 63));
-        assertEquals(0, ProgrammerUtil.rsh(QWORD, 1, 1));
+        assertEquals(0x1, ProgrammerUtil.calculateWithData(new ProgrammerCalcModel(new Value(0x2), new Value(1), RSH, QWORD)));
+        assertEquals(0xFFFFFFFFFFFFFFFFL, ProgrammerUtil.calculateWithData(new ProgrammerCalcModel(new Value(0x8000000000000000L), new Value(63), RSH, QWORD)));
+        assertEquals(0, ProgrammerUtil.calculateWithData(new ProgrammerCalcModel(new Value(0x7FFFFFFFFFFFFFFFL), new Value(63), RSH, QWORD)));
+        assertEquals(0, ProgrammerUtil.calculateWithData(new ProgrammerCalcModel(new Value(1), new Value(1), RSH, QWORD)));
     }
     @Test
     public void rshTestDWORD_isCorrect() {
-        assertEquals(0x1, ProgrammerUtil.rsh(DWORD, 0x2, 1));
-        assertEquals(0xFFFFFFFF, ProgrammerUtil.rsh(DWORD, 0x80000000, 31));
-        assertEquals(0, ProgrammerUtil.rsh(DWORD, 0x7FFFFFFF, 31));
-        assertEquals(0, ProgrammerUtil.rsh(DWORD, 1, 1));
+        assertEquals(0x1, ProgrammerUtil.calculateWithData(new ProgrammerCalcModel(new Value(0x2), new Value(1), RSH, DWORD)));
+        assertEquals(0xFFFFFFFF, ProgrammerUtil.calculateWithData(new ProgrammerCalcModel(new Value(0x80000000), new Value(31), RSH, DWORD)));
+        assertEquals(0, ProgrammerUtil.calculateWithData(new ProgrammerCalcModel(new Value(0x7FFFFFFF), new Value(31), RSH, DWORD)));
+        assertEquals(0, ProgrammerUtil.calculateWithData(new ProgrammerCalcModel(new Value(1), new Value(1), RSH, DWORD)));
     }
     @Test
     public void rshTestWORD_isCorrect() {
-        assertEquals((short) 0x1, ProgrammerUtil.rsh(WORD, 0x2, 1));
-        assertEquals((short) 0xFFFF, ProgrammerUtil.rsh(WORD,0x8000, 15));
-        assertEquals((short) 0, ProgrammerUtil.rsh(WORD, 0x7FFF, 15));
-        assertEquals((short) 0, ProgrammerUtil.rsh(WORD, 1, 1));
+        assertEquals((short) 0x1, ProgrammerUtil.calculateWithData(new ProgrammerCalcModel(new Value(0x2), new Value(1), RSH, WORD)));
+        assertEquals((short) 0xFFFF, ProgrammerUtil.calculateWithData(new ProgrammerCalcModel(new Value(0x8000), new Value(15), RSH, WORD)));
+        assertEquals((short) 0, ProgrammerUtil.calculateWithData(new ProgrammerCalcModel(new Value(0x7FFF), new Value(15), RSH, WORD)));
+        assertEquals((short) 0, ProgrammerUtil.calculateWithData(new ProgrammerCalcModel(new Value(1), new Value(1), RSH, WORD)));
     }
     @Test
     public void rshTestBYTE_isCorrect() {
-        assertEquals((byte) 0x1, ProgrammerUtil.rsh(BYTE, 0x2, 1));
-        assertEquals((byte) 0xFF, ProgrammerUtil.rsh(BYTE,0x80, 7));
-        assertEquals((byte) 0, ProgrammerUtil.rsh(BYTE,0x7F, 7));
-        assertEquals((byte) 0, ProgrammerUtil.rsh(BYTE, 1, 1));
+        assertEquals((byte) 0x1, ProgrammerUtil.calculateWithData(new ProgrammerCalcModel(new Value(0x2), new Value(1), RSH, BYTE)));
+        assertEquals((byte) 0xFF, ProgrammerUtil.calculateWithData(new ProgrammerCalcModel(new Value(0x80), new Value(7), RSH, BYTE)));
+        assertEquals((byte) 0, ProgrammerUtil.calculateWithData(new ProgrammerCalcModel(new Value(0x7F), new Value(7), RSH, BYTE)));
+        assertEquals((byte) 0, ProgrammerUtil.calculateWithData(new ProgrammerCalcModel(new Value(1), new Value(1), RSH, BYTE)));
     }
 }

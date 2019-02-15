@@ -12,6 +12,11 @@ public class CalculationModel {
         this.operator = null;
     }
 
+    public CalculationModel(Value firstValue, Operator operator) {
+        this.firstValue = firstValue;
+        this.operator = operator;
+    }
+
     public CalculationModel(Value firstValue, Value secondValue, Operator operator) {
         this.firstValue = firstValue;
         this.secondValue = secondValue;
