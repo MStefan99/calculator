@@ -1,5 +1,6 @@
 package com.annushkaproject.programmerscalculator.fragments;
 
+import android.content.Context;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -10,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.annushkaproject.programmerscalculator.R;
 import com.annushkaproject.programmerscalculator.model.CalculationModel;
@@ -19,6 +21,8 @@ import com.annushkaproject.programmerscalculator.utils.StandardOperationsUtil;
 import java.util.ArrayList;
 
 public class StandardFragment extends Fragment {
+
+    private static final int TOAST_DURATION = 1;
 
     private TextView textView;
     private ArrayList<Button> numberButtons = new ArrayList<>();
@@ -280,8 +284,18 @@ public class StandardFragment extends Fragment {
     }
 
     private void updateText(String updatedText) {
+        if (updatedText.length() == 20) {
+            showDigitsLimitWarning();
+            return;
+        }
+
         textView.setText(updatedText);
         calcModel.updateValues(updatedText);
+    }
+
+    private void showDigitsLimitWarning() {
+        Context context = getActivity().getApplicationContext();
+        Toast.makeText(context, R.string.max_digits_warning, TOAST_DURATION).show();
     }
 
     private boolean isInLandscapeOrientation() {
