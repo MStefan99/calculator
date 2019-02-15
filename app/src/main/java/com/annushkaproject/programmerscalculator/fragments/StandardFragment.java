@@ -22,8 +22,6 @@ import java.util.ArrayList;
 
 public class StandardFragment extends Fragment {
 
-    private static final int TOAST_DURATION = 1;
-
     private TextView textView;
     private ArrayList<Button> numberButtons = new ArrayList<>();
     private ArrayList<Button> operatorButtons = new ArrayList<>();
@@ -223,7 +221,7 @@ public class StandardFragment extends Fragment {
     }
 
     private void usePressedNumber(String number) {
-        if (currentString().equals("0") && !number.equals(".")) {
+        if ((currentString().equals("0") && !number.equals(".")) || currentString().equals(getString(R.string.not_a_number))) {
             textView.setText(""); //clear text view from 0 value.
         }
 
@@ -273,6 +271,12 @@ public class StandardFragment extends Fragment {
     }
 
     private void calculateResult() {
+        if (calcModel.isNotNumber()) {
+            calcModel.resetCalcState();
+            textView.setText(getString(R.string.not_a_number));
+            return;
+        }
+
         double result = StandardOperationsUtil.calculateWithData(calcModel);
 
         calcModel.resetCalcState();
@@ -295,7 +299,7 @@ public class StandardFragment extends Fragment {
 
     private void showDigitsLimitWarning() {
         Context context = getActivity().getApplicationContext();
-        Toast.makeText(context, R.string.max_digits_warning, TOAST_DURATION).show();
+        Toast.makeText(context, R.string.max_digits_warning, Toast.LENGTH_SHORT).show();
     }
 
     private boolean isInLandscapeOrientation() {
