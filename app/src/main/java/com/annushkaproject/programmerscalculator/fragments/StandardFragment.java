@@ -242,11 +242,27 @@ public class StandardFragment extends Fragment {
             return;
         }
 
-        boolean readyToCalcOneSide = !operator.requiresTwoValues() &&
-                                     calcModel.getFirstValue() != null;
-        if (readyToCalcOneSide) {
-            calcModel.setOperator(operator);
-            calculateResult();
+        if (!operator.requiresTwoValues()) {
+            double result;
+            if (calcModel.getSecondValue() == null) {
+                //apply to first value
+                double number = calcModel.getFirstValue().getNumber();
+                result = StandardOperationsUtil.calculateResultForOneSidedOperator(number, operator);
+                calcModel.setFirstValue(result);
+            } else if (operator == Operator.PERCENT && calcModel.getSecondValue() != null) {
+                //special case for 6 - 10%
+                result = StandardOperationsUtil.calculatePercentForData(calcModel);
+                calcModel.setSecondValue(result);
+            } else {
+                //apply to second value
+                double number = calcModel.getSecondValue().getNumber();
+                result = StandardOperationsUtil.calculateResultForOneSidedOperator(number, operator);
+                calcModel.setSecondValue(result);
+            }
+
+            String text = calcModel.textForValue(result);
+            textView.setText(text);
+
             return;
         }
 
@@ -271,7 +287,7 @@ public class StandardFragment extends Fragment {
     }
 
     private void calculateResult() {
-        double result = StandardOperationsUtil.calculateWithData(calcModel);
+        double result = StandardOperationsUtil.calculateResultForTwoSidedOperator(calcModel);
 
         calcModel.resetCalcState();
 
