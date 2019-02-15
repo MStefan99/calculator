@@ -7,7 +7,7 @@ public class StandardOperationsUtil {
 
     public static double calculateWithData(CalculationModel data) {
         if (data.getOperator().requiresTwoValues() && data.getSecondValue() == null) {
-            return data.getFirstValue().getNumber();
+            data.setSecondValue(data.getFirstValue().getNumber());
         }
 
         double result;
