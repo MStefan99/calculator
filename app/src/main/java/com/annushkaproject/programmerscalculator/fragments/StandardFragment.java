@@ -127,8 +127,6 @@ public class StandardFragment extends Fragment {
     }
 
     private void fillOperatorButtons() {
-        //TODO: add additional operators for landscape.
-
         operatorButtons.add(getView().findViewById(R.id.buttonPlus));
         operatorButtons.add(getView().findViewById(R.id.buttonMinus));
         operatorButtons.add(getView().findViewById(R.id.buttonDivide));
