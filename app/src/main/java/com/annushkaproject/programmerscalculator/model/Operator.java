@@ -2,13 +2,13 @@ package com.annushkaproject.programmerscalculator.model;
 
 public enum Operator {
     ADD,
-    SUBSTRUCT,
+    SUBTRACT,
     MULTIPLY,
     DIVIDE,
     PERCENT,
-    ARCSIN,
-    ARCCOS,
-    ARCTAN,
+    ASIN,
+    ACOS,
+    ATAN,
     SIN,
     COS,
     TAN,
@@ -18,7 +18,7 @@ public enum Operator {
     EXPONENT_POWER,
     SQUARE,
     POWER,
-    MODULE,
+    ABS,
     SQUARE_ROOT,
     FACTORIAL,
     UNKNOWN;
@@ -28,7 +28,7 @@ public enum Operator {
             case "+":
                 return Operator.ADD;
             case "-":
-                return Operator.SUBSTRUCT;
+                return Operator.SUBTRACT;
             case "×":
                 return Operator.MULTIPLY;
             case "÷":
@@ -36,11 +36,11 @@ public enum Operator {
             case "%":
                 return Operator.PERCENT;
             case "sinˉ¹":
-                return Operator.ARCSIN;
+                return Operator.ASIN;
             case "cosˉ¹":
-                return Operator.ARCCOS;
+                return Operator.ACOS;
             case "tanˉ¹":
-                return Operator.ARCTAN;
+                return Operator.ATAN;
             case "sin":
                 return Operator.SIN;
             case "cos":
@@ -60,7 +60,7 @@ public enum Operator {
             case "xʸ":
                 return Operator.POWER;
             case "|x|":
-                return Operator.MODULE;
+                return Operator.ABS;
             case "√":
                 return Operator.SQUARE_ROOT;
             case "x!":
@@ -75,7 +75,7 @@ public enum Operator {
     public boolean requiresTwoValues() {
         switch (this) {
             case ADD:
-            case SUBSTRUCT:
+            case SUBTRACT:
             case MULTIPLY:
             case DIVIDE:
             case POWER:
@@ -90,7 +90,7 @@ public enum Operator {
         switch (operator) {
             case ADD:
                 return 0;
-            case SUBSTRUCT:
+            case SUBTRACT:
                 return 1;
             case MULTIPLY:
                 return 2;
@@ -98,11 +98,11 @@ public enum Operator {
                 return 3;
             case PERCENT:
                 return 4;
-            case ARCSIN:
+            case ASIN:
                 return 5;
-            case ARCCOS:
+            case ACOS:
                 return 6;
-            case ARCTAN:
+            case ATAN:
                 return 7;
             case SIN:
                 return 8;
@@ -122,7 +122,7 @@ public enum Operator {
                 return 15;
             case POWER:
                 return 16;
-            case MODULE:
+            case ABS:
                 return 17;
             case SQUARE_ROOT:
                 return 18;
@@ -141,7 +141,7 @@ public enum Operator {
             case 0:
                 return ADD;
             case 1:
-                return SUBSTRUCT;
+                return SUBTRACT;
             case 2:
                 return MULTIPLY;
             case 3:
@@ -149,11 +149,11 @@ public enum Operator {
             case 4:
                 return PERCENT;
             case 5:
-                return ARCSIN;
+                return ASIN;
             case 6:
-                return ARCCOS;
+                return ACOS;
             case 7:
-                return ARCTAN;
+                return ATAN;
             case 8:
                 return SIN;
             case 9:
@@ -173,7 +173,7 @@ public enum Operator {
             case 16:
                 return POWER;
             case 17:
-                return MODULE;
+                return ABS;
             case 18:
                 return SQUARE_ROOT;
             case 19:

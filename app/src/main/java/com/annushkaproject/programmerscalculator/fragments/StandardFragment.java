@@ -1,5 +1,6 @@
 package com.annushkaproject.programmerscalculator.fragments;
 
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -130,25 +131,27 @@ public class StandardFragment extends Fragment {
         operatorButtons.add(getView().findViewById(R.id.buttonMultiply));
         operatorButtons.add(getView().findViewById(R.id.buttonPercent));
 
-        operatorButtons.add(getView().findViewById(R.id.buttonAsin));
-        operatorButtons.add(getView().findViewById(R.id.buttonAcos));
-        operatorButtons.add(getView().findViewById(R.id.buttonAtan));
+        if (isInLandscapeOrientation()) {
+            operatorButtons.add(getView().findViewById(R.id.buttonAsin));
+            operatorButtons.add(getView().findViewById(R.id.buttonAcos));
+            operatorButtons.add(getView().findViewById(R.id.buttonAtan));
 
-        operatorButtons.add(getView().findViewById(R.id.buttonSin));
-        operatorButtons.add(getView().findViewById(R.id.buttonCos));
-        operatorButtons.add(getView().findViewById(R.id.buttonTan));
+            operatorButtons.add(getView().findViewById(R.id.buttonSin));
+            operatorButtons.add(getView().findViewById(R.id.buttonCos));
+            operatorButtons.add(getView().findViewById(R.id.buttonTan));
 
-        operatorButtons.add(getView().findViewById(R.id.buttonLn));
-        operatorButtons.add(getView().findViewById(R.id.buttonLog));
-        operatorButtons.add(getView().findViewById(R.id.buttonRev));
+            operatorButtons.add(getView().findViewById(R.id.buttonLn));
+            operatorButtons.add(getView().findViewById(R.id.buttonLog));
+            operatorButtons.add(getView().findViewById(R.id.buttonRev));
 
-        operatorButtons.add(getView().findViewById(R.id.buttonEpow));
-        operatorButtons.add(getView().findViewById(R.id.buttonSquare));
-        operatorButtons.add(getView().findViewById(R.id.buttonPower));
+            operatorButtons.add(getView().findViewById(R.id.buttonEpow));
+            operatorButtons.add(getView().findViewById(R.id.buttonSquare));
+            operatorButtons.add(getView().findViewById(R.id.buttonPower));
 
-        operatorButtons.add(getView().findViewById(R.id.buttonAbs));
-        operatorButtons.add(getView().findViewById(R.id.buttonSqrt));
-        operatorButtons.add(getView().findViewById(R.id.buttonFactorial));
+            operatorButtons.add(getView().findViewById(R.id.buttonAbs));
+            operatorButtons.add(getView().findViewById(R.id.buttonSqrt));
+            operatorButtons.add(getView().findViewById(R.id.buttonFactorial));
+        }
 
         for (Button button : operatorButtons) {
             button.setOnClickListener(v -> {
@@ -279,6 +282,11 @@ public class StandardFragment extends Fragment {
     private void updateText(String updatedText) {
         textView.setText(updatedText);
         calcModel.updateValues(updatedText);
+    }
+
+    private boolean isInLandscapeOrientation() {
+        int orientation = getResources().getConfiguration().orientation;
+        return orientation == Configuration.ORIENTATION_LANDSCAPE;
     }
 
 }
