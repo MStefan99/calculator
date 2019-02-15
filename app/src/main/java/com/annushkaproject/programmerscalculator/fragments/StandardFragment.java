@@ -21,7 +21,7 @@ import com.annushkaproject.programmerscalculator.utils.StandardOperationsUtil;
 import java.util.ArrayList;
 
 public class StandardFragment extends Fragment {
-    
+
     private static final int MAX_NUMBER_OF_DIGITS = 20;
 
     private TextView textView;

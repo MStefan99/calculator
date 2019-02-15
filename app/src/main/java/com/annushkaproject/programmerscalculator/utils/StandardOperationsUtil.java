@@ -78,7 +78,7 @@ public class StandardOperationsUtil {
             case SQUARE_ROOT:
                 return Math.sqrt(data.getFirstValue().getNumber());
             case FACTORIAL:
-                StandardOperationsUtil.calculateFactorial(data.getFirstValue().getNumber());
+                return StandardOperationsUtil.calculateFactorial(data.getFirstValue().getNumber());
 
             default:
                 //TODO: throw exception or crush the app.
