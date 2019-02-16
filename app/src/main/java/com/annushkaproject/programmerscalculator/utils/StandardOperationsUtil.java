@@ -5,21 +5,6 @@ import com.annushkaproject.programmerscalculator.model.Operator;
 
 public class StandardOperationsUtil {
 
-//    public static double calculateWithData(CalculationModel data) {
-//        if (data.getOperator().requiresTwoValues() && data.getSecondValue() == null) {
-//            data.setSecondValue(data.getFirstValue().getNumber());
-//        }
-//
-//        double result;
-//        if (data.getOperator().requiresTwoValues()) {
-//            result = StandardOperationsUtil.calculateResultForTwoSidedOperator(data);
-//        } else {
-//            result = StandardOperationsUtil.calculateResultForOneSidedOperator(data);
-//        }
-//
-//        return result;
-//    }
-
     public static double calculateResultForTwoSidedOperator(CalculationModel data) {
         if (data.getSecondValue() == null) {
             data.setSecondValue(data.getFirstValue().getNumber());
