@@ -48,14 +48,16 @@ public class StandardOperationsUtil {
     }
 
     public static double calculatePercentForData(CalculationModel data) {
-        if (data.getOperator() != Operator.PERCENT || data.getSecondValue() == null) {
+        if (data.getSecondValue() == null) {
             return -1; //TODO: throw an exception.
         }
 
         double firstNumber = data.getFirstValue().getNumber();
         double secondNumber = data.getSecondValue().getNumber();
 
-        return firstNumber / 100.0 * secondNumber;
+        double result = firstNumber / 100.0 * secondNumber;
+
+        return result;
     }
 
     public static double calculateResultForOneSidedOperator(double number, Operator operator) {
