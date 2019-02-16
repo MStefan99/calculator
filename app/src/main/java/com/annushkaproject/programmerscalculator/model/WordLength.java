@@ -6,8 +6,8 @@ public enum WordLength {
     WORD,
     BYTE;
 
-    public static int wordToInt(WordLength word) {
-        switch (word) {
+    public int wordToInt() {
+        switch (this) {
             case QWORD:
                 return 0;
             case DWORD:

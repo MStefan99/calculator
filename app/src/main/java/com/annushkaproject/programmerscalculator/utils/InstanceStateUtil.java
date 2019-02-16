@@ -71,7 +71,7 @@ public class InstanceStateUtil {
         if (secondValuePresent) {
             outState.putDouble("SECOND_VALUE", calcModel.getSecondValue().getNumber());
         }
-        outState.putInt("WORD_LENGTH", WordLength.wordToInt(calcModel.getWordLength()));
+        outState.putInt("WORD_LENGTH", calcModel.getWordLength().wordToInt());
         outState.putBoolean("FIRST_VALUE_SAVED", firstValuePresent);
         outState.putBoolean("OPERATOR_SAVED", operatorPresent);
         outState.putBoolean("SECOND_VALUE_SAVED", secondValuePresent);

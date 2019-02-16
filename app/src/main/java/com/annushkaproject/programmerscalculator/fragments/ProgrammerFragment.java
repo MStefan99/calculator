@@ -1,18 +1,23 @@
 package com.annushkaproject.programmerscalculator.fragments;
 
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.annushkaproject.programmerscalculator.R;
+import com.annushkaproject.programmerscalculator.model.Mode;
 import com.annushkaproject.programmerscalculator.model.Operator;
 import com.annushkaproject.programmerscalculator.model.ProgrammerCalcModel;
+import com.annushkaproject.programmerscalculator.model.WordLength;
 import com.annushkaproject.programmerscalculator.utils.InstanceStateUtil;
 import com.annushkaproject.programmerscalculator.utils.ProgrammerUtil;
 
@@ -21,8 +26,9 @@ public class ProgrammerFragment extends Fragment {
     private TextView textView;
     private ProgrammerCalcModel calcModel = new ProgrammerCalcModel();
     private boolean secondValueInputStarted = false;
-
     private String packageName;
+    private WordLength wordLength = WordLength.QWORD;
+    private Mode mode = Mode.DEC;
 
     @Nullable
     @Override
@@ -48,6 +54,8 @@ public class ProgrammerFragment extends Fragment {
         setupDeleteButton();
         //setupClearButton(); TODO: add clear button
         setupSignButton();
+        setupModeRadio();
+        setupWordLengthButton();
     }
 
     @Override
@@ -77,7 +85,7 @@ public class ProgrammerFragment extends Fragment {
             Button button = getView().findViewById(buttonID);
             button.setOnClickListener((v) -> {
                 System.out.println(button.getText().toString());
-                // TODO: handle button clicks
+                usePressedNumber(((Button)v).getText().toString());
             });
         }
     }
@@ -108,7 +116,7 @@ public class ProgrammerFragment extends Fragment {
         Button delButton = getView().findViewById(R.id.buttonDel);
         delButton.setOnClickListener(v -> {
             String currentString = currentString();
-            if (currentString.length() > 1) {
+            if (!currentString.equals("-") && currentString.length() > 1) {
                 currentString = currentString.substring(0, currentString.length() - 1);
                 updateText(currentString);
             } else {
@@ -120,13 +128,13 @@ public class ProgrammerFragment extends Fragment {
     public void setupSignButton() {
         Button signButton = getView().findViewById(R.id.buttonSign);
         signButton.setOnClickListener(v -> {
-            double currentValue = Double.parseDouble(currentString());
+            long currentValue = Long.parseLong(currentString(), mode.getBase());
 
             if (currentValue == 0) { //do not make "-0"
                 return;
             }
 
-            String updatedString = currentString();
+            String updatedString = formatText(currentValue);
             if (currentValue > 0) {
                 updatedString = "-" + updatedString;
             } else {
@@ -134,6 +142,56 @@ public class ProgrammerFragment extends Fragment {
             }
 
             updateText(updatedString);
+        });
+    }
+
+    public void setupWordLengthButton() {
+        Button modeButton = getView().findViewById(R.id.buttonLength);
+        modeButton.setOnClickListener(v -> {
+            long val = Long.parseLong(currentString(), mode.getBase());
+            if (wordLength.ordinal() < 3) {
+                int num = wordLength.ordinal();
+                wordLength = WordLength.values()[++num];
+            } else {
+                wordLength = WordLength.QWORD;
+            }
+            switch (wordLength) {
+                case DWORD:
+                    val = (int) val;
+                    break;
+                case WORD:
+                    val = (short) val;
+                    break;
+                case BYTE:
+                    val = (byte) val;
+            }
+            calcModel.setWordLength(wordLength);
+            updateText(formatText(val));
+            Log.d("LengthChanged", "Length button pressed, current value: " + wordLength.toString());
+            modeButton.setText(wordLength.toString());
+        });
+    }
+
+    public void setupModeRadio() {
+        RadioGroup radioGroup = getView().findViewById(R.id.radioGroup);
+        radioGroup.setOnCheckedChangeListener((v, id) -> {
+            long number = Long.parseLong(textView.getText().toString(), mode.getBase());
+            switch (id) {
+                case R.id.radioButtonHex:
+                    mode = Mode.HEX;
+                    break;
+                case R.id.radioButtonDec:
+                    mode = Mode.DEC;
+                    break;
+                case R.id.radioButtonOct:
+                    mode = Mode.OCT;
+                    break;
+                case R.id.radioButtonBin:
+                    mode = Mode.BIN;
+                    break;
+            }
+            updateText(formatText(number));
+            Log.d("ModeChanged", "Mode radio pressed, current value: " + mode.toString());
         });
     }
 
@@ -192,19 +250,23 @@ public class ProgrammerFragment extends Fragment {
     }
 
     private void calculateResult() {
-        double result = ProgrammerUtil.calculateWithData(calcModel);
+        long result = ProgrammerUtil.calculateWithData(calcModel);
 
         calcModel.resetCalcState();
 
         calcModel.updateAfterCalculation(result);
-        updateText(calcModel.textForValue(result));
+        updateText(formatText(result));
 
         secondValueInputStarted = true;
     }
 
+    public String formatText(long number) {
+        return Long.toString(number, mode.getBase()).toUpperCase();
+    }
+
     private void updateText(String updatedText) {
         textView.setText(updatedText);
-        calcModel.updateValues(updatedText);
+        calcModel.updateValues(updatedText, mode);
     }
 
     private void setTextViewValue(Double value) {

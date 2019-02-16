@@ -28,4 +28,13 @@ public class ProgrammerCalcModel extends CalculationModel {
         super(firstValue, secondValue, operator);
         this.wordLength = wordLength;
     }
+
+    public void updateValues(String text, Mode mode) {
+        if (this.getOperator() == null) {
+            setFirstValue(Long.parseLong(text, mode.getBase()));
+        } else {
+            setSecondValue(Long.parseLong(text, mode.getBase()));
+        }
+    }
+
 }
