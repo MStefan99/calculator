@@ -2,7 +2,7 @@ package com.annushkaproject.programmerscalculator.model;
 
 public enum Operator {
     ADD,
-    SUBSTRUCT,
+    SUBTRACT,
     MULTIPLY,
     DIVIDE,
     PERCENT,
@@ -21,7 +21,7 @@ public enum Operator {
             case "+":
                 return Operator.ADD;
             case "-":
-                return Operator.SUBSTRUCT;
+                return Operator.SUBTRACT;
             case "×":
                 return Operator.MULTIPLY;
             case "÷":
@@ -48,7 +48,7 @@ public enum Operator {
     public boolean requiresTwoValues() {
         switch (this) {
             case ADD:
-            case SUBSTRUCT:
+            case SUBTRACT:
             case MULTIPLY:
             case DIVIDE:
             case OR:
@@ -68,7 +68,7 @@ public enum Operator {
         switch (operator) {
             case ADD:
                 return 0;
-            case SUBSTRUCT:
+            case SUBTRACT:
                 return 1;
             case MULTIPLY:
                 return 2;
@@ -104,7 +104,7 @@ public enum Operator {
             case 0:
                 return ADD;
             case 1:
-                return SUBSTRUCT;
+                return SUBTRACT;
             case 2:
                 return MULTIPLY;
             case 3:

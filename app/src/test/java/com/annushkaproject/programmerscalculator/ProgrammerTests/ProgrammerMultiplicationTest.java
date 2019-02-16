@@ -1,4 +1,4 @@
-package com.annushkaproject.programmerscalculator;
+package com.annushkaproject.programmerscalculator.ProgrammerTests;
 
 import com.annushkaproject.programmerscalculator.model.ProgrammerCalcModel;
 import com.annushkaproject.programmerscalculator.model.Value;
@@ -10,7 +10,7 @@ import static com.annushkaproject.programmerscalculator.model.Operator.MULTIPLY;
 import static com.annushkaproject.programmerscalculator.model.WordLength.*;
 import static org.junit.Assert.*;
 
-public class ProgrammerMultiplyTest {
+public class ProgrammerMultiplicationTest {
     @Test
     public void programmerMultiplicationQWORD_isCorrect() {
         assertEquals(25, ProgrammerUtil.calculateWithData(new ProgrammerCalcModel(new Value(5), new Value(5), MULTIPLY, QWORD)));

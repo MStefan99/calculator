@@ -1,4 +1,4 @@
-package com.annushkaproject.programmerscalculator;
+package com.annushkaproject.programmerscalculator.ProgrammerTests;
 
 import com.annushkaproject.programmerscalculator.model.ProgrammerCalcModel;
 import com.annushkaproject.programmerscalculator.model.Value;
@@ -12,7 +12,7 @@ import static org.junit.Assert.*;
 
 public class ProgrammerDivisionTest {
     @Test
-    public void programmerAdditionQWORD_isCorrect() {
+    public void programmerDivisionQWORD_isCorrect() {
         assertEquals(5, ProgrammerUtil.calculateWithData(new ProgrammerCalcModel(new Value(25), new Value(5), DIVIDE, QWORD)));
         assertEquals(-5, ProgrammerUtil.calculateWithData(new ProgrammerCalcModel(new Value(-25), new Value(5), DIVIDE, QWORD)));
         assertEquals(1, ProgrammerUtil.calculateWithData(new ProgrammerCalcModel(new Value(3), new Value(2), DIVIDE, QWORD)));
@@ -23,7 +23,7 @@ public class ProgrammerDivisionTest {
         assertEquals(0x3FFFFFFFFFFFFFFFL, ProgrammerUtil.calculateWithData(new ProgrammerCalcModel(new Value(0x7FFFFFFFFFFFFFFEL), new Value(2), DIVIDE, QWORD)));
     }
     @Test
-    public void programmerAdditionDWORD_isCorrect() {
+    public void programmerDivisionDWORD_isCorrect() {
         assertEquals(5, ProgrammerUtil.calculateWithData(new ProgrammerCalcModel(new Value(25), new Value(5), DIVIDE, DWORD)));
         assertEquals(-5, ProgrammerUtil.calculateWithData(new ProgrammerCalcModel(new Value(-25), new Value(5), DIVIDE, DWORD)));
         assertEquals(1, ProgrammerUtil.calculateWithData(new ProgrammerCalcModel(new Value(3), new Value(2), DIVIDE, DWORD)));
@@ -34,7 +34,7 @@ public class ProgrammerDivisionTest {
         assertEquals(0x3FFFFFFF, ProgrammerUtil.calculateWithData(new ProgrammerCalcModel(new Value(0x7FFFFFFE), new Value(2), DIVIDE, DWORD)));
     }
     @Test
-    public void programmerAdditionWORD_isCorrect() {
+    public void programmerDivisionWORD_isCorrect() {
         assertEquals((short) 5, ProgrammerUtil.calculateWithData(new ProgrammerCalcModel(new Value(25), new Value(5), DIVIDE, WORD)));
         assertEquals((short) -5, ProgrammerUtil.calculateWithData(new ProgrammerCalcModel(new Value(-25), new Value(5), DIVIDE, WORD)));
         assertEquals((short) 1, ProgrammerUtil.calculateWithData(new ProgrammerCalcModel(new Value(3), new Value(2), DIVIDE, WORD)));
@@ -45,7 +45,7 @@ public class ProgrammerDivisionTest {
         assertEquals((short) 0x3FFF, ProgrammerUtil.calculateWithData(new ProgrammerCalcModel(new Value(0x7FFE), new Value(2), DIVIDE, WORD)));
     }
     @Test
-    public void programmerAdditionBYTE_isCorrect() {
+    public void programmerDivisionBYTE_isCorrect() {
         assertEquals((byte) 5, ProgrammerUtil.calculateWithData(new ProgrammerCalcModel(new Value(25), new Value(5), DIVIDE, BYTE)));
         assertEquals((byte) -5, ProgrammerUtil.calculateWithData(new ProgrammerCalcModel(new Value(-25), new Value(5), DIVIDE, BYTE)));
         assertEquals((byte) 1, ProgrammerUtil.calculateWithData(new ProgrammerCalcModel(new Value(3), new Value(2), DIVIDE, BYTE)));

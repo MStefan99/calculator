@@ -7,7 +7,7 @@ public class StandardOperationsUtil {
 
     public static double calculateWithData(CalculationModel data) {
         if (data.getOperator().requiresTwoValues() && data.getSecondValue() == null) {
-            if (data.getOperator() == Operator.ADD || data.getOperator() == Operator.SUBSTRUCT) {
+            if (data.getOperator() == Operator.ADD || data.getOperator() == Operator.SUBTRACT) {
                 data.setSecondValue(0);
             } else {
                 data.setSecondValue(1);
@@ -21,7 +21,7 @@ public class StandardOperationsUtil {
         switch (data.getOperator()) {
             case ADD:
                 return data.getFirstValue().getNumber() + data.getSecondValue().getNumber();
-            case SUBSTRUCT:
+            case SUBTRACT:
                 return data.getFirstValue().getNumber() - data.getSecondValue().getNumber();
             case MULTIPLY:
                 return data.getFirstValue().getNumber() * data.getSecondValue().getNumber();

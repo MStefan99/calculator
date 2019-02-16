@@ -1,4 +1,4 @@
-package com.annushkaproject.programmerscalculator;
+package com.annushkaproject.programmerscalculator.ProgrammerTests;
 
 import com.annushkaproject.programmerscalculator.model.ProgrammerCalcModel;
 import com.annushkaproject.programmerscalculator.model.Value;

@@ -1,6 +1,5 @@
 package com.annushkaproject.programmerscalculator.utils;
 
-import com.annushkaproject.programmerscalculator.model.CalculationModel;
 import com.annushkaproject.programmerscalculator.model.ProgrammerCalcModel;
 import com.annushkaproject.programmerscalculator.model.WordLength;
 
@@ -9,7 +8,7 @@ public class ProgrammerUtil {
         switch (data.getOperator()) {
             case ADD:
                 return addSubtract(data.getWordLength(), (long) data.getFirstValue().getNumber(), (long) data.getSecondValue().getNumber());
-            case SUBSTRUCT:
+            case SUBTRACT:
                 return addSubtract(data.getWordLength(), (long) data.getFirstValue().getNumber(), - (long) data.getSecondValue().getNumber());
             case MULTIPLY:
                 return multiply(data.getWordLength(), (long) data.getFirstValue().getNumber(), (long) data.getSecondValue().getNumber());
