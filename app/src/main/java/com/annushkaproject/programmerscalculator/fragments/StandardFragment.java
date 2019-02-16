@@ -221,7 +221,7 @@ public class StandardFragment extends Fragment {
     }
 
     private void usePressedNumber(String number) {
-        if (currentString().equals("0") && !number.equals(".")) {
+        if ((currentString().equals("0") && !number.equals(".")) || currentString().equals(getString(R.string.not_a_number))) {
             textView.setText(""); //clear text view from 0 value.
         }
 
@@ -287,6 +287,12 @@ public class StandardFragment extends Fragment {
     }
 
     private void calculateResult() {
+        if (calcModel.isNotNumber()) {
+            calcModel.resetCalcState();
+            textView.setText(getString(R.string.not_a_number));
+            return;
+        }
+
         double result = StandardOperationsUtil.calculateResultForTwoSidedOperator(calcModel);
 
         calcModel.resetCalcState();
