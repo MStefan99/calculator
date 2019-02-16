@@ -4,8 +4,7 @@ public enum WordLength {
     QWORD,
     DWORD,
     WORD,
-    BYTE,
-    UNKNOWN;
+    BYTE;
 
     public static int wordToInt(WordLength word) {
         switch (word) {
@@ -17,8 +16,6 @@ public enum WordLength {
                 return 2;
             case BYTE:
                 return 3;
-            case UNKNOWN:
-                return 4;
             default:
                 return -1;
         }
@@ -26,6 +23,7 @@ public enum WordLength {
 
     public static WordLength intToWord(int number) {
         switch (number) {
+            default:
             case 0:
                 return QWORD;
             case 1:
@@ -34,8 +32,6 @@ public enum WordLength {
                 return WORD;
             case 3:
                 return BYTE;
-            default:
-                return UNKNOWN;
         }
     }
 }
