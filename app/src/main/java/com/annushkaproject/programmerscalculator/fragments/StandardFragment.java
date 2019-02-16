@@ -1,5 +1,7 @@
 package com.annushkaproject.programmerscalculator.fragments;
 
+import android.content.Context;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -9,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.annushkaproject.programmerscalculator.R;
 import com.annushkaproject.programmerscalculator.model.CalculationModel;
@@ -102,11 +105,33 @@ public class StandardFragment extends Fragment {
     private void fillOperatorButtons() {
         //TODO: add additional operators for landscape.
 
-        this.operatorButtons.add(getView().findViewById(R.id.buttonPlus));
-        this.operatorButtons.add(getView().findViewById(R.id.buttonMinus));
-        this.operatorButtons.add(getView().findViewById(R.id.buttonDivide));
-        this.operatorButtons.add(getView().findViewById(R.id.buttonMultiply));
-        this.operatorButtons.add(getView().findViewById(R.id.buttonPercent));
+        operatorButtons.add(getView().findViewById(R.id.buttonPlus));
+        operatorButtons.add(getView().findViewById(R.id.buttonMinus));
+        operatorButtons.add(getView().findViewById(R.id.buttonDivide));
+        operatorButtons.add(getView().findViewById(R.id.buttonMultiply));
+        operatorButtons.add(getView().findViewById(R.id.buttonPercent));
+
+        if (isInLandscapeOrientation()) {
+            operatorButtons.add(getView().findViewById(R.id.buttonAsin));
+            operatorButtons.add(getView().findViewById(R.id.buttonAcos));
+            operatorButtons.add(getView().findViewById(R.id.buttonAtan));
+
+            operatorButtons.add(getView().findViewById(R.id.buttonSin));
+            operatorButtons.add(getView().findViewById(R.id.buttonCos));
+            operatorButtons.add(getView().findViewById(R.id.buttonTan));
+
+            operatorButtons.add(getView().findViewById(R.id.buttonLn));
+            operatorButtons.add(getView().findViewById(R.id.buttonLog));
+            operatorButtons.add(getView().findViewById(R.id.buttonRev));
+
+            operatorButtons.add(getView().findViewById(R.id.buttonEpow));
+            operatorButtons.add(getView().findViewById(R.id.buttonSquare));
+            operatorButtons.add(getView().findViewById(R.id.buttonPower));
+
+            operatorButtons.add(getView().findViewById(R.id.buttonAbs));
+            operatorButtons.add(getView().findViewById(R.id.buttonSqrt));
+            operatorButtons.add(getView().findViewById(R.id.buttonFactorial));
+        }
 
         for (Button button : operatorButtons) {
             button.setOnClickListener(v -> {
@@ -174,7 +199,7 @@ public class StandardFragment extends Fragment {
     }
 
     private void usePressedNumber(String number) {
-        if (currentString().equals("0") && !number.equals(".")) {
+        if ((currentString().equals("0") && !number.equals(".")) || currentString().equals(getString(R.string.not_a_number))) {
             textView.setText(""); //clear text view from 0 value.
         }
 
@@ -224,6 +249,12 @@ public class StandardFragment extends Fragment {
     }
 
     private void calculateResult() {
+        if (calcModel.isNotNumber()) {
+            calcModel.resetCalcState();
+            textView.setText(getString(R.string.not_a_number));
+            return;
+        }
+
         double result = StandardOperationsUtil.calculateWithData(calcModel);
 
         calcModel.resetCalcState();
@@ -235,8 +266,23 @@ public class StandardFragment extends Fragment {
     }
 
     private void updateText(String updatedText) {
+        if (updatedText.length() == 20) {
+            showDigitsLimitWarning();
+            return;
+        }
+
         textView.setText(updatedText);
         calcModel.updateValues(updatedText);
+    }
+
+    private void showDigitsLimitWarning() {
+        Context context = getActivity().getApplicationContext();
+        Toast.makeText(context, R.string.max_digits_warning, Toast.LENGTH_SHORT).show();
+    }
+
+    private boolean isInLandscapeOrientation() {
+        int orientation = getResources().getConfiguration().orientation;
+        return orientation == Configuration.ORIENTATION_LANDSCAPE;
     }
 
 }

@@ -11,4 +11,6 @@
     <string name="nav_share">Jaa</string>
     <string name="nav_about">Meistä</string>
     <string name="nav_contacts">Ota Yhteyttä</string>
+    <string name="max_digits_warning">Too many symbols</string>
+    <string name="not_a_number">Not a number</string>
 </resources>

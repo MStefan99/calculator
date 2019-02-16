@@ -79,5 +79,10 @@ public class CalculationModel {
         return isWholeValue ? String.format("%.0f", value) : (Double.toString(value));
     }
 
+    public boolean isNotNumber() {
+        return (operator == Operator.DIVIDE && secondValue.getNumber() == 0) ||
+                (operator == Operator.DENOMINATOR && firstValue.getNumber() == 0);
+    }
+
 }
 

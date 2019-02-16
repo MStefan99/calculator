@@ -9,7 +9,8 @@
     <string name="nav_drawer_programmer">Programmeur</string>
     <string name="nav_themes">Thémes</string>
     <string name="nav_share">Partager</string>
-    <string name="nav_about">À propos de l’application
-</string>
+    <string name="nav_about">À propos de l’application</string>
     <string name="nav_contacts">Liste de contacts</string>
+    <string name="max_digits_warning">Too many symbols</string>
+    <string name="not_a_number">Not a number</string>
 </resources>

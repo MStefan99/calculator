@@ -14,6 +14,21 @@ public enum Operator {
     XOR,
     AND,
     MOD,
+    ASIN,
+    ACOS,
+    ATAN,
+    SIN,
+    COS,
+    TAN,
+    LN,
+    LOG,
+    DENOMINATOR,
+    EXPONENT_POWER,
+    SQUARE,
+    POWER,
+    ABS,
+    SQUARE_ROOT,
+    FACTORIAL,
     UNKNOWN;
 
     public static Operator operatorForTitle(String title) {
@@ -40,6 +55,36 @@ public enum Operator {
                 return Operator.LSH;
             case "Rsh":
                 return Operator.RSH;
+            case "sinˉ¹":
+                return Operator.ASIN;
+            case "cosˉ¹":
+                return Operator.ACOS;
+            case "tanˉ¹":
+                return Operator.ATAN;
+            case "sin":
+                return Operator.SIN;
+            case "cos":
+                return Operator.COS;
+            case "tan":
+                return Operator.TAN;
+            case "ln":
+                return Operator.LN;
+            case "log":
+                return Operator.LOG;
+            case "1/x":
+                return Operator.DENOMINATOR;
+            case "eˣ":
+                return Operator.EXPONENT_POWER;
+            case "x²":
+                return Operator.SQUARE;
+            case "xʸ":
+                return Operator.POWER;
+            case "|x|":
+                return Operator.ABS;
+            case "√":
+                return Operator.SQUARE_ROOT;
+            case "x!":
+                return Operator.FACTORIAL;
             default:
                 return Operator.UNKNOWN;
         }
@@ -57,6 +102,7 @@ public enum Operator {
             case RSH:
             case XOR:
             case MOD:
+            case POWER:
                 return true;
 
             default:
@@ -65,71 +111,11 @@ public enum Operator {
     }
 
     public static int getNumberByOperator(Operator operator) {
-        switch (operator) {
-            case ADD:
-                return 0;
-            case SUBTRACT:
-                return 1;
-            case MULTIPLY:
-                return 2;
-            case DIVIDE:
-                return 3;
-            case PERCENT:
-                return 4;
-            case CHANGE_SIGN:
-                return 5;
-            case LSH:
-                return 6;
-            case RSH:
-                return 7;
-            case NOT:
-                return 8;
-            case OR:
-                return 9;
-            case XOR:
-                return 10;
-            case AND:
-                return 11;
-            case MOD:
-                return 12;
-            default:
-                return -1;
-        }
+        return operator.ordinal();
     }
 
     public static Operator getOperatorByNumber(int number) {
-        switch (number) {
-            case -1:
-                return UNKNOWN;
-            case 0:
-                return ADD;
-            case 1:
-                return SUBTRACT;
-            case 2:
-                return MULTIPLY;
-            case 3:
-                return DIVIDE;
-            case 4:
-                return PERCENT;
-            case 5:
-                return CHANGE_SIGN;
-            case 6:
-                return LSH;
-            case 7:
-                return RSH;
-            case 8:
-                return NOT;
-            case 9:
-                return OR;
-            case 10:
-                return XOR;
-            case 11:
-                return AND;
-            case 12:
-                return MOD;
-            default:
-                return UNKNOWN;
-        }
+        return Operator.values()[number];
     }
 }
 
