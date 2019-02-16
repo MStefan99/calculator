@@ -14,22 +14,30 @@ public class StandardOperationsUtil {
             return -1; //TODO: throw an exception.
         }
 
+        double result;
         switch (data.getOperator()) {
             case ADD:
-                return data.getFirstValue().getNumber() + data.getSecondValue().getNumber();
+                result = data.getFirstValue().getNumber() + data.getSecondValue().getNumber();
+                break;
             case SUBTRACT:
-                return data.getFirstValue().getNumber() - data.getSecondValue().getNumber();
+                result = data.getFirstValue().getNumber() - data.getSecondValue().getNumber();
+                break;
             case MULTIPLY:
-                return data.getFirstValue().getNumber() * data.getSecondValue().getNumber();
+                result = data.getFirstValue().getNumber() * data.getSecondValue().getNumber();
+                break;
             case DIVIDE:
-                return data.getFirstValue().getNumber() / data.getSecondValue().getNumber();
+                result = data.getFirstValue().getNumber() / data.getSecondValue().getNumber();
+                break;
             case POWER:
-
+                result = Math.pow(data.getFirstValue().getNumber(), data.getSecondValue().getNumber());
+                break;
 
             default:
                 //TODO: throw exception or crush the app.
                 return 0;
         }
+
+        return result;
     }
 
     public static double calculatePercentForData(CalculationModel data) {
