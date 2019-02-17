@@ -22,6 +22,8 @@ import java.util.ArrayList;
 
 public class StandardFragment extends Fragment {
 
+    private static final int MAX_NUMBER_OF_DIGITS = 20;
+
     private TextView textView;
     private ArrayList<Button> numberButtons = new ArrayList<>();
     private ArrayList<Button> operatorButtons = new ArrayList<>();
@@ -125,8 +127,6 @@ public class StandardFragment extends Fragment {
     }
 
     private void fillOperatorButtons() {
-        //TODO: add additional operators for landscape.
-
         operatorButtons.add(getView().findViewById(R.id.buttonPlus));
         operatorButtons.add(getView().findViewById(R.id.buttonMinus));
         operatorButtons.add(getView().findViewById(R.id.buttonDivide));
@@ -242,11 +242,27 @@ public class StandardFragment extends Fragment {
             return;
         }
 
-        boolean readyToCalcOneSide = !operator.requiresTwoValues() &&
-                                     calcModel.getFirstValue() != null;
-        if (readyToCalcOneSide) {
-            calcModel.setOperator(operator);
-            calculateResult();
+        if (!operator.requiresTwoValues()) {
+            double result;
+            if (calcModel.getSecondValue() == null) {
+                //apply to first value
+                double number = calcModel.getFirstValue().getNumber();
+                result = StandardOperationsUtil.calculateResultForOneSidedOperator(number, operator);
+                calcModel.setFirstValue(result);
+            } else if (operator == Operator.PERCENT && calcModel.getSecondValue() != null) {
+                //special case for 6 - 10%
+                result = StandardOperationsUtil.calculatePercentForData(calcModel);
+                calcModel.setSecondValue(result);
+            } else {
+                //apply to second value
+                double number = calcModel.getSecondValue().getNumber();
+                result = StandardOperationsUtil.calculateResultForOneSidedOperator(number, operator);
+                calcModel.setSecondValue(result);
+            }
+
+            String text = calcModel.textForValue(result);
+            textView.setText(text);
+
             return;
         }
 
@@ -277,7 +293,7 @@ public class StandardFragment extends Fragment {
             return;
         }
 
-        double result = StandardOperationsUtil.calculateWithData(calcModel);
+        double result = StandardOperationsUtil.calculateResultForTwoSidedOperator(calcModel);
 
         calcModel.resetCalcState();
 
@@ -288,7 +304,7 @@ public class StandardFragment extends Fragment {
     }
 
     private void updateText(String updatedText) {
-        if (updatedText.length() == 20) {
+        if (updatedText.length() == MAX_NUMBER_OF_DIGITS) {
             showDigitsLimitWarning();
             return;
         }
