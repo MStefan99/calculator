@@ -3,7 +3,7 @@ package com.annushkaproject.programmerscalculator.utils;
 import com.annushkaproject.programmerscalculator.model.ProgrammerCalcModel;
 import com.annushkaproject.programmerscalculator.model.WordLength;
 
-public class ProgrammerUtil {
+public class ProgrammerOperationsUtil {
     public static long calculateWithData(ProgrammerCalcModel data) {
         switch (data.getOperator()) {
             case ADD:

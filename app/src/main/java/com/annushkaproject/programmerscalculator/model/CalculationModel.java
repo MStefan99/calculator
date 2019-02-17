@@ -7,9 +7,9 @@ public class CalculationModel {
     private Operator operator;
 
     public CalculationModel() {
-        this.firstValue = null;
-        this.secondValue = null;
-        this.operator = null;
+        firstValue = null;
+        secondValue = null;
+        operator = null;
     }
 
     public CalculationModel(Value firstValue, Operator operator) {
@@ -57,7 +57,7 @@ public class CalculationModel {
         firstValue = null;
         secondValue = null;
         operator = null;
-    }    
+    }
 
     //update states
     public void updateValues(String text) {

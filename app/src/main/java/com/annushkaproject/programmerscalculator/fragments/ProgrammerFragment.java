@@ -18,7 +18,7 @@ import com.annushkaproject.programmerscalculator.model.Operator;
 import com.annushkaproject.programmerscalculator.model.ProgrammerCalcModel;
 import com.annushkaproject.programmerscalculator.model.WordLength;
 import com.annushkaproject.programmerscalculator.utils.InstanceStateUtil;
-import com.annushkaproject.programmerscalculator.utils.ProgrammerUtil;
+import com.annushkaproject.programmerscalculator.utils.ProgrammerOperationsUtil;
 
 public class ProgrammerFragment extends Fragment {
 
@@ -249,7 +249,7 @@ public class ProgrammerFragment extends Fragment {
     }
 
     private void calculateResult() {
-        long result = ProgrammerUtil.calculateWithData(calcModel);
+        long result = ProgrammerOperationsUtil.calculateWithData(calcModel);
 
         calcModel.resetCalcState();
 
