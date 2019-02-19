@@ -124,7 +124,7 @@ public class ProgrammerFragment extends Fragment {
         });
     }
 
-    public void setupSignButton() {
+    private void setupSignButton() {
         Button signButton = getView().findViewById(R.id.buttonSign);
         signButton.setOnClickListener(v -> {
             long currentValue = Long.parseLong(currentString(), mode.getBase());
@@ -144,7 +144,7 @@ public class ProgrammerFragment extends Fragment {
         });
     }
 
-    public void setupWordLengthButton() {
+    private void setupWordLengthButton() {
         Button modeButton = getView().findViewById(R.id.buttonLength);
         modeButton.setOnClickListener(v -> {
             long val = Long.parseLong(currentString(), mode.getBase());
@@ -171,7 +171,7 @@ public class ProgrammerFragment extends Fragment {
         });
     }
 
-    public void setupModeRadio() {
+    private void setupModeRadio() {
         RadioGroup radioGroup = getView().findViewById(R.id.radioGroup);
         radioGroup.setOnCheckedChangeListener((v, id) -> {
             long number = Long.parseLong(textView.getText().toString(), mode.getBase());
@@ -259,7 +259,7 @@ public class ProgrammerFragment extends Fragment {
         secondValueInputStarted = true;
     }
 
-    public String formatText(long number) {
+    private String formatText(long number) {
         return Long.toString(number, mode.getBase()).toUpperCase();
     }
 

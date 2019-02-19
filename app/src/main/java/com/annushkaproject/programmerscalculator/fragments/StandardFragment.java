@@ -178,7 +178,7 @@ public class StandardFragment extends Fragment {
         });
     }
 
-    public void setupSignButton() {
+    private void setupSignButton() {
         Button signButton = getView().findViewById(R.id.buttonSign);
         signButton.setOnClickListener(v -> {
             double currentValue = Double.parseDouble(currentString());
