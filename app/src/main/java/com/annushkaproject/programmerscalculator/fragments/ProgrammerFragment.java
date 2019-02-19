@@ -265,6 +265,11 @@ public class ProgrammerFragment extends Fragment {
 
     private void updateText(String updatedText) {
         textView.setText(updatedText);
+        if (updatedText.length() > 10) {
+            textView.setTextSize(24);
+        } else {
+            textView.setTextSize(30);
+        }
         calcModel.updateValues(updatedText, mode);
     }
 

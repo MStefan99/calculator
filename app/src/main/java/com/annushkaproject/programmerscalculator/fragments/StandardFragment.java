@@ -272,6 +272,11 @@ public class StandardFragment extends Fragment {
         }
 
         textView.setText(updatedText);
+        if (updatedText.length() > 10) {
+            textView.setTextSize(24);
+        } else {
+            textView.setTextSize(30);
+        }
         calcModel.updateValues(updatedText);
     }
 
