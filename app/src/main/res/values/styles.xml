@@ -2,7 +2,6 @@
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
         <item name="accentColor">@color/accentColor</item>
         <item name="themeColor">@color/themeColor</item>
         <item name="primaryTextColor"> @color/primaryTextColor</item>
@@ -10,15 +9,11 @@
         <item name="disabledTextColor">@color/disabledTextColor</item>
         <item name="backgroundColor">@color/backgroundColor</item>
         <item name="textAccentColor">@color/textAccentColor</item>
-    </style>
-
-    <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
 
     <style name="AppTheme.DarkTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
         <item name="accentColor">@color/accentColorDark</item>
         <item name="themeColor">@color/themeColorDark</item>
         <item name="primaryTextColor"> @color/primaryTextColorDark</item>
@@ -26,15 +21,8 @@
         <item name="disabledTextColor">@color/disabledTextColorDark</item>
         <item name="backgroundColor">@color/backgroundColorDark</item>
         <item name="textAccentColor">@color/textAccentColorDark</item>
-    </style>
-
-    <style name="AppTheme.DarkTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
-
-    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
-
-    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
 </resources>

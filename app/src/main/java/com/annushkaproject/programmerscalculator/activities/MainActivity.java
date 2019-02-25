@@ -1,5 +1,6 @@
 package com.annushkaproject.programmerscalculator.activities;
 
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -17,6 +18,26 @@ import com.annushkaproject.programmerscalculator.fragments.ThemesFragment;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    int currentTheme = 1;
+
+    public int getCurrentTheme() {
+        switch (currentTheme) {
+            case 0:
+            default:
+                return R.style.AppTheme;
+            case 1:
+                return R.style.AppTheme_DarkTheme;
+        }
+    }
+
+    public int getCurrentThemeID(){
+        return currentTheme;
+    }
+
+    public void setCurrentThemeID(int currentTheme) {
+        this.currentTheme = currentTheme;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
