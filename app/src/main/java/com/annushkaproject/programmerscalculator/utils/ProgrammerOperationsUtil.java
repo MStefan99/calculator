@@ -3,198 +3,200 @@ package com.annushkaproject.programmerscalculator.utils;
 import com.annushkaproject.programmerscalculator.model.ProgrammerCalcModel;
 import com.annushkaproject.programmerscalculator.model.WordLength;
 
+import java.math.BigDecimal;
+
 public class ProgrammerOperationsUtil {
     public static long calculateWithData(ProgrammerCalcModel data) {
         switch (data.getOperator()) {
             case ADD:
-                return addSubtract(data.getWordLength(), (long) data.getFirstValue().doubleValue(), (long) data.getSecondValue().doubleValue());
+                return addSubtract(data.getWordLength(), data.getFirstValue(), data.getSecondValue());
             case SUBTRACT:
-                return addSubtract(data.getWordLength(), (long) data.getFirstValue().doubleValue(), - (long) data.getSecondValue().doubleValue());
+                return addSubtract(data.getWordLength(), data.getFirstValue(), data.getSecondValue().negate());
             case MULTIPLY:
-                return multiply(data.getWordLength(), (long) data.getFirstValue().doubleValue(), (long) data.getSecondValue().doubleValue());
+                return multiply(data.getWordLength(), data.getFirstValue(), data.getSecondValue());
             case DIVIDE:
-                return divide(data.getWordLength(), (long) data.getFirstValue().doubleValue(), (long) data.getSecondValue().doubleValue());
+                return divide(data.getWordLength(), data.getFirstValue(), data.getSecondValue());
             case LSH:
-                return lsh(data.getWordLength(), (long) data.getFirstValue().doubleValue(), (int) data.getSecondValue().doubleValue());
+                return lsh(data.getWordLength(), data.getFirstValue(), data.getSecondValue());
             case RSH:
-                return rsh(data.getWordLength(), (long) data.getFirstValue().doubleValue(), (int) data.getSecondValue().doubleValue());
+                return rsh(data.getWordLength(), data.getFirstValue(), data.getSecondValue());
             case OR:
-                return or(data.getWordLength(), (long) data.getFirstValue().doubleValue(), (long) data.getSecondValue().doubleValue());
+                return or(data.getWordLength(), data.getFirstValue(), data.getSecondValue());
             case XOR:
-                return xor(data.getWordLength(), (long) data.getFirstValue().doubleValue(), (long) data.getSecondValue().doubleValue());
+                return xor(data.getWordLength(), data.getFirstValue(), data.getSecondValue());
             case AND:
-                return and(data.getWordLength(), (long) data.getFirstValue().doubleValue(), (long) data.getSecondValue().doubleValue());
+                return and(data.getWordLength(), data.getFirstValue(), data.getSecondValue());
             case MOD:
-                return mod(data.getWordLength(), (long) data.getFirstValue().doubleValue(), (long) data.getSecondValue().doubleValue());
+                return mod(data.getWordLength(), data.getFirstValue(), data.getSecondValue());
             case CHANGE_SIGN:
-                return changeSign(data.getWordLength(), (long) data.getFirstValue().doubleValue());
+                return changeSign(data.getWordLength(), data.getFirstValue());
             case NOT:
-                return not(data.getWordLength(), (long) data.getFirstValue().doubleValue());
+                return not(data.getWordLength(), data.getFirstValue());
             default:
                 return 0;
         }
     }
 
-    private static long addSubtract(WordLength mode, long value1, long value2) {
-        switch(mode) {
+    private static long addSubtract(WordLength mode, BigDecimal value1, BigDecimal value2) {
+        switch (mode) {
             case QWORD:
-                return value1 + value2;
+                return value1.longValue() + value2.longValue();
             case DWORD:
-                return (int) (value1 + value2);
+                return value1.intValue() + value2.intValue();
             case WORD:
-                return (short) (value1 + value2);
+                return (short) (value1.shortValue() + value2.shortValue());
             case BYTE:
-                return (byte) (value1 + value2);
+                return (byte) (value1.byteValue() + value2.byteValue());
             default:
                 return 0;
         }
     }
 
-    private static long changeSign(WordLength mode, long value) {
-        switch(mode) {
+    private static long changeSign(WordLength mode, BigDecimal value) {
+        switch (mode) {
             case QWORD:
-                return -value;
+                return value.negate().longValue();
             case DWORD:
-                return (int) -value;
+                return value.negate().intValue();
             case WORD:
-                return (short) -value;
+                return value.negate().shortValue();
             case BYTE:
-                return (byte) -value;
+                return value.negate().byteValue();
             default:
                 return 0;
         }
     }
 
-    private static long lsh(WordLength mode, long value, int shift) {
-        switch(mode) {
+    private static long lsh(WordLength mode, BigDecimal value, BigDecimal shift) {
+        switch (mode) {
             case QWORD:
-                return value << shift;
+                return value.longValue() << shift.intValue();
             case DWORD:
-                return (int) (value << shift);
+                return value.intValue() << shift.intValue();
             case WORD:
-                return (short) ((short) value << shift);
+                return (short) (value.shortValue() << shift.intValue());
             case BYTE:
-                return (byte) ((byte) value << shift);
+                return (byte) (value.byteValue() << shift.intValue());
             default:
                 return 0;
         }
     }
 
-    private static long rsh(WordLength mode, long value, int shift) {
-        switch(mode) {
+    private static long rsh(WordLength mode, BigDecimal value, BigDecimal shift) {
+        switch (mode) {
             case QWORD:
-                return value >> shift;
+                return value.longValue() >> shift.intValue();
             case DWORD:
-                return (int) ( value >> shift);
+                return value.intValue() >> shift.intValue();
             case WORD:
-                return (short) ((short) value >> shift);
+                return (short) (value.shortValue() >> shift.intValue());
             case BYTE:
-                return (byte) ((byte) value >> shift);
+                return (byte) (value.byteValue() >> shift.intValue());
             default:
                 return 0;
         }
     }
 
-    private static long not(WordLength mode, long value) {
-        switch(mode) {
+    private static long not(WordLength mode, BigDecimal value) {
+        switch (mode) {
             case QWORD:
-                return ~value;
+                return ~value.longValue();
             case DWORD:
-                return (int) ~value;
+                return ~value.intValue();
             case WORD:
-                return (short) (~(short) value);
+                return (short) (~value.shortValue());
             case BYTE:
-                return (byte) (~(byte) value);
+                return (byte) (~value.byteValue());
             default:
                 return 0;
         }
     }
 
-    private static long or(WordLength mode, long value1, long value2) {
-        switch(mode) {
+    private static long or(WordLength mode, BigDecimal value1, BigDecimal value2) {
+        switch (mode) {
             case QWORD:
-                return value1 | value2;
+                return value1.longValue() | value2.longValue();
             case DWORD:
-                return (int) (value1 | value2);
+                return value1.intValue() | value2.intValue();
             case WORD:
-                return (short) (value1 | value2);
+                return (short) (value1.shortValue() | value2.shortValue());
             case BYTE:
-                return (byte) (value1 | value2);
+                return (byte) (value1.byteValue() | value2.byteValue());
             default:
                 return 0;
         }
     }
 
-    private static long xor(WordLength mode, long value1, long value2) {
-        switch(mode) {
+    private static long xor(WordLength mode, BigDecimal value1, BigDecimal value2) {
+        switch (mode) {
             case QWORD:
-                return value1 ^ value2;
+                return value1.longValue() ^ value2.longValue();
             case DWORD:
-                return (int) (value1 ^ value2);
+                return value1.intValue() ^ value2.intValue();
             case WORD:
-                return (short) (value1 ^ value2);
+                return (short) (value1.shortValue() ^ value2.shortValue());
             case BYTE:
-                return (byte) (value1 ^ value2);
+                return (byte) (value1.byteValue() ^ value2.byteValue());
             default:
                 return 0;
         }
     }
 
-    private static long and(WordLength mode, long value1, long value2) {
-        switch(mode) {
+    private static long and(WordLength mode, BigDecimal value1, BigDecimal value2) {
+        switch (mode) {
             case QWORD:
-                return value1 & value2;
+                return value1.longValue() & value2.longValue();
             case DWORD:
-                return (int) (value1 & value2);
+                return value1.intValue() & value2.intValue();
             case WORD:
-                return (short) (value1 & value2);
+                return (short) (value1.shortValue() & value2.shortValue());
             case BYTE:
-                return (byte) (value1 & value2);
+                return (byte) (value1.byteValue() & value2.byteValue());
             default:
                 return 0;
         }
     }
 
-    private static long mod(WordLength mode, long dividend, long divider) {
-        switch(mode) {
+    private static long mod(WordLength mode, BigDecimal dividend, BigDecimal divider) {
+        switch (mode) {
             case QWORD:
-                return dividend % divider;
+                return dividend.longValue() % divider.longValue();
             case DWORD:
-                return (int) dividend % divider;
+                return dividend.intValue() % divider.intValue();
             case WORD:
-                return (short) dividend % divider;
+                return (short) (dividend.shortValue() % divider.shortValue());
             case BYTE:
-                return (byte) dividend % divider;
+                return (byte) (dividend.byteValue() % divider.byteValue());
             default:
                 return 0;
         }
     }
 
-    private static long multiply(WordLength mode, long value1, long value2) {
-        switch(mode) {
+    private static long multiply(WordLength mode, BigDecimal value1, BigDecimal value2) {
+        switch (mode) {
             case QWORD:
-                return value1 * value2;
+                return value1.longValue() * value2.longValue();
             case DWORD:
-                return (int) (value1 * value2);
+                return value1.intValue() * value2.intValue();
             case WORD:
-                return (short) ((short) value1 * (short) value2);
+                return (short) (value1.shortValue() * value2.shortValue());
             case BYTE:
-                return (byte) ((byte) value1 * (byte) value2);
+                return (byte) (value1.byteValue() * value2.byteValue());
             default:
                 return 0;
         }
     }
 
-    private static long divide(WordLength mode, long dividend, long divider) {
-        switch(mode) {
+    private static long divide(WordLength mode, BigDecimal dividend, BigDecimal divider) {
+        switch (mode) {
             case QWORD:
-                return dividend / divider;
+                return dividend.longValue() / divider.longValue();
             case DWORD:
-                return (int) (dividend / divider);
+                return dividend.intValue() / divider.intValue();
             case WORD:
-                return (short) ((short) dividend / (short) divider);
+                return (short) (dividend.shortValue() / divider.shortValue());
             case BYTE:
-                return (byte) ((byte) dividend / (byte) divider);
+                return (byte) (dividend.byteValue() / divider.byteValue());
             default:
                 return 0;
         }
