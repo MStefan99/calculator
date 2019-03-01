@@ -1,7 +1,6 @@
 package com.annushkaproject.programmerscalculator.StandardTests;
 
 import com.annushkaproject.programmerscalculator.model.CalculationModel;
-import com.annushkaproject.programmerscalculator.model.Value;
 import com.annushkaproject.programmerscalculator.utils.StandardOperationsUtil;
 
 import org.junit.Test;

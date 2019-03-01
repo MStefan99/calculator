@@ -68,5 +68,5 @@ public class StandardAdditionAndSubtractionTest {
         CalculationModel model = new CalculationModel(firstValue, secondValue, SUBTRACT);
         assertEquals(0, StandardOperationsUtil.calculateResultForTwoSidedOperator(model), 0);
     }
-    
+
 }
