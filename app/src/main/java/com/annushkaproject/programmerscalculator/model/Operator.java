@@ -6,6 +6,7 @@ public enum Operator {
     MULTIPLY,
     DIVIDE,
     PERCENT,
+    /* programming operations start */
     CHANGE_SIGN,
     LSH,
     RSH,
@@ -14,6 +15,7 @@ public enum Operator {
     XOR,
     AND,
     MOD,
+    /* programming operations end */
     ASIN,
     ACOS,
     ATAN,

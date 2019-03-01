@@ -224,7 +224,7 @@ public class StandardFragment extends Fragment {
             double result;
             if (calcModel.getSecondValue() == null) {
                 //apply to first value
-                double number = calcModel.getFirstValue().getNumber();
+                double number = calcModel.getFirstValue().doubleValue();
                 result = StandardOperationsUtil.calculateResultForOneSidedOperator(number, operator);
                 calcModel.setFirstValue(result);
             } else if (operator == Operator.PERCENT && calcModel.getSecondValue() != null) {
@@ -233,7 +233,7 @@ public class StandardFragment extends Fragment {
                 calcModel.setSecondValue(result);
             } else {
                 //apply to second value
-                double number = calcModel.getSecondValue().getNumber();
+                double number = calcModel.getSecondValue().doubleValue();
                 result = StandardOperationsUtil.calculateResultForOneSidedOperator(number, operator);
                 calcModel.setSecondValue(result);
             }

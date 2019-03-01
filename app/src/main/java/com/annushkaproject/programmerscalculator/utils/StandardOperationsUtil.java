@@ -3,11 +3,13 @@ package com.annushkaproject.programmerscalculator.utils;
 import com.annushkaproject.programmerscalculator.model.CalculationModel;
 import com.annushkaproject.programmerscalculator.model.Operator;
 
+import java.math.BigDecimal;
+
 public class StandardOperationsUtil {
 
     public static double calculateResultForTwoSidedOperator(CalculationModel data) {
         if (data.getSecondValue() == null) {
-            data.setSecondValue(data.getFirstValue().getNumber());
+            data.setSecondValueEqualToFirst();
         }
 
         if (!data.getOperator().requiresTwoValues()) {
@@ -17,19 +19,19 @@ public class StandardOperationsUtil {
         double result;
         switch (data.getOperator()) {
             case ADD:
-                result = data.getFirstValue().getNumber() + data.getSecondValue().getNumber();
+                result = data.getFirstValue().add(data.getSecondValue()).doubleValue();
                 break;
             case SUBTRACT:
-                result = data.getFirstValue().getNumber() - data.getSecondValue().getNumber();
+                result = data.getFirstValue().subtract(data.getSecondValue()).doubleValue();
                 break;
             case MULTIPLY:
-                result = data.getFirstValue().getNumber() * data.getSecondValue().getNumber();
+                result = data.getFirstValue().multiply(data.getSecondValue()).doubleValue();
                 break;
             case DIVIDE:
-                result = data.getFirstValue().getNumber() / data.getSecondValue().getNumber();
+                result = data.getFirstValue().divide(data.getSecondValue()).doubleValue();
                 break;
             case POWER:
-                result = Math.pow(data.getFirstValue().getNumber(), data.getSecondValue().getNumber());
+                result = data.getFirstValue().pow(data.getSecondValue().intValue()).doubleValue();
                 break;
 
             default:
@@ -45,8 +47,8 @@ public class StandardOperationsUtil {
             return -1; //TODO: throw an exception.
         }
 
-        double firstNumber = data.getFirstValue().getNumber();
-        double secondNumber = data.getSecondValue().getNumber();
+        double firstNumber = data.getFirstValue().doubleValue();
+        double secondNumber = data.getSecondValue().doubleValue();
 
         double result = firstNumber / 100.0 * secondNumber;
 
@@ -60,7 +62,7 @@ public class StandardOperationsUtil {
 
         switch (operator) {
             case PERCENT:
-                return number / 100.0;
+                return number / 100.0; //TODO: change to BigDecimal
             case ASIN:
                 return Math.asin(number);
             case ACOS:
@@ -78,7 +80,7 @@ public class StandardOperationsUtil {
             case LOG:
                 return Math.log10(number);
             case DENOMINATOR:
-                return 1.0 / number;
+                return 1.0 / number; //TODO: change to BigDecimal
             case EXPONENT_POWER:
                 return Math.exp(number);
             case SQUARE:
