@@ -16,6 +16,7 @@ import android.widget.Toast;
 import com.annushkaproject.programmerscalculator.R;
 import com.annushkaproject.programmerscalculator.model.CalculationModel;
 import com.annushkaproject.programmerscalculator.model.Operator;
+import com.annushkaproject.programmerscalculator.utils.InstanceStateUtil;
 import com.annushkaproject.programmerscalculator.utils.StandardOperationsUtil;
 
 import java.util.ArrayList;
@@ -40,15 +41,7 @@ public class StandardFragment extends Fragment {
         super.onCreateView(inflater, container, savedInstanceState);
         if (packageName == null) {
             packageName = savedInstanceState.getString("PACKAGE_NAME");
-            if (savedInstanceState.getBoolean("FIRST_VALUE_SAVED")) {
-                calcModel.setFirstValue(savedInstanceState.getDouble("FIRST_VALUE"));
-            }
-            if (savedInstanceState.getBoolean("OPERATOR_SAVED")) {
-                calcModel.setOperator(Operator.getOperatorByNumber(savedInstanceState.getInt("OPERATOR")));
-            }
-            if (savedInstanceState.getBoolean("SECOND_VALUE_SAVED")) {
-                calcModel.setSecondValue(savedInstanceState.getDouble("SECOND_VALUE"));
-            }
+            calcModel = InstanceStateUtil.restoreSavedInstance(savedInstanceState);
         }
         return inflater.inflate(R.layout.fragment_standard, container, false);
     }
@@ -71,22 +64,7 @@ public class StandardFragment extends Fragment {
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putString("PACKAGE_NAME", packageName);
-        boolean firstValuePresent = calcModel.getFirstValue() != null;
-        boolean operatorPresent = calcModel.getOperator() != null;
-        boolean secondValuePresent = calcModel.getSecondValue() != null;
-        if (firstValuePresent) {
-            outState.putDouble("FIRST_VALUE", calcModel.getFirstValue().getNumber());
-        }
-        if (operatorPresent) {
-            outState.putInt("OPERATOR", Operator.getNumberByOperator(calcModel.getOperator()));
-        }
-        if (secondValuePresent) {
-            outState.putDouble("SECOND_VALUE", calcModel.getSecondValue().getNumber());
-        }
-        outState.putBoolean("FIRST_VALUE_SAVED", firstValuePresent);
-        outState.putBoolean("OPERATOR_SAVED", operatorPresent);
-        outState.putBoolean("SECOND_VALUE_SAVED", secondValuePresent);
+        InstanceStateUtil.saveInstanceState(outState, calcModel, packageName);
     }
 
     public void setupFragment(String packageName) {
@@ -200,7 +178,7 @@ public class StandardFragment extends Fragment {
         });
     }
 
-    public void setupSignButton() {
+    private void setupSignButton() {
         Button signButton = getView().findViewById(R.id.buttonSign);
         signButton.setOnClickListener(v -> {
             double currentValue = Double.parseDouble(currentString());
@@ -310,6 +288,11 @@ public class StandardFragment extends Fragment {
         }
 
         textView.setText(updatedText);
+        if (updatedText.length() > 10) {
+            textView.setTextSize(24);
+        } else {
+            textView.setTextSize(30);
+        }
         calcModel.updateValues(updatedText);
     }
 

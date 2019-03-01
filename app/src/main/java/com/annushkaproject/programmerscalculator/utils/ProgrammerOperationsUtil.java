@@ -1,9 +1,41 @@
 package com.annushkaproject.programmerscalculator.utils;
 
+import com.annushkaproject.programmerscalculator.model.ProgrammerCalcModel;
 import com.annushkaproject.programmerscalculator.model.WordLength;
 
-public class ProgrammerUtil {
-    public static long addSubtract(WordLength mode, long value1, long value2) {
+public class ProgrammerOperationsUtil {
+    public static long calculateWithData(ProgrammerCalcModel data) {
+        switch (data.getOperator()) {
+            case ADD:
+                return addSubtract(data.getWordLength(), (long) data.getFirstValue().getNumber(), (long) data.getSecondValue().getNumber());
+            case SUBTRACT:
+                return addSubtract(data.getWordLength(), (long) data.getFirstValue().getNumber(), - (long) data.getSecondValue().getNumber());
+            case MULTIPLY:
+                return multiply(data.getWordLength(), (long) data.getFirstValue().getNumber(), (long) data.getSecondValue().getNumber());
+            case DIVIDE:
+                return divide(data.getWordLength(), (long) data.getFirstValue().getNumber(), (long) data.getSecondValue().getNumber());
+            case LSH:
+                return lsh(data.getWordLength(), (long) data.getFirstValue().getNumber(), (int) data.getSecondValue().getNumber());
+            case RSH:
+                return rsh(data.getWordLength(), (long) data.getFirstValue().getNumber(), (int) data.getSecondValue().getNumber());
+            case OR:
+                return or(data.getWordLength(), (long) data.getFirstValue().getNumber(), (long) data.getSecondValue().getNumber());
+            case XOR:
+                return xor(data.getWordLength(), (long) data.getFirstValue().getNumber(), (long) data.getSecondValue().getNumber());
+            case AND:
+                return and(data.getWordLength(), (long) data.getFirstValue().getNumber(), (long) data.getSecondValue().getNumber());
+            case MOD:
+                return mod(data.getWordLength(), (long) data.getFirstValue().getNumber(), (long) data.getSecondValue().getNumber());
+            case CHANGE_SIGN:
+                return changeSign(data.getWordLength(), (long) data.getFirstValue().getNumber());
+            case NOT:
+                return not(data.getWordLength(), (long) data.getFirstValue().getNumber());
+            default:
+                return 0;
+        }
+    }
+
+    private static long addSubtract(WordLength mode, long value1, long value2) {
         switch(mode) {
             case QWORD:
                 return value1 + value2;
@@ -18,7 +50,7 @@ public class ProgrammerUtil {
         }
     }
 
-    public static long changeSign(WordLength mode, long value) {
+    private static long changeSign(WordLength mode, long value) {
         switch(mode) {
             case QWORD:
                 return -value;
@@ -33,7 +65,7 @@ public class ProgrammerUtil {
         }
     }
 
-    public static long lsh(WordLength mode, long value, int shift) {
+    private static long lsh(WordLength mode, long value, int shift) {
         switch(mode) {
             case QWORD:
                 return value << shift;
@@ -48,7 +80,7 @@ public class ProgrammerUtil {
         }
     }
 
-    public static long rsh(WordLength mode, long value, int shift) {
+    private static long rsh(WordLength mode, long value, int shift) {
         switch(mode) {
             case QWORD:
                 return value >> shift;
@@ -63,7 +95,7 @@ public class ProgrammerUtil {
         }
     }
 
-    public static long not(WordLength mode, long value) {
+    private static long not(WordLength mode, long value) {
         switch(mode) {
             case QWORD:
                 return ~value;
@@ -78,7 +110,7 @@ public class ProgrammerUtil {
         }
     }
 
-    public static long or(WordLength mode, long value1, long value2) {
+    private static long or(WordLength mode, long value1, long value2) {
         switch(mode) {
             case QWORD:
                 return value1 | value2;
@@ -93,7 +125,7 @@ public class ProgrammerUtil {
         }
     }
 
-    public static long xor(WordLength mode, long value1, long value2) {
+    private static long xor(WordLength mode, long value1, long value2) {
         switch(mode) {
             case QWORD:
                 return value1 ^ value2;
@@ -108,7 +140,7 @@ public class ProgrammerUtil {
         }
     }
 
-    public static long and(WordLength mode, long value1, long value2) {
+    private static long and(WordLength mode, long value1, long value2) {
         switch(mode) {
             case QWORD:
                 return value1 & value2;
@@ -123,7 +155,7 @@ public class ProgrammerUtil {
         }
     }
 
-    public static long mod(WordLength mode, long dividend, long divider) {
+    private static long mod(WordLength mode, long dividend, long divider) {
         switch(mode) {
             case QWORD:
                 return dividend % divider;
@@ -137,8 +169,8 @@ public class ProgrammerUtil {
                 return 0;
         }
     }
-    
-    public static long multiply(WordLength mode, long value1, long value2) {
+
+    private static long multiply(WordLength mode, long value1, long value2) {
         switch(mode) {
             case QWORD:
                 return value1 * value2;
@@ -153,7 +185,7 @@ public class ProgrammerUtil {
         }
     }
 
-    public static long divide(WordLength mode, long dividend, long divider) {
+    private static long divide(WordLength mode, long dividend, long divider) {
         switch(mode) {
             case QWORD:
                 return dividend / divider;
