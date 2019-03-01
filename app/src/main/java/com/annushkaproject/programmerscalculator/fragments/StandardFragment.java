@@ -161,11 +161,13 @@ public class StandardFragment extends Fragment {
         Button delButton = getView().findViewById(R.id.buttonDel);
         delButton.setOnClickListener(v -> {
             String currentString = currentString();
-            if (currentString.length() > 1) {
+            Boolean isOneDigit = currentString.length() == 1;
+            Boolean isOneNegativeDigit = currentString.length() == 2 && currentString.startsWith("-");
+            if (isOneDigit || isOneNegativeDigit) {
+                updateText(calcModel.textForValue(0.0));
+            } else {
                 currentString = currentString.substring(0, currentString.length() - 1);
                 updateText(currentString);
-            } else {
-                updateText(calcModel.textForValue(0.0));
             }
         });
     }
