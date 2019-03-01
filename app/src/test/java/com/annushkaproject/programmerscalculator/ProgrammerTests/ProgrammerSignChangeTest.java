@@ -2,7 +2,6 @@ package com.annushkaproject.programmerscalculator.ProgrammerTests;
 
 
 import com.annushkaproject.programmerscalculator.model.ProgrammerCalcModel;
-import com.annushkaproject.programmerscalculator.model.Value;
 import com.annushkaproject.programmerscalculator.utils.ProgrammerOperationsUtil;
 
 import org.junit.Test;
