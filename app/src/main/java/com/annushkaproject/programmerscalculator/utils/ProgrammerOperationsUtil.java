@@ -7,29 +7,29 @@ public class ProgrammerOperationsUtil {
     public static long calculateWithData(ProgrammerCalcModel data) {
         switch (data.getOperator()) {
             case ADD:
-                return addSubtract(data.getWordLength(), (long) data.getFirstValue().getNumber(), (long) data.getSecondValue().getNumber());
+                return addSubtract(data.getWordLength(), (long) data.getFirstValue().doubleValue(), (long) data.getSecondValue().doubleValue());
             case SUBTRACT:
-                return addSubtract(data.getWordLength(), (long) data.getFirstValue().getNumber(), - (long) data.getSecondValue().getNumber());
+                return addSubtract(data.getWordLength(), (long) data.getFirstValue().doubleValue(), - (long) data.getSecondValue().doubleValue());
             case MULTIPLY:
-                return multiply(data.getWordLength(), (long) data.getFirstValue().getNumber(), (long) data.getSecondValue().getNumber());
+                return multiply(data.getWordLength(), (long) data.getFirstValue().doubleValue(), (long) data.getSecondValue().doubleValue());
             case DIVIDE:
-                return divide(data.getWordLength(), (long) data.getFirstValue().getNumber(), (long) data.getSecondValue().getNumber());
+                return divide(data.getWordLength(), (long) data.getFirstValue().doubleValue(), (long) data.getSecondValue().doubleValue());
             case LSH:
-                return lsh(data.getWordLength(), (long) data.getFirstValue().getNumber(), (int) data.getSecondValue().getNumber());
+                return lsh(data.getWordLength(), (long) data.getFirstValue().doubleValue(), (int) data.getSecondValue().doubleValue());
             case RSH:
-                return rsh(data.getWordLength(), (long) data.getFirstValue().getNumber(), (int) data.getSecondValue().getNumber());
+                return rsh(data.getWordLength(), (long) data.getFirstValue().doubleValue(), (int) data.getSecondValue().doubleValue());
             case OR:
-                return or(data.getWordLength(), (long) data.getFirstValue().getNumber(), (long) data.getSecondValue().getNumber());
+                return or(data.getWordLength(), (long) data.getFirstValue().doubleValue(), (long) data.getSecondValue().doubleValue());
             case XOR:
-                return xor(data.getWordLength(), (long) data.getFirstValue().getNumber(), (long) data.getSecondValue().getNumber());
+                return xor(data.getWordLength(), (long) data.getFirstValue().doubleValue(), (long) data.getSecondValue().doubleValue());
             case AND:
-                return and(data.getWordLength(), (long) data.getFirstValue().getNumber(), (long) data.getSecondValue().getNumber());
+                return and(data.getWordLength(), (long) data.getFirstValue().doubleValue(), (long) data.getSecondValue().doubleValue());
             case MOD:
-                return mod(data.getWordLength(), (long) data.getFirstValue().getNumber(), (long) data.getSecondValue().getNumber());
+                return mod(data.getWordLength(), (long) data.getFirstValue().doubleValue(), (long) data.getSecondValue().doubleValue());
             case CHANGE_SIGN:
-                return changeSign(data.getWordLength(), (long) data.getFirstValue().getNumber());
+                return changeSign(data.getWordLength(), (long) data.getFirstValue().doubleValue());
             case NOT:
-                return not(data.getWordLength(), (long) data.getFirstValue().getNumber());
+                return not(data.getWordLength(), (long) data.getFirstValue().doubleValue());
             default:
                 return 0;
         }
