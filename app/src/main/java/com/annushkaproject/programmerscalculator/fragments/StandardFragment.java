@@ -223,6 +223,11 @@ public class StandardFragment extends Fragment {
         }
 
         if (!operator.requiresTwoValues()) {
+            if (operator == Operator.FACTORIAL && !calcModel.isFirstIntegerValue()) {
+                handleNotANumberCase();
+                return;
+            }
+
             double result;
             if (calcModel.getSecondValue() == null) {
                 //apply to first value
@@ -268,8 +273,7 @@ public class StandardFragment extends Fragment {
 
     private void calculateResult() {
         if (calcModel.isNotNumber()) {
-            calcModel.resetCalcState();
-            textView.setText(getString(R.string.not_a_number));
+            handleNotANumberCase();
             return;
         }
 
@@ -281,6 +285,11 @@ public class StandardFragment extends Fragment {
         updateText(calcModel.textForValue(result));
 
         secondValueInputStarted = true;
+    }
+
+    private void handleNotANumberCase() {
+        calcModel.resetCalcState();
+        textView.setText(getString(R.string.not_a_number));
     }
 
     private void updateText(String updatedText) {

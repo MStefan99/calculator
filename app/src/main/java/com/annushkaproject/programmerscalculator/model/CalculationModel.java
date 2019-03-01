@@ -93,5 +93,9 @@ public class CalculationModel {
                 (operator == Operator.DENOMINATOR && firstValue.doubleValue() == 0);
     }
 
+    public boolean isFirstIntegerValue() {
+        return firstValue.stripTrailingZeros().scale() <= 0;
+    }
+
 }
 
