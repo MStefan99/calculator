@@ -252,4 +252,14 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/inputField" />
 
+        <Button
+            android:id="@+id/buttonHistory"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:text="History"
+            app:layout_constraintBottom_toBottomOf="@+id/buttonDel"
+            app:layout_constraintEnd_toStartOf="@+id/buttonPi"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/buttonDel" />
+
 </android.support.constraint.ConstraintLayout>
