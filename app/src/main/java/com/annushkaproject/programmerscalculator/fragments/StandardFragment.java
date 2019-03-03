@@ -1,6 +1,7 @@
 package com.annushkaproject.programmerscalculator.fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -14,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.annushkaproject.programmerscalculator.R;
+import com.annushkaproject.programmerscalculator.activities.HistoryActivity;
 import com.annushkaproject.programmerscalculator.model.CalculationModel;
 import com.annushkaproject.programmerscalculator.model.Operator;
 import com.annushkaproject.programmerscalculator.utils.InstanceStateUtil;
@@ -43,7 +45,16 @@ public class StandardFragment extends Fragment {
             packageName = savedInstanceState.getString("PACKAGE_NAME");
             calcModel = InstanceStateUtil.restoreSavedInstance(savedInstanceState);
         }
-        return inflater.inflate(R.layout.fragment_standard, container, false);
+        View view = inflater.inflate(R.layout.fragment_standard, container, false);
+        Button btnHistory = view.findViewById(R.id.buttonHistory);
+        btnHistory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent in = new Intent(getActivity(), HistoryActivity.class);
+                startActivity(in);
+            }
+        });
+        return view;
     }
 
     @Override
