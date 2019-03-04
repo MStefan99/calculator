@@ -13,13 +13,14 @@ import android.widget.Button;
 
 import com.annushkaproject.programmerscalculator.R;
 import com.annushkaproject.programmerscalculator.activities.MainActivity;
+import com.annushkaproject.programmerscalculator.utils.ThemeUtil;
 
 public class ThemesFragment extends Fragment {
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        getActivity().setTheme(((MainActivity)getActivity()).getCurrentTheme());
+        getActivity().setTheme(ThemeUtil.getCurrentTheme());
         return inflater.inflate(R.layout.fragment_themes, container, false);
     }
 
@@ -27,13 +28,14 @@ public class ThemesFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         Button themeButton = getView().findViewById(R.id.buttonThemeToggle);
         themeButton.setOnClickListener((v) -> {
-            int currentTheme = ((MainActivity)getActivity()).getCurrentThemeID();
+            int currentTheme = ThemeUtil.getCurrentThemeID();
             if (currentTheme == 1) {
                 currentTheme = 0;
             } else {
                 ++currentTheme;
             }
-            ((MainActivity)getActivity()).setCurrentThemeID(currentTheme);
+            ThemeUtil.setCurrentThemeID(currentTheme);
+            getActivity().recreate();
         });
         super.onViewCreated(view, savedInstanceState);
     }

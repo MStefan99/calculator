@@ -11,36 +11,19 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.annushkaproject.programmerscalculator.Interfaces.AppearanceUpdateInterface;
 import com.annushkaproject.programmerscalculator.fragments.ProgrammerFragment;
 import com.annushkaproject.programmerscalculator.R;
 import com.annushkaproject.programmerscalculator.fragments.StandardFragment;
 import com.annushkaproject.programmerscalculator.fragments.ThemesFragment;
+import com.annushkaproject.programmerscalculator.utils.ThemeUtil;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    int currentTheme = 1;
-
-    public int getCurrentTheme() {
-        switch (currentTheme) {
-            case 0:
-            default:
-                return R.style.AppTheme;
-            case 1:
-                return R.style.AppTheme_DarkTheme;
-        }
-    }
-
-    public int getCurrentThemeID(){
-        return currentTheme;
-    }
-
-    public void setCurrentThemeID(int currentTheme) {
-        this.currentTheme = currentTheme;
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setTheme(ThemeUtil.getCurrentTheme());
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);

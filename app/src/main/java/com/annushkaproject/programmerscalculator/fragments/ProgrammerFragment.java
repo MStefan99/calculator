@@ -10,14 +10,14 @@ import android.view.ViewGroup;
 
 import com.annushkaproject.programmerscalculator.R;
 import com.annushkaproject.programmerscalculator.activities.MainActivity;
+import com.annushkaproject.programmerscalculator.utils.ThemeUtil;
 
 public class ProgrammerFragment extends Fragment {
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        getActivity().getApplication().setTheme(((MainActivity)getActivity()).getCurrentTheme());
-        getActivity().setTheme(((MainActivity)getActivity()).getCurrentTheme());
+        getActivity().setTheme(ThemeUtil.getCurrentTheme());
         return inflater.inflate(R.layout.fragment_programmer, container, false);
     }
 }
