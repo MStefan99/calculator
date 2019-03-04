@@ -172,11 +172,13 @@ public class StandardFragment extends Fragment {
         Button delButton = getView().findViewById(R.id.buttonDel);
         delButton.setOnClickListener(v -> {
             String currentString = currentString();
-            if (currentString.length() > 1) {
+            Boolean isOneDigit = currentString.length() == 1;
+            Boolean isOneNegativeDigit = currentString.length() == 2 && currentString.startsWith("-");
+            if (isOneDigit || isOneNegativeDigit) {
+                updateText(calcModel.textForValue(0.0));
+            } else {
                 currentString = currentString.substring(0, currentString.length() - 1);
                 updateText(currentString);
-            } else {
-                updateText(calcModel.textForValue(0.0));
             }
         });
     }
@@ -232,10 +234,15 @@ public class StandardFragment extends Fragment {
         }
 
         if (!operator.requiresTwoValues()) {
+            if (operator == Operator.FACTORIAL && !calcModel.isFirstIntegerValue()) {
+                handleNotANumberCase();
+                return;
+            }
+
             double result;
             if (calcModel.getSecondValue() == null) {
                 //apply to first value
-                double number = calcModel.getFirstValue().getNumber();
+                double number = calcModel.getFirstValue().doubleValue();
                 result = StandardOperationsUtil.calculateResultForOneSidedOperator(number, operator);
                 calcModel.setFirstValue(result);
             } else if (operator == Operator.PERCENT && calcModel.getSecondValue() != null) {
@@ -244,7 +251,7 @@ public class StandardFragment extends Fragment {
                 calcModel.setSecondValue(result);
             } else {
                 //apply to second value
-                double number = calcModel.getSecondValue().getNumber();
+                double number = calcModel.getSecondValue().doubleValue();
                 result = StandardOperationsUtil.calculateResultForOneSidedOperator(number, operator);
                 calcModel.setSecondValue(result);
             }
@@ -277,8 +284,7 @@ public class StandardFragment extends Fragment {
 
     private void calculateResult() {
         if (calcModel.isNotNumber()) {
-            calcModel.resetCalcState();
-            textView.setText(getString(R.string.not_a_number));
+            handleNotANumberCase();
             return;
         }
 
@@ -290,6 +296,11 @@ public class StandardFragment extends Fragment {
         updateText(calcModel.textForValue(result));
 
         secondValueInputStarted = true;
+    }
+
+    private void handleNotANumberCase() {
+        calcModel.resetCalcState();
+        textView.setText(getString(R.string.not_a_number));
     }
 
     private void updateText(String updatedText) {

@@ -72,7 +72,7 @@ public class ProgrammerFragment extends Fragment {
             Button button = getView().findViewById(getResources().getIdentifier("button" + i,
                     "id", packageName));
             button.setOnClickListener((v) -> {
-                usePressedNumber(((Button)v).getText().toString());
+                usePressedNumber(((Button) v).getText().toString());
             });
         }
     }
@@ -84,7 +84,7 @@ public class ProgrammerFragment extends Fragment {
             Button button = getView().findViewById(buttonID);
             button.setOnClickListener((v) -> {
                 System.out.println(button.getText().toString());
-                usePressedNumber(((Button)v).getText().toString());
+                usePressedNumber(((Button) v).getText().toString());
             });
         }
     }
@@ -105,7 +105,7 @@ public class ProgrammerFragment extends Fragment {
     private void setupCalculateButton() {
         Button equalsButton = getView().findViewById(R.id.buttonEquals);
         equalsButton.setOnClickListener(v -> {
-            Button button = (Button)v;
+            Button button = (Button) v;
             System.out.println(button.getText().toString());
             useEqualsOperator();
         });

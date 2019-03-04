@@ -44,13 +44,13 @@ public class InstanceStateUtil {
         boolean operatorPresent = calcModel.getOperator() != null;
         boolean secondValuePresent = calcModel.getSecondValue() != null;
         if (firstValuePresent) {
-            outState.putDouble("FIRST_VALUE", calcModel.getFirstValue().getNumber());
+            outState.putDouble("FIRST_VALUE", calcModel.getFirstValue().doubleValue());
         }
         if (operatorPresent) {
             outState.putInt("OPERATOR", Operator.getNumberByOperator(calcModel.getOperator()));
         }
         if (secondValuePresent) {
-            outState.putDouble("SECOND_VALUE", calcModel.getSecondValue().getNumber());
+            outState.putDouble("SECOND_VALUE", calcModel.getSecondValue().doubleValue());
         }
         outState.putBoolean("FIRST_VALUE_SAVED", firstValuePresent);
         outState.putBoolean("OPERATOR_SAVED", operatorPresent);
@@ -63,13 +63,13 @@ public class InstanceStateUtil {
         boolean operatorPresent = calcModel.getOperator() != null;
         boolean secondValuePresent = calcModel.getSecondValue() != null;
         if (firstValuePresent) {
-            outState.putDouble("FIRST_VALUE", calcModel.getFirstValue().getNumber());
+            outState.putDouble("FIRST_VALUE", calcModel.getFirstValue().doubleValue());
         }
         if (operatorPresent) {
             outState.putInt("OPERATOR", Operator.getNumberByOperator(calcModel.getOperator()));
         }
         if (secondValuePresent) {
-            outState.putDouble("SECOND_VALUE", calcModel.getSecondValue().getNumber());
+            outState.putDouble("SECOND_VALUE", calcModel.getSecondValue().doubleValue());
         }
         outState.putInt("WORD_LENGTH", calcModel.getWordLength().wordToInt());
         outState.putBoolean("FIRST_VALUE_SAVED", firstValuePresent);

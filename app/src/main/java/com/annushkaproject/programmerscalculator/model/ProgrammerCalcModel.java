@@ -1,6 +1,9 @@
 package com.annushkaproject.programmerscalculator.model;
 
 import com.annushkaproject.programmerscalculator.model.CalculationModel;
+
+import java.math.BigDecimal;
+
 import static com.annushkaproject.programmerscalculator.model.WordLength.QWORD;
 
 public class ProgrammerCalcModel extends CalculationModel {
@@ -19,12 +22,12 @@ public class ProgrammerCalcModel extends CalculationModel {
         this.wordLength = QWORD;
     }
 
-    public ProgrammerCalcModel(Value firstValue, Operator operator, WordLength wordLength) {
+    public ProgrammerCalcModel(BigDecimal firstValue, Operator operator, WordLength wordLength) {
         super(firstValue, operator);
         this.wordLength = wordLength;
     }
 
-    public ProgrammerCalcModel(Value firstValue, Value secondValue, Operator operator, WordLength wordLength) {
+    public ProgrammerCalcModel(BigDecimal firstValue, BigDecimal secondValue, Operator operator, WordLength wordLength) {
         super(firstValue, secondValue, operator);
         this.wordLength = wordLength;
     }
