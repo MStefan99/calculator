@@ -66,7 +66,9 @@ public class MainActivity extends AppCompatActivity
             standardFragment.setupFragment(getPackageName());
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, standardFragment).commit();
         } else if (id == R.id.nav_programmer_mode) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ProgrammerFragment()).commit();
+            ProgrammerFragment programmerFragment = new ProgrammerFragment();
+            programmerFragment.setupFragment(getPackageName());
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, programmerFragment).commit();
         } else if (id == R.id.nav_themes) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ThemesFragment()).commit();
         } else if (id == R.id.nav_share) {

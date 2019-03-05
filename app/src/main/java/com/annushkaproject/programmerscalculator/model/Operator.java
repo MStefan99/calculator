@@ -6,6 +6,16 @@ public enum Operator {
     MULTIPLY,
     DIVIDE,
     PERCENT,
+    /* programming operations start */
+    CHANGE_SIGN,
+    LSH,
+    RSH,
+    NOT,
+    OR,
+    XOR,
+    AND,
+    MOD,
+    /* programming operations end */
     ASIN,
     ACOS,
     ATAN,
@@ -35,6 +45,18 @@ public enum Operator {
                 return Operator.DIVIDE;
             case "%":
                 return Operator.PERCENT;
+            case "And":
+                return Operator.AND;
+            case "Or":
+                return Operator.OR;
+            case "Xor":
+                return Operator.XOR;
+            case "Not":
+                return Operator.NOT;
+            case "Lsh":
+                return Operator.LSH;
+            case "Rsh":
+                return Operator.RSH;
             case "sinˉ¹":
                 return Operator.ASIN;
             case "cosˉ¹":
@@ -65,10 +87,8 @@ public enum Operator {
                 return Operator.SQUARE_ROOT;
             case "x!":
                 return Operator.FACTORIAL;
-
-
-                default:
-                    return Operator.UNKNOWN;
+            default:
+                return Operator.UNKNOWN;
         }
     }
 
@@ -78,6 +98,12 @@ public enum Operator {
             case SUBTRACT:
             case MULTIPLY:
             case DIVIDE:
+            case OR:
+            case AND:
+            case LSH:
+            case RSH:
+            case XOR:
+            case MOD:
             case POWER:
                 return true;
 
@@ -98,37 +124,53 @@ public enum Operator {
                 return 3;
             case PERCENT:
                 return 4;
-            case ASIN:
+            case CHANGE_SIGN:
                 return 5;
-            case ACOS:
+            case LSH:
                 return 6;
-            case ATAN:
+            case RSH:
                 return 7;
-            case SIN:
+            case NOT:
                 return 8;
-            case COS:
+            case OR:
                 return 9;
-            case TAN:
+            case XOR:
                 return 10;
-            case LN:
+            case AND:
                 return 11;
-            case LOG:
+            case MOD:
                 return 12;
-            case DENOMINATOR:
+            case ASIN:
                 return 13;
-            case EXPONENT_POWER:
+            case ACOS:
                 return 14;
-            case SQUARE:
+            case ATAN:
                 return 15;
-            case POWER:
+            case SIN:
                 return 16;
-            case ABS:
+            case COS:
                 return 17;
-            case SQUARE_ROOT:
+            case TAN:
                 return 18;
-            case FACTORIAL:
+            case LN:
                 return 19;
-
+            case LOG:
+                return 20;
+            case DENOMINATOR:
+                return 21;
+            case EXPONENT_POWER:
+                return 22;
+            case SQUARE:
+                return 23;
+            case POWER:
+                return 24;
+            case ABS:
+                return 25;
+            case SQUARE_ROOT:
+                return 26;
+            case FACTORIAL:
+                return 27;
+            case UNKNOWN:
             default:
                 return -1;
         }
@@ -136,8 +178,6 @@ public enum Operator {
 
     public static Operator getOperatorByNumber(int number) {
         switch (number) {
-            case -1:
-                return UNKNOWN;
             case 0:
                 return ADD;
             case 1:
@@ -149,36 +189,52 @@ public enum Operator {
             case 4:
                 return PERCENT;
             case 5:
-                return ASIN;
+                return CHANGE_SIGN;
             case 6:
-                return ACOS;
+                return LSH;
             case 7:
-                return ATAN;
+                return RSH;
             case 8:
-                return SIN;
+                return NOT;
             case 9:
-                return COS;
+                return OR;
             case 10:
-                return TAN;
+                return XOR;
             case 11:
-                return LN;
+                return AND;
             case 12:
-                return LOG;
+                return MOD;
             case 13:
-                return DENOMINATOR;
+                return ASIN;
             case 14:
-                return EXPONENT_POWER;
+                return ACOS;
             case 15:
-                return SQUARE;
+                return ATAN;
             case 16:
-                return POWER;
+                return SIN;
             case 17:
-                return ABS;
+                return COS;
             case 18:
-                return SQUARE_ROOT;
+                return TAN;
             case 19:
+                return LN;
+            case 20:
+                return LOG;
+            case 21:
+                return DENOMINATOR;
+            case 22:
+                return EXPONENT_POWER;
+            case 23:
+                return SQUARE;
+            case 24:
+                return POWER;
+            case 25:
+                return ABS;
+            case 26:
+                return SQUARE_ROOT;
+            case 27:
                 return FACTORIAL;
-
+            case -1:
             default:
                 return UNKNOWN;
         }
