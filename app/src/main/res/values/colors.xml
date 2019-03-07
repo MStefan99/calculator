@@ -9,7 +9,7 @@
     <color name="textAccentColor">#BB2523</color>
 
     <color name="accentColorDark">#F7941D</color>
-    <color name="themeColorDark">#000000</color>
+    <color name="themeColorDark">#0E0E0E</color>
     <color name="primaryTextColorDark">#FFFFFF</color>
     <color name="secondaryTextColorDark">#B2B2B2</color>
     <color name="disabledTextColorDark">#7F7F7F</color>
