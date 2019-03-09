@@ -11,14 +11,13 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:background="?attr/backgroundColor">
 
         <include
             layout="@layout/app_bar_main"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
-
-
+            android:layout_height="match_parent" />
 
     </LinearLayout>
 
@@ -29,6 +28,9 @@
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/nav_header_main"
-        app:menu="@menu/activity_main_drawer" />
+        app:menu="@menu/activity_main_drawer"
+        android:background="?attr/themeColor"
+        app:itemTextColor="@drawable/drawer_selector"
+        app:itemIconTint="@drawable/drawer_selector"/>
 
 </android.support.v4.widget.DrawerLayout>

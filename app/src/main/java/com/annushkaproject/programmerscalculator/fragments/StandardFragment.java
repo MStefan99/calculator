@@ -14,10 +14,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.annushkaproject.programmerscalculator.R;
+import com.annushkaproject.programmerscalculator.activities.MainActivity;
 import com.annushkaproject.programmerscalculator.model.CalculationModel;
 import com.annushkaproject.programmerscalculator.model.Operator;
 import com.annushkaproject.programmerscalculator.utils.InstanceStateUtil;
 import com.annushkaproject.programmerscalculator.utils.StandardOperationsUtil;
+import com.annushkaproject.programmerscalculator.utils.ThemeUtil;
 
 import java.util.ArrayList;
 
@@ -38,6 +40,7 @@ public class StandardFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        getActivity().setTheme(ThemeUtil.getCurrentTheme());
         super.onCreateView(inflater, container, savedInstanceState);
         if (packageName == null) {
             packageName = savedInstanceState.getString("PACKAGE_NAME");
