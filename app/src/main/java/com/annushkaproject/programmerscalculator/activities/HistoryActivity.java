@@ -41,15 +41,10 @@ public class HistoryActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         lvHistory = findViewById(R.id.lvHistory);
-        list = new ArrayList<>();
-        list.add("aaa");
-        list.add("bbb");
-        list.add("ccc");
-        list.add("ddd");
-        list.add("lll");
 
 
-        arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1
+
+        arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1
                 ,list);
         loadArrayList(getApplicationContext());
         lvHistory.setAdapter(arrayAdapter);
@@ -78,6 +73,11 @@ public class HistoryActivity extends AppCompatActivity {
             SharedPreferences sharedPref2 = PreferenceManager.getDefaultSharedPreferences(context);
             list.clear();
             int size = sharedPref2.getInt("operations_size", 0);
+//            list.add("aaa");
+//            list.add("bbb");
+//            list.add("ccc");
+//            list.add("ddd");
+//            list.add("lll");
 
             for(int i=0; i<size; i++) {
             list.add(sharedPref2.getString("operations" + i, null));
