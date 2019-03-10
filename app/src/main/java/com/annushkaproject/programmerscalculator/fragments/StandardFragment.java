@@ -98,7 +98,17 @@ public class StandardFragment extends Fragment {
             }
         }
         );
-        this.numberButtons.add(button);
+        numberButtons.add(button);
+
+        Button buttonPi = getView().findViewById(R.id.buttonPi);
+        buttonPi.setOnClickListener(v -> {
+                    Button button13 = (Button)v;
+                    System.out.println(button13.getText().toString());
+
+                    usePiPressedNumber();
+                }
+        );
+        numberButtons.add(buttonPi);
     }
 
     private String currentString() {
@@ -212,6 +222,17 @@ public class StandardFragment extends Fragment {
             secondValueInputStarted = false;
         } else {
             newString = textView.getText().toString() + number;
+        }
+
+        updateText(newString);
+    }
+
+    private void usePiPressedNumber() {
+        String newString = (Double.toString(Math.PI));
+        if (secondValueInputStarted) {
+            secondValueInputStarted = false;
+        } else {
+            calcModel.resetCalcState();
         }
 
         updateText(newString);
