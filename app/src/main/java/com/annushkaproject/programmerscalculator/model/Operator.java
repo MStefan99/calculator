@@ -1,5 +1,8 @@
 package com.annushkaproject.programmerscalculator.model;
 
+/**
+ * Used to store the calculation operator.
+ */
 public enum Operator {
     ADD,
     SUBTRACT,
@@ -33,6 +36,11 @@ public enum Operator {
     FACTORIAL,
     UNKNOWN;
 
+    /**
+     * Used to get operator from its name.
+     * @param title Operator name.
+     * @return Corresponding operator.
+     */
     public static Operator operatorForTitle(String title) {
         switch (title) {
             case "+":
@@ -92,6 +100,10 @@ public enum Operator {
         }
     }
 
+    /**
+     * Used to check if the operator requires two values.
+     * @return True if operator requires two values.
+     */
     public boolean requiresTwoValues() {
         switch (this) {
             case ADD:
@@ -112,6 +124,11 @@ public enum Operator {
         }
     }
 
+    /**
+     * Used to get the unique code for saving the operator.
+     * @param operator Operator.
+     * @return Corresponding code.
+     */
     public static int getNumberByOperator(Operator operator) {
         switch (operator) {
             case ADD:
@@ -176,6 +193,11 @@ public enum Operator {
         }
     }
 
+    /**
+     * Used to get the operator by its code.
+     * @param number Operator code.
+     * @return Corresponding operator.
+     */
     public static Operator getOperatorByNumber(int number) {
         switch (number) {
             case 0:

@@ -1,6 +1,5 @@
 package com.annushkaproject.programmerscalculator.activities;
 
-import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -15,15 +14,17 @@ import com.annushkaproject.programmerscalculator.fragments.ProgrammerFragment;
 import com.annushkaproject.programmerscalculator.R;
 import com.annushkaproject.programmerscalculator.fragments.StandardFragment;
 import com.annushkaproject.programmerscalculator.fragments.ThemesFragment;
-import com.annushkaproject.programmerscalculator.utils.ThemeUtil;
 import io.realm.Realm;
+import com.annushkaproject.programmerscalculator.model.ThemeSetting;
+import com.annushkaproject.programmerscalculator.utils.SharedPreferencesUtil;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        setTheme(ThemeUtil.getCurrentTheme());
+        SharedPreferencesUtil prefUtil = new SharedPreferencesUtil(this);
+        setTheme(ThemeSetting.getThemeStyleByThemeSetting(prefUtil.loadThemeSetting()));
         super.onCreate(savedInstanceState);
 
         Realm.init(this);

@@ -19,7 +19,6 @@ import com.annushkaproject.programmerscalculator.model.ProgrammerCalcModel;
 import com.annushkaproject.programmerscalculator.model.WordLength;
 import com.annushkaproject.programmerscalculator.utils.InstanceStateUtil;
 import com.annushkaproject.programmerscalculator.utils.ProgrammerOperationsUtil;
-import com.annushkaproject.programmerscalculator.utils.ThemeUtil;
 
 public class ProgrammerFragment extends Fragment {
 
@@ -33,7 +32,6 @@ public class ProgrammerFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        getActivity().setTheme(ThemeUtil.getCurrentTheme());
         super.onCreateView(inflater, container, savedInstanceState);
         if (packageName == null) {
             packageName = savedInstanceState.getString("PACKAGE_NAME");
@@ -65,6 +63,11 @@ public class ProgrammerFragment extends Fragment {
         InstanceStateUtil.saveInstanceState(outState, calcModel, packageName);
     }
 
+    /**
+     * Sets up the package name for the fragment. It is necessary to call this method before opening the fragment.
+     *
+     * @param packageName Name of the package that will be used by fragment.
+     */
     public void setupFragment(String packageName) {
         this.packageName = packageName;
     }
