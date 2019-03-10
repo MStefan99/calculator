@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.annushkaproject.programmerscalculator.R;
 import com.annushkaproject.programmerscalculator.activities.MainActivity;
+import com.annushkaproject.programmerscalculator.managers.HistoryManager;
 import com.annushkaproject.programmerscalculator.model.CalculationModel;
 import com.annushkaproject.programmerscalculator.model.Operator;
 import com.annushkaproject.programmerscalculator.utils.InstanceStateUtil;
@@ -255,6 +256,7 @@ public class StandardFragment extends Fragment {
                 //apply to first value
                 double number = calcModel.getFirstValue().doubleValue();
                 result = StandardOperationsUtil.calculateResultForOneSidedOperator(number, operator);
+                HistoryManager.getSharedInstance().save(calcModel.textForValue(result));
                 calcModel.setFirstValue(result);
             } else if (operator == Operator.PERCENT && calcModel.getSecondValue() != null) {
                 //special case for 6 - 10%
@@ -300,6 +302,7 @@ public class StandardFragment extends Fragment {
         }
 
         double result = StandardOperationsUtil.calculateResultForTwoSidedOperator(calcModel);
+        HistoryManager.getSharedInstance().save(calcModel.textForValue(result));
 
         calcModel.resetCalcState();
 
