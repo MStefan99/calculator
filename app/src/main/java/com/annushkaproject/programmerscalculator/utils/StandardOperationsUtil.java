@@ -4,8 +4,11 @@ import com.annushkaproject.programmerscalculator.model.CalculationModel;
 import com.annushkaproject.programmerscalculator.model.Operator;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 public class StandardOperationsUtil {
+
+    public static final int SCALE = 20;
 
     public static double calculateResultForTwoSidedOperator(CalculationModel data) {
         if (data.getSecondValue() == null) {
@@ -28,7 +31,7 @@ public class StandardOperationsUtil {
                 result = data.getFirstValue().multiply(data.getSecondValue()).doubleValue();
                 break;
             case DIVIDE:
-                result = data.getFirstValue().divide(data.getSecondValue()).doubleValue();
+                result = data.getFirstValue().divide(data.getSecondValue(), SCALE, RoundingMode.HALF_UP).doubleValue();
                 break;
             case POWER:
                 result = data.getFirstValue().pow(data.getSecondValue().intValue()).doubleValue();

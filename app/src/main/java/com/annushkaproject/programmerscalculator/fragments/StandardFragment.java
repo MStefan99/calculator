@@ -25,8 +25,6 @@ import java.util.ArrayList;
 
 public class StandardFragment extends Fragment {
 
-    private static final int MAX_NUMBER_OF_DIGITS = 20;
-
     private TextView textView;
     private ArrayList<Button> numberButtons = new ArrayList<>();
     private ArrayList<Button> operatorButtons = new ArrayList<>();
@@ -296,7 +294,7 @@ public class StandardFragment extends Fragment {
     }
 
     private void updateText(String updatedText) {
-        if (updatedText.length() == MAX_NUMBER_OF_DIGITS) {
+        if (updatedText.length() == StandardOperationsUtil.SCALE) {
             showDigitsLimitWarning();
             return;
         }
