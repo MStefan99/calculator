@@ -22,4 +22,8 @@ public class HistoryResult extends RealmObject {
     public Date getSaveDate() {
         return saveDate;
     }
+
+    public String getId() {
+        return id;
+    }
 }

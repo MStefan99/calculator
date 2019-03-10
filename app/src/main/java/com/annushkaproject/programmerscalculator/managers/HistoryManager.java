@@ -11,17 +11,14 @@ import java.util.Date;
 
 public class HistoryManager {
 
-    public static final String DATABASE_NAME = "calculator.realm";
+    private static final String DATABASE_NAME = "calculator.realm";
 
     private static final HistoryManager managerInstance = new HistoryManager();
 
-    RealmConfiguration config = new RealmConfiguration.Builder().name(DATABASE_NAME).build();
-    private Realm realm;
+    private RealmConfiguration config = new RealmConfiguration.Builder().name(DATABASE_NAME).build();
+    private Realm realm = Realm.getInstance(config);
 
-    private HistoryManager() {
-        Realm.setDefaultConfiguration(config);
-        realm = Realm.getDefaultInstance();
-    }
+    private HistoryManager() {}
 
     public static HistoryManager getSharedInstance() {
         return managerInstance;
@@ -38,8 +35,8 @@ public class HistoryManager {
         realm.commitTransaction();
     }
 
-    public void deleteObjectWithDate(String result, Date date) {
-        RealmResults<HistoryResult> results = realm.where(HistoryResult.class).equalTo(result, date).findAll();
+    public void deleteObjectWithId(String id) {
+        RealmResults<HistoryResult> results = realm.where(HistoryResult.class).equalTo(id, id).findAll();
         realm.beginTransaction();
         results.deleteAllFromRealm();
         realm.commitTransaction();
