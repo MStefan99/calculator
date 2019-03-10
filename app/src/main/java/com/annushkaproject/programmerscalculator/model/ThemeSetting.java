@@ -1,6 +1,6 @@
 package com.annushkaproject.programmerscalculator.model;
 
-import android.content.res.Resources;
+import com.annushkaproject.programmerscalculator.R;
 
 public enum ThemeSetting {
     LIGHT,
@@ -33,6 +33,19 @@ public enum ThemeSetting {
 
             default:
                 return ThemeSetting.UNKNOWN;
+        }
+    }
+
+    public static int getThemeStyleByThemeSetting(ThemeSetting themeSetting) {
+        switch (themeSetting) {
+            case LIGHT:
+                return R.style.AppTheme;
+            case DARK:
+                return R.style.AppTheme_DarkTheme;
+            case AUTO:
+
+            default:
+                return R.style.AppTheme;
         }
     }
 }

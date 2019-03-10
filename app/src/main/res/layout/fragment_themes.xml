@@ -1,20 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/relativeLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="?attr/backgroundColor">
 
-    <Button
-        android:id="@+id/buttonThemeToggle"
-        android:layout_width="wrap_content"
+    <RadioGroup
+        android:id="@+id/themeRadio"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:text="Toggle theme"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <RadioButton
+            android:id="@+id/lightThemeButton"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:buttonTint="@color/accentColor"
+            android:text="Light"
+            android:textColor="?attr/primaryTextColor" />
+
+        <RadioButton
+            android:id="@+id/darkThemeButton"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:buttonTint="@color/accentColorDark"
+            android:text="Dark"
+            android:textColor="?attr/primaryTextColor" />
+    </RadioGroup>
 </android.support.constraint.ConstraintLayout>
