@@ -14,6 +14,7 @@ import com.annushkaproject.programmerscalculator.fragments.ProgrammerFragment;
 import com.annushkaproject.programmerscalculator.R;
 import com.annushkaproject.programmerscalculator.fragments.StandardFragment;
 import com.annushkaproject.programmerscalculator.fragments.ThemesFragment;
+import io.realm.Realm;
 import com.annushkaproject.programmerscalculator.model.ThemeSetting;
 import com.annushkaproject.programmerscalculator.utils.SharedPreferencesUtil;
 
@@ -25,6 +26,9 @@ public class MainActivity extends AppCompatActivity
         SharedPreferencesUtil prefUtil = new SharedPreferencesUtil(this);
         setTheme(ThemeSetting.getThemeStyleByThemeSetting(prefUtil.loadThemeSetting()));
         super.onCreate(savedInstanceState);
+
+        Realm.init(this);
+
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
