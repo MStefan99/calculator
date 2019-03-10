@@ -63,6 +63,11 @@ public class ProgrammerFragment extends Fragment {
         InstanceStateUtil.saveInstanceState(outState, calcModel, packageName);
     }
 
+    /**
+     * Sets up the package name for the fragment. It is necessary to call this method before opening the fragment.
+     *
+     * @param packageName Name of the package that will be used by fragment.
+     */
     public void setupFragment(String packageName) {
         this.packageName = packageName;
     }

@@ -10,6 +10,11 @@ public class StandardOperationsUtil {
 
     public static final int SCALE = 20;
 
+    /**
+     * Used to calculate the result for operators that require two values.
+     * @param data Model that will be used for calculations.
+     * @return Calculated result.
+     */
     public static double calculateResultForTwoSidedOperator(CalculationModel data) {
         if (data.getSecondValue() == null) {
             data.setSecondValueEqualToFirst();
@@ -45,6 +50,11 @@ public class StandardOperationsUtil {
         return result;
     }
 
+    /**
+     * Used to calculate percents.
+     * @param data Model for calculations.
+     * @return Calculated result.
+     */
     public static double calculatePercentForData(CalculationModel data) {
         if (data.getSecondValue() == null) {
             return -1; //TODO: throw an exception.
@@ -58,6 +68,12 @@ public class StandardOperationsUtil {
         return result;
     }
 
+    /**
+     * Used to calculate the result for operators that require one value.
+     * @param number Number for calculation.
+     * @param operator Operator for calculation.
+     * @return Calculated result.
+     */
     public static double calculateResultForOneSidedOperator(double number, Operator operator) {
         if (operator.requiresTwoValues()) {
             return -1; //TODO: throw an exception.
@@ -101,6 +117,11 @@ public class StandardOperationsUtil {
         }
     }
 
+    /**
+     * Used to calculate factorials.
+     * @param value Value for calculation.
+     * @return Calculated result.
+     */
     static private double calculateFactorial(double value) {
         double result = 1;
 
