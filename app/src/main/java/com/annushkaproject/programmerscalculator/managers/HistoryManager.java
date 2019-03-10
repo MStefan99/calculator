@@ -35,11 +35,13 @@ public class HistoryManager {
         realm.commitTransaction();
     }
 
-    public void deleteObjectWithId(String id) {
-        RealmResults<HistoryResult> results = realm.where(HistoryResult.class).equalTo(id, id).findAll();
-        realm.beginTransaction();
-        results.deleteAllFromRealm();
-        realm.commitTransaction();
+    public void deleteResult(HistoryResult resultToDelete) {
+        RealmResults<HistoryResult> results = realm.where(HistoryResult.class).equalTo("id", resultToDelete.getId()).findAll();
+        if (results.size() > 0) {
+            realm.beginTransaction();
+            results.deleteAllFromRealm();
+            realm.commitTransaction();
+        }
     }
 
     public ArrayList<HistoryResult> fetchAllHistoryResults() {
