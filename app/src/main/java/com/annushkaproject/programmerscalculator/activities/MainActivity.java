@@ -18,6 +18,8 @@ import com.annushkaproject.programmerscalculator.fragments.StandardFragment;
 import com.annushkaproject.programmerscalculator.fragments.ThemesFragment;
 import com.annushkaproject.programmerscalculator.utils.ThemeUtil;
 
+import io.realm.Realm;
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -25,6 +27,9 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         setTheme(ThemeUtil.getCurrentTheme());
         super.onCreate(savedInstanceState);
+
+        Realm.init(this);
+
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
