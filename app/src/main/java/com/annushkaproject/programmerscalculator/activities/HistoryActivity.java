@@ -57,7 +57,7 @@ public class HistoryActivity extends AppCompatActivity {
                 saveArrayList();
             }
         });
-        }
+    }
         private void saveArrayList() {
             SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
             SharedPreferences.Editor editor = sharedPreferences.edit();
