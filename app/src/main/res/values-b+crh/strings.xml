@@ -11,7 +11,7 @@
     <string name="nav_share">Paylaşmak</string>
     <string name="nav_about">Hakkında</string>
     <string name="nav_contacts">Kişiler</string>
-    <string name="max_digits_warning">Too many symbols</string>
-    <string name="not_a_number">Not a number</string>
-    <string name="title_activity_history">History</string>
+    <string name="max_digits_warning">Hata</string>
+    <string name="not_a_number">Hata</string>
+    <string name="title_activity_history">Tarihçe</string>
 </resources>
