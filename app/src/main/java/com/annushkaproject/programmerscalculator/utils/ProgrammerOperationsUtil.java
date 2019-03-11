@@ -6,6 +6,11 @@ import com.annushkaproject.programmerscalculator.model.WordLength;
 import java.math.BigDecimal;
 
 public class ProgrammerOperationsUtil {
+    /**
+     * Used to get calculated result.
+     * @param data Model used to calculate the result.
+     * @return Result.
+     */
     public static long calculateWithData(ProgrammerCalcModel data) {
         switch (data.getOperator()) {
             case ADD:

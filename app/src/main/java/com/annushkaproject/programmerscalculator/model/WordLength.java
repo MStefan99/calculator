@@ -1,5 +1,8 @@
 package com.annushkaproject.programmerscalculator.model;
 
+/**
+ * Used to store current length of the variables in programmer mode.
+ */
 public enum WordLength {
     QWORD,
     DWORD,
