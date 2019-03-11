@@ -20,6 +20,14 @@ public class StandardDivisionTest {
     }
 
     @Test
+    public void testIwoIntegersRountResult() {
+        BigDecimal firstValue = BigDecimal.valueOf(5);
+        BigDecimal secondValue = BigDecimal.valueOf(9);
+        CalculationModel model = new CalculationModel(firstValue, secondValue, DIVIDE);
+        assertEquals(0.5555555555555556, StandardOperationsUtil.calculateResultForTwoSidedOperator(model), 0);
+    }
+
+    @Test
     public void testFirstFloat() {
         BigDecimal firstValue = BigDecimal.valueOf(-0.0001);
         BigDecimal secondValue = BigDecimal.valueOf(2);

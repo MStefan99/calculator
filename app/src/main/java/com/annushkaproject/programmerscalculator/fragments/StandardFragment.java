@@ -15,7 +15,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.annushkaproject.programmerscalculator.R;
+<<<<<<< HEAD
 import com.annushkaproject.programmerscalculator.activities.HistoryActivity;
+=======
+import com.annushkaproject.programmerscalculator.managers.HistoryManager;
+>>>>>>> 435901202e9d85034f0f515b2e80439e6a241fbd
 import com.annushkaproject.programmerscalculator.model.CalculationModel;
 import com.annushkaproject.programmerscalculator.model.Operator;
 import com.annushkaproject.programmerscalculator.utils.InstanceStateUtil;
@@ -24,8 +28,6 @@ import com.annushkaproject.programmerscalculator.utils.StandardOperationsUtil;
 import java.util.ArrayList;
 
 public class StandardFragment extends Fragment {
-
-    private static final int MAX_NUMBER_OF_DIGITS = 20;
 
     private TextView textView;
     private ArrayList<Button> numberButtons = new ArrayList<>();
@@ -78,6 +80,11 @@ public class StandardFragment extends Fragment {
         InstanceStateUtil.saveInstanceState(outState, calcModel, packageName);
     }
 
+    /**
+     * Sets up the package name for the fragment. It is necessary to call this method before opening the fragment.
+     *
+     * @param packageName Name of the package that will be used by fragment.
+     */
     public void setupFragment(String packageName) {
         this.packageName = packageName;
     }
@@ -108,7 +115,17 @@ public class StandardFragment extends Fragment {
             }
         }
         );
-        this.numberButtons.add(button);
+        numberButtons.add(button);
+
+        Button buttonPi = getView().findViewById(R.id.buttonPi);
+        buttonPi.setOnClickListener(v -> {
+                    Button button13 = (Button)v;
+                    System.out.println(button13.getText().toString());
+
+                    usePiPressedNumber();
+                }
+        );
+        numberButtons.add(buttonPi);
     }
 
     private String currentString() {
@@ -227,6 +244,17 @@ public class StandardFragment extends Fragment {
         updateText(newString);
     }
 
+    private void usePiPressedNumber() {
+        String newString = (Double.toString(Math.PI));
+        if (secondValueInputStarted) {
+            secondValueInputStarted = false;
+        } else {
+            calcModel.resetCalcState();
+        }
+
+        updateText(newString);
+    }
+
     private void usePressedOperator(Operator operator) {
         boolean readyToSaveOperator = calcModel.getFirstValue() != null;
         if (!readyToSaveOperator) {
@@ -244,6 +272,7 @@ public class StandardFragment extends Fragment {
                 //apply to first value
                 double number = calcModel.getFirstValue().doubleValue();
                 result = StandardOperationsUtil.calculateResultForOneSidedOperator(number, operator);
+                HistoryManager.getSharedInstance().save(calcModel.textForValue(result));
                 calcModel.setFirstValue(result);
             } else if (operator == Operator.PERCENT && calcModel.getSecondValue() != null) {
                 //special case for 6 - 10%
@@ -289,6 +318,7 @@ public class StandardFragment extends Fragment {
         }
 
         double result = StandardOperationsUtil.calculateResultForTwoSidedOperator(calcModel);
+        HistoryManager.getSharedInstance().save(calcModel.textForValue(result));
 
         calcModel.resetCalcState();
 
@@ -304,7 +334,7 @@ public class StandardFragment extends Fragment {
     }
 
     private void updateText(String updatedText) {
-        if (updatedText.length() == MAX_NUMBER_OF_DIGITS) {
+        if (updatedText.length() == StandardOperationsUtil.SCALE) {
             showDigitsLimitWarning();
             return;
         }

@@ -32,6 +32,12 @@ public class ProgrammerCalcModel extends CalculationModel {
         this.wordLength = wordLength;
     }
 
+    /**
+     * Used set model values based on input text.
+     *
+     * @param text Input text containing value.
+     * @param mode Mode used for calculations.
+     */
     public void updateValues(String text, Mode mode) {
         if (this.getOperator() == null) {
             setFirstValue(Long.parseLong(text, mode.getBase()));

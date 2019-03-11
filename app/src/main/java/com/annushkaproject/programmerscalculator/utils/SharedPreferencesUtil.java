@@ -7,6 +7,9 @@ import android.util.Log;
 import com.annushkaproject.programmerscalculator.Interfaces.AppearanceUpdateInterface;
 import com.annushkaproject.programmerscalculator.model.ThemeSetting;
 
+/**
+ * Used to store data in the shared preferences.
+ */
 public class SharedPreferencesUtil {
 
     private static final String PREF = "Preferences";
@@ -16,16 +19,28 @@ public class SharedPreferencesUtil {
     private SharedPreferences preferences;
     private SharedPreferences.Editor preferencesEditor;
 
+    /**
+     * Used to initialize the util.
+     * @param activity Activity used to store shared preferences.
+     */
     public SharedPreferencesUtil(Activity activity) {
         preferences = activity.getSharedPreferences(PREF, Activity.MODE_PRIVATE);
         preferencesEditor = preferences.edit();
     }
 
+    /**
+     * Used to save current theme.
+     * @param themeSetting Theme to be saved.
+     */
     public void saveThemeSetting(ThemeSetting themeSetting) {
         preferencesEditor.putInt(THEME_SETTING_KEY, ThemeSetting.getNumberByThemeSetting(themeSetting));
         preferencesEditor.commit();
     }
 
+    /**
+     * Used to load the saved theme.
+     * @return Saved theme.
+     */
     public ThemeSetting loadThemeSetting() {
         int value = preferences.getInt(THEME_SETTING_KEY, ThemeSetting.getNumberByThemeSetting(ThemeSetting.LIGHT));
 

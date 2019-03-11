@@ -55,6 +55,7 @@ public class ProgrammerFragment extends Fragment {
         setupSignButton();
         setupModeRadio();
         setupWordLengthButton();
+        enableButtonsDEC();
     }
 
     @Override
@@ -63,6 +64,11 @@ public class ProgrammerFragment extends Fragment {
         InstanceStateUtil.saveInstanceState(outState, calcModel, packageName);
     }
 
+    /**
+     * Sets up the package name for the fragment. It is necessary to call this method before opening the fragment.
+     *
+     * @param packageName Name of the package that will be used by fragment.
+     */
     public void setupFragment(String packageName) {
         this.packageName = packageName;
     }
@@ -178,15 +184,19 @@ public class ProgrammerFragment extends Fragment {
             switch (id) {
                 case R.id.radioButtonHex:
                     mode = Mode.HEX;
+                    enableButtonsALL();
                     break;
                 case R.id.radioButtonDec:
                     mode = Mode.DEC;
+                    enableButtonsDEC();
                     break;
                 case R.id.radioButtonOct:
                     mode = Mode.OCT;
+                    enableButtonsOCT();
                     break;
                 case R.id.radioButtonBin:
                     mode = Mode.BIN;
+                    enableButtonsBIN();
                     break;
             }
             updateText(formatText(number));
@@ -280,6 +290,48 @@ public class ProgrammerFragment extends Fragment {
             textView.setText(String.format("%.0f", value));
         } else {
             textView.setText(Double.toString(value));
+        }
+    }
+
+    private void disableAllButtons() {
+        setNumberButtonsClickable(10, false);
+        setLetterButtonsClickable(false);
+    }
+    
+    private void enableButtonsBIN() {
+        disableAllButtons();
+        setNumberButtonsClickable(2, true);
+    }
+    
+    private void enableButtonsOCT() {
+        disableAllButtons();
+        setNumberButtonsClickable(8, true);
+    }
+    
+    private void enableButtonsDEC() {
+        disableAllButtons();
+        setNumberButtonsClickable(10, true);
+    }
+
+    private void enableButtonsALL() {
+        setLetterButtonsClickable(true);
+        setNumberButtonsClickable(10, true);
+    }
+
+    private void setLetterButtonsClickable(boolean mode) {
+        int[] letterButtonIDs = new int[]{R.id.buttonA, R.id.buttonB, R.id.buttonC, R.id.buttonD,
+                R.id.buttonE, R.id.buttonF};
+        for (int buttonID : letterButtonIDs) {
+            Button button = getView().findViewById(buttonID);
+            button.setEnabled(mode);
+        }
+    }
+
+    private void setNumberButtonsClickable(int range, boolean mode) {
+        for (int i = 0; i < range; i++) {
+            Button button = getView().findViewById(getResources().getIdentifier("button" + i,
+                    "id", packageName));
+            button.setEnabled(mode);
         }
     }
 }
