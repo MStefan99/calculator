@@ -25,6 +25,7 @@ public class HistoryResult extends RealmObject {
 
     /**
      * Returns result represented by String.
+     *
      * @return Result represented by String.
      */
     public String getResult() {
@@ -33,6 +34,7 @@ public class HistoryResult extends RealmObject {
 
     /**
      * Returns date when result was saved.
+     *
      * @return Date of HistoryResult save.
      */
     public Date getSaveDate() {
@@ -41,6 +43,7 @@ public class HistoryResult extends RealmObject {
 
     /**
      * Returns unique id for current result.
+     *
      * @return Unique identifier of HistoryResult object.
      */
     public String getId() {

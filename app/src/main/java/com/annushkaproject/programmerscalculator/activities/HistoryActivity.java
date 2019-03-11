@@ -5,13 +5,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.annotation.NonNull;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -19,18 +14,25 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.annushkaproject.programmerscalculator.R;
+import com.annushkaproject.programmerscalculator.managers.HistoryManager;
+import com.annushkaproject.programmerscalculator.model.HistoryResult;
+import com.annushkaproject.programmerscalculator.model.ThemeSetting;
+import com.annushkaproject.programmerscalculator.utils.SharedPreferencesUtil;
 
 import java.util.ArrayList;
 
 public class HistoryActivity extends AppCompatActivity {
 
     private ListView lvHistory;
-    private ArrayList<String> list = new ArrayList<>();
     ArrayAdapter arrayAdapter;
-    String operations;
+    String result;
+
+    ArrayList<String> historyResults = getResults();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        SharedPreferencesUtil prefUtil = new SharedPreferencesUtil(this);
+        setTheme(ThemeSetting.getThemeStyleByThemeSetting(prefUtil.loadThemeSetting()));
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_history);
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -42,56 +44,40 @@ public class HistoryActivity extends AppCompatActivity {
 
         lvHistory = findViewById(R.id.lvHistory);
 
-
-
-        arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1
-                ,list);
-        loadArrayList(getApplicationContext());
+        arrayAdapter = new ArrayAdapter<String>(this, R.layout.history_adapter,
+                historyResults);
         lvHistory.setAdapter(arrayAdapter);
 
-        lvHistory.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                list.remove(position);
-                arrayAdapter.notifyDataSetChanged();
-                saveArrayList();
-            }
+        lvHistory.setOnItemClickListener((AdapterView<?> parent, View view, int position, long id) -> {
+            deleteItem(position);
+            arrayAdapter.notifyDataSetChanged();
         });
     }
-        private void saveArrayList() {
-            SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-            SharedPreferences.Editor editor = sharedPreferences.edit();
-            editor.putInt("operations_size", list.size());
 
-            for(int i=0; i<list.size(); i++) {
-                editor.remove("operations" + i);
-                editor.putString("operations" + i, list.get(i));
-            }
-            editor.commit();
-        }
-        private void loadArrayList(Context context) {
-            SharedPreferences sharedPref2 = PreferenceManager.getDefaultSharedPreferences(context);
-            list.clear();
-            int size = sharedPref2.getInt("operations_size", 0);
-//            list.add("aaa");
-//            list.add("bbb");
-//            list.add("ccc");
-//            list.add("ddd");
-//            list.add("lll");
-
-            for(int i=0; i<size; i++) {
-            list.add(sharedPref2.getString("operations" + i, null));
-            }
-        }
-        @Override
-        public boolean onOptionsItemSelected(MenuItem item) {
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
         if (id == android.R.id.home) {
             this.finish();
         }
-         return super.onOptionsItemSelected(item);
+        return super.onOptionsItemSelected(item);
+    }
+
+    private ArrayList<String> getResults() {
+        ArrayList<HistoryResult> list = HistoryManager.getSharedInstance().fetchAllHistoryResults();
+        ArrayList<String> results = new ArrayList<String>();
+        for (HistoryResult result: list) {
+            results.add(result.getResult());
         }
+        return results;
+    }
 
+    private void deleteItem(int position) {
+        ArrayList<HistoryResult> results = HistoryManager.getSharedInstance().fetchAllHistoryResults();
+        HistoryResult result = results.get(position);
+        historyResults.remove(position);
+        HistoryManager.getSharedInstance().deleteResult(result);
 
+    }
 }
