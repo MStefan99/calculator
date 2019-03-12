@@ -11,6 +11,7 @@
     <string name="nav_share">Aktie</string>
     <string name="nav_about">Über</string>
     <string name="nav_contacts">Kontakten</string>
-    <string name="max_digits_warning">Too many symbols</string>
-    <string name="not_a_number">Not a number</string>
+    <string name="max_digits_warning">Zu viele symbole</string>
+    <string name="not_a_number">Keine Nummer</string>
+    <string name="title_activity_history">Historie</string>
 </resources>

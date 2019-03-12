@@ -15,11 +15,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.annushkaproject.programmerscalculator.R;
-<<<<<<< HEAD
 import com.annushkaproject.programmerscalculator.activities.HistoryActivity;
-=======
 import com.annushkaproject.programmerscalculator.managers.HistoryManager;
->>>>>>> 435901202e9d85034f0f515b2e80439e6a241fbd
 import com.annushkaproject.programmerscalculator.model.CalculationModel;
 import com.annushkaproject.programmerscalculator.model.Operator;
 import com.annushkaproject.programmerscalculator.utils.InstanceStateUtil;
