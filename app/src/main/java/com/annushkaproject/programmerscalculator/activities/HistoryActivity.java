@@ -1,5 +1,7 @@
 package com.annushkaproject.programmerscalculator.activities;
 
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -21,7 +23,6 @@ public class HistoryActivity extends AppCompatActivity {
 
     private ListView historyListView;
     private ArrayAdapter arrayAdapter;
-
 
     ArrayList<String> historyResults = getResults();
 

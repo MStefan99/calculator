@@ -1,22 +1,26 @@
 package com.annushkaproject.programmerscalculator.activities;
 
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-import android.widget.Toast;
 
-import com.annushkaproject.programmerscalculator.fragments.ProgrammerFragment;
+
 import com.annushkaproject.programmerscalculator.R;
+import com.annushkaproject.programmerscalculator.fragments.ProgrammerFragment;
 import com.annushkaproject.programmerscalculator.fragments.StandardFragment;
 import com.annushkaproject.programmerscalculator.fragments.ThemesFragment;
-import io.realm.Realm;
 import com.annushkaproject.programmerscalculator.model.ThemeSetting;
 import com.annushkaproject.programmerscalculator.utils.SharedPreferencesUtil;
+
+import io.realm.Realm;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -76,9 +80,25 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_themes) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ThemesFragment()).commit();
         } else if (id == R.id.nav_share) {
-            Toast.makeText(this, "Share this app with friends!", Toast.LENGTH_SHORT).show();
+            Intent myIntent = new Intent(Intent.ACTION_SEND);
+            myIntent.setType("text/plain");
+            String shareBody = getString(R.string.share_website);
+            String shareSub = getString(R.string.share_subject);
+            myIntent.putExtra(Intent.EXTRA_SUBJECT,shareSub);
+            myIntent.putExtra(Intent.EXTRA_TEXT,shareBody);
+            startActivity(Intent.createChooser(myIntent, getString(R.string.share_using)));
         } else if (id == R.id.nav_about) {
-            Toast.makeText(this, "Developed for you by Annushka Project", Toast.LENGTH_SHORT).show();
+            AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+
+            builder.setCancelable(true);
+            builder.setTitle(getString(R.string.about_title));
+            builder.setMessage(getString(R.string.about_program));
+            builder.setPositiveButton(getString(R.string.button_ok), new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                }
+            });
+            builder.show();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
