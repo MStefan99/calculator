@@ -81,7 +81,7 @@ public class MainActivity extends AppCompatActivity
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ThemesFragment()).commit();
         } else if (id == R.id.nav_share) {
             Intent myIntent = new Intent(Intent.ACTION_SEND);
-            myIntent.setType("text/plaint");
+            myIntent.setType("text/plain");
             String shareBody = getString(R.string.share_website);
             String shareSub = getString(R.string.share_subject);
             myIntent.putExtra(Intent.EXTRA_SUBJECT,shareSub);
