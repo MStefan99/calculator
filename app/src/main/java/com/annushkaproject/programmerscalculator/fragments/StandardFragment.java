@@ -49,8 +49,8 @@ public class StandardFragment extends Fragment {
         btnHistory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent in = new Intent(getActivity(), HistoryActivity.class);
-                startActivity(in);
+                Intent intent = new Intent(getActivity(), HistoryActivity.class);
+                startActivity(intent);
             }
         });
         return view;
