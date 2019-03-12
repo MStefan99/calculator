@@ -1,10 +1,8 @@
 package com.annushkaproject.programmerscalculator.activities;
 
-import android.content.Context;
+
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
@@ -23,9 +21,8 @@ import java.util.ArrayList;
 
 public class HistoryActivity extends AppCompatActivity {
 
-    private ListView lvHistory;
-    ArrayAdapter arrayAdapter;
-    String result;
+    private ListView historyListView;
+    private ArrayAdapter arrayAdapter;
 
     ArrayList<String> historyResults = getResults();
 
@@ -37,18 +34,16 @@ public class HistoryActivity extends AppCompatActivity {
         setContentView(R.layout.activity_history);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        Intent intent = getIntent();
-        //add back press button
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        lvHistory = findViewById(R.id.lvHistory);
+        historyListView = findViewById(R.id.lvHistory);
 
         arrayAdapter = new ArrayAdapter<String>(this, R.layout.history_adapter,
                 historyResults);
-        lvHistory.setAdapter(arrayAdapter);
+        historyListView.setAdapter(arrayAdapter);
 
-        lvHistory.setOnItemClickListener((AdapterView<?> parent, View view, int position, long id) -> {
+        historyListView.setOnItemClickListener((AdapterView<?> parent, View view, int position, long id) -> {
             deleteItem(position);
             arrayAdapter.notifyDataSetChanged();
         });
