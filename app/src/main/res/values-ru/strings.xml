@@ -11,6 +11,7 @@
     <string name="nav_share">Поделиться</string>
     <string name="nav_about">О приложении</string>
     <string name="nav_contacts">Контакты</string>
-    <string name="max_digits_warning">Too many symbols</string>
-    <string name="not_a_number">Not a number</string>
+    <string name="max_digits_warning">Длинное число</string>
+    <string name="not_a_number">Ошибка</string>
+    <string name="title_activity_history">История</string>
 </resources>

@@ -65,7 +65,6 @@ public class HistoryManager {
      * @return ArrayList of all founded HistoryResults that were saved previously.
      */
     public ArrayList<HistoryResult> fetchAllHistoryResults() {
-        ArrayList<HistoryResult> results = new ArrayList(realm.where(HistoryResult.class).findAll());
-        return results;
+        return new ArrayList<HistoryResult>(realm.where(HistoryResult.class).findAll());
     }
 }
