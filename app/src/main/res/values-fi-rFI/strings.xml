@@ -13,5 +13,13 @@
     <string name="nav_contacts">Ota Yhteyttä</string>
     <string name="max_digits_warning">Too many symbols</string>
     <string name="not_a_number">Not a number</string>
+    <string name="share_website">https://calc.mstefan99.com</string>
+    <string name="share_subject">Try the best calculator I have ever used</string>
+    <string name="share_using">Share using</string>
+    <string name="about_title">About Calculator</string>
+    <string name="about_program">Programmer’s calculator is an ideal tool if you are doing calculations on a daily basis.
+                    The programmer’s calculator maintains scientific calculations, programmer calculations, dark and light themes for comfortable usage in day and night time.
+                    Share our App with your friends and mates.</string>
+    <string name="button_ok">OK</string>
     <string name="title_activity_history">History</string>
 </resources>

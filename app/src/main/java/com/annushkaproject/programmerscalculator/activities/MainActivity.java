@@ -82,20 +82,18 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_share) {
             Intent myIntent = new Intent(Intent.ACTION_SEND);
             myIntent.setType("text/plaint");
-            String shareBody = "https://calc.mstefan99.com";
-            String shareSub =  "Try the best calculator I have ever used";
+            String shareBody = getString(R.string.share_website);
+            String shareSub = getString(R.string.share_subject);
             myIntent.putExtra(Intent.EXTRA_SUBJECT,shareSub);
             myIntent.putExtra(Intent.EXTRA_TEXT,shareBody);
-            startActivity(Intent.createChooser(myIntent,"Share using"));
+            startActivity(Intent.createChooser(myIntent, getString(R.string.share_using)));
         } else if (id == R.id.nav_about) {
             AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
 
             builder.setCancelable(true);
-            builder.setTitle("About Calculator");
-            builder.setMessage("Programmer’s calculator is an ideal tool if you are doing calculations on a daily basis." +
-                    "The programmer’s calculator maintains scientific calculations, programmer calculations, dark and light themes for comfortable usage in day and night time." +
-                    "Share our App with your friends and mates.\n");
-            builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            builder.setTitle(getString(R.string.about_title));
+            builder.setMessage(getString(R.string.about_program));
+            builder.setPositiveButton(getString(R.string.button_ok), new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                 }
