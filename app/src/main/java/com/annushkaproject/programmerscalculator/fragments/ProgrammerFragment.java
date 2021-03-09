@@ -22,7 +22,7 @@ import com.annushkaproject.programmerscalculator.utils.ProgrammerOperationsUtil;
 
 public class ProgrammerFragment extends Fragment {
 
-    private TextView textView;
+    private TextView textView; private TextView textView2;
     private ProgrammerCalcModel calcModel = new ProgrammerCalcModel();
     private boolean secondValueInputStarted = false;
     private String packageName;
@@ -44,7 +44,7 @@ public class ProgrammerFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        textView = getView().findViewById(R.id.inputField);
+        textView = getView().findViewById(R.id.inputField); textView2 = getView().findViewById(R.id.inputField2);
 
         setupNumberButtons();
         setupOperatorButtons();
@@ -182,22 +182,9 @@ public class ProgrammerFragment extends Fragment {
         radioGroup.setOnCheckedChangeListener((v, id) -> {
             long number = Long.parseLong(textView.getText().toString(), mode.getBase());
             switch (id) {
-                case R.id.radioButtonHex:
-                    mode = Mode.HEX;
-                    enableButtonsALL();
-                    break;
-                case R.id.radioButtonDec:
-                    mode = Mode.DEC;
-                    enableButtonsDEC();
-                    break;
-                case R.id.radioButtonOct:
-                    mode = Mode.OCT;
-                    enableButtonsOCT();
-                    break;
-                case R.id.radioButtonBin:
-                    mode = Mode.BIN;
-                    enableButtonsBIN();
-                    break;
+                case R.id.radioButtonHex: mode = Mode.HEX; enableButtonsALL(); break;
+                case R.id.radioButtonDec: mode = Mode.DEC; enableButtonsDEC(); break;
+                // case R.id.radioButtonOct: mode = Mode.OCT; enableButtonsOCT(); break; case R.id.radioButtonBin: mode = Mode.BIN; enableButtonsBIN(); break;
             }
             updateText(formatText(number));
             Log.d("ModeChanged", "Mode radio pressed, current value: " + mode.toString());
@@ -210,7 +197,7 @@ public class ProgrammerFragment extends Fragment {
 
     private void usePressedNumber(String number) {
         if (currentString().equals("0") && !number.equals(".")) {
-            textView.setText(""); //clear text view from 0 value.
+            textView.setText(""); textView2.setText(""); //clear text view from 0 value.
         }
 
         String newString;
@@ -274,11 +261,11 @@ public class ProgrammerFragment extends Fragment {
     }
 
     private void updateText(String updatedText) {
-        textView.setText(updatedText);
+        textView.setText(updatedText); textView2.setText(updatedText);
         if (updatedText.length() > 10) {
-            textView.setTextSize(24);
+            textView.setTextSize(24); textView2.setTextSize(24);
         } else {
-            textView.setTextSize(30);
+            textView.setTextSize(30); textView2.setTextSize(30);
         }
         calcModel.updateValues(updatedText, mode);
     }
@@ -287,9 +274,9 @@ public class ProgrammerFragment extends Fragment {
         boolean isWholeValue = value % 1 == 0;
 
         if (isWholeValue) {
-            textView.setText(String.format("%.0f", value));
+            textView.setText(String.format("%.0f", value)); textView2.setText(String.format("%.0f", value));
         } else {
-            textView.setText(Double.toString(value));
+            textView.setText(Double.toString(value)); textView2.setText(Double.toString(value));
         }
     }
 
