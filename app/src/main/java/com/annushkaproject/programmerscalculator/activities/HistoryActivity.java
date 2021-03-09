@@ -39,32 +39,23 @@ public class HistoryActivity extends AppCompatActivity {
 
         historyListView = findViewById(R.id.lvHistory);
 
-        arrayAdapter = new ArrayAdapter<String>(this, R.layout.history_adapter,
-                historyResults);
+        arrayAdapter = new ArrayAdapter<String>(this, R.layout.history_adapter, historyResults);
         historyListView.setAdapter(arrayAdapter);
-
         historyListView.setOnItemClickListener((AdapterView<?> parent, View view, int position, long id) -> {
-            deleteItem(position);
-            arrayAdapter.notifyDataSetChanged();
+            deleteItem(position); arrayAdapter.notifyDataSetChanged();
         });
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    @Override public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-
-        if (id == android.R.id.home) {
-            this.finish();
-        }
+        if (id == android.R.id.home) { this.finish(); }
         return super.onOptionsItemSelected(item);
     }
 
     private ArrayList<String> getResults() {
         ArrayList<HistoryResult> list = HistoryManager.getSharedInstance().fetchAllHistoryResults();
         ArrayList<String> results = new ArrayList<String>();
-        for (HistoryResult result: list) {
-            results.add(result.getResult());
-        }
+        for (HistoryResult result: list) { results.add(result.getResult()); }
         return results;
     }
 
