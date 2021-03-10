@@ -3,7 +3,6 @@ package com.annushkaproject.programmerscalculator.utils;
 import com.annushkaproject.programmerscalculator.model.CalculationModel;
 import com.annushkaproject.programmerscalculator.model.Operator;
 
-import java.math.BigDecimal;
 import java.math.RoundingMode;
 
 public class StandardOperationsUtil {
@@ -35,7 +34,7 @@ public class StandardOperationsUtil {
             case MULTIPLY:
                 result = data.getFirstValue().multiply(data.getSecondValue()).doubleValue();
                 break;
-            case DIVIDE:
+            case remainder_divide:
                 result = data.getFirstValue().divide(data.getSecondValue(), SCALE, RoundingMode.HALF_UP).doubleValue();
                 break;
             case POWER:

@@ -1,20 +1,19 @@
 package com.annushkaproject.programmerscalculator.model;
-import com.annushkaproject.programmerscalculator.model.CalculationModel;
 import java.math.BigDecimal;
-import static com.annushkaproject.programmerscalculator.model.WordLength.QWORD;
+import static com.annushkaproject.programmerscalculator.model.int_size_enum.int_size_enum_kvrd;
 public class ProgrammerCalcModel extends CalculationModel {
-    private WordLength wordLength;
-    public WordLength getWordLength() { return wordLength; } 
-    public void setWordLength(WordLength wordLength) { this.wordLength = wordLength; } 
-    public ProgrammerCalcModel() { this.wordLength = QWORD; } 
-    public ProgrammerCalcModel(BigDecimal firstValue, Operator operator, WordLength wordLength) {
+    private int_size_enum bytelengthenum;
+    public int_size_enum getBytelengthenum() { return bytelengthenum; }
+    public void setBytelengthenum(int_size_enum bytelengthenum) { this.bytelengthenum = bytelengthenum; }
+    public ProgrammerCalcModel() { this.bytelengthenum = int_size_enum_kvrd; }
+    public ProgrammerCalcModel(BigDecimal firstValue, Operator operator, int_size_enum bytelengthenum) {
         super(firstValue, operator);
-        this.wordLength = wordLength;
+        this.bytelengthenum = bytelengthenum;
     }
 
-    public ProgrammerCalcModel(BigDecimal firstValue, BigDecimal secondValue, Operator operator, WordLength wordLength) {
+    public ProgrammerCalcModel(BigDecimal firstValue, BigDecimal secondValue, Operator operator, int_size_enum bytelengthenum) {
         super(firstValue, secondValue, operator);
-        this.wordLength = wordLength;
+        this.bytelengthenum = bytelengthenum;
     }
     public void updateValues(String text, Mode mode) {
         if (this.getOperator() == null) {

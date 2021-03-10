@@ -3,7 +3,7 @@ import android.os.Bundle;
 import com.annushkaproject.programmerscalculator.model.CalculationModel;
 import com.annushkaproject.programmerscalculator.model.Operator;
 import com.annushkaproject.programmerscalculator.model.ProgrammerCalcModel;
-import com.annushkaproject.programmerscalculator.model.WordLength;
+
 public class InstanceStateUtil {
     public static CalculationModel restoreSavedInstance(Bundle savedInstanceState) {
         CalculationModel calcModel = new CalculationModel();
@@ -64,7 +64,7 @@ public class InstanceStateUtil {
         if (secondValuePresent) {
             outState.putDouble("SECOND_VALUE", calcModel.getSecondValue().doubleValue());
         }
-        outState.putInt("WORD_LENGTH", calcModel.getWordLength().wordToInt());
+        outState.putInt("WORD_LENGTH", calcModel.getBytelengthenum().wordToInt());
         outState.putBoolean("FIRST_VALUE_SAVED", firstValuePresent);
         outState.putBoolean("OPERATOR_SAVED", operatorPresent);
         outState.putBoolean("SECOND_VALUE_SAVED", secondValuePresent);

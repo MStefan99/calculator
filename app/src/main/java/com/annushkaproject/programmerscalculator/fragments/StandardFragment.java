@@ -102,7 +102,7 @@ public class StandardFragment extends Fragment {
         }
 
         //Adding "." button separately
-        Button button = getView().findViewById(R.id.buttonComma);
+        Button button = getView().findViewById(R.id.button_decimal_point);
         button.setOnClickListener(v -> {
             Button button12 = (Button)v;
             System.out.println(button12.getText().toString());
@@ -132,7 +132,7 @@ public class StandardFragment extends Fragment {
     private void fillOperatorButtons() {
         operatorButtons.add(getView().findViewById(R.id.buttonPlus));
         operatorButtons.add(getView().findViewById(R.id.buttonMinus));
-        operatorButtons.add(getView().findViewById(R.id.buttonDivide));
+        operatorButtons.add(getView().findViewById(R.id.buttonRDivide));
         operatorButtons.add(getView().findViewById(R.id.buttonMultiply));
         operatorButtons.add(getView().findViewById(R.id.buttonPercent));
 

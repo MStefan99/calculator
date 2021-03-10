@@ -24,7 +24,7 @@ public class CalculationModel { private BigDecimal firstValue; private BigDecima
         return isWholeValue ? String.format("%.0f", value) : (Double.toString(value));
     }
     public boolean isNotNumber() {
-        return (operator == Operator.DIVIDE && secondValue.doubleValue() == 0) ||
+        return (operator == Operator.remainder_divide && secondValue.doubleValue() == 0) ||
                 (operator == Operator.DENOMINATOR && firstValue.doubleValue() == 0);
     }
     public boolean isFirstIntegerValue() { return firstValue.stripTrailingZeros().scale() <= 0; }

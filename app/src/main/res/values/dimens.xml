@@ -8,4 +8,5 @@
     <dimen name="button_stroke">1dp</dimen>
     <dimen name="dizits_tekst_size">36sp</dimen>
     <dimen name="dot_tekst_size">42sp</dimen>
+    <dimen name="divide_tekst_size">20sp</dimen>
 </resources>

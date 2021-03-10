@@ -1,8 +1,4 @@
 package com.annushkaproject.programmerscalculator.model;
-public enum Mode {     DEC,     OCT,     BIN,     HEX; 
-    public int getBase() {
-        switch (this) {
-            case DEC: return 10; case HEX: return 16; case BIN: return 2; case OCT: return 8; default: return 10;
-        }
-    }
+public enum Mode { mode_enum_dec, mode_enum_heks;
+    public int getBase() { switch (this) { case mode_enum_dec: return 10; case mode_enum_heks: return 16; default: return 10; } }
 }

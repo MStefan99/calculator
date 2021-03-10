@@ -16,7 +16,7 @@ import com.annushkaproject.programmerscalculator.R;
 import com.annushkaproject.programmerscalculator.model.Mode;
 import com.annushkaproject.programmerscalculator.model.Operator;
 import com.annushkaproject.programmerscalculator.model.ProgrammerCalcModel;
-import com.annushkaproject.programmerscalculator.model.WordLength;
+import com.annushkaproject.programmerscalculator.model.int_size_enum;
 import com.annushkaproject.programmerscalculator.utils.InstanceStateUtil;
 import com.annushkaproject.programmerscalculator.utils.ProgrammerOperationsUtil;
 
@@ -26,8 +26,8 @@ public class ProgrammerFragment extends Fragment {
     private ProgrammerCalcModel calcModel = new ProgrammerCalcModel();
     private boolean secondValueInputStarted = false;
     private String packageName;
-    private WordLength wordLength = WordLength.QWORD;
-    private Mode mode = Mode.DEC;
+    private int_size_enum bytelengthenum = int_size_enum.int_size_enum_kvrd;
+    private Mode mode = Mode.mode_enum_dec;
 
     @Nullable
     @Override
@@ -96,8 +96,8 @@ public class ProgrammerFragment extends Fragment {
     }
 
     private void setupOperatorButtons() {
-        int[] operatorButtonIDs = new int[]{R.id.buttonMod, R.id.buttonXOR, R.id.buttonOR, R.id.buttonAND,
-                R.id.buttonLSH, R.id.buttonRSH, R.id.buttonNOT, R.id.buttonDivide, R.id.buttonMultiply,
+        int[] operatorButtonIDs = new int[]{R.id.buttonMod, R.id.button_zor, R.id.buttonOR, R.id.buttonAND,
+                R.id.buttonLSH, R.id.buttonRSH, R.id.buttonNOT, R.id.buttonRDivide, R.id.buttonMultiply,
                 R.id.buttonMinus, R.id.buttonPlus};
         for (int buttonID : operatorButtonIDs) {
             Button button = getView().findViewById(buttonID);
@@ -154,26 +154,17 @@ public class ProgrammerFragment extends Fragment {
         Button modeButton = getView().findViewById(R.id.buttonLength);
         modeButton.setOnClickListener(v -> {
             long val = Long.parseLong(currentString(), mode.getBase());
-            if (wordLength.ordinal() < 3) {
-                int num = wordLength.ordinal();
-                wordLength = WordLength.values()[++num];
-            } else {
-                wordLength = WordLength.QWORD;
+            if (bytelengthenum.ordinal() < 3) {
+                int num = bytelengthenum.ordinal();
+                bytelengthenum = int_size_enum.values()[++num];
+            } else bytelengthenum = int_size_enum.int_size_enum_kvrd;
+            switch (bytelengthenum) {
+                case int_size_enum_dvrd: val = (int) val;break; case int_size_enum_vrd: val = (short) val;break; case int_size_enum_byte: val = (byte) val;
             }
-            switch (wordLength) {
-                case DWORD:
-                    val = (int) val;
-                    break;
-                case WORD:
-                    val = (short) val;
-                    break;
-                case BYTE:
-                    val = (byte) val;
-            }
-            calcModel.setWordLength(wordLength);
+            calcModel.setBytelengthenum(bytelengthenum);
             updateText(formatText(val));
-            Log.d("LengthChanged", "Length button pressed, current value: " + wordLength.toString());
-            modeButton.setText(wordLength.toString());
+            Log.d("LengthChanged", "Length button pressed, current value: " + bytelengthenum.toString());
+            modeButton.setText(bytelengthenum.toString());
         });
     }
 
@@ -182,8 +173,8 @@ public class ProgrammerFragment extends Fragment {
         radioGroup.setOnCheckedChangeListener((v, id) -> {
             long number = Long.parseLong(textView.getText().toString(), mode.getBase());
             switch (id) {
-                case R.id.radioButtonHex: mode = Mode.HEX; enableButtonsALL(); break;
-                case R.id.radioButtonDec: mode = Mode.DEC; enableButtonsDEC(); break;
+                case R.id.radioButtonHex: mode = Mode.mode_enum_heks; enableButtonsALL(); break;
+                case R.id.radioButtonDec: mode = Mode.mode_enum_dec; enableButtonsDEC(); break;
                 // case R.id.radioButtonOct: mode = Mode.OCT; enableButtonsOCT(); break; case R.id.radioButtonBin: mode = Mode.BIN; enableButtonsBIN(); break;
             }
             updateText(formatText(number));

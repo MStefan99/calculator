@@ -7,7 +7,7 @@ import org.junit.Test;
 
 import java.math.BigDecimal;
 
-import static com.annushkaproject.programmerscalculator.model.Operator.DIVIDE;
+import static com.annushkaproject.programmerscalculator.model.Operator.remainder_divide;
 import static org.junit.Assert.assertEquals;
 
 public class StandardDivisionTest {
@@ -15,7 +15,7 @@ public class StandardDivisionTest {
     public void testIwoIntegers() {
         BigDecimal firstValue = BigDecimal.valueOf(25);
         BigDecimal secondValue = BigDecimal.valueOf(5);
-        CalculationModel model = new CalculationModel(firstValue, secondValue, DIVIDE);
+        CalculationModel model = new CalculationModel(firstValue, secondValue, remainder_divide);
         assertEquals(5, StandardOperationsUtil.calculateResultForTwoSidedOperator(model), 0);
     }
 
@@ -23,7 +23,7 @@ public class StandardDivisionTest {
     public void testIwoIntegersRountResult() {
         BigDecimal firstValue = BigDecimal.valueOf(5);
         BigDecimal secondValue = BigDecimal.valueOf(9);
-        CalculationModel model = new CalculationModel(firstValue, secondValue, DIVIDE);
+        CalculationModel model = new CalculationModel(firstValue, secondValue, remainder_divide);
         assertEquals(0.5555555555555556, StandardOperationsUtil.calculateResultForTwoSidedOperator(model), 0);
     }
 
@@ -31,7 +31,7 @@ public class StandardDivisionTest {
     public void testFirstFloat() {
         BigDecimal firstValue = BigDecimal.valueOf(-0.0001);
         BigDecimal secondValue = BigDecimal.valueOf(2);
-        CalculationModel model = new CalculationModel(firstValue, secondValue, DIVIDE);
+        CalculationModel model = new CalculationModel(firstValue, secondValue, remainder_divide);
         assertEquals(-0.00005, StandardOperationsUtil.calculateResultForTwoSidedOperator(model), 0);
     }
 
@@ -39,7 +39,7 @@ public class StandardDivisionTest {
     public void testFloatResult() {
         BigDecimal firstValue = BigDecimal.valueOf(3);
         BigDecimal secondValue = BigDecimal.valueOf(2);
-        CalculationModel model = new CalculationModel(firstValue, secondValue, DIVIDE);
+        CalculationModel model = new CalculationModel(firstValue, secondValue, remainder_divide);
         assertEquals(1.5, StandardOperationsUtil.calculateResultForTwoSidedOperator(model), 0);
     }
 
@@ -47,7 +47,7 @@ public class StandardDivisionTest {
     public void testFloatResultLessThanOne() {
         BigDecimal firstValue = BigDecimal.valueOf(1);
         BigDecimal secondValue = BigDecimal.valueOf(2);
-        CalculationModel model = new CalculationModel(firstValue, secondValue, DIVIDE);
+        CalculationModel model = new CalculationModel(firstValue, secondValue, remainder_divide);
         assertEquals(0.5, StandardOperationsUtil.calculateResultForTwoSidedOperator(model), 0);
     }
 }

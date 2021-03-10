@@ -1,7 +1,7 @@
 package com.annushkaproject.programmerscalculator.utils;
 
 import com.annushkaproject.programmerscalculator.model.ProgrammerCalcModel;
-import com.annushkaproject.programmerscalculator.model.WordLength;
+import com.annushkaproject.programmerscalculator.model.int_size_enum;
 
 import java.math.BigDecimal;
 
@@ -14,193 +14,193 @@ public class ProgrammerOperationsUtil {
     public static long calculateWithData(ProgrammerCalcModel data) {
         switch (data.getOperator()) {
             case ADD:
-                return addSubtract(data.getWordLength(), data.getFirstValue(), data.getSecondValue());
+                return addSubtract(data.getBytelengthenum(), data.getFirstValue(), data.getSecondValue());
             case SUBTRACT:
-                return addSubtract(data.getWordLength(), data.getFirstValue(), data.getSecondValue().negate());
+                return addSubtract(data.getBytelengthenum(), data.getFirstValue(), data.getSecondValue().negate());
             case MULTIPLY:
-                return multiply(data.getWordLength(), data.getFirstValue(), data.getSecondValue());
-            case DIVIDE:
-                return divide(data.getWordLength(), data.getFirstValue(), data.getSecondValue());
+                return multiply(data.getBytelengthenum(), data.getFirstValue(), data.getSecondValue());
+            case remainder_divide:
+                return divide(data.getBytelengthenum(), data.getFirstValue(), data.getSecondValue());
             case LSH:
-                return lsh(data.getWordLength(), data.getFirstValue(), data.getSecondValue());
+                return lsh(data.getBytelengthenum(), data.getFirstValue(), data.getSecondValue());
             case RSH:
-                return rsh(data.getWordLength(), data.getFirstValue(), data.getSecondValue());
+                return rsh(data.getBytelengthenum(), data.getFirstValue(), data.getSecondValue());
             case OR:
-                return or(data.getWordLength(), data.getFirstValue(), data.getSecondValue());
+                return or(data.getBytelengthenum(), data.getFirstValue(), data.getSecondValue());
             case XOR:
-                return xor(data.getWordLength(), data.getFirstValue(), data.getSecondValue());
+                return xor(data.getBytelengthenum(), data.getFirstValue(), data.getSecondValue());
             case AND:
-                return and(data.getWordLength(), data.getFirstValue(), data.getSecondValue());
+                return and(data.getBytelengthenum(), data.getFirstValue(), data.getSecondValue());
             case MOD:
-                return mod(data.getWordLength(), data.getFirstValue(), data.getSecondValue());
+                return mod(data.getBytelengthenum(), data.getFirstValue(), data.getSecondValue());
             case CHANGE_SIGN:
-                return changeSign(data.getWordLength(), data.getFirstValue());
+                return changeSign(data.getBytelengthenum(), data.getFirstValue());
             case NOT:
-                return not(data.getWordLength(), data.getFirstValue());
+                return not(data.getBytelengthenum(), data.getFirstValue());
             default:
                 return 0;
         }
     }
 
-    private static long addSubtract(WordLength mode, BigDecimal value1, BigDecimal value2) {
+    private static long addSubtract(int_size_enum mode, BigDecimal value1, BigDecimal value2) {
         switch (mode) {
-            case QWORD:
+            case int_size_enum_kvrd:
                 return value1.longValue() + value2.longValue();
-            case DWORD:
+            case int_size_enum_dvrd:
                 return value1.intValue() + value2.intValue();
-            case WORD:
+            case int_size_enum_vrd:
                 return (short) (value1.shortValue() + value2.shortValue());
-            case BYTE:
+            case int_size_enum_byte:
                 return (byte) (value1.byteValue() + value2.byteValue());
             default:
                 return 0;
         }
     }
 
-    private static long changeSign(WordLength mode, BigDecimal value) {
+    private static long changeSign(int_size_enum mode, BigDecimal value) {
         switch (mode) {
-            case QWORD:
+            case int_size_enum_kvrd:
                 return value.negate().longValue();
-            case DWORD:
+            case int_size_enum_dvrd:
                 return value.negate().intValue();
-            case WORD:
+            case int_size_enum_vrd:
                 return value.negate().shortValue();
-            case BYTE:
+            case int_size_enum_byte:
                 return value.negate().byteValue();
             default:
                 return 0;
         }
     }
 
-    private static long lsh(WordLength mode, BigDecimal value, BigDecimal shift) {
+    private static long lsh(int_size_enum mode, BigDecimal value, BigDecimal shift) {
         switch (mode) {
-            case QWORD:
+            case int_size_enum_kvrd:
                 return value.longValue() << shift.intValue();
-            case DWORD:
+            case int_size_enum_dvrd:
                 return value.intValue() << shift.intValue();
-            case WORD:
+            case int_size_enum_vrd:
                 return (short) (value.shortValue() << shift.intValue());
-            case BYTE:
+            case int_size_enum_byte:
                 return (byte) (value.byteValue() << shift.intValue());
             default:
                 return 0;
         }
     }
 
-    private static long rsh(WordLength mode, BigDecimal value, BigDecimal shift) {
+    private static long rsh(int_size_enum mode, BigDecimal value, BigDecimal shift) {
         switch (mode) {
-            case QWORD:
+            case int_size_enum_kvrd:
                 return value.longValue() >> shift.intValue();
-            case DWORD:
+            case int_size_enum_dvrd:
                 return value.intValue() >> shift.intValue();
-            case WORD:
+            case int_size_enum_vrd:
                 return (short) (value.shortValue() >> shift.intValue());
-            case BYTE:
+            case int_size_enum_byte:
                 return (byte) (value.byteValue() >> shift.intValue());
             default:
                 return 0;
         }
     }
 
-    private static long not(WordLength mode, BigDecimal value) {
+    private static long not(int_size_enum mode, BigDecimal value) {
         switch (mode) {
-            case QWORD:
+            case int_size_enum_kvrd:
                 return ~value.longValue();
-            case DWORD:
+            case int_size_enum_dvrd:
                 return ~value.intValue();
-            case WORD:
+            case int_size_enum_vrd:
                 return (short) (~value.shortValue());
-            case BYTE:
+            case int_size_enum_byte:
                 return (byte) (~value.byteValue());
             default:
                 return 0;
         }
     }
 
-    private static long or(WordLength mode, BigDecimal value1, BigDecimal value2) {
+    private static long or(int_size_enum mode, BigDecimal value1, BigDecimal value2) {
         switch (mode) {
-            case QWORD:
+            case int_size_enum_kvrd:
                 return value1.longValue() | value2.longValue();
-            case DWORD:
+            case int_size_enum_dvrd:
                 return value1.intValue() | value2.intValue();
-            case WORD:
+            case int_size_enum_vrd:
                 return (short) (value1.shortValue() | value2.shortValue());
-            case BYTE:
+            case int_size_enum_byte:
                 return (byte) (value1.byteValue() | value2.byteValue());
             default:
                 return 0;
         }
     }
 
-    private static long xor(WordLength mode, BigDecimal value1, BigDecimal value2) {
+    private static long xor(int_size_enum mode, BigDecimal value1, BigDecimal value2) {
         switch (mode) {
-            case QWORD:
+            case int_size_enum_kvrd:
                 return value1.longValue() ^ value2.longValue();
-            case DWORD:
+            case int_size_enum_dvrd:
                 return value1.intValue() ^ value2.intValue();
-            case WORD:
+            case int_size_enum_vrd:
                 return (short) (value1.shortValue() ^ value2.shortValue());
-            case BYTE:
+            case int_size_enum_byte:
                 return (byte) (value1.byteValue() ^ value2.byteValue());
             default:
                 return 0;
         }
     }
 
-    private static long and(WordLength mode, BigDecimal value1, BigDecimal value2) {
+    private static long and(int_size_enum mode, BigDecimal value1, BigDecimal value2) {
         switch (mode) {
-            case QWORD:
+            case int_size_enum_kvrd:
                 return value1.longValue() & value2.longValue();
-            case DWORD:
+            case int_size_enum_dvrd:
                 return value1.intValue() & value2.intValue();
-            case WORD:
+            case int_size_enum_vrd:
                 return (short) (value1.shortValue() & value2.shortValue());
-            case BYTE:
+            case int_size_enum_byte:
                 return (byte) (value1.byteValue() & value2.byteValue());
             default:
                 return 0;
         }
     }
 
-    private static long mod(WordLength mode, BigDecimal dividend, BigDecimal divider) {
+    private static long mod(int_size_enum mode, BigDecimal dividend, BigDecimal divider) {
         switch (mode) {
-            case QWORD:
+            case int_size_enum_kvrd:
                 return dividend.longValue() % divider.longValue();
-            case DWORD:
+            case int_size_enum_dvrd:
                 return dividend.intValue() % divider.intValue();
-            case WORD:
+            case int_size_enum_vrd:
                 return (short) (dividend.shortValue() % divider.shortValue());
-            case BYTE:
+            case int_size_enum_byte:
                 return (byte) (dividend.byteValue() % divider.byteValue());
             default:
                 return 0;
         }
     }
 
-    private static long multiply(WordLength mode, BigDecimal value1, BigDecimal value2) {
+    private static long multiply(int_size_enum mode, BigDecimal value1, BigDecimal value2) {
         switch (mode) {
-            case QWORD:
+            case int_size_enum_kvrd:
                 return value1.longValue() * value2.longValue();
-            case DWORD:
+            case int_size_enum_dvrd:
                 return value1.intValue() * value2.intValue();
-            case WORD:
+            case int_size_enum_vrd:
                 return (short) (value1.shortValue() * value2.shortValue());
-            case BYTE:
+            case int_size_enum_byte:
                 return (byte) (value1.byteValue() * value2.byteValue());
             default:
                 return 0;
         }
     }
 
-    private static long divide(WordLength mode, BigDecimal dividend, BigDecimal divider) {
+    private static long divide(int_size_enum mode, BigDecimal dividend, BigDecimal divider) {
         switch (mode) {
-            case QWORD:
+            case int_size_enum_kvrd:
                 return dividend.longValue() / divider.longValue();
-            case DWORD:
+            case int_size_enum_dvrd:
                 return dividend.intValue() / divider.intValue();
-            case WORD:
+            case int_size_enum_vrd:
                 return (short) (dividend.shortValue() / divider.shortValue());
-            case BYTE:
+            case int_size_enum_byte:
                 return (byte) (dividend.byteValue() / divider.byteValue());
             default:
                 return 0;
