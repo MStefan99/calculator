@@ -26,7 +26,7 @@ public class ProgrammerFragment extends Fragment {
     private ProgrammerCalcModel calcModel = new ProgrammerCalcModel();
     private boolean secondValueInputStarted = false;
     private String packageName;
-    private int_size_enum bytelengthenum = int_size_enum.int_size_enum_kvrd;
+    private int_size_enum bytelengthenum = int_size_enum.len8;
 //    private mode_enum modeenum = mode_enum.mode_enum_dec;
     private mode_enum modeenum = mode_enum.mode_enum_heks;
 
@@ -106,17 +106,17 @@ public class ProgrammerFragment extends Fragment {
             updateText(updatedString);
         });
     }
-
+    private String currentString() { return textView.getText().toString(); }
     private void setupWordLengthButton() { Button modeButton = getView().findViewById(R.id.buttonLength);modeButton.setOnClickListener(v -> {
             long val = Long.parseLong(currentString(), modeenum.getBase());
             if (bytelengthenum.ordinal() < 3) {
                 int num = bytelengthenum.ordinal();
                 bytelengthenum = int_size_enum.values()[++num];
-            } else bytelengthenum = int_size_enum.int_size_enum_kvrd;
+            } else bytelengthenum = int_size_enum.len8;
             switch (bytelengthenum) {
-                case int_size_enum_dvrd: val = (int) val;break;
-                case int_size_enum_vrd: val = (short) val;break;
-                case int_size_enum_byte: val = (byte) val;
+                case len4: val = (int) val;break;
+                case len2: val = (short) val;break;
+                case len1: val = (byte) val;
             }
             calcModel.setBytelengthenum(bytelengthenum);
             updateText(formatText(val));
@@ -135,10 +135,6 @@ public class ProgrammerFragment extends Fragment {
             updateText(formatText(number));
             Log.d("ModeChanged", "mode_enum radio pressed, current value: " + modeenum.toString());
         });
-    }
-
-    private String currentString() {
-        return textView.getText().toString();
     }
 
     private void usePressedNumber(String number) {
