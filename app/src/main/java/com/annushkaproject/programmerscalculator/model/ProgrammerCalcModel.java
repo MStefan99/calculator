@@ -1,11 +1,11 @@
 package com.annushkaproject.programmerscalculator.model;
 import java.math.BigDecimal;
-import static com.annushkaproject.programmerscalculator.model.int_size_enum.len8;
+import static com.annushkaproject.programmerscalculator.model.int_size_enum.l8;
 public class ProgrammerCalcModel extends CalculationModel {
     private int_size_enum bytelengthenum;
     public int_size_enum getBytelengthenum() { return bytelengthenum; }
     public void setBytelengthenum(int_size_enum bytelengthenum) { this.bytelengthenum = bytelengthenum; }
-    public ProgrammerCalcModel() { this.bytelengthenum = len8; }
+    public ProgrammerCalcModel() { this.bytelengthenum = l8; }
     public ProgrammerCalcModel(BigDecimal firstValue, Operator operator, int_size_enum bytelengthenum) {
         super(firstValue, operator);
         this.bytelengthenum = bytelengthenum;

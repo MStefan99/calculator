@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
@@ -26,7 +27,7 @@ public class ProgrammerFragment extends Fragment {
     private ProgrammerCalcModel calcModel = new ProgrammerCalcModel();
     private boolean secondValueInputStarted = false;
     private String packageName;
-    private int_size_enum bytelengthenum = int_size_enum.len8;
+    private int_size_enum bytelengthenum = int_size_enum.l8;
 //    private mode_enum modeenum = mode_enum.mode_enum_dec;
     private mode_enum modeenum = mode_enum.mode_enum_heks;
 
@@ -44,7 +45,9 @@ public class ProgrammerFragment extends Fragment {
         textView = getView().findViewById(R.id.inputField); textView2 = getView().findViewById(R.id.inputField2);
         setupNumberButtons();setupOperatorButtons();setupLetterButtons();setupCalculateButton();setupDeleteButton();
         //setupClearButton(); TODO: add clear button
-        setupSignButton();setupModeRadio();setupWordLengthButton();enableButtonsDEC();
+        setupSignButton();
+//        setupModeRadio();
+        setup_heks_cb();setupWordLengthButton();enableButtonsDEC();
     }
 
     @Override public void onSaveInstanceState(@NonNull Bundle outState) { super.onSaveInstanceState(outState);
@@ -112,11 +115,11 @@ public class ProgrammerFragment extends Fragment {
             if (bytelengthenum.ordinal() < 3) {
                 int num = bytelengthenum.ordinal();
                 bytelengthenum = int_size_enum.values()[++num];
-            } else bytelengthenum = int_size_enum.len8;
+            } else bytelengthenum = int_size_enum.l8;
             switch (bytelengthenum) {
-                case len4: val = (int) val;break;
-                case len2: val = (short) val;break;
-                case len1: val = (byte) val;
+                case l4: val = (int) val;break;
+                case l2: val = (short) val;break;
+                case l1: val = (byte) val;
             }
             calcModel.setBytelengthenum(bytelengthenum);
             updateText(formatText(val));
@@ -125,18 +128,25 @@ public class ProgrammerFragment extends Fragment {
         });
     }
 
-    private void setupModeRadio() { RadioGroup radioGroup = getView().findViewById(R.id.radioGroup);radioGroup.setOnCheckedChangeListener((v, id) -> {
+//    private void setupModeRadio() { RadioGroup radioGroup = getView().findViewById(R.id.radioGroup);radioGroup.setOnCheckedChangeListener((v, id) -> {
+//            long number = Long.parseLong(textView.getText().toString(), modeenum.getBase());
+//            switch (id) {
+//                case R.id.radioButtonHex: modeenum = mode_enum.mode_enum_heks; enableButtonsALL(); break;
+//                case R.id.radioButtonDec: modeenum = mode_enum.mode_enum_dec; enableButtonsDEC(); break;
+//                // case R.id.radioButtonOct: modeenum = mode_enum.OCT; enableButtonsOCT(); break; case R.id.radioButtonBin: modeenum = mode_enum.BIN; enableButtonsBIN(); break;
+//            }
+//            updateText(formatText(number));
+//            Log.d("ModeChanged", "mode_enum radio pressed, current value: " + modeenum.toString());
+//        });
+//    }
+    private void setup_heks_cb() {
+        CheckBox heks_cb = getView().findViewById(R.id.heks_check_boks); heks_cb.setOnCheckedChangeListener( (v, id) -> {
             long number = Long.parseLong(textView.getText().toString(), modeenum.getBase());
-            switch (id) {
-                case R.id.radioButtonHex: modeenum = mode_enum.mode_enum_heks; enableButtonsALL(); break;
-                case R.id.radioButtonDec: modeenum = mode_enum.mode_enum_dec; enableButtonsDEC(); break;
-                // case R.id.radioButtonOct: modeenum = mode_enum.OCT; enableButtonsOCT(); break; case R.id.radioButtonBin: modeenum = mode_enum.BIN; enableButtonsBIN(); break;
-            }
+            if (heks_cb.isChecked()) { modeenum = mode_enum.mode_enum_heks; enableButtonsALL(); }
+            else {modeenum = mode_enum.mode_enum_dec; enableButtonsDEC();}
             updateText(formatText(number));
-            Log.d("ModeChanged", "mode_enum radio pressed, current value: " + modeenum.toString());
         });
     }
-
     private void usePressedNumber(String number) {
         if (currentString().equals("0") && !number.equals(".")) { textView.setText(""); textView2.setText(""); }
         String newString;
