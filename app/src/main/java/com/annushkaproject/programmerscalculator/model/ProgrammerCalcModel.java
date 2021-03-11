@@ -15,11 +15,11 @@ public class ProgrammerCalcModel extends CalculationModel {
         super(firstValue, secondValue, operator);
         this.bytelengthenum = bytelengthenum;
     }
-    public void updateValues(String text, Mode mode) {
+    public void updateValues(String text, mode_enum modeenum) {
         if (this.getOperator() == null) {
-            setFirstValue(Long.parseLong(text, mode.getBase()));
+            setFirstValue(Long.parseLong(text, modeenum.getBase()));
         } else {
-            setSecondValue(Long.parseLong(text, mode.getBase()));
+            setSecondValue(Long.parseLong(text, modeenum.getBase()));
         }
     }
 

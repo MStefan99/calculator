@@ -49,14 +49,14 @@ public class ThemesFragment extends Fragment {
         lightRadio.setOnClickListener((v) -> {
             ThemeSetting theme = ThemeSetting.LIGHT;
             prefUtil.saveThemeSetting(ThemeSetting.getThemeSettingByNumber(ThemeSetting.getNumberByThemeSetting(theme)));
-            Log.d("ThemeChanged", "Mode radio pressed, current value: " + theme.toString());
+            Log.d("ThemeChanged", "mode_enum radio pressed, current value: " + theme.toString());
             getActivity().recreate();
         });
 
         darkRadio.setOnClickListener((v) -> {
             ThemeSetting theme = ThemeSetting.DARK;
             prefUtil.saveThemeSetting(ThemeSetting.getThemeSettingByNumber(ThemeSetting.getNumberByThemeSetting(theme)));
-            Log.d("ThemeChanged", "Mode radio pressed, current value: " + theme.toString());
+            Log.d("ThemeChanged", "mode_enum radio pressed, current value: " + theme.toString());
             getActivity().recreate();
         });
 

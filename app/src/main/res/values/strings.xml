@@ -51,6 +51,6 @@
     <string name="abs_operator_string" translatable="false">|a|</string>
     <string name="skuareroot_operator_string" translatable="false">√</string>
     <string name="factorial_operator_string" translatable="false">a!</string>
-    <string name="mod_operator_string" translatable="false">mod</string>
+    <string name="get_remainder_button_string" translatable="false">÷_M</string>
 
 </resources>

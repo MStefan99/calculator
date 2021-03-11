@@ -9,4 +9,13 @@
     <dimen name="dizits_tekst_size">36sp</dimen>
     <dimen name="dot_tekst_size">42sp</dimen>
     <dimen name="divide_tekst_size">20sp</dimen>
+    <dimen name="remainder_tekst_size">20sp</dimen>
+    <dimen name="float_divide_tekst_size">20sp</dimen>
+    <dimen name="lsh_tekst_size">20sp</dimen>
+    <dimen name="rsh_tekst_size">20sp</dimen>
+    <dimen name="or_tekst_size">28sp</dimen>
+    <dimen name="not_tekst_size">24sp</dimen>
+    <dimen name="and_tekst_size">20sp</dimen>
+    <dimen name="zor_tekst_size">20sp</dimen>
+    <dimen name="sign_tekst_size">28sp</dimen>
 </resources>
