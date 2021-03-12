@@ -17,5 +17,6 @@
     <dimen name="not_tekst_size">24sp</dimen>
     <dimen name="and_tekst_size">20sp</dimen>
     <dimen name="zor_tekst_size">20sp</dimen>
-    <dimen name="sign_tekst_size">28sp</dimen>
+    <dimen name="sign_tekst_size">20sp</dimen>
+    <dimen name="del_tekst_size">40dp</dimen>
 </resources>
