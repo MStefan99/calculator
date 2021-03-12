@@ -10,7 +10,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.annushkaproject.programmerscalculator.R;
@@ -23,13 +22,15 @@ import com.annushkaproject.programmerscalculator.utils.ProgrammerOperationsUtil;
 
 public class ProgrammerFragment extends Fragment {
 
-    private TextView textView; private TextView textView2;
+    private TextView textView; private TextView textView3;
     private ProgrammerCalcModel calcModel = new ProgrammerCalcModel();
     private boolean secondValueInputStarted = false;
     private String packageName;
     private int_size_enum bytelengthenum = int_size_enum.l8;
 //    private mode_enum modeenum = mode_enum.mode_enum_dec;
     private mode_enum modeenum = mode_enum.mode_enum_heks;
+    private boolean limit_phen_dizits_recahed = false ;
+    private int limit_dizits = 14 ;
 
     @Nullable @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -42,7 +43,7 @@ public class ProgrammerFragment extends Fragment {
     }
 
     @Override public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) { super.onViewCreated(view, savedInstanceState);
-        textView = getView().findViewById(R.id.inputField); textView2 = getView().findViewById(R.id.inputField2);
+        textView = getView().findViewById(R.id.inputField); textView3 = getView().findViewById(R.id.inputField2);
         setupNumberButtons();setupOperatorButtons();setupLetterButtons();setupCalculateButton();setupDeleteButton();
         //setupClearButton(); TODO: add clear button
         setupSignButton();
@@ -61,7 +62,9 @@ public class ProgrammerFragment extends Fragment {
     private void setupNumberButtons() {
         for (int i = 0; i < 10; i++) {
             Button button = getView().findViewById(getResources().getIdentifier("button" + i, "id", packageName));
-            button.setOnClickListener((v) -> { usePressedNumber(((Button) v).getText().toString()); });
+            button.setOnClickListener((v) -> {
+                if (!limit_phen_dizits_recahed) usePressedNumber(((Button) v).getText().toString());
+            });
         }
     }
 
@@ -70,7 +73,10 @@ public class ProgrammerFragment extends Fragment {
         for (int buttonID : letterButtonIDs) {
             Button button = getView().findViewById(buttonID);
             button.setOnClickListener((v) -> {
-                System.out.println(button.getText().toString()); usePressedNumber(((Button) v).getText().toString());
+                if (!limit_phen_dizits_recahed) {
+                    System.out.println(button.getText().toString());
+                    usePressedNumber(((Button) v).getText().toString());
+                }
             });
         }
     }
@@ -80,8 +86,10 @@ public class ProgrammerFragment extends Fragment {
                 R.id.buttonLSH, R.id.buttonRSH, R.id.buttonNOT, R.id.buttonRDivide, R.id.buttonMultiply,
                 R.id.buttonMinus, R.id.buttonPlus};
         for (int buttonID : operatorButtonIDs) { Button button = getView().findViewById(buttonID);button.setOnClickListener((v) -> {
+            if (!limit_phen_dizits_recahed) {
                 Operator operator = Operator.operatorForTitle(button.getText().toString());
                 usePressedOperator(operator);
+            }
             });
         }
     }
@@ -94,12 +102,13 @@ public class ProgrammerFragment extends Fragment {
 
     private void setupDeleteButton() { Button delButton = getView().findViewById(R.id.buttonDel); delButton.setOnClickListener(v -> {
             String currentString = currentString();
-            if (!currentString.equals("-") && currentString.length() > 1) {
-                currentString = currentString.substring(0, currentString.length() - 1);
-                updateText(currentString);
-            } else updateText(calcModel.textForValue(0.0));
-        });
-    }
+            if (limit_phen_dizits_recahed) { enableButtonsALL(); enableOperatorButtons(); limit_phen_dizits_recahed = false ;}
+            else if (!currentString.equals("-") && currentString.length() > 1) {
+                    currentString = currentString.substring(0, currentString.length() - 1);
+                    updateText(currentString);
+            }
+            else updateText(calcModel.textForValue(0.0));
+    }); }
 
     private void setupSignButton() { Button signButton = getView().findViewById(R.id.buttonSign);signButton.setOnClickListener(v -> {
             long currentValue = Long.parseLong(currentString(), modeenum.getBase());
@@ -148,7 +157,7 @@ public class ProgrammerFragment extends Fragment {
         });
     }
     private void usePressedNumber(String number) {
-        if (currentString().equals("0") && !number.equals(".")) { textView.setText(""); textView2.setText(""); }
+        if (currentString().equals("0") && !number.equals(".")) { textView.setText(""); textView3.setText(""); }
         String newString;
         if (secondValueInputStarted) { newString = number;secondValueInputStarted = false; }
         else newString = textView.getText().toString() + number;
@@ -177,33 +186,68 @@ public class ProgrammerFragment extends Fragment {
     private String formatText(long number) { return Long.toString(number, modeenum.getBase()).toUpperCase(); }
 
     private void updateText(String updatedText) {
-        textView.setText(updatedText); textView2.setText(updatedText);
-        if (updatedText.length() > 10) { textView.setTextSize(24); textView2.setTextSize(24); } else { textView.setTextSize(30); textView2.setTextSize(30); }
-        calcModel.updateValues(updatedText, modeenum);
+        if(updatedText.length() > limit_dizits)
+        {
+            disableAllButtons();
+            disableOperatorButtons();
+            limit_phen_dizits_recahed = true ;
+        }
+        else
+        {
+            if (updatedText.length() > 12) {
+                int input1_tekst_size_small = (int) (getResources().getDimension(R.dimen.input1_tekst_size_small));// / getResources().getDisplayMetrics().density) ;
+                int input3_tekst_size_small = (int) (getResources().getDimension(R.dimen.input3_tekst_size_small));// / getResources().getDisplayMetrics().density) ;
+
+                textView.setTextSize(18);
+                textView3.setTextSize(27);
+            }
+            else {
+                int input1_tekst_size_big = (int) (getResources().getDimension(R.dimen.input1_tekst_size_big));// / getResources().getDisplayMetrics().density) ;
+                int input3_tekst_size_big = (int) (getResources().getDimension(R.dimen.input3_tekst_size_big));// / getResources().getDisplayMetrics().density) ;
+                textView.setTextSize(26);
+                textView3.setTextSize(39);
+            }
+            textView.setText(updatedText); textView3.setText(updatedText);
+            calcModel.updateValues(updatedText, modeenum);
+        }
     }
 
     private void setTextViewValue(Double value) {
         boolean isWholeValue = value % 1 == 0;
         if (isWholeValue) {
-            textView.setText(String.format("%.0f", value)); textView2.setText(String.format("%.0f", value));
+            textView.setText(String.format("%.0f", value)); textView3.setText(String.format("%.0f", value));
         } else {
-            textView.setText(Double.toString(value)); textView2.setText(Double.toString(value));
+            textView.setText(Double.toString(value)); textView3.setText(Double.toString(value));
         }
     }
 
+    private void disableOperatorButtons() { setOperatorButtonsClickable(false); }
+    private void enableOperatorButtons() { setOperatorButtonsClickable(true); }
     private void disableAllButtons() { setNumberButtonsClickable(10, false);setLetterButtonsClickable(false); }
 //    private void enableButtonsBIN() { disableAllButtons();setNumberButtonsClickable(2, true); }
 //    private void enableButtonsOCT() { disableAllButtons();setNumberButtonsClickable(8, true); }
     private void enableButtonsDEC() { disableAllButtons();setNumberButtonsClickable(10, true); }
     private void enableButtonsALL() { setLetterButtonsClickable(true);setNumberButtonsClickable(10, true); }
+
     private void setLetterButtonsClickable(boolean mode) {
         int[] letterButtonIDs = new int[]{R.id.buttonA, R.id.buttonB, R.id.buttonC, R.id.buttonD, R.id.buttonE, R.id.buttonF};
         for (int buttonID : letterButtonIDs) { Button button = getView().findViewById(buttonID);button.setEnabled(mode); }
     }
+
     private void setNumberButtonsClickable(int range, boolean mode) {
         for (int i = 0; i < range; i++) {
             Button button = getView().findViewById(getResources().getIdentifier("button" + i, "id", packageName));
             button.setEnabled(mode);
         }
+    }
+
+    private void setOperatorButtonsClickable(boolean mode) {
+        int[] letterButtonIDs = new int[]{
+                R.id.button_decimal_point,  R.id.buttonRDivide, R.id.buttonFdivide, R.id.buttonMod,
+                R.id.buttonMinus, R.id.buttonPlus , R.id.buttonMultiply, R.id.buttonPower,
+                R.id.button_decimal_point, R.id.buttonEquals,
+                R.id.button_zor, R.id.buttonOR, R.id.buttonNOT , R.id.buttonAND , R.id.buttonLSH , R.id.buttonRSH,
+        };
+        for (int buttonID : letterButtonIDs) { Button button = getView().findViewById(buttonID);button.setEnabled(mode); }
     }
 }

@@ -6,8 +6,22 @@
     <dimen name="nav_header_height">176dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="button_stroke">1dp</dimen>
+
+    <dimen name="input1_hait">48dp</dimen>
+    <dimen name="input2_hait">48dp</dimen>
+    <dimen name="input3_hait">48dp</dimen>
+    <dimen name="btn_ro1_hait">48dp</dimen>
+    <dimen name="btn_ro2_hait">48dp</dimen>
+    <dimen name="btn_ro3_hait">48dp</dimen>
+
+    <dimen name="input1_tekst_size_small">18sp</dimen>
+    <dimen name="input1_tekst_size_big">26sp</dimen>
+    <dimen name="input2_tekst_size">26sp</dimen>
+    <dimen name="input3_tekst_size_small">27sp</dimen>
+    <dimen name="input3_tekst_size_big">39sp</dimen>
+
     <dimen name="dizits_tekst_size">36sp</dimen>
-    <dimen name="dot_tekst_size">42sp</dimen>
+    <dimen name="dot_tekst_size">28sp</dimen>
     <dimen name="divide_tekst_size">20sp</dimen>
     <dimen name="remainder_tekst_size">20sp</dimen>
     <dimen name="float_divide_tekst_size">20sp</dimen>
@@ -18,5 +32,9 @@
     <dimen name="and_tekst_size">20sp</dimen>
     <dimen name="zor_tekst_size">20sp</dimen>
     <dimen name="sign_tekst_size">20sp</dimen>
-    <dimen name="del_tekst_size">40dp</dimen>
+    <dimen name="del_tekst_size">20sp</dimen>
+    <dimen name="f_tekst_size">20sp</dimen>
+    <dimen name="int_len_button_label_size">24sp</dimen>
+    <dimen name="int_button_label_size">18sp</dimen>
+
 </resources>

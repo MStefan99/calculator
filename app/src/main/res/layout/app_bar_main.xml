@@ -8,7 +8,7 @@
         <android.support.design.widget.AppBarLayout android:layout_width="match_parent"
         android:layout_height="wrap_content" android:background="?attr/backgroundColor">
             <android.support.v7.widget.Toolbar android:id="@+id/toolbar" android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize" android:background="?attr/accentColor" /> 
+                android:layout_height="?attr/actionBarSize" android:background="?attr/app_bar_bg_color" />
         </android.support.design.widget.AppBarLayout>
         <FrameLayout android:id="@+id/fragment_container" android:layout_width="match_parent"
             android:layout_height="match_parent" android:background="?attr/backgroundColor" />

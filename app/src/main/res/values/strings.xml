@@ -52,5 +52,8 @@
     <string name="skuareroot_operator_string" translatable="false">√</string>
     <string name="factorial_operator_string" translatable="false">a!</string>
     <string name="get_remainder_button_string" translatable="false">÷_M</string>
+    <string name="heks_cb_label" translatable="false">h8</string>
+    <string name="phlot_div_button_label" translatable="false">÷_f</string>
+    <string name="int_cb_label" translatable="false">int</string>
 
 </resources>

@@ -1,17 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="accentColor">#606060</color>
+<!--    <color name="accentColor">#606060</color>-->
+    <color name="accentColor">#000000</color>
 <!--    <color name="accentColor">#51B8E5</color>-->
 
     <color name="dizits_tekst_color">#000000</color>
+    <color name="app_bar_bg_color">#bbbb22</color>
 
     <!-- <color name="themeColor">#FFFFFF</color> -->
     <!-- <color name="themeColor">#606060</color> -->
     <color name="themeColor">#EEEEEE</color>
     
     <!-- color of zor button -->
-    <color name="primaryTextColor">#606060</color>
-    
+<!--    <color name="primaryTextColor">#606060</color>-->
+    <color name="primaryTextColor">#000000</color>
+
     <color name="secondaryTextColor">#898989</color>
     <!-- <color name="disabledTextColor">#DDDDDD</color> -->
     <color name="disabledTextColor">#606060</color>
