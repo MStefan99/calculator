@@ -55,9 +55,7 @@ public class ProgrammerFragment extends Fragment {
         InstanceStateUtil.saveInstanceState(outState, calcModel, packageName);
     }
 
-    public void setupFragment(String packageName) {
-        this.packageName = packageName;
-    }
+    public void setupFragment(String packageName) { this.packageName = packageName; }
 
     private void setupNumberButtons() {
         for (int i = 0; i < 10; i++) {
