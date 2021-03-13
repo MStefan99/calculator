@@ -39,12 +39,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         toggle.syncState();
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+//        if (savedInstanceState == null) {
+//            //Open standard fragment when start the app for the first time.
+//            StandardFragment standardFragment = new StandardFragment();
+//            standardFragment.setupFragment(getPackageName());
+//            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, standardFragment).commit();
+//            navigationView.setCheckedItem(R.id.nav_standard_mode);
+//        }
         if (savedInstanceState == null) {
-            //Open standard fragment when start the app for the first time.
-            StandardFragment standardFragment = new StandardFragment();
-            standardFragment.setupFragment(getPackageName());
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, standardFragment).commit();
-            navigationView.setCheckedItem(R.id.nav_standard_mode);
+            //Open programmer fragment when start the app for the first time.
+            ProgrammerFragment programmer_fragment = new ProgrammerFragment();
+            programmer_fragment.setupFragment(getPackageName());
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, programmer_fragment).commit();
+            navigationView.setCheckedItem(R.id.nav_programmer_mode);
         }
     }
 

@@ -35,6 +35,6 @@
     <dimen name="del_tekst_size">20sp</dimen>
     <dimen name="f_tekst_size">20sp</dimen>
     <dimen name="int_len_button_label_size">24sp</dimen>
-    <dimen name="int_button_label_size">18sp</dimen>
+    <dimen name="int_button_label_size">14sp</dimen>
 
 </resources>
