@@ -105,7 +105,7 @@
       app:layout_constraintTop_toBottomOf="@+id/buttonOR" />/>
 
   <Button    android:id="@+id/buttonLSH" android:fontFamily="@font/u5" android:text="@string/lsh_operator_string" android:layout_width="0dp" android:layout_height="0dp"
-   android:background="@drawable/calculator_button_secondary" android:textColor="?attr/primaryTextColor"
+   android:background="@drawable/calculator_button_secondary" android:textColor="?attr/primaryTextColor"  android:textAllCaps="false"
       app:layout_constraintBottom_toBottomOf="@id/buttonNOT" app:layout_constraintTop_toBottomOf="@+id/buttonOR"
    app:layout_constraintStart_toEndOf="@+id/buttonNOT" app:layout_constraintEnd_toStartOf="@+id/buttonRSH"    />
 

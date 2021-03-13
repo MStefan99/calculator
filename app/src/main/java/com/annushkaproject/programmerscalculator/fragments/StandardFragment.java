@@ -71,17 +71,10 @@ public class StandardFragment extends Fragment {
         setupSignButton();
     }
 
-    @Override
-    public void onSaveInstanceState(@NonNull Bundle outState) {
-        super.onSaveInstanceState(outState);
+    @Override public void onSaveInstanceState(@NonNull Bundle outState) { super.onSaveInstanceState(outState);
         InstanceStateUtil.saveInstanceState(outState, calcModel, packageName);
     }
 
-    /**
-     * Sets up the package name for the fragment. It is necessary to call this method before opening the fragment.
-     *
-     * @param packageName Name of the package that will be used by fragment.
-     */
     public void setupFragment(String packageName) {
         this.packageName = packageName;
     }
