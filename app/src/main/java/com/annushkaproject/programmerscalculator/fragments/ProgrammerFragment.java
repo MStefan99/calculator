@@ -48,7 +48,9 @@ public class ProgrammerFragment extends Fragment {
         //setupClearButton(); TODO: add clear button
         setupSignButton();
 //        setupModeRadio();
-        setup_heks_cb();setupWordLengthButton();enableButtonsDEC();
+        setup_heks_cb(); modeenum = mode_enum.mode_enum_heks; enableButtonsALL();
+
+        setupWordLengthButton();
     }
 
     @Override public void onSaveInstanceState(@NonNull Bundle outState) { super.onSaveInstanceState(outState);
