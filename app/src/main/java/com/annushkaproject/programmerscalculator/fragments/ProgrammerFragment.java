@@ -8,7 +8,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -25,7 +24,8 @@ import com.annushkaproject.programmerscalculator.utils.ProgrammerOperationsUtil;
 
 public class ProgrammerFragment extends Fragment {
 
-    private TextView textView; private TextView textView3;
+    private TextView u5h_tekst_viyu; private TextView u2b_tekst_viyu;
+    private TextView dizit_tekst_viyu; private TextView ekuation_tekst_viyu;
     private ProgrammerCalcModel calcModel = new ProgrammerCalcModel();
     private boolean secondValueInputStarted = false;
     private String packageName;
@@ -34,6 +34,7 @@ public class ProgrammerFragment extends Fragment {
     private mode_enum modeenum = mode_enum.mode_enum_heks;
     private boolean limit_phen_dizits_recahed = false ;
     private int limit_dizits = 14 ;
+//    String[] dizit_nems_array = getResources().getStringArray(R.array.dizit_nems_array);
 
     @Nullable @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -46,7 +47,9 @@ public class ProgrammerFragment extends Fragment {
     }
 
     @Override public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) { super.onViewCreated(view, savedInstanceState);
-        textView = getView().findViewById(R.id.inputField); textView3 = getView().findViewById(R.id.inputField2);
+        u5h_tekst_viyu = getView().findViewById(R.id.u5h_tekst_viyu); u2b_tekst_viyu = getView().findViewById(R.id.u2b_tekst_viyu);
+        dizit_tekst_viyu = getView().findViewById(R.id.dizit_tekst_viyu); ekuation_tekst_viyu = getView().findViewById(R.id.ekuation_tekst_viyu);
+        //
         setupNumberButtons();setupOperatorButtons();setupLetterButtons();setupCalculateButton();setupDeleteButton();
         //setupClearButton(); TODO: add clear button
         setupSignButton();
@@ -65,7 +68,9 @@ public class ProgrammerFragment extends Fragment {
     private void setupNumberButtons() {
         for (int i = 0; i < 10; i++) {
             Button button = getView().findViewById(getResources().getIdentifier("button" + i, "id", packageName));
+//            int finalI = i;
             button.setOnClickListener((v) -> {
+//                dizit_tekst_viyu.setText(dizit_nems_array[finalI]);
                 if (!limit_phen_dizits_recahed) usePressedNumber(((Button) v).getText().toString());
             });
         }
@@ -73,14 +78,27 @@ public class ProgrammerFragment extends Fragment {
 
     private void setupLetterButtons() {
         int[] letterButtonIDs = new int[]{R.id.buttonA, R.id.buttonB, R.id.buttonC, R.id.buttonD, R.id.buttonE, R.id.buttonF};
+//        int for_start_i = 10 ;
         for (int buttonID : letterButtonIDs) {
             Button button = getView().findViewById(buttonID);
+//            int finalFor_start_i = for_start_i;
             button.setOnClickListener((v) -> {
+//                dizit_tekst_viyu.setText(dizit_nems_array[finalFor_start_i]);
+                switch (buttonID) {
+                    case R.id.buttonA : dizit_tekst_viyu.setText("ten"); break;
+                    case R.id.buttonB : dizit_tekst_viyu.setText("zilevn"); break;
+                    case R.id.buttonC : dizit_tekst_viyu.setText("kvAlv"); break;
+                    case R.id.buttonD : dizit_tekst_viyu.setText("dblyu"); break;
+                    case R.id.buttonE : dizit_tekst_viyu.setText("Aksen"); break;
+                    case R.id.buttonF : dizit_tekst_viyu.setText("phen"); break;
+                }
+
                 if (!limit_phen_dizits_recahed) {
-                    System.out.println(button.getText().toString());
+//                    System.out.println(button.getText().toString());
                     usePressedNumber(((Button) v).getText().toString());
                 }
             });
+//            for_start_i += 1;
         }
     }
 
@@ -121,7 +139,7 @@ public class ProgrammerFragment extends Fragment {
             updateText(updatedString);
         });
     }
-    private String currentString() { return textView.getText().toString(); }
+    private String currentString() { return u5h_tekst_viyu.getText().toString(); }
     private void setupWordLengthButton() { Button modeButton = getView().findViewById(R.id.buttonLength);modeButton.setOnClickListener(v -> {
             long val = Long.parseLong(currentString(), modeenum.getBase());
             if (bytelengthenum.ordinal() < 3) {
@@ -153,7 +171,7 @@ public class ProgrammerFragment extends Fragment {
 //    }
     private void setup_heks_cb() {
         CheckBox heks_cb = getView().findViewById(R.id.heks_check_boks); heks_cb.setOnCheckedChangeListener( (v, id) -> {
-            long number = Long.parseLong(textView.getText().toString(), modeenum.getBase());
+            long number = Long.parseLong(u5h_tekst_viyu.getText().toString(), modeenum.getBase());
             if (heks_cb.isChecked()) { modeenum = mode_enum.mode_enum_heks; enableButtonsALL(); }
             else {modeenum = mode_enum.mode_enum_dec; enableButtonsDEC();}
             updateText(formatText(number));
@@ -171,10 +189,10 @@ public class ProgrammerFragment extends Fragment {
 //        spinner.setOnItemClickListener((AdapterView.OnItemClickListener) spinboks_listener);
     }
     private void usePressedNumber(String number) {
-        if (currentString().equals("0") && !number.equals(".")) { textView.setText(""); textView3.setText(""); }
+        if (currentString().equals("0") && !number.equals(".")) { u5h_tekst_viyu.setText(""); u2b_tekst_viyu.setText(""); }
         String newString;
         if (secondValueInputStarted) { newString = number;secondValueInputStarted = false; }
-        else newString = textView.getText().toString() + number;
+        else newString = u5h_tekst_viyu.getText().toString() + number;
         updateText(newString);
     }
 
@@ -212,16 +230,16 @@ public class ProgrammerFragment extends Fragment {
                 int input1_tekst_size_small = (int) (getResources().getDimension(R.dimen.input1_tekst_size_small));// / getResources().getDisplayMetrics().density) ;
                 int input3_tekst_size_small = (int) (getResources().getDimension(R.dimen.input3_tekst_size_small));// / getResources().getDisplayMetrics().density) ;
 
-                textView.setTextSize(18);
-                textView3.setTextSize(27);
+                u5h_tekst_viyu.setTextSize(18);
+                u2b_tekst_viyu.setTextSize(27);
             }
             else {
                 int input1_tekst_size_big = (int) (getResources().getDimension(R.dimen.input1_tekst_size_big));// / getResources().getDisplayMetrics().density) ;
                 int input3_tekst_size_big = (int) (getResources().getDimension(R.dimen.input3_tekst_size_big));// / getResources().getDisplayMetrics().density) ;
-                textView.setTextSize(26);
-                textView3.setTextSize(39);
+                u5h_tekst_viyu.setTextSize(26);
+                u2b_tekst_viyu.setTextSize(39);
             }
-            textView.setText(updatedText); textView3.setText(updatedText);
+            u5h_tekst_viyu.setText(updatedText); u2b_tekst_viyu.setText(updatedText);
             calcModel.updateValues(updatedText, modeenum);
         }
     }
@@ -229,9 +247,9 @@ public class ProgrammerFragment extends Fragment {
     private void setTextViewValue(Double value) {
         boolean isWholeValue = value % 1 == 0;
         if (isWholeValue) {
-            textView.setText(String.format("%.0f", value)); textView3.setText(String.format("%.0f", value));
+            u5h_tekst_viyu.setText(String.format("%.0f", value)); u2b_tekst_viyu.setText(String.format("%.0f", value));
         } else {
-            textView.setText(Double.toString(value)); textView3.setText(Double.toString(value));
+            u5h_tekst_viyu.setText(Double.toString(value)); u2b_tekst_viyu.setText(Double.toString(value));
         }
     }
 

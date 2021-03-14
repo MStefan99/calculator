@@ -9,7 +9,7 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
     <TextView
-        android:id="@+id/inputField"
+        android:id="@+id/u5h_tekst_viyu"
         android:layout_width="0dp"
         android:layout_height="40dp"
         android:layout_marginStart="16dp"
@@ -33,7 +33,7 @@
         android:textAlignment="viewStart"
         android:textColor="?attr/primaryTextColor"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/inputField" />
+        app:layout_constraintTop_toTopOf="@+id/u5h_tekst_viyu" />
 
     <Button
         android:id="@+id/buttonEquals"
@@ -421,7 +421,7 @@
         android:layout_height="40dp"
         android:orientation="horizontal"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/inputField">
+        app:layout_constraintTop_toBottomOf="@+id/u5h_tekst_viyu">
 
         <RadioButton
             android:id="@+id/radioButtonHex"
@@ -466,7 +466,7 @@
         android:text="Mode"
         app:layout_constraintBottom_toBottomOf="@+id/radioGroup"
         app:layout_constraintStart_toEndOf="@+id/radioGroup"
-        app:layout_constraintTop_toBottomOf="@+id/inputField" />
+        app:layout_constraintTop_toBottomOf="@+id/u5h_tekst_viyu" />
 
     <Button
         android:id="@+id/buttonLength"
@@ -478,7 +478,7 @@
         android:textColor="?attr/primaryTextColor"
         app:layout_constraintBottom_toBottomOf="@+id/radioGroup"
         app:layout_constraintStart_toEndOf="@+id/radioGroup"
-        app:layout_constraintTop_toBottomOf="@+id/inputField" />
+        app:layout_constraintTop_toBottomOf="@+id/u5h_tekst_viyu" />
 
 
 </android.support.constraint.ConstraintLayout>

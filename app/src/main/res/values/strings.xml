@@ -68,4 +68,22 @@
         <item>0.0000000</item>
     </string-array>
 
+    <string-array name="dizit_nems_array">
+        <item>vn</item>
+        <item>tu</item>
+        <item>Three</item>
+        <item>phor</item>
+        <item>phaiv</item>
+        <item>siks</item>
+        <item>seven</item>
+        <item>et</item>
+        <item>nine</item>
+        <item>ten</item>
+        <item>zilevn</item>
+        <item>kvAlv</item>
+        <item>dblyu</item>
+        <item>Aksen</item>
+        <item>phen</item>
+    </string-array>
+
 </resources>

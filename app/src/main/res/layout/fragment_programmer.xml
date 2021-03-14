@@ -4,28 +4,37 @@
     tools:context=".activities.MainActivity"
   android:id="@+id/constraintLayout" android:layout_width="match_parent" android:layout_height="match_parent"
   app:layout_behavior="@string/appbar_scrolling_view_behavior">
-  
-  <TextView android:id="@+id/inputField" android:layout_width="0dp" android:layout_height="48dp"
-   android:layout_marginStart="8dp" android:layout_marginTop="8dp" android:layout_marginEnd="8dp"
+
+<!--    android:layout_marginStart="8dp" android:layout_marginTop="8dp" android:layout_marginEnd="8dp"    -->
+  <TextView android:id="@+id/u5h_tekst_viyu" android:layout_width="0dp" android:layout_height="48dp"
    android:fontFamily="@font/u5h" android:text="0" android:textAlignment="textEnd"
    android:textColor="?attr/primaryTextColor" android:textSize="@dimen/input1_tekst_size_big"
       app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
    app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView android:id="@+id/input_ekuation" android:layout_width="0dp" android:layout_height="48dp"
-        android:layout_marginStart="8dp" android:layout_marginTop="8dp" android:layout_marginEnd="8dp"
-        android:fontFamily="@font/u5h" android:text="" android:textAlignment="textEnd"
-        android:textColor="?attr/primaryTextColor" android:textSize="@dimen/input2_tekst_size"
+    <!--    android:layout_marginStart="8dp" android:layout_marginTop="8dp" android:layout_marginEnd="8dp"-->
+    <TextView android:id="@+id/u2b_tekst_viyu" android:layout_width="0dp" android:layout_height="64dp"
+        android:fontFamily="@font/u2vrtikl" android:text="0" android:textAlignment="textEnd"
+        android:textColor="?attr/primaryTextColor" android:textSize="@dimen/input3_tekst_size_big"
         app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/inputField" />
+        android:enabled="false" android:focusable="false" android:focusableInTouchMode="false"
+        app:layout_constraintTop_toBottomOf="@+id/u5h_tekst_viyu"/>
 
-  <TextView android:id="@+id/inputField2" android:layout_width="0dp" android:layout_height="64dp"
-      android:layout_marginStart="8dp" android:layout_marginTop="8dp" android:layout_marginEnd="8dp"
-      android:fontFamily="@font/u2vrtikl" android:text="0" android:textAlignment="textEnd"
-      android:textColor="?attr/primaryTextColor" android:textSize="@dimen/input3_tekst_size_big"
-      app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
-      android:enabled="false" android:focusable="false" android:focusableInTouchMode="false"
-      app:layout_constraintTop_toBottomOf="@+id/input_ekuation"/>
+<!--    android:layout_marginStart="8dp" android:layout_marginTop="8dp" android:layout_marginEnd="8dp"-->
+    <TextView android:id="@+id/ekuation_tekst_viyu" android:layout_width="0dp" android:layout_height="48dp"
+        android:fontFamily="@font/u5" android:text="" android:textAlignment="textEnd"
+        android:textColor="?attr/primaryTextColor" android:textSize="@dimen/input2_tekst_size"
+        app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toStartOf="@+id/dizit_tekst_viyu"
+        app:layout_constraintTop_toBottomOf="@+id/u2b_tekst_viyu" />
+
+<!--    android:layout_marginStart="8dp" android:layout_marginTop="8dp" android:layout_marginEnd="8dp"-->
+    <TextView android:id="@+id/dizit_tekst_viyu" android:layout_width="96dp" android:layout_height="48dp"
+        android:fontFamily="@font/u5" android:text="" android:textAlignment="textEnd"
+        android:textColor="?attr/primaryTextColor" android:textSize="18sp"
+        app:layout_constraintStart_toEndOf="@+id/ekuation_tekst_viyu" app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/u2b_tekst_viyu" />
+
+
 <!--  app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toStartOf="@+id/buttonDel"-->
 
 <!-- //////////////////////////////// -->
@@ -34,19 +43,19 @@
         android:background="@color/backgroundColor" android:textColor="?attr/primaryTextColor"
         android:text="@string/heks_cb_label" android:fontFamily="@font/u5" android:textAllCaps="false"
         app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toStartOf="@id/decimal_precision_spinner"
-        app:layout_constraintTop_toBottomOf="@+id/inputField2" />
+        app:layout_constraintTop_toBottomOf="@+id/ekuation_tekst_viyu" />
 
     <Spinner  android:id="@+id/decimal_precision_spinner" android:layout_width="0dp" android:layout_height="0dp"
         android:entries="@array/decimal_points_selection_array"
         android:background="@drawable/calculator_button_main" android:textColor="?attr/primaryTextColor"
         android:text="@string/decimal_point_label" android:fontFamily="@font/u5" android:textAllCaps="false" android:textSize="@dimen/int_button_label_size"
-        app:layout_constraintBottom_toBottomOf="@id/heks_check_boks" app:layout_constraintTop_toBottomOf="@+id/inputField2"
+        app:layout_constraintBottom_toBottomOf="@id/heks_check_boks" app:layout_constraintTop_toBottomOf="@+id/ekuation_tekst_viyu"
         app:layout_constraintStart_toEndOf="@+id/heks_check_boks"   app:layout_constraintEnd_toStartOf="@id/buttonLength" />
 
     <Button    android:id="@+id/buttonLength"    android:layout_width="0dp"    android:layout_height="0dp"
         android:background="@drawable/calculator_button_main" android:textColor="?attr/primaryTextColor"
         android:text="l8" android:fontFamily="@font/u5" android:textSize="@dimen/int_len_button_label_size" android:textAllCaps="false"
-        app:layout_constraintBottom_toBottomOf="@id/heks_check_boks" app:layout_constraintTop_toBottomOf="@+id/inputField2"
+        app:layout_constraintBottom_toBottomOf="@id/heks_check_boks" app:layout_constraintTop_toBottomOf="@+id/ekuation_tekst_viyu"
         app:layout_constraintStart_toEndOf="@+id/decimal_precision_spinner"   app:layout_constraintEnd_toStartOf="@id/buttonDel" />
 
 <!--    <Button    android:id="@+id/buttonFdivide"    android:layout_width="0dp"    android:layout_height="0dp"-->
@@ -66,7 +75,7 @@
   <Button android:id="@+id/buttonDel" android:layout_width="0dp" android:layout_height="0dp"
    android:background="@drawable/calculator_button_main" android:textColor="?attr/primaryTextColor"
    android:text="B" android:fontFamily="@font/u5"  android:textAlignment="center"  android:textSize="@dimen/del_tekst_size"
-      app:layout_constraintBottom_toBottomOf="@id/heks_check_boks" app:layout_constraintTop_toBottomOf="@+id/inputField2"
+      app:layout_constraintBottom_toBottomOf="@id/heks_check_boks" app:layout_constraintTop_toBottomOf="@+id/ekuation_tekst_viyu"
       app:layout_constraintStart_toEndOf="@+id/buttonLength" app:layout_constraintEnd_toEndOf="parent" />
 
 <!-- //////////////////////////////// -->

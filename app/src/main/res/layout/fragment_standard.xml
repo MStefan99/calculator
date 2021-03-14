@@ -267,7 +267,7 @@
         app:layout_constraintTop_toBottomOf="@+id/buttonRDivide" />
 
     <TextView
-        android:id="@+id/inputField"
+        android:id="@+id/u5h_tekst_viyu"
         android:layout_width="0dp"
         android:layout_height="40dp"
         android:layout_marginStart="8dp"
@@ -292,7 +292,7 @@
         android:textAlignment="viewStart"
         android:textColor="?attr/primaryTextColor"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/inputField" />
+        app:layout_constraintTop_toBottomOf="@+id/u5h_tekst_viyu" />
 
     <Button
         android:id="@+id/buttonHistory"

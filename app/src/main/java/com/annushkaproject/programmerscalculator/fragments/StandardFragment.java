@@ -60,7 +60,7 @@ public class StandardFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        textView = getView().findViewById(R.id.inputField);
+        textView = getView().findViewById(R.id.u5h_tekst_viyu);
 
         fillNumberButtons();
         fillOperatorButtons();
