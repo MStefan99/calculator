@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".activities.MainActivity"
   android:id="@+id/constraintLayout" android:layout_width="match_parent" android:layout_height="match_parent"
   app:layout_behavior="@string/appbar_scrolling_view_behavior">
   
@@ -31,12 +33,13 @@
     <CheckBox android:id="@+id/heks_check_boks" android:checked="true" android:layout_width="0dp" android:layout_height="@dimen/btn_ro1_hait"
         android:background="@color/backgroundColor" android:textColor="?attr/primaryTextColor"
         android:text="@string/heks_cb_label" android:fontFamily="@font/u5" android:textAllCaps="false"
-        app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toStartOf="@id/cb_int"
+        app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toStartOf="@id/decimal_precision_spinner"
         app:layout_constraintTop_toBottomOf="@+id/inputField2" />
 
-    <CheckBox  android:checked="true"  android:id="@+id/cb_int"    android:layout_width="0dp"    android:layout_height="0dp"
+    <Spinner  android:id="@+id/decimal_precision_spinner" android:layout_width="0dp" android:layout_height="0dp"
+        android:entries="@array/decimal_points_selection_array"
         android:background="@drawable/calculator_button_main" android:textColor="?attr/primaryTextColor"
-        android:text="@string/int_cb_label" android:fontFamily="@font/u5" android:textAllCaps="false" android:textSize="@dimen/int_button_label_size"
+        android:text="@string/decimal_point_label" android:fontFamily="@font/u5" android:textAllCaps="false" android:textSize="@dimen/int_button_label_size"
         app:layout_constraintBottom_toBottomOf="@id/heks_check_boks" app:layout_constraintTop_toBottomOf="@+id/inputField2"
         app:layout_constraintStart_toEndOf="@+id/heks_check_boks"   app:layout_constraintEnd_toStartOf="@id/buttonLength" />
 
@@ -44,13 +47,13 @@
         android:background="@drawable/calculator_button_main" android:textColor="?attr/primaryTextColor"
         android:text="l8" android:fontFamily="@font/u5" android:textSize="@dimen/int_len_button_label_size" android:textAllCaps="false"
         app:layout_constraintBottom_toBottomOf="@id/heks_check_boks" app:layout_constraintTop_toBottomOf="@+id/inputField2"
-        app:layout_constraintStart_toEndOf="@+id/cb_int"   app:layout_constraintEnd_toStartOf="@id/buttonFdivide" />
+        app:layout_constraintStart_toEndOf="@+id/decimal_precision_spinner"   app:layout_constraintEnd_toStartOf="@id/buttonDel" />
 
-    <Button    android:id="@+id/buttonFdivide"    android:layout_width="0dp"    android:layout_height="0dp"
-        android:background="@drawable/calculator_button_main" android:textColor="?attr/primaryTextColor"
-        android:text="@string/phlot_div_button_label" android:fontFamily="@font/u5" android:textAllCaps="false" android:textSize="@dimen/f_tekst_size"
-        app:layout_constraintBottom_toBottomOf="@id/heks_check_boks" app:layout_constraintTop_toBottomOf="@+id/inputField2"
-        app:layout_constraintStart_toEndOf="@+id/buttonLength"   app:layout_constraintEnd_toStartOf="@id/buttonDel" />
+<!--    <Button    android:id="@+id/buttonFdivide"    android:layout_width="0dp"    android:layout_height="0dp"-->
+<!--        android:background="@drawable/calculator_button_main" android:textColor="?attr/primaryTextColor"-->
+<!--        android:text="@string/phlot_div_button_label" android:fontFamily="@font/u5" android:textAllCaps="false" android:textSize="@dimen/f_tekst_size"-->
+<!--        app:layout_constraintBottom_toBottomOf="@id/heks_check_boks" app:layout_constraintTop_toBottomOf="@+id/inputField2"-->
+<!--        app:layout_constraintStart_toEndOf="@+id/buttonLength"   app:layout_constraintEnd_toStartOf="@id/buttonDel" />-->
 
 
 
@@ -64,7 +67,7 @@
    android:background="@drawable/calculator_button_main" android:textColor="?attr/primaryTextColor"
    android:text="B" android:fontFamily="@font/u5"  android:textAlignment="center"  android:textSize="@dimen/del_tekst_size"
       app:layout_constraintBottom_toBottomOf="@id/heks_check_boks" app:layout_constraintTop_toBottomOf="@+id/inputField2"
-      app:layout_constraintStart_toEndOf="@+id/buttonFdivide" app:layout_constraintEnd_toEndOf="parent" />
+      app:layout_constraintStart_toEndOf="@+id/buttonLength" app:layout_constraintEnd_toEndOf="parent" />
 
 <!-- //////////////////////////////// -->
     <Button android:id="@+id/buttonOR" android:layout_width="0dp" android:layout_height="@dimen/btn_ro2_hait"

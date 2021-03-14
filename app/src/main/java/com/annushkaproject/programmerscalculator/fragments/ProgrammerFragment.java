@@ -8,8 +8,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.annushkaproject.programmerscalculator.R;
@@ -49,7 +52,7 @@ public class ProgrammerFragment extends Fragment {
         setupSignButton();
 //        setupModeRadio();
         setup_heks_cb(); modeenum = mode_enum.mode_enum_heks; enableButtonsALL();
-
+        setup_decimal_spinner();
         setupWordLengthButton();
     }
 
@@ -156,6 +159,17 @@ public class ProgrammerFragment extends Fragment {
             updateText(formatText(number));
         });
     }
+    private void setup_decimal_spinner() {
+        Spinner spinner = getView().findViewById(R.id.decimal_precision_spinner);
+        String[] decimal_points_items = getResources().getStringArray(R.array.decimal_points_selection_array);
+//        ArrayAdapter<String> adapter = ArrayAdapter.createFromResource();//new ArrayAdapter<String>(this, R.layout.fragment_programmer, R.id.text, decimal_points_items);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource( spinner.getContext(), // getActivity(),
+                R.array.decimal_points_selection_array, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+//        c_handle_decimal_spinboks spinboks_listener = new c_handle_decimal_spinboks() ;
+//        spinner.setOnItemClickListener((AdapterView.OnItemClickListener) spinboks_listener);
+    }
     private void usePressedNumber(String number) {
         if (currentString().equals("0") && !number.equals(".")) { textView.setText(""); textView3.setText(""); }
         String newString;
@@ -243,7 +257,9 @@ public class ProgrammerFragment extends Fragment {
 
     private void setOperatorButtonsClickable(boolean mode) {
         int[] letterButtonIDs = new int[]{
-                R.id.button_decimal_point,  R.id.buttonRDivide, R.id.buttonFdivide, R.id.buttonMod,
+                R.id.button_decimal_point,  R.id.buttonRDivide,
+//                R.id.buttonFdivide,
+                R.id.buttonMod,
                 R.id.buttonMinus, R.id.buttonPlus , R.id.buttonMultiply, R.id.buttonPower,
                 R.id.button_decimal_point, R.id.buttonEquals,
                 R.id.button_zor, R.id.buttonOR, R.id.buttonNOT , R.id.buttonAND , R.id.buttonLSH , R.id.buttonRSH,

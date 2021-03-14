@@ -54,7 +54,18 @@
     <string name="get_remainder_button_string" translatable="false">÷_M</string>
     <string name="heks_cb_label" translatable="false">h8</string>
     <string name="phlot_div_button_label" translatable="false">÷_f</string>
-    <string name="int_cb_label" translatable="false">int</string>
-    <string name="app_title_string">vk.com/etphor 8+8=10=4*4</string>
+    <string name="decimal_point_label" translatable="false">.0?</string>
+    <string name="app_title_string" translatable="false">vk.com/etphor 8+8=10=4*4</string>
+
+    <string-array name="decimal_points_selection_array">
+        <item>0</item>
+        <item>0.0</item>
+        <item>0.00</item>
+        <item>0.000</item>
+        <item>0.0000</item>
+        <item>0.00000</item>
+        <item>0.000000</item>
+        <item>0.0000000</item>
+    </string-array>
 
 </resources>
