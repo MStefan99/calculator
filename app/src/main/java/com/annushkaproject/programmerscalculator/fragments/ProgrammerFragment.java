@@ -68,8 +68,20 @@ public class ProgrammerFragment extends Fragment {
     private void setupNumberButtons() {
         for (int i = 0; i < 10; i++) {
             Button button = getView().findViewById(getResources().getIdentifier("button" + i, "id", packageName));
-//            int finalI = i;
+            int finalI = i;
             button.setOnClickListener((v) -> {
+                switch (finalI) {
+                    case 0 : dizit_tekst_viyu.setText("ziro"); break;
+                    case 1 : dizit_tekst_viyu.setText("vn"); break;
+                    case 2 : dizit_tekst_viyu.setText("tuu"); break;
+                    case 3 : dizit_tekst_viyu.setText("Three"); break;
+                    case 4 : dizit_tekst_viyu.setText("four"); break;
+                    case 5 : dizit_tekst_viyu.setText("five"); break;
+                    case 6 : dizit_tekst_viyu.setText("siks"); break;
+                    case 7 : dizit_tekst_viyu.setText("seven"); break;
+                    case 8 : dizit_tekst_viyu.setText("eight"); break;
+                    case 9 : dizit_tekst_viyu.setText("nine"); break;
+                }
 //                dizit_tekst_viyu.setText(dizit_nems_array[finalI]);
                 if (!limit_phen_dizits_recahed) usePressedNumber(((Button) v).getText().toString());
             });
