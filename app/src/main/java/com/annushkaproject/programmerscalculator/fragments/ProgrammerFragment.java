@@ -21,6 +21,7 @@ import com.annushkaproject.programmerscalculator.model.ProgrammerCalcModel;
 import com.annushkaproject.programmerscalculator.model.int_size_enum;
 import com.annushkaproject.programmerscalculator.utils.InstanceStateUtil;
 import com.annushkaproject.programmerscalculator.utils.ProgrammerOperationsUtil;
+import com.annushkaproject.programmerscalculator.utils.c_nmbr_utils;
 
 public class ProgrammerFragment extends Fragment {
 
@@ -250,8 +251,10 @@ public class ProgrammerFragment extends Fragment {
                 int input3_tekst_size_big = (int) (getResources().getDimension(R.dimen.input3_tekst_size_big));// / getResources().getDisplayMetrics().density) ;
                 u5h_tekst_viyu.setTextSize(26);
                 u2b_tekst_viyu.setTextSize(39);
-            }
-            u5h_tekst_viyu.setText(updatedText); u2b_tekst_viyu.setText(updatedText);
+            } ;
+            u5h_tekst_viyu.setText(updatedText);
+            u2b_tekst_viyu.setText(updatedText);
+            ekuation_tekst_viyu.setText(c_nmbr_utils.heks_nmbr_string_to_vrdsstring(updatedText));
             calcModel.updateValues(updatedText, modeenum);
         }
     }

@@ -16,9 +16,10 @@
 
     <dimen name="input1_tekst_size_small">18sp</dimen>
     <dimen name="input1_tekst_size_big">26sp</dimen>
-    <dimen name="input2_tekst_size">26sp</dimen>
+    <dimen name="ekuation_tekst_viyu_size">14sp</dimen>
     <dimen name="input3_tekst_size_small">27sp</dimen>
     <dimen name="input3_tekst_size_big">39sp</dimen>
+    <dimen name="dizit_tekst_viyu_size">18sp</dimen>
 
     <dimen name="dizits_tekst_size">36sp</dimen>
     <dimen name="dot_tekst_size">28sp</dimen>
