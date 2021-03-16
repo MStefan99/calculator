@@ -1,26 +1,23 @@
-package com.annushkaproject.programmerscalculator.ProgrammerTests;
+package com.annushkaproject.programmerscalculator.ProgrammerTests
 
-import com.annushkaproject.programmerscalculator.model.ProgrammerCalcModel;
-import com.annushkaproject.programmerscalculator.model.int_size_enum;
-import com.annushkaproject.programmerscalculator.utils.ProgrammerOperationsUtil;
+import com.annushkaproject.programmerscalculator.model.Operator
+import com.annushkaproject.programmerscalculator.model.ProgrammerCalcModel
+import com.annushkaproject.programmerscalculator.model.int_size_enum
+import com.annushkaproject.programmerscalculator.utils.ProgrammerOperationsUtil.calculateWithData
+import org.junit.Assert
+import org.junit.Test
+import java.math.BigDecimal
 
-import org.junit.Test;
-
-import java.math.BigDecimal;
-
-import static com.annushkaproject.programmerscalculator.model.Operator.get_remainder;
-import static org.junit.Assert.*;
-
-public class ProgrammerModTest {
+class ProgrammerModTest {
     @Test
-    public void modTestAll_isCorrect() {
-        for (int_size_enum mode : int_size_enum.values()) {
-            assertEquals(1, ProgrammerOperationsUtil.calculateWithData(new ProgrammerCalcModel(new BigDecimal(3), new BigDecimal(2), get_remainder, mode)));
-            assertEquals(0, ProgrammerOperationsUtil.calculateWithData(new ProgrammerCalcModel(new BigDecimal(2), new BigDecimal(2), get_remainder, mode)));
-            assertEquals(0, ProgrammerOperationsUtil.calculateWithData(new ProgrammerCalcModel(new BigDecimal(0), new BigDecimal(2), get_remainder, mode)));
-            assertEquals(-1, ProgrammerOperationsUtil.calculateWithData(new ProgrammerCalcModel(new BigDecimal(-3), new BigDecimal(2), get_remainder, mode)));
-            assertEquals(-1, ProgrammerOperationsUtil.calculateWithData(new ProgrammerCalcModel(new BigDecimal(-3), new BigDecimal(-2), get_remainder, mode)));
-            assertEquals(0, ProgrammerOperationsUtil.calculateWithData(new ProgrammerCalcModel(new BigDecimal(-2), new BigDecimal(-2), get_remainder, mode)));
+    fun modTestAll_isCorrect() {
+        for (mode in int_size_enum.values()) {
+            Assert.assertEquals(1, calculateWithData(ProgrammerCalcModel(BigDecimal(3), BigDecimal(2), Operator.get_remainder, mode)))
+            Assert.assertEquals(0, calculateWithData(ProgrammerCalcModel(BigDecimal(2), BigDecimal(2), Operator.get_remainder, mode)))
+            Assert.assertEquals(0, calculateWithData(ProgrammerCalcModel(BigDecimal(0), BigDecimal(2), Operator.get_remainder, mode)))
+            Assert.assertEquals(-1, calculateWithData(ProgrammerCalcModel(BigDecimal(-3), BigDecimal(2), Operator.get_remainder, mode)))
+            Assert.assertEquals(-1, calculateWithData(ProgrammerCalcModel(BigDecimal(-3), BigDecimal(-2), Operator.get_remainder, mode)))
+            Assert.assertEquals(0, calculateWithData(ProgrammerCalcModel(BigDecimal(-2), BigDecimal(-2), Operator.get_remainder, mode)))
         }
     }
 }

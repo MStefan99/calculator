@@ -1,52 +1,36 @@
-package com.annushkaproject.programmerscalculator.utils;
+package com.annushkaproject.programmerscalculator.utils
 
-import com.annushkaproject.programmerscalculator.model.CalculationModel;
-import com.annushkaproject.programmerscalculator.model.Operator;
+import com.annushkaproject.programmerscalculator.model.CalculationModel
+import com.annushkaproject.programmerscalculator.model.Operator
+import java.math.RoundingMode
 
-import java.math.RoundingMode;
-
-public class StandardOperationsUtil {
-
-    public static final int SCALE = 20;
+object StandardOperationsUtil {
+    const val SCALE = 20
 
     /**
      * Used to calculate the result for operators that require two values.
      * @param data Model that will be used for calculations.
      * @return Calculated result.
      */
-    public static double calculateResultForTwoSidedOperator(CalculationModel data) {
-        if (data.getSecondValue() == null) {
-            data.setSecondValueEqualToFirst();
+    @JvmStatic
+    fun calculateResultForTwoSidedOperator(data: CalculationModel): Double {
+        if (data.secondValue == null) {
+            data.setSecondValueEqualToFirst()
         }
-
-        if (!data.getOperator().requiresTwoValues()) {
-            return -1; //TODO: throw an exception.
+        if (!data.operator.requiresTwoValues()) {
+            return (-1).toDouble() //TODO: throw an exception.
         }
-
-        double result;
-        switch (data.getOperator()) {
-            case ADD:
-                result = data.getFirstValue().add(data.getSecondValue()).doubleValue();
-                break;
-            case SUBTRACT:
-                result = data.getFirstValue().subtract(data.getSecondValue()).doubleValue();
-                break;
-            case MULTIPLY:
-                result = data.getFirstValue().multiply(data.getSecondValue()).doubleValue();
-                break;
-            case remainder_divide:
-                result = data.getFirstValue().divide(data.getSecondValue(), SCALE, RoundingMode.HALF_UP).doubleValue();
-                break;
-            case POWER:
-                result = data.getFirstValue().pow(data.getSecondValue().intValue()).doubleValue();
-                break;
-
-            default:
-                //TODO: throw exception or crush the app.
-                return 0;
+        val result: Double
+        result = when (data.operator) {
+            Operator.ADD -> data.firstValue.add(data.secondValue).toDouble()
+            Operator.SUBTRACT -> data.firstValue.subtract(data.secondValue).toDouble()
+            Operator.MULTIPLY -> data.firstValue.multiply(data.secondValue).toDouble()
+            Operator.remainder_divide -> data.firstValue.divide(data.secondValue, SCALE, RoundingMode.HALF_UP).toDouble()
+            Operator.POWER -> data.firstValue.pow(data.secondValue.toInt()).toDouble()
+            else ->                 //TODO: throw exception or crush the app.
+                return 0
         }
-
-        return result;
+        return result
     }
 
     /**
@@ -54,17 +38,14 @@ public class StandardOperationsUtil {
      * @param data Model for calculations.
      * @return Calculated result.
      */
-    public static double calculatePercentForData(CalculationModel data) {
-        if (data.getSecondValue() == null) {
-            return -1; //TODO: throw an exception.
+    @JvmStatic
+    fun calculatePercentForData(data: CalculationModel): Double {
+        if (data.secondValue == null) {
+            return (-1).toDouble() //TODO: throw an exception.
         }
-
-        double firstNumber = data.getFirstValue().doubleValue();
-        double secondNumber = data.getSecondValue().doubleValue();
-
-        double result = firstNumber / 100.0 * secondNumber;
-
-        return result;
+        val firstNumber = data.firstValue.toDouble()
+        val secondNumber = data.secondValue.toDouble()
+        return firstNumber / 100.0 * secondNumber
     }
 
     /**
@@ -73,46 +54,28 @@ public class StandardOperationsUtil {
      * @param operator Operator for calculation.
      * @return Calculated result.
      */
-    public static double calculateResultForOneSidedOperator(double number, Operator operator) {
-        if (operator.requiresTwoValues()) {
-            return -1; //TODO: throw an exception.
-        }
-
-        switch (operator) {
-            case PERCENT:
-                return number / 100.0; //TODO: change to BigDecimal
-            case ASIN:
-                return Math.asin(number);
-            case ACOS:
-                return Math.acos(number);
-            case ATAN:
-                return Math.atan(number);
-            case SIN:
-                return Math.sin(number);
-            case COS:
-                return Math.cos(number);
-            case TAN:
-                return Math.tan(number);
-            case LN:
-                return Math.log(number);
-            case LOG:
-                return Math.log10(number);
-            case DENOMINATOR:
-                return 1.0 / number; //TODO: change to BigDecimal
-            case EXPONENT_POWER:
-                return Math.exp(number);
-            case SQUARE:
-                return number * number;
-            case ABS:
-                return Math.abs(number);
-            case SQUARE_ROOT:
-                return Math.sqrt(number);
-            case FACTORIAL:
-                return StandardOperationsUtil.calculateFactorial(number);
-
-            default:
-                //TODO: throw exception or crush the app.
-                return 0;
+    @JvmStatic
+    fun calculateResultForOneSidedOperator(number: Double, operator: Operator): Double {
+        return if (operator.requiresTwoValues()) {
+            (-1).toDouble() //TODO: throw an exception.
+        } else when (operator) {
+            Operator.PERCENT -> number / 100.0 //TODO: change to BigDecimal
+            Operator.ASIN -> Math.asin(number)
+            Operator.ACOS -> Math.acos(number)
+            Operator.ATAN -> Math.atan(number)
+            Operator.SIN -> Math.sin(number)
+            Operator.COS -> Math.cos(number)
+            Operator.TAN -> Math.tan(number)
+            Operator.LN -> Math.log(number)
+            Operator.LOG -> Math.log10(number)
+            Operator.DENOMINATOR -> 1.0 / number //TODO: change to BigDecimal
+            Operator.EXPONENT_POWER -> Math.exp(number)
+            Operator.SQUARE -> number * number
+            Operator.ABS -> Math.abs(number)
+            Operator.SQUARE_ROOT -> Math.sqrt(number)
+            Operator.FACTORIAL -> calculateFactorial(number)
+            else ->                 //TODO: throw exception or crush the app.
+                0
         }
     }
 
@@ -121,14 +84,13 @@ public class StandardOperationsUtil {
      * @param value Value for calculation.
      * @return Calculated result.
      */
-    static private double calculateFactorial(double value) {
-        double result = 1;
-
-        for (int i = 2; i <= value; i++) {
-            result *= i;
+    private fun calculateFactorial(value: Double): Double {
+        var result = 1.0
+        var i = 2
+        while (i <= value) {
+            result *= i.toDouble()
+            i++
         }
-
-        return result;
+        return result
     }
-
 }

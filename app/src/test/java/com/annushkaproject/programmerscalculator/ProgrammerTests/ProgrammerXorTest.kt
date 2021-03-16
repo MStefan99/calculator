@@ -1,24 +1,21 @@
-package com.annushkaproject.programmerscalculator.ProgrammerTests;
+package com.annushkaproject.programmerscalculator.ProgrammerTests
 
-import com.annushkaproject.programmerscalculator.model.ProgrammerCalcModel;
-import com.annushkaproject.programmerscalculator.model.int_size_enum;
-import com.annushkaproject.programmerscalculator.utils.ProgrammerOperationsUtil;
+import com.annushkaproject.programmerscalculator.model.Operator
+import com.annushkaproject.programmerscalculator.model.ProgrammerCalcModel
+import com.annushkaproject.programmerscalculator.model.int_size_enum
+import com.annushkaproject.programmerscalculator.utils.ProgrammerOperationsUtil.calculateWithData
+import org.junit.Assert
+import org.junit.Test
+import java.math.BigDecimal
 
-import org.junit.Test;
-
-import java.math.BigDecimal;
-
-import static com.annushkaproject.programmerscalculator.model.Operator.XOR;
-import static org.junit.Assert.*;
-
-public class ProgrammerXorTest {
+class ProgrammerXorTest {
     @Test
-    public void xorTestAll_isCorrect() {
-        for (int_size_enum mode : int_size_enum.values()) {
-            assertEquals(0, ProgrammerOperationsUtil.calculateWithData(new ProgrammerCalcModel(new BigDecimal(1), new BigDecimal(1), XOR, mode)));
-            assertEquals(1, ProgrammerOperationsUtil.calculateWithData(new ProgrammerCalcModel(new BigDecimal(1), new BigDecimal(0), XOR, mode)));
-            assertEquals(-2, ProgrammerOperationsUtil.calculateWithData(new ProgrammerCalcModel(new BigDecimal(-1), new BigDecimal(1), XOR, mode)));
-            assertEquals(-1, ProgrammerOperationsUtil.calculateWithData(new ProgrammerCalcModel(new BigDecimal(-1), new BigDecimal(0), XOR, mode)));
+    fun xorTestAll_isCorrect() {
+        for (mode in int_size_enum.values()) {
+            Assert.assertEquals(0, calculateWithData(ProgrammerCalcModel(BigDecimal(1), BigDecimal(1), Operator.XOR, mode)))
+            Assert.assertEquals(1, calculateWithData(ProgrammerCalcModel(BigDecimal(1), BigDecimal(0), Operator.XOR, mode)))
+            Assert.assertEquals(-2, calculateWithData(ProgrammerCalcModel(BigDecimal(-1), BigDecimal(1), Operator.XOR, mode)))
+            Assert.assertEquals(-1, calculateWithData(ProgrammerCalcModel(BigDecimal(-1), BigDecimal(0), Operator.XOR, mode)))
         }
     }
 }

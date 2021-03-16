@@ -1,72 +1,79 @@
-package com.annushkaproject.programmerscalculator.utils;
-import android.os.Bundle;
-import com.annushkaproject.programmerscalculator.model.CalculationModel;
-import com.annushkaproject.programmerscalculator.model.Operator;
-import com.annushkaproject.programmerscalculator.model.ProgrammerCalcModel;
+package com.annushkaproject.programmerscalculator.utils
 
-public class InstanceStateUtil {
-    public static CalculationModel restoreSavedInstance(Bundle savedInstanceState) {
-        CalculationModel calcModel = new CalculationModel();
-            if (savedInstanceState.getBoolean("FIRST_VALUE_SAVED")) {
-                calcModel.setFirstValue(savedInstanceState.getDouble("FIRST_VALUE"));
-            }
-            if (savedInstanceState.getBoolean("OPERATOR_SAVED")) {
-                calcModel.setOperator(Operator.getOperatorByNumber(savedInstanceState.getInt("OPERATOR")));
-            }
-            if (savedInstanceState.getBoolean("SECOND_VALUE_SAVED")) {
-                calcModel.setSecondValue(savedInstanceState.getDouble("SECOND_VALUE"));
-            }
-        return calcModel;
-    }
-    public static ProgrammerCalcModel restoreProgrammerSavedInstance(Bundle savedInstanceState) {
-        ProgrammerCalcModel calcModel = new ProgrammerCalcModel();
+import android.os.Bundle
+import com.annushkaproject.programmerscalculator.model.CalculationModel
+import com.annushkaproject.programmerscalculator.model.Operator
+import com.annushkaproject.programmerscalculator.model.ProgrammerCalcModel
+
+object InstanceStateUtil {
+    @JvmStatic
+    fun restoreSavedInstance(savedInstanceState: Bundle): CalculationModel {
+        val calcModel = CalculationModel()
         if (savedInstanceState.getBoolean("FIRST_VALUE_SAVED")) {
-            calcModel.setFirstValue(savedInstanceState.getDouble("FIRST_VALUE"));
+            calcModel.setFirstValue(savedInstanceState.getDouble("FIRST_VALUE"))
         }
         if (savedInstanceState.getBoolean("OPERATOR_SAVED")) {
-            calcModel.setOperator(Operator.getOperatorByNumber(savedInstanceState.getInt("OPERATOR")));
+            calcModel.operator = Operator.getOperatorByNumber(savedInstanceState.getInt("OPERATOR"))
         }
         if (savedInstanceState.getBoolean("SECOND_VALUE_SAVED")) {
-            calcModel.setSecondValue(savedInstanceState.getDouble("SECOND_VALUE"));
+            calcModel.setSecondValue(savedInstanceState.getDouble("SECOND_VALUE"))
         }
-        calcModel.setSecondValue(savedInstanceState.getDouble("WORD_LENGTH"));
-        return calcModel;
+        return calcModel
     }
-    public static void saveInstanceState(Bundle outState, CalculationModel calcModel, String packageName) {
-        outState.putString("PACKAGE_NAME", packageName);
-        boolean firstValuePresent = calcModel.getFirstValue() != null;
-        boolean operatorPresent = calcModel.getOperator() != null;
-        boolean secondValuePresent = calcModel.getSecondValue() != null;
+
+    @JvmStatic
+    fun restoreProgrammerSavedInstance(savedInstanceState: Bundle): ProgrammerCalcModel {
+        val calcModel = ProgrammerCalcModel()
+        if (savedInstanceState.getBoolean("FIRST_VALUE_SAVED")) {
+            calcModel.setFirstValue(savedInstanceState.getDouble("FIRST_VALUE"))
+        }
+        if (savedInstanceState.getBoolean("OPERATOR_SAVED")) {
+            calcModel.operator = Operator.getOperatorByNumber(savedInstanceState.getInt("OPERATOR"))
+        }
+        if (savedInstanceState.getBoolean("SECOND_VALUE_SAVED")) {
+            calcModel.setSecondValue(savedInstanceState.getDouble("SECOND_VALUE"))
+        }
+        calcModel.setSecondValue(savedInstanceState.getDouble("WORD_LENGTH"))
+        return calcModel
+    }
+
+    fun saveInstanceState(outState: Bundle, calcModel: CalculationModel, packageName: String?) {
+        outState.putString("PACKAGE_NAME", packageName)
+        val firstValuePresent = calcModel.firstValue != null
+        val operatorPresent = calcModel.operator != null
+        val secondValuePresent = calcModel.secondValue != null
         if (firstValuePresent) {
-            outState.putDouble("FIRST_VALUE", calcModel.getFirstValue().doubleValue());
+            outState.putDouble("FIRST_VALUE", calcModel.firstValue.toDouble())
         }
         if (operatorPresent) {
-            outState.putInt("OPERATOR", Operator.getNumberByOperator(calcModel.getOperator()));
+            outState.putInt("OPERATOR", Operator.getNumberByOperator(calcModel.operator))
         }
         if (secondValuePresent) {
-            outState.putDouble("SECOND_VALUE", calcModel.getSecondValue().doubleValue());
+            outState.putDouble("SECOND_VALUE", calcModel.secondValue.toDouble())
         }
-        outState.putBoolean("FIRST_VALUE_SAVED", firstValuePresent);
-        outState.putBoolean("OPERATOR_SAVED", operatorPresent);
-        outState.putBoolean("SECOND_VALUE_SAVED", secondValuePresent);
+        outState.putBoolean("FIRST_VALUE_SAVED", firstValuePresent)
+        outState.putBoolean("OPERATOR_SAVED", operatorPresent)
+        outState.putBoolean("SECOND_VALUE_SAVED", secondValuePresent)
     }
-    public static void saveInstanceState(Bundle outState, ProgrammerCalcModel calcModel, String packageName) {
-        outState.putString("PACKAGE_NAME", packageName);
-        boolean firstValuePresent = calcModel.getFirstValue() != null;
-        boolean operatorPresent = calcModel.getOperator() != null;
-        boolean secondValuePresent = calcModel.getSecondValue() != null;
+
+    @JvmStatic
+    fun saveInstanceState(outState: Bundle, calcModel: ProgrammerCalcModel, packageName: String?) {
+        outState.putString("PACKAGE_NAME", packageName)
+        val firstValuePresent = calcModel.firstValue != null
+        val operatorPresent = calcModel.operator != null
+        val secondValuePresent = calcModel.secondValue != null
         if (firstValuePresent) {
-            outState.putDouble("FIRST_VALUE", calcModel.getFirstValue().doubleValue());
+            outState.putDouble("FIRST_VALUE", calcModel.firstValue.toDouble())
         }
         if (operatorPresent) {
-            outState.putInt("OPERATOR", Operator.getNumberByOperator(calcModel.getOperator()));
+            outState.putInt("OPERATOR", Operator.getNumberByOperator(calcModel.operator))
         }
         if (secondValuePresent) {
-            outState.putDouble("SECOND_VALUE", calcModel.getSecondValue().doubleValue());
+            outState.putDouble("SECOND_VALUE", calcModel.secondValue.toDouble())
         }
-        outState.putInt("WORD_LENGTH", calcModel.getBytelengthenum().wordToInt());
-        outState.putBoolean("FIRST_VALUE_SAVED", firstValuePresent);
-        outState.putBoolean("OPERATOR_SAVED", operatorPresent);
-        outState.putBoolean("SECOND_VALUE_SAVED", secondValuePresent);
+        outState.putInt("WORD_LENGTH", calcModel.bytelengthenum.wordToInt())
+        outState.putBoolean("FIRST_VALUE_SAVED", firstValuePresent)
+        outState.putBoolean("OPERATOR_SAVED", operatorPresent)
+        outState.putBoolean("SECOND_VALUE_SAVED", secondValuePresent)
     }
 }

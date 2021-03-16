@@ -1,4 +1,7 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'hunter-debug'
 apply plugin: 'realm-android'
 
 android {
@@ -22,6 +25,18 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 }
+buildscript {
+    repositories {
+        jcenter()
+        google()
+    }
+    dependencies {
+        classpath 'com.quinn.hunter:hunter-debug-plugin:1.1.0'
+        classpath 'com.quinn.hunter:hunter-transform:1.1.0'
+    }
+}
+
+apply plugin: 'hunter-debug'
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
@@ -33,4 +48,9 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation 'com.quinn.hunter:hunter-debug-library:0.9.6'
+}
+repositories {
+    mavenCentral()
 }

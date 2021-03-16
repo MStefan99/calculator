@@ -1,76 +1,69 @@
-package com.annushkaproject.programmerscalculator.ProgrammerTests;
+package com.annushkaproject.programmerscalculator.ProgrammerTests
 
-import com.annushkaproject.programmerscalculator.model.ProgrammerCalcModel;
-import com.annushkaproject.programmerscalculator.utils.ProgrammerOperationsUtil;
+import com.annushkaproject.programmerscalculator.model.*
+import com.annushkaproject.programmerscalculator.utils.ProgrammerOperationsUtil.calculateWithData
+import org.junit.Assert
+import org.junit.Test
+import java.math.BigDecimal
 
-import org.junit.Test;
-
-import java.math.BigDecimal;
-
-import static com.annushkaproject.programmerscalculator.model.Operator.LSH;
-import static com.annushkaproject.programmerscalculator.model.Operator.RSH;
-import static org.junit.Assert.*;
-
-import static com.annushkaproject.programmerscalculator.model.int_size_enum.*;
-
-public class ProgrammerShiftTest {
+class ProgrammerShiftTest {
     @Test
-    public void lshTestQWORD_isCorrect() {
-        assertEquals(0x2, ProgrammerOperationsUtil.calculateWithData(new ProgrammerCalcModel(new BigDecimal(0x1), new BigDecimal(1), LSH, l8)));
-        assertEquals(0x8000000000000000L, ProgrammerOperationsUtil.calculateWithData(new ProgrammerCalcModel(new BigDecimal(0x1), new BigDecimal(63), LSH, l8)));
-        assertEquals(0, ProgrammerOperationsUtil.calculateWithData(new ProgrammerCalcModel(new BigDecimal(0x8000000000000000L), new BigDecimal(1), LSH, l8)));
+    fun lshTestQWORD_isCorrect() {
+        Assert.assertEquals(0x2, calculateWithData(ProgrammerCalcModel(BigDecimal(0x1), BigDecimal(1), Operator.LSH, int_size_enum.l8)))
+        Assert.assertEquals(-0x8000000000000000L, calculateWithData(ProgrammerCalcModel(BigDecimal(0x1), BigDecimal(63), Operator.LSH, int_size_enum.l8)))
+        Assert.assertEquals(0, calculateWithData(ProgrammerCalcModel(BigDecimal(-0x8000000000000000L), BigDecimal(1), Operator.LSH, int_size_enum.l8)))
     }
 
     @Test
-    public void lshTestDWORD_isCorrect() {
-        assertEquals(0x2, ProgrammerOperationsUtil.calculateWithData(new ProgrammerCalcModel(new BigDecimal(0x1), new BigDecimal(1), LSH, l4)));
-        assertEquals(0x80000000, ProgrammerOperationsUtil.calculateWithData(new ProgrammerCalcModel(new BigDecimal(0x1), new BigDecimal(31), LSH, l4)));
-        assertEquals(0, ProgrammerOperationsUtil.calculateWithData(new ProgrammerCalcModel(new BigDecimal(0x80000000), new BigDecimal(1), LSH, l4)));
+    fun lshTestDWORD_isCorrect() {
+        Assert.assertEquals(0x2, calculateWithData(ProgrammerCalcModel(BigDecimal(0x1), BigDecimal(1), Operator.LSH, int_size_enum.l4)))
+        Assert.assertEquals(-0x80000000, calculateWithData(ProgrammerCalcModel(BigDecimal(0x1), BigDecimal(31), Operator.LSH, int_size_enum.l4)))
+        Assert.assertEquals(0, calculateWithData(ProgrammerCalcModel(BigDecimal(-0x80000000), BigDecimal(1), Operator.LSH, int_size_enum.l4)))
     }
 
     @Test
-    public void lshTestWORD_isCorrect() {
-        assertEquals((short) 0x2, ProgrammerOperationsUtil.calculateWithData(new ProgrammerCalcModel(new BigDecimal(0x1), new BigDecimal(1), LSH, l2)));
-        assertEquals((short) 0x8000, ProgrammerOperationsUtil.calculateWithData(new ProgrammerCalcModel(new BigDecimal(0x1), new BigDecimal(15), LSH, l2)));
-        assertEquals((short) 0, ProgrammerOperationsUtil.calculateWithData(new ProgrammerCalcModel(new BigDecimal(0x8000), new BigDecimal(1), LSH, l2)));
+    fun lshTestWORD_isCorrect() {
+        Assert.assertEquals(0x2 as Short.toLong(), calculateWithData(ProgrammerCalcModel(BigDecimal(0x1), BigDecimal(1), Operator.LSH, int_size_enum.l2)))
+        Assert.assertEquals(0x8000 as Short.toLong(), calculateWithData(ProgrammerCalcModel(BigDecimal(0x1), BigDecimal(15), Operator.LSH, int_size_enum.l2)))
+        Assert.assertEquals(0 as Short.toLong(), calculateWithData(ProgrammerCalcModel(BigDecimal(0x8000), BigDecimal(1), Operator.LSH, int_size_enum.l2)))
     }
 
     @Test
-    public void lshTestBYTE_isCorrect() {
-        assertEquals((byte) 0x2, ProgrammerOperationsUtil.calculateWithData(new ProgrammerCalcModel(new BigDecimal(0x1), new BigDecimal(1), LSH, l1)));
-        assertEquals((byte) 0x80, ProgrammerOperationsUtil.calculateWithData(new ProgrammerCalcModel(new BigDecimal(0x1), new BigDecimal(7), LSH, l1)));
-        assertEquals((byte) 0, ProgrammerOperationsUtil.calculateWithData(new ProgrammerCalcModel(new BigDecimal(0x80), new BigDecimal(1), LSH, l1)));
+    fun lshTestBYTE_isCorrect() {
+        Assert.assertEquals(0x2 as Byte.toLong(), calculateWithData(ProgrammerCalcModel(BigDecimal(0x1), BigDecimal(1), Operator.LSH, int_size_enum.l1)))
+        Assert.assertEquals(0x80 as Byte.toLong(), calculateWithData(ProgrammerCalcModel(BigDecimal(0x1), BigDecimal(7), Operator.LSH, int_size_enum.l1)))
+        Assert.assertEquals(0 as Byte.toLong(), calculateWithData(ProgrammerCalcModel(BigDecimal(0x80), BigDecimal(1), Operator.LSH, int_size_enum.l1)))
     }
 
     @Test
-    public void rshTestQWORD_isCorrect() {
-        assertEquals(0x1, ProgrammerOperationsUtil.calculateWithData(new ProgrammerCalcModel(new BigDecimal(0x2), new BigDecimal(1), RSH, l8)));
-        assertEquals(0xFFFFFFFFFFFFFFFFL, ProgrammerOperationsUtil.calculateWithData(new ProgrammerCalcModel(new BigDecimal(0x8000000000000000L), new BigDecimal(63), RSH, l8)));
-        assertEquals(0, ProgrammerOperationsUtil.calculateWithData(new ProgrammerCalcModel(new BigDecimal(0x7FFFFFFFFFFFFFFFL), new BigDecimal(63), RSH, l8)));
-        assertEquals(0, ProgrammerOperationsUtil.calculateWithData(new ProgrammerCalcModel(new BigDecimal(1), new BigDecimal(1), RSH, l8)));
+    fun rshTestQWORD_isCorrect() {
+        Assert.assertEquals(0x1, calculateWithData(ProgrammerCalcModel(BigDecimal(0x2), BigDecimal(1), Operator.RSH, int_size_enum.l8)))
+        Assert.assertEquals(-0x1L, calculateWithData(ProgrammerCalcModel(BigDecimal(-0x8000000000000000L), BigDecimal(63), Operator.RSH, int_size_enum.l8)))
+        Assert.assertEquals(0, calculateWithData(ProgrammerCalcModel(BigDecimal(0x7FFFFFFFFFFFFFFFL), BigDecimal(63), Operator.RSH, int_size_enum.l8)))
+        Assert.assertEquals(0, calculateWithData(ProgrammerCalcModel(BigDecimal(1), BigDecimal(1), Operator.RSH, int_size_enum.l8)))
     }
 
     @Test
-    public void rshTestDWORD_isCorrect() {
-        assertEquals(0x1, ProgrammerOperationsUtil.calculateWithData(new ProgrammerCalcModel(new BigDecimal(0x2), new BigDecimal(1), RSH, l4)));
-        assertEquals(0xFFFFFFFF, ProgrammerOperationsUtil.calculateWithData(new ProgrammerCalcModel(new BigDecimal(0x80000000), new BigDecimal(31), RSH, l4)));
-        assertEquals(0, ProgrammerOperationsUtil.calculateWithData(new ProgrammerCalcModel(new BigDecimal(0x7FFFFFFF), new BigDecimal(31), RSH, l4)));
-        assertEquals(0, ProgrammerOperationsUtil.calculateWithData(new ProgrammerCalcModel(new BigDecimal(1), new BigDecimal(1), RSH, l4)));
+    fun rshTestDWORD_isCorrect() {
+        Assert.assertEquals(0x1, calculateWithData(ProgrammerCalcModel(BigDecimal(0x2), BigDecimal(1), Operator.RSH, int_size_enum.l4)))
+        Assert.assertEquals(-0x1, calculateWithData(ProgrammerCalcModel(BigDecimal(-0x80000000), BigDecimal(31), Operator.RSH, int_size_enum.l4)))
+        Assert.assertEquals(0, calculateWithData(ProgrammerCalcModel(BigDecimal(0x7FFFFFFF), BigDecimal(31), Operator.RSH, int_size_enum.l4)))
+        Assert.assertEquals(0, calculateWithData(ProgrammerCalcModel(BigDecimal(1), BigDecimal(1), Operator.RSH, int_size_enum.l4)))
     }
 
     @Test
-    public void rshTestWORD_isCorrect() {
-        assertEquals((short) 0x1, ProgrammerOperationsUtil.calculateWithData(new ProgrammerCalcModel(new BigDecimal(0x2), new BigDecimal(1), RSH, l2)));
-        assertEquals((short) 0xFFFF, ProgrammerOperationsUtil.calculateWithData(new ProgrammerCalcModel(new BigDecimal(0x8000), new BigDecimal(15), RSH, l2)));
-        assertEquals((short) 0, ProgrammerOperationsUtil.calculateWithData(new ProgrammerCalcModel(new BigDecimal(0x7FFF), new BigDecimal(15), RSH, l2)));
-        assertEquals((short) 0, ProgrammerOperationsUtil.calculateWithData(new ProgrammerCalcModel(new BigDecimal(1), new BigDecimal(1), RSH, l2)));
+    fun rshTestWORD_isCorrect() {
+        Assert.assertEquals(0x1 as Short.toLong(), calculateWithData(ProgrammerCalcModel(BigDecimal(0x2), BigDecimal(1), Operator.RSH, int_size_enum.l2)))
+        Assert.assertEquals(0xFFFF as Short.toLong(), calculateWithData(ProgrammerCalcModel(BigDecimal(0x8000), BigDecimal(15), Operator.RSH, int_size_enum.l2)))
+        Assert.assertEquals(0 as Short.toLong(), calculateWithData(ProgrammerCalcModel(BigDecimal(0x7FFF), BigDecimal(15), Operator.RSH, int_size_enum.l2)))
+        Assert.assertEquals(0 as Short.toLong(), calculateWithData(ProgrammerCalcModel(BigDecimal(1), BigDecimal(1), Operator.RSH, int_size_enum.l2)))
     }
 
     @Test
-    public void rshTestBYTE_isCorrect() {
-        assertEquals((byte) 0x1, ProgrammerOperationsUtil.calculateWithData(new ProgrammerCalcModel(new BigDecimal(0x2), new BigDecimal(1), RSH, l1)));
-        assertEquals((byte) 0xFF, ProgrammerOperationsUtil.calculateWithData(new ProgrammerCalcModel(new BigDecimal(0x80), new BigDecimal(7), RSH, l1)));
-        assertEquals((byte) 0, ProgrammerOperationsUtil.calculateWithData(new ProgrammerCalcModel(new BigDecimal(0x7F), new BigDecimal(7), RSH, l1)));
-        assertEquals((byte) 0, ProgrammerOperationsUtil.calculateWithData(new ProgrammerCalcModel(new BigDecimal(1), new BigDecimal(1), RSH, l1)));
+    fun rshTestBYTE_isCorrect() {
+        Assert.assertEquals(0x1 as Byte.toLong(), calculateWithData(ProgrammerCalcModel(BigDecimal(0x2), BigDecimal(1), Operator.RSH, int_size_enum.l1)))
+        Assert.assertEquals(0xFF as Byte.toLong(), calculateWithData(ProgrammerCalcModel(BigDecimal(0x80), BigDecimal(7), Operator.RSH, int_size_enum.l1)))
+        Assert.assertEquals(0 as Byte.toLong(), calculateWithData(ProgrammerCalcModel(BigDecimal(0x7F), BigDecimal(7), Operator.RSH, int_size_enum.l1)))
+        Assert.assertEquals(0 as Byte.toLong(), calculateWithData(ProgrammerCalcModel(BigDecimal(1), BigDecimal(1), Operator.RSH, int_size_enum.l1)))
     }
 }

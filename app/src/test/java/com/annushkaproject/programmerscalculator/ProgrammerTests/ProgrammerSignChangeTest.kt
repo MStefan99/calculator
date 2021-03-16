@@ -1,55 +1,49 @@
-package com.annushkaproject.programmerscalculator.ProgrammerTests;
+package com.annushkaproject.programmerscalculator.ProgrammerTests
 
+import com.annushkaproject.programmerscalculator.model.*
+import com.annushkaproject.programmerscalculator.utils.ProgrammerOperationsUtil.calculateWithData
+import org.junit.Assert
+import org.junit.Test
+import java.math.BigDecimal
 
-import com.annushkaproject.programmerscalculator.model.ProgrammerCalcModel;
-import com.annushkaproject.programmerscalculator.utils.ProgrammerOperationsUtil;
-
-import org.junit.Test;
-
-import java.math.BigDecimal;
-
-import static com.annushkaproject.programmerscalculator.model.Operator.CHANGE_SIGN;
-import static com.annushkaproject.programmerscalculator.model.int_size_enum.*;
-import static org.junit.Assert.*;
-
-public class ProgrammerSignChangeTest {
+class ProgrammerSignChangeTest {
     @Test
-    public void programmerSignChangeQWORD_isCorrect() {
-        assertEquals(-5, ProgrammerOperationsUtil.calculateWithData(new ProgrammerCalcModel(new BigDecimal(5), CHANGE_SIGN, l8)));
-        assertEquals(5, ProgrammerOperationsUtil.calculateWithData(new ProgrammerCalcModel(new BigDecimal(-5), CHANGE_SIGN, l8)));
-        assertEquals(0xC000000000000000L, ProgrammerOperationsUtil.calculateWithData(new ProgrammerCalcModel(new BigDecimal(0x4000000000000000L), CHANGE_SIGN, l8)));
-        assertEquals(0x8000000000000000L, ProgrammerOperationsUtil.calculateWithData(new ProgrammerCalcModel(new BigDecimal(0x8000000000000000L), CHANGE_SIGN, l8)));
-        assertEquals(0x8000000000000001L, ProgrammerOperationsUtil.calculateWithData(new ProgrammerCalcModel(new BigDecimal(0x7FFFFFFFFFFFFFFFL), CHANGE_SIGN, l8)));
-        assertEquals(1, ProgrammerOperationsUtil.calculateWithData(new ProgrammerCalcModel(new BigDecimal(0xFFFFFFFFFFFFFFFFL), CHANGE_SIGN, l8)));
+    fun programmerSignChangeQWORD_isCorrect() {
+        Assert.assertEquals(-5, calculateWithData(ProgrammerCalcModel(BigDecimal(5), Operator.CHANGE_SIGN, int_size_enum.l8)))
+        Assert.assertEquals(5, calculateWithData(ProgrammerCalcModel(BigDecimal(-5), Operator.CHANGE_SIGN, int_size_enum.l8)))
+        Assert.assertEquals(-0x4000000000000000L, calculateWithData(ProgrammerCalcModel(BigDecimal(0x4000000000000000L), Operator.CHANGE_SIGN, int_size_enum.l8)))
+        Assert.assertEquals(-0x8000000000000000L, calculateWithData(ProgrammerCalcModel(BigDecimal(-0x8000000000000000L), Operator.CHANGE_SIGN, int_size_enum.l8)))
+        Assert.assertEquals(-0x7fffffffffffffffL, calculateWithData(ProgrammerCalcModel(BigDecimal(0x7FFFFFFFFFFFFFFFL), Operator.CHANGE_SIGN, int_size_enum.l8)))
+        Assert.assertEquals(1, calculateWithData(ProgrammerCalcModel(BigDecimal(-0x1L), Operator.CHANGE_SIGN, int_size_enum.l8)))
     }
 
     @Test
-    public void programmerSignChangeDWORD_isCorrect() {
-        assertEquals(-5, ProgrammerOperationsUtil.calculateWithData(new ProgrammerCalcModel(new BigDecimal(5), CHANGE_SIGN, l4)));
-        assertEquals(5, ProgrammerOperationsUtil.calculateWithData(new ProgrammerCalcModel(new BigDecimal(-5), CHANGE_SIGN, l4)));
-        assertEquals(0xC0000000, ProgrammerOperationsUtil.calculateWithData(new ProgrammerCalcModel(new BigDecimal(0x40000000), CHANGE_SIGN, l4)));
-        assertEquals(0x80000000, ProgrammerOperationsUtil.calculateWithData(new ProgrammerCalcModel(new BigDecimal(0x80000000), CHANGE_SIGN, l4)));
-        assertEquals(0x80000001, ProgrammerOperationsUtil.calculateWithData(new ProgrammerCalcModel(new BigDecimal(0x7FFFFFFF), CHANGE_SIGN, l4)));
-        assertEquals(1, ProgrammerOperationsUtil.calculateWithData(new ProgrammerCalcModel(new BigDecimal(0xFFFFFFFF), CHANGE_SIGN, l4)));
+    fun programmerSignChangeDWORD_isCorrect() {
+        Assert.assertEquals(-5, calculateWithData(ProgrammerCalcModel(BigDecimal(5), Operator.CHANGE_SIGN, int_size_enum.l4)))
+        Assert.assertEquals(5, calculateWithData(ProgrammerCalcModel(BigDecimal(-5), Operator.CHANGE_SIGN, int_size_enum.l4)))
+        Assert.assertEquals(-0x40000000, calculateWithData(ProgrammerCalcModel(BigDecimal(0x40000000), Operator.CHANGE_SIGN, int_size_enum.l4)))
+        Assert.assertEquals(-0x80000000, calculateWithData(ProgrammerCalcModel(BigDecimal(-0x80000000), Operator.CHANGE_SIGN, int_size_enum.l4)))
+        Assert.assertEquals(-0x7fffffff, calculateWithData(ProgrammerCalcModel(BigDecimal(0x7FFFFFFF), Operator.CHANGE_SIGN, int_size_enum.l4)))
+        Assert.assertEquals(1, calculateWithData(ProgrammerCalcModel(BigDecimal(-0x1), Operator.CHANGE_SIGN, int_size_enum.l4)))
     }
 
     @Test
-    public void programmerSignChangeWORD_isCorrect() {
-        assertEquals((short) -5, ProgrammerOperationsUtil.calculateWithData(new ProgrammerCalcModel(new BigDecimal(5), CHANGE_SIGN, l2)));
-        assertEquals((short) 5, ProgrammerOperationsUtil.calculateWithData(new ProgrammerCalcModel(new BigDecimal(-5), CHANGE_SIGN, l2)));
-        assertEquals((short) 0xC000, ProgrammerOperationsUtil.calculateWithData(new ProgrammerCalcModel(new BigDecimal(0x4000), CHANGE_SIGN, l2)));
-        assertEquals((short) 0x8000, ProgrammerOperationsUtil.calculateWithData(new ProgrammerCalcModel(new BigDecimal(0x8000), CHANGE_SIGN, l2)));
-        assertEquals((short) 0x8001, ProgrammerOperationsUtil.calculateWithData(new ProgrammerCalcModel(new BigDecimal(0x7FFF), CHANGE_SIGN, l2)));
-        assertEquals((short) 1, ProgrammerOperationsUtil.calculateWithData(new ProgrammerCalcModel(new BigDecimal(0xFFFF), CHANGE_SIGN, l2)));
+    fun programmerSignChangeWORD_isCorrect() {
+        Assert.assertEquals(-5 as Short.toLong(), calculateWithData(ProgrammerCalcModel(BigDecimal(5), Operator.CHANGE_SIGN, int_size_enum.l2)))
+        Assert.assertEquals(5 as Short.toLong(), calculateWithData(ProgrammerCalcModel(BigDecimal(-5), Operator.CHANGE_SIGN, int_size_enum.l2)))
+        Assert.assertEquals(0xC000 as Short.toLong(), calculateWithData(ProgrammerCalcModel(BigDecimal(0x4000), Operator.CHANGE_SIGN, int_size_enum.l2)))
+        Assert.assertEquals(0x8000 as Short.toLong(), calculateWithData(ProgrammerCalcModel(BigDecimal(0x8000), Operator.CHANGE_SIGN, int_size_enum.l2)))
+        Assert.assertEquals(0x8001 as Short.toLong(), calculateWithData(ProgrammerCalcModel(BigDecimal(0x7FFF), Operator.CHANGE_SIGN, int_size_enum.l2)))
+        Assert.assertEquals(1 as Short.toLong(), calculateWithData(ProgrammerCalcModel(BigDecimal(0xFFFF), Operator.CHANGE_SIGN, int_size_enum.l2)))
     }
 
     @Test
-    public void programmerSignChangeBYTE_isCorrect() {
-        assertEquals((byte) -5, ProgrammerOperationsUtil.calculateWithData(new ProgrammerCalcModel(new BigDecimal(5), CHANGE_SIGN, l1)));
-        assertEquals((byte) 5, ProgrammerOperationsUtil.calculateWithData(new ProgrammerCalcModel(new BigDecimal(-5), CHANGE_SIGN, l1)));
-        assertEquals((byte) 0xC0, ProgrammerOperationsUtil.calculateWithData(new ProgrammerCalcModel(new BigDecimal(0x40), CHANGE_SIGN, l1)));
-        assertEquals((byte) 0x80, ProgrammerOperationsUtil.calculateWithData(new ProgrammerCalcModel(new BigDecimal(0x80), CHANGE_SIGN, l1)));
-        assertEquals((byte) 0x81, ProgrammerOperationsUtil.calculateWithData(new ProgrammerCalcModel(new BigDecimal(0x7F), CHANGE_SIGN, l1)));
-        assertEquals((byte) 1, ProgrammerOperationsUtil.calculateWithData(new ProgrammerCalcModel(new BigDecimal(0xFF), CHANGE_SIGN, l1)));
+    fun programmerSignChangeBYTE_isCorrect() {
+        Assert.assertEquals(-5 as Byte.toLong(), calculateWithData(ProgrammerCalcModel(BigDecimal(5), Operator.CHANGE_SIGN, int_size_enum.l1)))
+        Assert.assertEquals(5 as Byte.toLong(), calculateWithData(ProgrammerCalcModel(BigDecimal(-5), Operator.CHANGE_SIGN, int_size_enum.l1)))
+        Assert.assertEquals(0xC0 as Byte.toLong(), calculateWithData(ProgrammerCalcModel(BigDecimal(0x40), Operator.CHANGE_SIGN, int_size_enum.l1)))
+        Assert.assertEquals(0x80 as Byte.toLong(), calculateWithData(ProgrammerCalcModel(BigDecimal(0x80), Operator.CHANGE_SIGN, int_size_enum.l1)))
+        Assert.assertEquals(0x81 as Byte.toLong(), calculateWithData(ProgrammerCalcModel(BigDecimal(0x7F), Operator.CHANGE_SIGN, int_size_enum.l1)))
+        Assert.assertEquals(1 as Byte.toLong(), calculateWithData(ProgrammerCalcModel(BigDecimal(0xFF), Operator.CHANGE_SIGN, int_size_enum.l1)))
     }
 }

@@ -1,50 +1,43 @@
-package com.annushkaproject.programmerscalculator.ProgrammerTests;
+package com.annushkaproject.programmerscalculator.ProgrammerTests
 
-import com.annushkaproject.programmerscalculator.model.ProgrammerCalcModel;
-import com.annushkaproject.programmerscalculator.model.int_size_enum;
-import com.annushkaproject.programmerscalculator.utils.ProgrammerOperationsUtil;
+import com.annushkaproject.programmerscalculator.model.*
+import com.annushkaproject.programmerscalculator.utils.ProgrammerOperationsUtil.calculateWithData
+import org.junit.Assert
+import org.junit.Test
+import java.math.BigDecimal
 
-import org.junit.Test;
-
-import java.math.BigDecimal;
-
-import static com.annushkaproject.programmerscalculator.model.Operator.NOT;
-import static org.junit.Assert.*;
-
-import static com.annushkaproject.programmerscalculator.model.int_size_enum.*;
-
-public class ProgrammerNotTest {
+class ProgrammerNotTest {
     @Test
-    public void notTestBasic_isCorrect() {
-        for (int_size_enum mode : int_size_enum.values()) {
-            assertEquals(-2, ProgrammerOperationsUtil.calculateWithData(new ProgrammerCalcModel(new BigDecimal(1), NOT, mode)));
-            assertEquals(-1, ProgrammerOperationsUtil.calculateWithData(new ProgrammerCalcModel(new BigDecimal(0), NOT, mode)));
-            assertEquals(0, ProgrammerOperationsUtil.calculateWithData(new ProgrammerCalcModel(new BigDecimal(-1), NOT, mode)));
-            assertEquals(1, ProgrammerOperationsUtil.calculateWithData(new ProgrammerCalcModel(new BigDecimal(-2), NOT, mode)));
+    fun notTestBasic_isCorrect() {
+        for (mode in int_size_enum.values()) {
+            Assert.assertEquals(-2, calculateWithData(ProgrammerCalcModel(BigDecimal(1), Operator.NOT, mode)))
+            Assert.assertEquals(-1, calculateWithData(ProgrammerCalcModel(BigDecimal(0), Operator.NOT, mode)))
+            Assert.assertEquals(0, calculateWithData(ProgrammerCalcModel(BigDecimal(-1), Operator.NOT, mode)))
+            Assert.assertEquals(1, calculateWithData(ProgrammerCalcModel(BigDecimal(-2), Operator.NOT, mode)))
         }
     }
 
     @Test
-    public void notTestQWORD_isCorrect() {
-        assertEquals(0x8000000000000000L, ProgrammerOperationsUtil.calculateWithData(new ProgrammerCalcModel(new BigDecimal(0x7FFFFFFFFFFFFFFFL), NOT, l8)));
-        assertEquals(0x7FFFFFFFFFFFFFFFL, ProgrammerOperationsUtil.calculateWithData(new ProgrammerCalcModel(new BigDecimal(0x8000000000000000L), NOT, l8)));
+    fun notTestQWORD_isCorrect() {
+        Assert.assertEquals(-0x8000000000000000L, calculateWithData(ProgrammerCalcModel(BigDecimal(0x7FFFFFFFFFFFFFFFL), Operator.NOT, int_size_enum.l8)))
+        Assert.assertEquals(0x7FFFFFFFFFFFFFFFL, calculateWithData(ProgrammerCalcModel(BigDecimal(-0x8000000000000000L), Operator.NOT, int_size_enum.l8)))
     }
 
     @Test
-    public void notTestDWORD_isCorrect() {
-        assertEquals(0x80000000, ProgrammerOperationsUtil.calculateWithData(new ProgrammerCalcModel(new BigDecimal(0x7FFFFFFF), NOT, l4)));
-        assertEquals(0x7FFFFFFF, ProgrammerOperationsUtil.calculateWithData(new ProgrammerCalcModel(new BigDecimal(0x80000000), NOT, l4)));
+    fun notTestDWORD_isCorrect() {
+        Assert.assertEquals(-0x80000000, calculateWithData(ProgrammerCalcModel(BigDecimal(0x7FFFFFFF), Operator.NOT, int_size_enum.l4)))
+        Assert.assertEquals(0x7FFFFFFF, calculateWithData(ProgrammerCalcModel(BigDecimal(-0x80000000), Operator.NOT, int_size_enum.l4)))
     }
 
     @Test
-    public void notTestWORD_isCorrect() {
-        assertEquals((short) 0x8000, ProgrammerOperationsUtil.calculateWithData(new ProgrammerCalcModel(new BigDecimal(0x7FFF), NOT, l2)));
-        assertEquals((short) 0x7FFF, ProgrammerOperationsUtil.calculateWithData(new ProgrammerCalcModel(new BigDecimal(0x8000), NOT, l2)));
+    fun notTestWORD_isCorrect() {
+        Assert.assertEquals(0x8000 as Short.toLong(), calculateWithData(ProgrammerCalcModel(BigDecimal(0x7FFF), Operator.NOT, int_size_enum.l2)))
+        Assert.assertEquals(0x7FFF as Short.toLong(), calculateWithData(ProgrammerCalcModel(BigDecimal(0x8000), Operator.NOT, int_size_enum.l2)))
     }
 
     @Test
-    public void notTestBYTE_isCorrect() {
-        assertEquals((byte) 0x80, ProgrammerOperationsUtil.calculateWithData(new ProgrammerCalcModel(new BigDecimal(0x7F), NOT, l1)));
-        assertEquals((byte) 0x7F, ProgrammerOperationsUtil.calculateWithData(new ProgrammerCalcModel(new BigDecimal(0x80), NOT, l1)));
+    fun notTestBYTE_isCorrect() {
+        Assert.assertEquals(0x80 as Byte.toLong(), calculateWithData(ProgrammerCalcModel(BigDecimal(0x7F), Operator.NOT, int_size_enum.l1)))
+        Assert.assertEquals(0x7F as Byte.toLong(), calculateWithData(ProgrammerCalcModel(BigDecimal(0x80), Operator.NOT, int_size_enum.l1)))
     }
 }

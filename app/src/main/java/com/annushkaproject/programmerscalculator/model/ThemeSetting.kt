@@ -1,17 +1,39 @@
-package com.annushkaproject.programmerscalculator.model;
-import com.annushkaproject.programmerscalculator.R;
-public enum ThemeSetting { LIGHT, DARK, AUTO, UNKNOWN;
-    public static int getNumberByThemeSetting(ThemeSetting themeSetting) {
-        switch (themeSetting) { case LIGHT: return 0; case DARK: return 1; case AUTO: return 2; default: return -1; }
-    }
-    public static ThemeSetting getThemeSettingByNumber(int number) {
-        switch (number) {
-            case 0: return ThemeSetting.LIGHT; case 1: return ThemeSetting.DARK;
-            case 2: return ThemeSetting.AUTO; default: return ThemeSetting.UNKNOWN; }
-    }
-    public static int getThemeStyleByThemeSetting(ThemeSetting themeSetting) {
-        switch (themeSetting) {
-            case LIGHT: return R.style.AppTheme; case DARK: return R.style.AppTheme_DarkTheme;
-            case AUTO: default: return R.style.AppTheme; }
+package com.annushkaproject.programmerscalculator.model
+
+import com.annushkaproject.programmerscalculator.R
+
+enum class ThemeSetting {
+    LIGHT, DARK, AUTO, UNKNOWN;
+
+    companion object {
+        @JvmStatic
+        fun getNumberByThemeSetting(themeSetting: ThemeSetting?): Int {
+            return when (themeSetting) {
+                LIGHT -> 0
+                DARK -> 1
+                AUTO -> 2
+                else -> -1
+            }
+        }
+
+        @JvmStatic
+        fun getThemeSettingByNumber(number: Int): ThemeSetting {
+            return when (number) {
+                0 -> LIGHT
+                1 -> DARK
+                2 -> AUTO
+                else -> UNKNOWN
+            }
+        }
+
+        @JvmStatic
+        fun getThemeStyleByThemeSetting(themeSetting: ThemeSetting?): Int {
+            return when (themeSetting) {
+                LIGHT -> R.style.AppTheme
+                DARK -> R.style.AppTheme_DarkTheme
+                AUTO -> R.style.AppTheme
+                else -> R.style.AppTheme
+            }
+        }
     }
 }

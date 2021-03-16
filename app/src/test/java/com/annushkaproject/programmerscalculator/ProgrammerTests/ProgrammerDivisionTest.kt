@@ -1,62 +1,57 @@
-package com.annushkaproject.programmerscalculator.ProgrammerTests;
+package com.annushkaproject.programmerscalculator.ProgrammerTests
 
-import com.annushkaproject.programmerscalculator.model.ProgrammerCalcModel;
-import com.annushkaproject.programmerscalculator.utils.ProgrammerOperationsUtil;
+import com.annushkaproject.programmerscalculator.model.*
+import com.annushkaproject.programmerscalculator.utils.ProgrammerOperationsUtil.calculateWithData
+import org.junit.Assert
+import org.junit.Test
+import java.math.BigDecimal
 
-import org.junit.Test;
-
-import java.math.BigDecimal;
-
-import static com.annushkaproject.programmerscalculator.model.Operator.remainder_divide;
-import static com.annushkaproject.programmerscalculator.model.int_size_enum.*;
-import static org.junit.Assert.*;
-
-public class ProgrammerDivisionTest {
+class ProgrammerDivisionTest {
     @Test
-    public void programmerDivisionQWORD_isCorrect() {
-        assertEquals(5, ProgrammerOperationsUtil.calculateWithData(new ProgrammerCalcModel(new BigDecimal(25), new BigDecimal(5), remainder_divide, l8)));
-        assertEquals(-5, ProgrammerOperationsUtil.calculateWithData(new ProgrammerCalcModel(new BigDecimal(-25), new BigDecimal(5), remainder_divide, l8)));
-        assertEquals(1, ProgrammerOperationsUtil.calculateWithData(new ProgrammerCalcModel(new BigDecimal(3), new BigDecimal(2), remainder_divide, l8)));
-        assertEquals(0xC000000000000000L, ProgrammerOperationsUtil.calculateWithData(new ProgrammerCalcModel(new BigDecimal(0x8000000000000000L), new BigDecimal(2), remainder_divide, l8)));
-        assertEquals(1, ProgrammerOperationsUtil.calculateWithData(new ProgrammerCalcModel(new BigDecimal(0x8000000000000000L), new BigDecimal(0x8000000000000000L), remainder_divide, l8)));
-        assertEquals(0, ProgrammerOperationsUtil.calculateWithData(new ProgrammerCalcModel(new BigDecimal(1), new BigDecimal(2), remainder_divide, l8)));
-        assertEquals(0xFFFFFFFFFFFFFFFFL, ProgrammerOperationsUtil.calculateWithData(new ProgrammerCalcModel(new BigDecimal(0xFFFFFFFFFFFFFFFEL), new BigDecimal(2), remainder_divide, l8)));
-        assertEquals(0x3FFFFFFFFFFFFFFFL, ProgrammerOperationsUtil.calculateWithData(new ProgrammerCalcModel(new BigDecimal(0x7FFFFFFFFFFFFFFEL), new BigDecimal(2), remainder_divide, l8)));
+    fun programmerDivisionQWORD_isCorrect() {
+        Assert.assertEquals(5, calculateWithData(ProgrammerCalcModel(BigDecimal(25), BigDecimal(5), Operator.remainder_divide, int_size_enum.l8)))
+        Assert.assertEquals(-5, calculateWithData(ProgrammerCalcModel(BigDecimal(-25), BigDecimal(5), Operator.remainder_divide, int_size_enum.l8)))
+        Assert.assertEquals(1, calculateWithData(ProgrammerCalcModel(BigDecimal(3), BigDecimal(2), Operator.remainder_divide, int_size_enum.l8)))
+        Assert.assertEquals(-0x4000000000000000L, calculateWithData(ProgrammerCalcModel(BigDecimal(-0x8000000000000000L), BigDecimal(2), Operator.remainder_divide, int_size_enum.l8)))
+        Assert.assertEquals(1, calculateWithData(ProgrammerCalcModel(BigDecimal(-0x8000000000000000L), BigDecimal(-0x8000000000000000L), Operator.remainder_divide, int_size_enum.l8)))
+        Assert.assertEquals(0, calculateWithData(ProgrammerCalcModel(BigDecimal(1), BigDecimal(2), Operator.remainder_divide, int_size_enum.l8)))
+        Assert.assertEquals(-0x1L, calculateWithData(ProgrammerCalcModel(BigDecimal(-0x2L), BigDecimal(2), Operator.remainder_divide, int_size_enum.l8)))
+        Assert.assertEquals(0x3FFFFFFFFFFFFFFFL, calculateWithData(ProgrammerCalcModel(BigDecimal(0x7FFFFFFFFFFFFFFEL), BigDecimal(2), Operator.remainder_divide, int_size_enum.l8)))
     }
 
     @Test
-    public void programmerDivisionDWORD_isCorrect() {
-        assertEquals(5, ProgrammerOperationsUtil.calculateWithData(new ProgrammerCalcModel(new BigDecimal(25), new BigDecimal(5), remainder_divide, l4)));
-        assertEquals(-5, ProgrammerOperationsUtil.calculateWithData(new ProgrammerCalcModel(new BigDecimal(-25), new BigDecimal(5), remainder_divide, l4)));
-        assertEquals(1, ProgrammerOperationsUtil.calculateWithData(new ProgrammerCalcModel(new BigDecimal(3), new BigDecimal(2), remainder_divide, l4)));
-        assertEquals(0xC0000000, ProgrammerOperationsUtil.calculateWithData(new ProgrammerCalcModel(new BigDecimal(0x80000000), new BigDecimal(2), remainder_divide, l4)));
-        assertEquals(1, ProgrammerOperationsUtil.calculateWithData(new ProgrammerCalcModel(new BigDecimal(0x80000000), new BigDecimal(0x80000000), remainder_divide, l4)));
-        assertEquals(0, ProgrammerOperationsUtil.calculateWithData(new ProgrammerCalcModel(new BigDecimal(1), new BigDecimal(2), remainder_divide, l8)));
-        assertEquals(0xFFFFFFFF, ProgrammerOperationsUtil.calculateWithData(new ProgrammerCalcModel(new BigDecimal(0xFFFFFFFE), new BigDecimal(2), remainder_divide, l4)));
-        assertEquals(0x3FFFFFFF, ProgrammerOperationsUtil.calculateWithData(new ProgrammerCalcModel(new BigDecimal(0x7FFFFFFE), new BigDecimal(2), remainder_divide, l4)));
+    fun programmerDivisionDWORD_isCorrect() {
+        Assert.assertEquals(5, calculateWithData(ProgrammerCalcModel(BigDecimal(25), BigDecimal(5), Operator.remainder_divide, int_size_enum.l4)))
+        Assert.assertEquals(-5, calculateWithData(ProgrammerCalcModel(BigDecimal(-25), BigDecimal(5), Operator.remainder_divide, int_size_enum.l4)))
+        Assert.assertEquals(1, calculateWithData(ProgrammerCalcModel(BigDecimal(3), BigDecimal(2), Operator.remainder_divide, int_size_enum.l4)))
+        Assert.assertEquals(-0x40000000, calculateWithData(ProgrammerCalcModel(BigDecimal(-0x80000000), BigDecimal(2), Operator.remainder_divide, int_size_enum.l4)))
+        Assert.assertEquals(1, calculateWithData(ProgrammerCalcModel(BigDecimal(-0x80000000), BigDecimal(-0x80000000), Operator.remainder_divide, int_size_enum.l4)))
+        Assert.assertEquals(0, calculateWithData(ProgrammerCalcModel(BigDecimal(1), BigDecimal(2), Operator.remainder_divide, int_size_enum.l8)))
+        Assert.assertEquals(-0x1, calculateWithData(ProgrammerCalcModel(BigDecimal(-0x2), BigDecimal(2), Operator.remainder_divide, int_size_enum.l4)))
+        Assert.assertEquals(0x3FFFFFFF, calculateWithData(ProgrammerCalcModel(BigDecimal(0x7FFFFFFE), BigDecimal(2), Operator.remainder_divide, int_size_enum.l4)))
     }
 
     @Test
-    public void programmerDivisionWORD_isCorrect() {
-        assertEquals((short) 5, ProgrammerOperationsUtil.calculateWithData(new ProgrammerCalcModel(new BigDecimal(25), new BigDecimal(5), remainder_divide, l2)));
-        assertEquals((short) -5, ProgrammerOperationsUtil.calculateWithData(new ProgrammerCalcModel(new BigDecimal(-25), new BigDecimal(5), remainder_divide, l2)));
-        assertEquals((short) 1, ProgrammerOperationsUtil.calculateWithData(new ProgrammerCalcModel(new BigDecimal(3), new BigDecimal(2), remainder_divide, l2)));
-        assertEquals((short) 0xC000, ProgrammerOperationsUtil.calculateWithData(new ProgrammerCalcModel(new BigDecimal(0x8000), new BigDecimal(2), remainder_divide, l2)));
-        assertEquals((short) 1, ProgrammerOperationsUtil.calculateWithData(new ProgrammerCalcModel(new BigDecimal(0x8000), new BigDecimal(0x8000), remainder_divide, l2)));
-        assertEquals(0, ProgrammerOperationsUtil.calculateWithData(new ProgrammerCalcModel(new BigDecimal(1), new BigDecimal(2), remainder_divide, l8)));
-        assertEquals((short) 0xFFFF, ProgrammerOperationsUtil.calculateWithData(new ProgrammerCalcModel(new BigDecimal(0xFFFE), new BigDecimal(2), remainder_divide, l2)));
-        assertEquals((short) 0x3FFF, ProgrammerOperationsUtil.calculateWithData(new ProgrammerCalcModel(new BigDecimal(0x7FFE), new BigDecimal(2), remainder_divide, l2)));
+    fun programmerDivisionWORD_isCorrect() {
+        Assert.assertEquals(5 as Short.toLong(), calculateWithData(ProgrammerCalcModel(BigDecimal(25), BigDecimal(5), Operator.remainder_divide, int_size_enum.l2)))
+        Assert.assertEquals(-5 as Short.toLong(), calculateWithData(ProgrammerCalcModel(BigDecimal(-25), BigDecimal(5), Operator.remainder_divide, int_size_enum.l2)))
+        Assert.assertEquals(1 as Short.toLong(), calculateWithData(ProgrammerCalcModel(BigDecimal(3), BigDecimal(2), Operator.remainder_divide, int_size_enum.l2)))
+        Assert.assertEquals(0xC000 as Short.toLong(), calculateWithData(ProgrammerCalcModel(BigDecimal(0x8000), BigDecimal(2), Operator.remainder_divide, int_size_enum.l2)))
+        Assert.assertEquals(1 as Short.toLong(), calculateWithData(ProgrammerCalcModel(BigDecimal(0x8000), BigDecimal(0x8000), Operator.remainder_divide, int_size_enum.l2)))
+        Assert.assertEquals(0, calculateWithData(ProgrammerCalcModel(BigDecimal(1), BigDecimal(2), Operator.remainder_divide, int_size_enum.l8)))
+        Assert.assertEquals(0xFFFF as Short.toLong(), calculateWithData(ProgrammerCalcModel(BigDecimal(0xFFFE), BigDecimal(2), Operator.remainder_divide, int_size_enum.l2)))
+        Assert.assertEquals(0x3FFF as Short.toLong(), calculateWithData(ProgrammerCalcModel(BigDecimal(0x7FFE), BigDecimal(2), Operator.remainder_divide, int_size_enum.l2)))
     }
 
     @Test
-    public void programmerDivisionBYTE_isCorrect() {
-        assertEquals((byte) 5, ProgrammerOperationsUtil.calculateWithData(new ProgrammerCalcModel(new BigDecimal(25), new BigDecimal(5), remainder_divide, l1)));
-        assertEquals((byte) -5, ProgrammerOperationsUtil.calculateWithData(new ProgrammerCalcModel(new BigDecimal(-25), new BigDecimal(5), remainder_divide, l1)));
-        assertEquals((byte) 1, ProgrammerOperationsUtil.calculateWithData(new ProgrammerCalcModel(new BigDecimal(3), new BigDecimal(2), remainder_divide, l1)));
-        assertEquals((byte) 0xC0, ProgrammerOperationsUtil.calculateWithData(new ProgrammerCalcModel(new BigDecimal(0x80), new BigDecimal(2), remainder_divide, l1)));
-        assertEquals((byte) 1, ProgrammerOperationsUtil.calculateWithData(new ProgrammerCalcModel(new BigDecimal(0x80), new BigDecimal(0x80), remainder_divide, l1)));
-        assertEquals(0, ProgrammerOperationsUtil.calculateWithData(new ProgrammerCalcModel(new BigDecimal(1), new BigDecimal(2), remainder_divide, l8)));
-        assertEquals((byte) 0xFF, ProgrammerOperationsUtil.calculateWithData(new ProgrammerCalcModel(new BigDecimal(0xFE), new BigDecimal(2), remainder_divide, l1)));
-        assertEquals((byte) 0x3F, ProgrammerOperationsUtil.calculateWithData(new ProgrammerCalcModel(new BigDecimal(0x7E), new BigDecimal(2), remainder_divide, l1)));
+    fun programmerDivisionBYTE_isCorrect() {
+        Assert.assertEquals(5 as Byte.toLong(), calculateWithData(ProgrammerCalcModel(BigDecimal(25), BigDecimal(5), Operator.remainder_divide, int_size_enum.l1)))
+        Assert.assertEquals(-5 as Byte.toLong(), calculateWithData(ProgrammerCalcModel(BigDecimal(-25), BigDecimal(5), Operator.remainder_divide, int_size_enum.l1)))
+        Assert.assertEquals(1 as Byte.toLong(), calculateWithData(ProgrammerCalcModel(BigDecimal(3), BigDecimal(2), Operator.remainder_divide, int_size_enum.l1)))
+        Assert.assertEquals(0xC0 as Byte.toLong(), calculateWithData(ProgrammerCalcModel(BigDecimal(0x80), BigDecimal(2), Operator.remainder_divide, int_size_enum.l1)))
+        Assert.assertEquals(1 as Byte.toLong(), calculateWithData(ProgrammerCalcModel(BigDecimal(0x80), BigDecimal(0x80), Operator.remainder_divide, int_size_enum.l1)))
+        Assert.assertEquals(0, calculateWithData(ProgrammerCalcModel(BigDecimal(1), BigDecimal(2), Operator.remainder_divide, int_size_enum.l8)))
+        Assert.assertEquals(0xFF as Byte.toLong(), calculateWithData(ProgrammerCalcModel(BigDecimal(0xFE), BigDecimal(2), Operator.remainder_divide, int_size_enum.l1)))
+        Assert.assertEquals(0x3F as Byte.toLong(), calculateWithData(ProgrammerCalcModel(BigDecimal(0x7E), BigDecimal(2), Operator.remainder_divide, int_size_enum.l1)))
     }
 }

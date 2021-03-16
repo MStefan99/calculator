@@ -1,31 +1,42 @@
-package com.annushkaproject.programmerscalculator.managers;
-import com.annushkaproject.programmerscalculator.model.HistoryResult;
-import java.util.ArrayList;
-import io.realm.Realm;
-import io.realm.RealmConfiguration;
-import io.realm.RealmResults;
-import java.util.Date;
+package com.annushkaproject.programmerscalculator.managers
 
-public class HistoryManager {
-    private static final String DATABASE_NAME = "calculator.realm";
-    private static final HistoryManager managerInstance = new HistoryManager();
-    private RealmConfiguration config = new RealmConfiguration.Builder().name(DATABASE_NAME).build();
-    private Realm realm = Realm.getInstance(config);
-    private HistoryManager() {}
-    public static HistoryManager getSharedInstance() { return managerInstance; } 
-    public void printDatabaseLocation() { System.out.println("Realm db path: " + realm.getPath()); } 
-    public void save(String resultString) {
-        realm.beginTransaction();
-        HistoryResult result = realm.createObject(HistoryResult.class);
-        result.setResult(resultString); realm.commitTransaction();
+import com.annushkaproject.programmerscalculator.model.HistoryResult
+import io.realm.Realm
+import io.realm.RealmConfiguration
+import java.util.*
+
+class HistoryManager private constructor() {
+    private val config = RealmConfiguration.Builder().name(DATABASE_NAME).build()
+    private val realm = Realm.getInstance(config)
+    fun printDatabaseLocation() {
+        println("Realm db path: " + realm.path)
     }
-    public void deleteResult(HistoryResult resultToDelete) {
-        RealmResults<HistoryResult> results = realm.where(HistoryResult.class).equalTo("id", resultToDelete.getId()).findAll();
-        if (results.size() > 0) {
-            realm.beginTransaction(); results.deleteAllFromRealm(); realm.commitTransaction();
+
+    fun save(resultString: String?) {
+        realm.beginTransaction()
+        val result = realm.createObject(HistoryResult::class.java)
+        result.result = resultString
+        realm.commitTransaction()
+    }
+
+    fun deleteResult(resultToDelete: HistoryResult?) {
+        val results = realm.where(HistoryResult::class.java).equalTo("id", resultToDelete.id).findAll()
+        if (results.size > 0) {
+            realm.beginTransaction()
+            results.deleteAllFromRealm()
+            realm.commitTransaction()
         }
     }
-    public ArrayList<HistoryResult> fetchAllHistoryResults() {
-        return new ArrayList<HistoryResult>(realm.where(HistoryResult.class).findAll());
+
+    fun fetchAllHistoryResults(): ArrayList<HistoryResult?>? {
+        return ArrayList(realm.where(HistoryResult::class.java).findAll())
+    }
+
+    companion object {
+        private val DATABASE_NAME: String? = "calculator.realm"
+        private val managerInstance: HistoryManager? = HistoryManager()
+        fun getSharedInstance(): HistoryManager? {
+            return managerInstance
+        }
     }
 }

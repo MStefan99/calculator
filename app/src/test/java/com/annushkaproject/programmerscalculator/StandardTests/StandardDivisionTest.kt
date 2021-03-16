@@ -1,53 +1,50 @@
-package com.annushkaproject.programmerscalculator.StandardTests;
+package com.annushkaproject.programmerscalculator.StandardTests
 
-import com.annushkaproject.programmerscalculator.model.CalculationModel;
-import com.annushkaproject.programmerscalculator.utils.StandardOperationsUtil;
+import com.annushkaproject.programmerscalculator.model.CalculationModel
+import com.annushkaproject.programmerscalculator.model.Operator
+import com.annushkaproject.programmerscalculator.utils.StandardOperationsUtil.calculateResultForTwoSidedOperator
+import org.junit.Assert
+import org.junit.Test
+import java.math.BigDecimal
 
-import org.junit.Test;
-
-import java.math.BigDecimal;
-
-import static com.annushkaproject.programmerscalculator.model.Operator.remainder_divide;
-import static org.junit.Assert.assertEquals;
-
-public class StandardDivisionTest {
+class StandardDivisionTest {
     @Test
-    public void testIwoIntegers() {
-        BigDecimal firstValue = BigDecimal.valueOf(25);
-        BigDecimal secondValue = BigDecimal.valueOf(5);
-        CalculationModel model = new CalculationModel(firstValue, secondValue, remainder_divide);
-        assertEquals(5, StandardOperationsUtil.calculateResultForTwoSidedOperator(model), 0);
+    fun testIwoIntegers() {
+        val firstValue = BigDecimal.valueOf(25)
+        val secondValue = BigDecimal.valueOf(5)
+        val model = CalculationModel(firstValue, secondValue, Operator.remainder_divide)
+        Assert.assertEquals(5.0, calculateResultForTwoSidedOperator(model), 0.0)
     }
 
     @Test
-    public void testIwoIntegersRountResult() {
-        BigDecimal firstValue = BigDecimal.valueOf(5);
-        BigDecimal secondValue = BigDecimal.valueOf(9);
-        CalculationModel model = new CalculationModel(firstValue, secondValue, remainder_divide);
-        assertEquals(0.5555555555555556, StandardOperationsUtil.calculateResultForTwoSidedOperator(model), 0);
+    fun testIwoIntegersRountResult() {
+        val firstValue = BigDecimal.valueOf(5)
+        val secondValue = BigDecimal.valueOf(9)
+        val model = CalculationModel(firstValue, secondValue, Operator.remainder_divide)
+        Assert.assertEquals(0.5555555555555556, calculateResultForTwoSidedOperator(model), 0.0)
     }
 
     @Test
-    public void testFirstFloat() {
-        BigDecimal firstValue = BigDecimal.valueOf(-0.0001);
-        BigDecimal secondValue = BigDecimal.valueOf(2);
-        CalculationModel model = new CalculationModel(firstValue, secondValue, remainder_divide);
-        assertEquals(-0.00005, StandardOperationsUtil.calculateResultForTwoSidedOperator(model), 0);
+    fun testFirstFloat() {
+        val firstValue = BigDecimal.valueOf(-0.0001)
+        val secondValue = BigDecimal.valueOf(2)
+        val model = CalculationModel(firstValue, secondValue, Operator.remainder_divide)
+        Assert.assertEquals(-0.00005, calculateResultForTwoSidedOperator(model), 0.0)
     }
 
     @Test
-    public void testFloatResult() {
-        BigDecimal firstValue = BigDecimal.valueOf(3);
-        BigDecimal secondValue = BigDecimal.valueOf(2);
-        CalculationModel model = new CalculationModel(firstValue, secondValue, remainder_divide);
-        assertEquals(1.5, StandardOperationsUtil.calculateResultForTwoSidedOperator(model), 0);
+    fun testFloatResult() {
+        val firstValue = BigDecimal.valueOf(3)
+        val secondValue = BigDecimal.valueOf(2)
+        val model = CalculationModel(firstValue, secondValue, Operator.remainder_divide)
+        Assert.assertEquals(1.5, calculateResultForTwoSidedOperator(model), 0.0)
     }
 
     @Test
-    public void testFloatResultLessThanOne() {
-        BigDecimal firstValue = BigDecimal.valueOf(1);
-        BigDecimal secondValue = BigDecimal.valueOf(2);
-        CalculationModel model = new CalculationModel(firstValue, secondValue, remainder_divide);
-        assertEquals(0.5, StandardOperationsUtil.calculateResultForTwoSidedOperator(model), 0);
+    fun testFloatResultLessThanOne() {
+        val firstValue = BigDecimal.valueOf(1)
+        val secondValue = BigDecimal.valueOf(2)
+        val model = CalculationModel(firstValue, secondValue, Operator.remainder_divide)
+        Assert.assertEquals(0.5, calculateResultForTwoSidedOperator(model), 0.0)
     }
 }

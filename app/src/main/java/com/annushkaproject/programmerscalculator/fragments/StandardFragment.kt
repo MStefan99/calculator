@@ -1,351 +1,296 @@
-package com.annushkaproject.programmerscalculator.fragments;
+package com.annushkaproject.programmerscalculator.fragments
 
-import android.content.Context;
-import android.content.Intent;
-import android.content.res.Configuration;
-import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.TextView;
-import android.widget.Toast;
+import android.content.Intent
+import android.content.res.Configuration
+import android.os.Bundle
+import android.support.v4.app.Fragment
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.*
+import com.annushkaproject.programmerscalculator.R
+import com.annushkaproject.programmerscalculator.activities.HistoryActivity
+import com.annushkaproject.programmerscalculator.managers.HistoryManager
+import com.annushkaproject.programmerscalculator.model.*
+import com.annushkaproject.programmerscalculator.model.Operator.Companion.operatorForTitle
+import com.annushkaproject.programmerscalculator.utils.InstanceStateUtil.restoreSavedInstance
+import com.annushkaproject.programmerscalculator.utils.InstanceStateUtil.saveInstanceState
+import com.annushkaproject.programmerscalculator.utils.StandardOperationsUtil
+import com.annushkaproject.programmerscalculator.utils.StandardOperationsUtil.calculatePercentForData
+import com.annushkaproject.programmerscalculator.utils.StandardOperationsUtil.calculateResultForOneSidedOperator
+import com.annushkaproject.programmerscalculator.utils.StandardOperationsUtil.calculateResultForTwoSidedOperator
+import java.util.*
 
-import com.annushkaproject.programmerscalculator.R;
-import com.annushkaproject.programmerscalculator.activities.HistoryActivity;
-import com.annushkaproject.programmerscalculator.managers.HistoryManager;
-import com.annushkaproject.programmerscalculator.model.CalculationModel;
-import com.annushkaproject.programmerscalculator.model.Operator;
-import com.annushkaproject.programmerscalculator.utils.InstanceStateUtil;
-import com.annushkaproject.programmerscalculator.utils.StandardOperationsUtil;
-
-import java.util.ArrayList;
-
-public class StandardFragment extends Fragment {
-
-    private TextView textView;
-    private ArrayList<Button> numberButtons = new ArrayList<>();
-    private ArrayList<Button> operatorButtons = new ArrayList<>();
-
-    private CalculationModel calcModel = new CalculationModel();
-    private boolean secondValueInputStarted = false;
-
-    private String packageName;
-
-
-    @Nullable
-    @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        super.onCreateView(inflater, container, savedInstanceState);
+class StandardFragment : Fragment() {
+    private var textView: TextView? = null
+    private val numberButtons: ArrayList<Button?>? = ArrayList()
+    private val operatorButtons: ArrayList<Button?>? = ArrayList()
+    private var calcModel: CalculationModel? = CalculationModel()
+    private var secondValueInputStarted = false
+    private var packageName: String? = null
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        super.onCreateView(inflater, container, savedInstanceState)
         if (packageName == null) {
-            packageName = savedInstanceState.getString("PACKAGE_NAME");
-            calcModel = InstanceStateUtil.restoreSavedInstance(savedInstanceState);
+            packageName = savedInstanceState.getString("PACKAGE_NAME")
+            calcModel = restoreSavedInstance(savedInstanceState)
         }
-        View view = inflater.inflate(R.layout.fragment_standard, container, false);
-        Button btnHistory = view.findViewById(R.id.buttonHistory);
-        btnHistory.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), HistoryActivity.class);
-                startActivity(intent);
+        val view = inflater.inflate(R.layout.fragment_standard, container, false)
+        val btnHistory = view.findViewById<Button?>(R.id.buttonHistory)
+        btnHistory.setOnClickListener {
+            val intent = Intent(activity, HistoryActivity::class.java)
+            startActivity(intent)
+        }
+        return view
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        textView = getView().findViewById(R.id.u5h_tekst_viyu)
+        fillNumberButtons()
+        fillOperatorButtons()
+        setupCalculateButton()
+        setupDeleteButton()
+        setupClearButton()
+        setupSignButton()
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        saveInstanceState(outState, calcModel, packageName)
+    }
+
+    fun setupFragment(packageName: String?) {
+        this.packageName = packageName
+    }
+
+    private fun fillNumberButtons() {
+        for (i in 0..9) {
+            val button = view.findViewById<Button?>(resources.getIdentifier("button$i", "id",
+                    packageName))
+            button.setOnClickListener { v: View? ->
+                val button1 = v as Button?
+                println(button1.getText().toString())
+                usePressedNumber(button1.getText().toString())
             }
-        });
-        return view;
-    }
-
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-
-        textView = getView().findViewById(R.id.u5h_tekst_viyu);
-
-        fillNumberButtons();
-        fillOperatorButtons();
-
-        setupCalculateButton();
-        setupDeleteButton();
-        setupClearButton();
-        setupSignButton();
-    }
-
-    @Override public void onSaveInstanceState(@NonNull Bundle outState) { super.onSaveInstanceState(outState);
-        InstanceStateUtil.saveInstanceState(outState, calcModel, packageName);
-    }
-
-    public void setupFragment(String packageName) {
-        this.packageName = packageName;
-    }
-
-    private void fillNumberButtons() {
-        for (int i = 0; i < 10; i++) {
-            Button button = getView().findViewById(getResources().getIdentifier("button" + i, "id",
-                    packageName));
-            button.setOnClickListener(v -> {
-                Button button1 = (Button)v;
-                System.out.println(button1.getText().toString());
-
-                usePressedNumber(button1.getText().toString());
-            }
-            );
-
-            numberButtons.add(button);
+            numberButtons.add(button)
         }
 
         //Adding "." button separately
-        Button button = getView().findViewById(R.id.button_decimal_point);
-        button.setOnClickListener(v -> {
-            Button button12 = (Button)v;
-            System.out.println(button12.getText().toString());
-
+        val button = view.findViewById<Button?>(R.id.button_decimal_point)
+        button.setOnClickListener { v: View? ->
+            val button12 = v as Button?
+            println(button12.getText().toString())
             if (!currentString().contains(".")) {
-                usePressedNumber(button12.getText().toString());
+                usePressedNumber(button12.getText().toString())
             }
         }
-        );
-        numberButtons.add(button);
-
-        Button buttonPi = getView().findViewById(R.id.buttonPi);
-        buttonPi.setOnClickListener(v -> {
-                    Button button13 = (Button)v;
-                    System.out.println(button13.getText().toString());
-
-                    usePiPressedNumber();
-                }
-        );
-        numberButtons.add(buttonPi);
+        numberButtons.add(button)
+        val buttonPi = view.findViewById<Button?>(R.id.buttonPi)
+        buttonPi.setOnClickListener { v: View? ->
+            val button13 = v as Button?
+            println(button13.getText().toString())
+            usePiPressedNumber()
+        }
+        numberButtons.add(buttonPi)
     }
 
-    private String currentString() {
-        return textView.getText().toString();
+    private fun currentString(): String? {
+        return textView.getText().toString()
     }
 
-    private void fillOperatorButtons() {
-        operatorButtons.add(getView().findViewById(R.id.buttonPlus));
-        operatorButtons.add(getView().findViewById(R.id.buttonMinus));
-        operatorButtons.add(getView().findViewById(R.id.buttonRDivide));
-        operatorButtons.add(getView().findViewById(R.id.buttonMultiply));
-        operatorButtons.add(getView().findViewById(R.id.buttonPercent));
-
+    private fun fillOperatorButtons() {
+        operatorButtons.add(view.findViewById(R.id.buttonPlus))
+        operatorButtons.add(view.findViewById(R.id.buttonMinus))
+        operatorButtons.add(view.findViewById(R.id.buttonRDivide))
+        operatorButtons.add(view.findViewById(R.id.buttonMultiply))
+        operatorButtons.add(view.findViewById(R.id.buttonPercent))
         if (isInLandscapeOrientation()) {
-            operatorButtons.add(getView().findViewById(R.id.buttonAsin));
-            operatorButtons.add(getView().findViewById(R.id.buttonAcos));
-            operatorButtons.add(getView().findViewById(R.id.buttonAtan));
-
-            operatorButtons.add(getView().findViewById(R.id.buttonSin));
-            operatorButtons.add(getView().findViewById(R.id.buttonCos));
-            operatorButtons.add(getView().findViewById(R.id.buttonTan));
-
-            operatorButtons.add(getView().findViewById(R.id.buttonLn));
-            operatorButtons.add(getView().findViewById(R.id.buttonLog));
-            operatorButtons.add(getView().findViewById(R.id.buttonRev));
-
-            operatorButtons.add(getView().findViewById(R.id.buttonEpow));
-            operatorButtons.add(getView().findViewById(R.id.buttonSquare));
-            operatorButtons.add(getView().findViewById(R.id.buttonPower));
-
-            operatorButtons.add(getView().findViewById(R.id.buttonAbs));
-            operatorButtons.add(getView().findViewById(R.id.buttonSqrt));
-            operatorButtons.add(getView().findViewById(R.id.buttonFactorial));
+            operatorButtons.add(view.findViewById(R.id.buttonAsin))
+            operatorButtons.add(view.findViewById(R.id.buttonAcos))
+            operatorButtons.add(view.findViewById(R.id.buttonAtan))
+            operatorButtons.add(view.findViewById(R.id.buttonSin))
+            operatorButtons.add(view.findViewById(R.id.buttonCos))
+            operatorButtons.add(view.findViewById(R.id.buttonTan))
+            operatorButtons.add(view.findViewById(R.id.buttonLn))
+            operatorButtons.add(view.findViewById(R.id.buttonLog))
+            operatorButtons.add(view.findViewById(R.id.buttonRev))
+            operatorButtons.add(view.findViewById(R.id.buttonEpow))
+            operatorButtons.add(view.findViewById(R.id.buttonSquare))
+            operatorButtons.add(view.findViewById(R.id.buttonPower))
+            operatorButtons.add(view.findViewById(R.id.buttonAbs))
+            operatorButtons.add(view.findViewById(R.id.buttonSqrt))
+            operatorButtons.add(view.findViewById(R.id.buttonFactorial))
         }
-
-        for (Button button : operatorButtons) {
-            button.setOnClickListener(v -> {
-                Button button1 = (Button)v;
-                System.out.println(button1.getText().toString());
-
-                Operator operator = Operator.operatorForTitle(button1.getText().toString());
-                usePressedOperator(operator);
+        for (button in operatorButtons) {
+            button.setOnClickListener(View.OnClickListener { v: View? ->
+                val button1 = v as Button?
+                println(button1.getText().toString())
+                val operator = operatorForTitle(button1.getText().toString())
+                usePressedOperator(operator)
             }
-
-            );
+            )
         }
     }
 
-    private void setupCalculateButton() {
-        Button equalsButton = getView().findViewById(R.id.buttonEquals);
-        equalsButton.setOnClickListener(v -> {
-            Button button = (Button)v;
-            System.out.println(button.getText().toString());
-
-            useEqualsOperator();
+    private fun setupCalculateButton() {
+        val equalsButton = view.findViewById<Button?>(R.id.buttonEquals)
+        equalsButton.setOnClickListener { v: View? ->
+            val button = v as Button?
+            println(button.getText().toString())
+            useEqualsOperator()
         }
-        );
     }
 
-    private void setupDeleteButton() {
-        Button delButton = getView().findViewById(R.id.buttonDel);
-        delButton.setOnClickListener(v -> {
-            String currentString = currentString();
-            Boolean isOneDigit = currentString.length() == 1;
-            Boolean isOneNegativeDigit = currentString.length() == 2 && currentString.startsWith("-");
+    private fun setupDeleteButton() {
+        val delButton = view.findViewById<Button?>(R.id.buttonDel)
+        delButton.setOnClickListener { v: View? ->
+            var currentString = currentString()
+            val isOneDigit = currentString.length == 1
+            val isOneNegativeDigit = currentString.length == 2 && currentString.startsWith("-")
             if (isOneDigit || isOneNegativeDigit) {
-                updateText(calcModel.textForValue(0.0));
+                updateText(calcModel.textForValue(0.0))
             } else {
-                currentString = currentString.substring(0, currentString.length() - 1);
-                updateText(currentString);
+                currentString = currentString.substring(0, currentString.length - 1)
+                updateText(currentString)
             }
-        });
+        }
     }
 
-    private void setupClearButton() {
-        Button clearButton = getView().findViewById(R.id.buttonClear);
-        clearButton.setOnClickListener(v -> {
-            calcModel.resetCalcState();
-            updateText(calcModel.textForValue(0.0));
-        });
+    private fun setupClearButton() {
+        val clearButton = view.findViewById<Button?>(R.id.buttonClear)
+        clearButton.setOnClickListener { v: View? ->
+            calcModel.resetCalcState()
+            updateText(calcModel.textForValue(0.0))
+        }
     }
 
-    private void setupSignButton() {
-        Button signButton = getView().findViewById(R.id.buttonSign);
-        signButton.setOnClickListener(v -> {
-            double currentValue = Double.parseDouble(currentString());
-
-            if (currentValue == 0) { //do not make "-0"
-                return;
+    private fun setupSignButton() {
+        val signButton = view.findViewById<Button?>(R.id.buttonSign)
+        signButton.setOnClickListener { v: View? ->
+            val currentValue = currentString().toDouble()
+            if (currentValue == 0.0) { //do not make "-0"
+                return@setOnClickListener
             }
-
-            String updatedString = currentString();
-            if (currentValue > 0) {
-                updatedString = "-" + updatedString;
+            var updatedString = currentString()
+            updatedString = if (currentValue > 0) {
+                "-$updatedString"
             } else {
-                updatedString = updatedString.substring(1);
+                updatedString.substring(1)
             }
-
-            updateText(updatedString);
-        });
+            updateText(updatedString)
+        }
     }
 
-    private void usePressedNumber(String number) {
-        if ((currentString().equals("0") && !number.equals(".")) || currentString().equals(getString(R.string.not_a_number))) {
-            textView.setText(""); //clear text view from 0 value.
+    private fun usePressedNumber(number: String?) {
+        if (currentString() == "0" && number != "." || currentString() == getString(R.string.not_a_number)) {
+            textView.setText("") //clear text view from 0 value.
         }
-
-        String newString;
+        val newString: String?
         if (secondValueInputStarted) {
-            newString = number;
-            secondValueInputStarted = false;
+            newString = number
+            secondValueInputStarted = false
         } else {
-            newString = textView.getText().toString() + number;
+            newString = textView.getText().toString() + number
         }
-
-        updateText(newString);
+        updateText(newString)
     }
 
-    private void usePiPressedNumber() {
-        String newString = (Double.toString(Math.PI));
+    private fun usePiPressedNumber() {
+        val newString = java.lang.Double.toString(Math.PI)
         if (secondValueInputStarted) {
-            secondValueInputStarted = false;
+            secondValueInputStarted = false
         } else {
-            calcModel.resetCalcState();
+            calcModel.resetCalcState()
         }
-
-        updateText(newString);
+        updateText(newString)
     }
 
-    private void usePressedOperator(Operator operator) {
-        boolean readyToSaveOperator = calcModel.getFirstValue() != null;
+    private fun usePressedOperator(operator: Operator?) {
+        val readyToSaveOperator = calcModel.firstValue != null
         if (!readyToSaveOperator) {
-            return;
+            return
         }
-
         if (!operator.requiresTwoValues()) {
-            if (operator == Operator.FACTORIAL && !calcModel.isFirstIntegerValue()) {
-                handleNotANumberCase();
-                return;
+            if (operator === Operator.FACTORIAL && !calcModel.isFirstIntegerValue) {
+                handleNotANumberCase()
+                return
             }
-
-            double result;
-            if (calcModel.getSecondValue() == null) {
+            val result: Double
+            if (calcModel.secondValue == null) {
                 //apply to first value
-                double number = calcModel.getFirstValue().doubleValue();
-                result = StandardOperationsUtil.calculateResultForOneSidedOperator(number, operator);
-                HistoryManager.getSharedInstance().save(calcModel.textForValue(result));
-                calcModel.setFirstValue(result);
-            } else if (operator == Operator.PERCENT && calcModel.getSecondValue() != null) {
+                val number = calcModel.firstValue.toDouble()
+                result = calculateResultForOneSidedOperator(number, operator)
+                HistoryManager.Companion.getSharedInstance().save(calcModel.textForValue(result))
+                calcModel.setFirstValue(result)
+            } else if (operator === Operator.PERCENT && calcModel.secondValue != null) {
                 //special case for 6 - 10%
-                result = StandardOperationsUtil.calculatePercentForData(calcModel);
-                calcModel.setSecondValue(result);
+                result = calculatePercentForData(calcModel)
+                calcModel.setSecondValue(result)
             } else {
                 //apply to second value
-                double number = calcModel.getSecondValue().doubleValue();
-                result = StandardOperationsUtil.calculateResultForOneSidedOperator(number, operator);
-                calcModel.setSecondValue(result);
+                val number = calcModel.secondValue.toDouble()
+                result = calculateResultForOneSidedOperator(number, operator)
+                calcModel.setSecondValue(result)
             }
-
-            String text = calcModel.textForValue(result);
-            textView.setText(text);
-
-            return;
+            val text = calcModel.textForValue(result)
+            textView.setText(text)
+            return
         }
-
-        boolean readyToCalcTwoSides = calcModel.getOperator() != null &&
-                                      calcModel.getFirstValue() != null &&
-                                      calcModel.getSecondValue() != null;
+        val readyToCalcTwoSides = calcModel.operator != null && calcModel.firstValue != null && calcModel.secondValue != null
         if (readyToCalcTwoSides) {
-            calculateResult();
+            calculateResult()
         } else {
-            secondValueInputStarted = true;
+            secondValueInputStarted = true
         }
-
-        calcModel.setOperator(operator);
+        calcModel.operator = operator
     }
 
-    private void useEqualsOperator() {
-        if (calcModel.getOperator() == null) {
-            return;
+    private fun useEqualsOperator() {
+        if (calcModel.operator == null) {
+            return
         }
-
-        calculateResult();
+        calculateResult()
     }
 
-    private void calculateResult() {
-        if (calcModel.isNotNumber()) {
-            handleNotANumberCase();
-            return;
+    private fun calculateResult() {
+        if (calcModel.isNotNumber) {
+            handleNotANumberCase()
+            return
         }
-
-        double result = StandardOperationsUtil.calculateResultForTwoSidedOperator(calcModel);
-        HistoryManager.getSharedInstance().save(calcModel.textForValue(result));
-
-        calcModel.resetCalcState();
-
-        calcModel.updateAfterCalculation(result);
-        updateText(calcModel.textForValue(result));
-
-        secondValueInputStarted = true;
+        val result = calculateResultForTwoSidedOperator(calcModel)
+        HistoryManager.Companion.getSharedInstance().save(calcModel.textForValue(result))
+        calcModel.resetCalcState()
+        calcModel.updateAfterCalculation(result)
+        updateText(calcModel.textForValue(result))
+        secondValueInputStarted = true
     }
 
-    private void handleNotANumberCase() {
-        calcModel.resetCalcState();
-        textView.setText(getString(R.string.not_a_number));
+    private fun handleNotANumberCase() {
+        calcModel.resetCalcState()
+        textView.setText(getString(R.string.not_a_number))
     }
 
-    private void updateText(String updatedText) {
-        if (updatedText.length() == StandardOperationsUtil.SCALE) {
-            showDigitsLimitWarning();
-            return;
+    private fun updateText(updatedText: String?) {
+        if (updatedText.length == StandardOperationsUtil.SCALE) {
+            showDigitsLimitWarning()
+            return
         }
-
-        textView.setText(updatedText);
-        if (updatedText.length() > 10) {
-            textView.setTextSize(24);
+        textView.setText(updatedText)
+        if (updatedText.length > 10) {
+            textView.setTextSize(24f)
         } else {
-            textView.setTextSize(30);
+            textView.setTextSize(30f)
         }
-        calcModel.updateValues(updatedText);
+        calcModel.updateValues(updatedText)
     }
 
-    private void showDigitsLimitWarning() {
-        Context context = getActivity().getApplicationContext();
-        Toast.makeText(context, R.string.max_digits_warning, Toast.LENGTH_SHORT).show();
+    private fun showDigitsLimitWarning() {
+        val context = activity.getApplicationContext()
+        Toast.makeText(context, R.string.max_digits_warning, Toast.LENGTH_SHORT).show()
     }
 
-    private boolean isInLandscapeOrientation() {
-        int orientation = getResources().getConfiguration().orientation;
-        return orientation == Configuration.ORIENTATION_LANDSCAPE;
+    private fun isInLandscapeOrientation(): Boolean {
+        val orientation = resources.configuration.orientation
+        return orientation == Configuration.ORIENTATION_LANDSCAPE
     }
-
 }

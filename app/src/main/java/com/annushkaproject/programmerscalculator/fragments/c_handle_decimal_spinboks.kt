@@ -1,16 +1,17 @@
-package com.annushkaproject.programmerscalculator.fragments;
+package com.annushkaproject.programmerscalculator.fragments
 
-import android.app.Activity;
-import android.view.View;
-import android.widget.AdapterView;
+import android.app.Activity
+import android.view.View
+import android.widget.AdapterView
+import android.widget.AdapterView.OnItemSelectedListener
 
-public class c_handle_decimal_spinboks extends Activity implements AdapterView.OnItemSelectedListener {
-    public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
+class c_handle_decimal_spinboks : Activity(), OnItemSelectedListener {
+    override fun onItemSelected(parent: AdapterView<*>?, view: View?, pos: Int, id: Long) {
         // An item was selected. You can retrieve the selected item using
         // parent.getItemAtPosition(pos)
     }
 
-    public void onNothingSelected(AdapterView<?> parent) {
+    override fun onNothingSelected(parent: AdapterView<*>?) {
         // Another interface callback
     }
 }

@@ -1,54 +1,49 @@
-package com.annushkaproject.programmerscalculator.ProgrammerTests;
+package com.annushkaproject.programmerscalculator.ProgrammerTests
 
-import com.annushkaproject.programmerscalculator.model.ProgrammerCalcModel;
-import com.annushkaproject.programmerscalculator.utils.ProgrammerOperationsUtil;
+import com.annushkaproject.programmerscalculator.model.*
+import com.annushkaproject.programmerscalculator.utils.ProgrammerOperationsUtil.calculateWithData
+import org.junit.Assert
+import org.junit.Test
+import java.math.BigDecimal
 
-import org.junit.Test;
-
-import java.math.BigDecimal;
-
-import static com.annushkaproject.programmerscalculator.model.Operator.MULTIPLY;
-import static com.annushkaproject.programmerscalculator.model.int_size_enum.*;
-import static org.junit.Assert.*;
-
-public class ProgrammerMultiplicationTest {
+class ProgrammerMultiplicationTest {
     @Test
-    public void programmerMultiplicationQWORD_isCorrect() {
-        assertEquals(25, ProgrammerOperationsUtil.calculateWithData(new ProgrammerCalcModel(new BigDecimal(5), new BigDecimal(5), MULTIPLY, l8)));
-        assertEquals(-25, ProgrammerOperationsUtil.calculateWithData(new ProgrammerCalcModel(new BigDecimal(-5), new BigDecimal(5), MULTIPLY, l8)));
-        assertEquals(0x8000000000000000L, ProgrammerOperationsUtil.calculateWithData(new ProgrammerCalcModel(new BigDecimal(0x4000000000000000L), new BigDecimal(2), MULTIPLY, l8)));
-        assertEquals(0, ProgrammerOperationsUtil.calculateWithData(new ProgrammerCalcModel(new BigDecimal(0x8000000000000000L), new BigDecimal(0x8000000000000000L), MULTIPLY, l8)));
-        assertEquals(0xFFFFFFFFFFFFFFFEL, ProgrammerOperationsUtil.calculateWithData(new ProgrammerCalcModel(new BigDecimal(0x7FFFFFFFFFFFFFFFL), new BigDecimal(2), MULTIPLY, l8)));
-        assertEquals(0x7FFFFFFFFFFFFFFEL, ProgrammerOperationsUtil.calculateWithData(new ProgrammerCalcModel(new BigDecimal(0x3FFFFFFFFFFFFFFFL), new BigDecimal(2), MULTIPLY, l8)));
+    fun programmerMultiplicationQWORD_isCorrect() {
+        Assert.assertEquals(25, calculateWithData(ProgrammerCalcModel(BigDecimal(5), BigDecimal(5), Operator.MULTIPLY, int_size_enum.l8)))
+        Assert.assertEquals(-25, calculateWithData(ProgrammerCalcModel(BigDecimal(-5), BigDecimal(5), Operator.MULTIPLY, int_size_enum.l8)))
+        Assert.assertEquals(-0x8000000000000000L, calculateWithData(ProgrammerCalcModel(BigDecimal(0x4000000000000000L), BigDecimal(2), Operator.MULTIPLY, int_size_enum.l8)))
+        Assert.assertEquals(0, calculateWithData(ProgrammerCalcModel(BigDecimal(-0x8000000000000000L), BigDecimal(-0x8000000000000000L), Operator.MULTIPLY, int_size_enum.l8)))
+        Assert.assertEquals(-0x2L, calculateWithData(ProgrammerCalcModel(BigDecimal(0x7FFFFFFFFFFFFFFFL), BigDecimal(2), Operator.MULTIPLY, int_size_enum.l8)))
+        Assert.assertEquals(0x7FFFFFFFFFFFFFFEL, calculateWithData(ProgrammerCalcModel(BigDecimal(0x3FFFFFFFFFFFFFFFL), BigDecimal(2), Operator.MULTIPLY, int_size_enum.l8)))
     }
 
     @Test
-    public void programmerMultiplicationDWORD_isCorrect() {
-        assertEquals(25, ProgrammerOperationsUtil.calculateWithData(new ProgrammerCalcModel(new BigDecimal(5), new BigDecimal(5), MULTIPLY, l4)));
-        assertEquals(-25, ProgrammerOperationsUtil.calculateWithData(new ProgrammerCalcModel(new BigDecimal(-5), new BigDecimal(5), MULTIPLY, l4)));
-        assertEquals(0x80000000, ProgrammerOperationsUtil.calculateWithData(new ProgrammerCalcModel(new BigDecimal(0x40000000), new BigDecimal(2), MULTIPLY, l4)));
-        assertEquals(0, ProgrammerOperationsUtil.calculateWithData(new ProgrammerCalcModel(new BigDecimal(0x80000000), new BigDecimal(0x80000000), MULTIPLY, l4)));
-        assertEquals(0xFFFFFFFE, ProgrammerOperationsUtil.calculateWithData(new ProgrammerCalcModel(new BigDecimal(0x7FFFFFFF), new BigDecimal(2), MULTIPLY, l4)));
-        assertEquals(0x7FFFFFFE, ProgrammerOperationsUtil.calculateWithData(new ProgrammerCalcModel(new BigDecimal(0x3FFFFFFF), new BigDecimal(2), MULTIPLY, l4)));
+    fun programmerMultiplicationDWORD_isCorrect() {
+        Assert.assertEquals(25, calculateWithData(ProgrammerCalcModel(BigDecimal(5), BigDecimal(5), Operator.MULTIPLY, int_size_enum.l4)))
+        Assert.assertEquals(-25, calculateWithData(ProgrammerCalcModel(BigDecimal(-5), BigDecimal(5), Operator.MULTIPLY, int_size_enum.l4)))
+        Assert.assertEquals(-0x80000000, calculateWithData(ProgrammerCalcModel(BigDecimal(0x40000000), BigDecimal(2), Operator.MULTIPLY, int_size_enum.l4)))
+        Assert.assertEquals(0, calculateWithData(ProgrammerCalcModel(BigDecimal(-0x80000000), BigDecimal(-0x80000000), Operator.MULTIPLY, int_size_enum.l4)))
+        Assert.assertEquals(-0x2, calculateWithData(ProgrammerCalcModel(BigDecimal(0x7FFFFFFF), BigDecimal(2), Operator.MULTIPLY, int_size_enum.l4)))
+        Assert.assertEquals(0x7FFFFFFE, calculateWithData(ProgrammerCalcModel(BigDecimal(0x3FFFFFFF), BigDecimal(2), Operator.MULTIPLY, int_size_enum.l4)))
     }
 
     @Test
-    public void programmerMultiplicationWORD_isCorrect() {
-        assertEquals((short) 25, ProgrammerOperationsUtil.calculateWithData(new ProgrammerCalcModel(new BigDecimal(5), new BigDecimal(5), MULTIPLY, l2)));
-        assertEquals((short) -25, ProgrammerOperationsUtil.calculateWithData(new ProgrammerCalcModel(new BigDecimal(-5), new BigDecimal(5), MULTIPLY, l2)));
-        assertEquals((short) 0x8000, ProgrammerOperationsUtil.calculateWithData(new ProgrammerCalcModel(new BigDecimal(0x4000), new BigDecimal(2), MULTIPLY, l2)));
-        assertEquals((short) 0, ProgrammerOperationsUtil.calculateWithData(new ProgrammerCalcModel(new BigDecimal(0x8000), new BigDecimal(0x8000), MULTIPLY, l2)));
-        assertEquals((short) 0xFFFE, ProgrammerOperationsUtil.calculateWithData(new ProgrammerCalcModel(new BigDecimal(0x7FFF), new BigDecimal(2), MULTIPLY, l2)));
-        assertEquals((short) 0x7FFE, ProgrammerOperationsUtil.calculateWithData(new ProgrammerCalcModel(new BigDecimal(0x3FFF), new BigDecimal(2), MULTIPLY, l2)));
+    fun programmerMultiplicationWORD_isCorrect() {
+        Assert.assertEquals(25 as Short.toLong(), calculateWithData(ProgrammerCalcModel(BigDecimal(5), BigDecimal(5), Operator.MULTIPLY, int_size_enum.l2)))
+        Assert.assertEquals(-25 as Short.toLong(), calculateWithData(ProgrammerCalcModel(BigDecimal(-5), BigDecimal(5), Operator.MULTIPLY, int_size_enum.l2)))
+        Assert.assertEquals(0x8000 as Short.toLong(), calculateWithData(ProgrammerCalcModel(BigDecimal(0x4000), BigDecimal(2), Operator.MULTIPLY, int_size_enum.l2)))
+        Assert.assertEquals(0 as Short.toLong(), calculateWithData(ProgrammerCalcModel(BigDecimal(0x8000), BigDecimal(0x8000), Operator.MULTIPLY, int_size_enum.l2)))
+        Assert.assertEquals(0xFFFE as Short.toLong(), calculateWithData(ProgrammerCalcModel(BigDecimal(0x7FFF), BigDecimal(2), Operator.MULTIPLY, int_size_enum.l2)))
+        Assert.assertEquals(0x7FFE as Short.toLong(), calculateWithData(ProgrammerCalcModel(BigDecimal(0x3FFF), BigDecimal(2), Operator.MULTIPLY, int_size_enum.l2)))
     }
 
     @Test
-    public void programmerMultiplicationBYTE_isCorrect() {
-        assertEquals((byte) 25, ProgrammerOperationsUtil.calculateWithData(new ProgrammerCalcModel(new BigDecimal(5), new BigDecimal(5), MULTIPLY, l1)));
-        assertEquals((byte) -25, ProgrammerOperationsUtil.calculateWithData(new ProgrammerCalcModel(new BigDecimal(-5), new BigDecimal(5), MULTIPLY, l1)));
-        assertEquals((byte) 0x80, ProgrammerOperationsUtil.calculateWithData(new ProgrammerCalcModel(new BigDecimal(0x40), new BigDecimal(2), MULTIPLY, l1)));
-        assertEquals((byte) 0, ProgrammerOperationsUtil.calculateWithData(new ProgrammerCalcModel(new BigDecimal(0x80), new BigDecimal(0x80), MULTIPLY, l1)));
-        assertEquals((byte) 0xFE, ProgrammerOperationsUtil.calculateWithData(new ProgrammerCalcModel(new BigDecimal(0x7F), new BigDecimal(2), MULTIPLY, l1)));
-        assertEquals((byte) 0x7E, ProgrammerOperationsUtil.calculateWithData(new ProgrammerCalcModel(new BigDecimal(0x3F), new BigDecimal(2), MULTIPLY, l1)));
+    fun programmerMultiplicationBYTE_isCorrect() {
+        Assert.assertEquals(25 as Byte.toLong(), calculateWithData(ProgrammerCalcModel(BigDecimal(5), BigDecimal(5), Operator.MULTIPLY, int_size_enum.l1)))
+        Assert.assertEquals(-25 as Byte.toLong(), calculateWithData(ProgrammerCalcModel(BigDecimal(-5), BigDecimal(5), Operator.MULTIPLY, int_size_enum.l1)))
+        Assert.assertEquals(0x80 as Byte.toLong(), calculateWithData(ProgrammerCalcModel(BigDecimal(0x40), BigDecimal(2), Operator.MULTIPLY, int_size_enum.l1)))
+        Assert.assertEquals(0 as Byte.toLong(), calculateWithData(ProgrammerCalcModel(BigDecimal(0x80), BigDecimal(0x80), Operator.MULTIPLY, int_size_enum.l1)))
+        Assert.assertEquals(0xFE as Byte.toLong(), calculateWithData(ProgrammerCalcModel(BigDecimal(0x7F), BigDecimal(2), Operator.MULTIPLY, int_size_enum.l1)))
+        Assert.assertEquals(0x7E as Byte.toLong(), calculateWithData(ProgrammerCalcModel(BigDecimal(0x3F), BigDecimal(2), Operator.MULTIPLY, int_size_enum.l1)))
     }
 }

@@ -1,38 +1,35 @@
-package com.annushkaproject.programmerscalculator.StandardTests;
+package com.annushkaproject.programmerscalculator.StandardTests
 
-import com.annushkaproject.programmerscalculator.model.CalculationModel;
-import com.annushkaproject.programmerscalculator.utils.StandardOperationsUtil;
+import com.annushkaproject.programmerscalculator.model.CalculationModel
+import com.annushkaproject.programmerscalculator.model.Operator
+import com.annushkaproject.programmerscalculator.utils.StandardOperationsUtil.calculateResultForTwoSidedOperator
+import org.junit.Assert
+import org.junit.Test
+import java.math.BigDecimal
 
-import org.junit.Test;
-
-import java.math.BigDecimal;
-
-import static com.annushkaproject.programmerscalculator.model.Operator.MULTIPLY;
-import static org.junit.Assert.assertEquals;
-
-public class StandardMultiplicationTest {
+class StandardMultiplicationTest {
     @Test
-    public void testPositiveIntegers() {
-        assertEquals(25, StandardOperationsUtil.calculateResultForTwoSidedOperator(new CalculationModel(BigDecimal.valueOf(5), BigDecimal.valueOf(5), MULTIPLY)), 0);
+    fun testPositiveIntegers() {
+        Assert.assertEquals(25.0, calculateResultForTwoSidedOperator(CalculationModel(BigDecimal.valueOf(5), BigDecimal.valueOf(5), Operator.MULTIPLY)), 0.0)
     }
 
     @Test
-    public void testPositiveAndNegativeIntegers() {
-        assertEquals(-25, StandardOperationsUtil.calculateResultForTwoSidedOperator(new CalculationModel(BigDecimal.valueOf(-5), BigDecimal.valueOf(5), MULTIPLY)), 0);
+    fun testPositiveAndNegativeIntegers() {
+        Assert.assertEquals(-25.0, calculateResultForTwoSidedOperator(CalculationModel(BigDecimal.valueOf(-5), BigDecimal.valueOf(5), Operator.MULTIPLY)), 0.0)
     }
 
     @Test
-    public void testDecimalSmall() {
-        assertEquals(0.00001, StandardOperationsUtil.calculateResultForTwoSidedOperator(new CalculationModel(BigDecimal.valueOf(0.000005), BigDecimal.valueOf(2), MULTIPLY)), 0);
+    fun testDecimalSmall() {
+        Assert.assertEquals(0.00001, calculateResultForTwoSidedOperator(CalculationModel(BigDecimal.valueOf(0.000005), BigDecimal.valueOf(2), Operator.MULTIPLY)), 0.0)
     }
 
     @Test
-    public void testFirstDecimalParameter() {
-        assertEquals(3, StandardOperationsUtil.calculateResultForTwoSidedOperator(new CalculationModel(BigDecimal.valueOf(1.5), BigDecimal.valueOf(2), MULTIPLY)), 0);
+    fun testFirstDecimalParameter() {
+        Assert.assertEquals(3.0, calculateResultForTwoSidedOperator(CalculationModel(BigDecimal.valueOf(1.5), BigDecimal.valueOf(2), Operator.MULTIPLY)), 0.0)
     }
 
     @Test
-    public void testSecondDecimalParameter() {
-        assertEquals(1, StandardOperationsUtil.calculateResultForTwoSidedOperator(new CalculationModel(BigDecimal.valueOf(2), BigDecimal.valueOf(0.5), MULTIPLY)), 0);
+    fun testSecondDecimalParameter() {
+        Assert.assertEquals(1.0, calculateResultForTwoSidedOperator(CalculationModel(BigDecimal.valueOf(2), BigDecimal.valueOf(0.5), Operator.MULTIPLY)), 0.0)
     }
 }
