@@ -17,7 +17,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/buttonComma"
+        app:layout_constraintStart_toEndOf="@+id/button_decimal_point"
         app:layout_constraintTop_toBottomOf="@+id/buttonPlus" />
 
     <Button
@@ -28,13 +28,13 @@
         android:text="0"
         android:textColor="?attr/primaryTextColor"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/buttonComma"
+        app:layout_constraintEnd_toStartOf="@+id/button_decimal_point"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/buttonSign"
         app:layout_constraintTop_toBottomOf="@+id/button2" />
 
     <Button
-        android:id="@+id/buttonComma"
+        android:id="@+id/button_decimal_point"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@drawable/calculator_button_main"
@@ -79,7 +79,7 @@
         android:background="@drawable/calculator_button_main"
         android:text="3"
         android:textColor="?attr/primaryTextColor"
-        app:layout_constraintBottom_toTopOf="@+id/buttonComma"
+        app:layout_constraintBottom_toTopOf="@+id/button_decimal_point"
         app:layout_constraintEnd_toStartOf="@+id/buttonPlus"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/button2"
@@ -197,13 +197,13 @@
         android:text="%"
         android:textColor="?attr/accentColor"
         app:layout_constraintBottom_toTopOf="@+id/button9"
-        app:layout_constraintEnd_toStartOf="@+id/buttonDivide"
+        app:layout_constraintEnd_toStartOf="@+id/buttonRDivide"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/buttonPi"
         app:layout_constraintTop_toBottomOf="@+id/buttonDel" />
 
     <Button
-        android:id="@+id/buttonDivide"
+        android:id="@+id/buttonRDivide"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@drawable/calculator_button_main"
@@ -264,10 +264,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/button9"
-        app:layout_constraintTop_toBottomOf="@+id/buttonDivide" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonRDivide" />
 
     <TextView
-        android:id="@+id/inputField"
+        android:id="@+id/u5h_tekst_viyu"
         android:layout_width="0dp"
         android:layout_height="40dp"
         android:layout_marginStart="8dp"
@@ -292,7 +292,7 @@
         android:textAlignment="viewStart"
         android:textColor="?attr/primaryTextColor"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/inputField" />
+        app:layout_constraintTop_toBottomOf="@+id/u5h_tekst_viyu" />
 
     <Button
         android:id="@+id/buttonHistory"

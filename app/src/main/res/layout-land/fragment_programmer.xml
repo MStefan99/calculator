@@ -9,13 +9,13 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
     <TextView
-        android:id="@+id/inputField"
+        android:id="@+id/u5h_tekst_viyu"
         android:layout_width="0dp"
         android:layout_height="40dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="24dp"
-        android:text="0"
+        android:fontFamily="@font/u5h" android:text="0"
         android:textAlignment="viewEnd"
         android:textColor="?attr/primaryTextColor"
         android:textSize="30sp"
@@ -33,7 +33,7 @@
         android:textAlignment="viewStart"
         android:textColor="?attr/primaryTextColor"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/inputField" />
+        app:layout_constraintTop_toTopOf="@+id/u5h_tekst_viyu" />
 
     <Button
         android:id="@+id/buttonEquals"
@@ -44,7 +44,7 @@
         android:textColor="?attr/themeColor"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/buttonComma"
+        app:layout_constraintStart_toEndOf="@+id/button_decimal_point"
         app:layout_constraintTop_toBottomOf="@+id/buttonPlus" />
 
     <Button
@@ -81,10 +81,10 @@
         app:layout_constraintBottom_toTopOf="@+id/buttonMinus"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/button9"
-        app:layout_constraintTop_toBottomOf="@+id/buttonDivide" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonRDivide" />
 
     <Button
-        android:id="@+id/buttonDivide"
+        android:id="@+id/buttonRDivide"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="8dp"
@@ -102,10 +102,10 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@drawable/calculator_button_main"
-        android:text="0"
+        android:fontFamily="@font/u5h" android:text="0"
         android:textColor="?attr/primaryTextColor"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/buttonComma"
+        app:layout_constraintEnd_toStartOf="@+id/button_decimal_point"
         app:layout_constraintStart_toEndOf="@+id/buttonSign"
         app:layout_constraintTop_toBottomOf="@+id/button2" />
 
@@ -140,7 +140,7 @@
         android:background="@drawable/calculator_button_main"
         android:text="3"
         android:textColor="?attr/primaryTextColor"
-        app:layout_constraintBottom_toTopOf="@+id/buttonComma"
+        app:layout_constraintBottom_toTopOf="@+id/button_decimal_point"
         app:layout_constraintEnd_toStartOf="@+id/buttonPlus"
         app:layout_constraintStart_toEndOf="@+id/button2"
         app:layout_constraintTop_toBottomOf="@+id/button6" />
@@ -218,7 +218,7 @@
         app:layout_constraintTop_toBottomOf="@+id/buttonNOT" />
 
     <Button
-        android:id="@+id/buttonComma"
+        android:id="@+id/button_decimal_point"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@drawable/calculator_button_main"
@@ -246,7 +246,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@drawable/calculator_button_main"
-        android:text="A"
+        android:fontFamily="@font/u5h" android:text="A"
         android:textColor="?attr/accentColor"
         app:layout_constraintBottom_toTopOf="@+id/buttonB"
         app:layout_constraintEnd_toStartOf="@id/buttonD"
@@ -260,7 +260,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@drawable/calculator_button_main"
-        android:text="B"
+        android:fontFamily="@font/u5h" android:text="B"
         android:textColor="?attr/accentColor"
         app:layout_constraintBottom_toTopOf="@+id/buttonC"
         app:layout_constraintEnd_toStartOf="@id/buttonE"
@@ -273,7 +273,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@drawable/calculator_button_main"
-        android:text="C"
+        android:fontFamily="@font/u5h" android:text="C"
         android:textColor="?attr/accentColor"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/buttonF"
@@ -287,7 +287,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@drawable/calculator_button_main"
-        android:text="D"
+        android:fontFamily="@font/u5h" android:text="D"
         android:textColor="?attr/accentColor"
         app:layout_constraintBottom_toTopOf="@+id/buttonE"
         app:layout_constraintEnd_toStartOf="@+id/button4"
@@ -300,7 +300,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@drawable/calculator_button_main"
-        android:text="E"
+        android:fontFamily="@font/u5h" android:text="E"
         android:textColor="?attr/accentColor"
         app:layout_constraintBottom_toTopOf="@+id/buttonF"
         app:layout_constraintEnd_toStartOf="@+id/button1"
@@ -313,7 +313,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@drawable/calculator_button_main"
-        android:text="F"
+        android:fontFamily="@font/u5h" android:text="F"
         android:textColor="?attr/accentColor"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/buttonSign"
@@ -343,12 +343,12 @@
         android:text="Not"
         android:textColor="?attr/secondaryTextColor"
         app:layout_constraintBottom_toTopOf="@+id/button9"
-        app:layout_constraintEnd_toStartOf="@+id/buttonDivide"
+        app:layout_constraintEnd_toStartOf="@+id/buttonRDivide"
         app:layout_constraintStart_toEndOf="@+id/buttonRSH"
         app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
 
     <Button
-        android:id="@+id/buttonXOR"
+        android:id="@+id/button_zor"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="8dp"
@@ -372,7 +372,7 @@
         app:layout_constraintEnd_toStartOf="@id/button7"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@id/buttonAND"
-        app:layout_constraintTop_toBottomOf="@+id/buttonXOR" />
+        app:layout_constraintTop_toBottomOf="@+id/button_zor" />
 
     <Button
         android:id="@+id/buttonRSH"
@@ -397,7 +397,7 @@
         android:textColor="?attr/secondaryTextColor"
         app:layout_constraintBottom_toTopOf="@+id/button7"
         app:layout_constraintEnd_toStartOf="@+id/buttonRSH"
-        app:layout_constraintStart_toEndOf="@id/buttonXOR"
+        app:layout_constraintStart_toEndOf="@id/button_zor"
         app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
 
     <Button
@@ -409,7 +409,7 @@
         android:text="Mod"
         android:textColor="?attr/secondaryTextColor"
         app:layout_constraintBottom_toTopOf="@+id/buttonAND"
-        app:layout_constraintEnd_toStartOf="@id/buttonXOR"
+        app:layout_constraintEnd_toStartOf="@id/button_zor"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintHorizontal_chainStyle="spread_inside"
         app:layout_constraintStart_toStartOf="parent"
@@ -421,7 +421,7 @@
         android:layout_height="40dp"
         android:orientation="horizontal"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/inputField">
+        app:layout_constraintTop_toBottomOf="@+id/u5h_tekst_viyu">
 
         <RadioButton
             android:id="@+id/radioButtonHex"
@@ -466,7 +466,7 @@
         android:text="Mode"
         app:layout_constraintBottom_toBottomOf="@+id/radioGroup"
         app:layout_constraintStart_toEndOf="@+id/radioGroup"
-        app:layout_constraintTop_toBottomOf="@+id/inputField" />
+        app:layout_constraintTop_toBottomOf="@+id/u5h_tekst_viyu" />
 
     <Button
         android:id="@+id/buttonLength"
@@ -478,7 +478,7 @@
         android:textColor="?attr/primaryTextColor"
         app:layout_constraintBottom_toBottomOf="@+id/radioGroup"
         app:layout_constraintStart_toEndOf="@+id/radioGroup"
-        app:layout_constraintTop_toBottomOf="@+id/inputField" />
+        app:layout_constraintTop_toBottomOf="@+id/u5h_tekst_viyu" />
 
 
 </android.support.constraint.ConstraintLayout>

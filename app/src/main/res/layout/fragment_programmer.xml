@@ -1,463 +1,266 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/constraintLayout"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+    tools:context=".activities.MainActivity"
+  android:id="@+id/constraintLayout" android:layout_width="match_parent" android:layout_height="match_parent"
+  app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-    <TextView
-        android:id="@+id/inputField"
-        android:layout_width="0dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="8dp"
-        android:text="0"
-        android:textAlignment="textEnd"
-        android:textColor="?attr/primaryTextColor"
-        android:textSize="30sp"
-        app:layout_constraintEnd_toStartOf="@+id/buttonDel"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+<!--    android:layout_marginStart="8dp" android:layout_marginTop="8dp" android:layout_marginEnd="8dp"    -->
+  <TextView android:id="@+id/u5h_tekst_viyu" android:layout_width="0dp" android:layout_height="48dp"
+   android:fontFamily="@font/u5h" android:text="0" android:textAlignment="textEnd"
+   android:textColor="?attr/primaryTextColor" android:textSize="@dimen/input1_tekst_size_big"
+      app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
+   app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/buttonDel"
-        android:layout_width="55dp"
-        android:layout_height="40dp"
-        android:layout_marginEnd="8dp"
-        android:background="@drawable/calculator_button_main"
-        android:text="Del"
-        android:textAlignment="viewStart"
-        android:textColor="?attr/primaryTextColor"
-        app:layout_constraintBottom_toBottomOf="@+id/radioGroup"
-        app:layout_constraintEnd_toEndOf="parent" />
+    <!--    android:layout_marginStart="8dp" android:layout_marginTop="8dp" android:layout_marginEnd="8dp"-->
+    <TextView android:id="@+id/u2b_tekst_viyu" android:layout_width="0dp" android:layout_height="64dp"
+        android:fontFamily="@font/u2vrtikl" android:text="0" android:textAlignment="textEnd"
+        android:textColor="?attr/primaryTextColor" android:textSize="@dimen/input3_tekst_size_big"
+        app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
+        android:enabled="false" android:focusable="false" android:focusableInTouchMode="false"
+        app:layout_constraintTop_toBottomOf="@+id/u5h_tekst_viyu"/>
 
-    <Button
-        android:id="@+id/buttonEquals"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="?attr/accentColor"
-        android:text="="
-        android:textColor="?attr/themeColor"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/buttonComma"
-        app:layout_constraintTop_toBottomOf="@+id/buttonPlus" />
+<!--    android:layout_marginStart="8dp" android:layout_marginTop="8dp" android:layout_marginEnd="8dp"-->
+    <TextView android:id="@+id/ekuation_tekst_viyu" android:layout_width="0dp" android:layout_height="48dp"
+        android:fontFamily="@font/u5" android:text="" android:textAlignment="textEnd"
+        android:textColor="?attr/primaryTextColor" android:textSize="@dimen/ekuation_tekst_viyu_size"
+        app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toStartOf="@+id/dizit_tekst_viyu"
+        app:layout_constraintTop_toBottomOf="@+id/u2b_tekst_viyu" />
 
-    <Button
-        android:id="@+id/buttonPlus"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="@drawable/calculator_button_main"
-        android:text="+"
-        android:textColor="?attr/accentColor"
-        app:layout_constraintBottom_toTopOf="@+id/buttonEquals"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/button3"
-        app:layout_constraintTop_toBottomOf="@+id/buttonMinus" />
-
-    <Button
-        android:id="@+id/buttonMinus"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="@drawable/calculator_button_main"
-        android:text="-"
-        android:textColor="?attr/accentColor"
-        app:layout_constraintBottom_toTopOf="@+id/buttonPlus"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/button6"
-        app:layout_constraintTop_toBottomOf="@+id/buttonMultiply" />
-
-    <Button
-        android:id="@+id/buttonMultiply"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="@drawable/calculator_button_main"
-        android:text="×"
-        android:textColor="?attr/accentColor"
-        app:layout_constraintBottom_toTopOf="@+id/buttonMinus"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/button9"
-        app:layout_constraintTop_toBottomOf="@+id/buttonDivide" />
-
-    <Button
-        android:id="@+id/buttonDivide"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="@drawable/calculator_button_main"
-        android:text="÷"
-        android:textColor="?attr/accentColor"
-        app:layout_constraintBottom_toTopOf="@+id/buttonMultiply"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/buttonNOT"
-        app:layout_constraintTop_toBottomOf="@+id/buttonAND" />
-
-    <Button
-        android:id="@+id/button0"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="@drawable/calculator_button_main"
-        android:text="0"
-        android:textColor="?attr/primaryTextColor"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/buttonComma"
-        app:layout_constraintStart_toEndOf="@+id/buttonSign"
-        app:layout_constraintTop_toBottomOf="@+id/button2" />
-
-    <Button
-        android:id="@+id/button1"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="@drawable/calculator_button_main"
-        android:text="1"
-        android:textColor="?attr/primaryTextColor"
-        app:layout_constraintBottom_toTopOf="@+id/buttonSign"
-        app:layout_constraintEnd_toStartOf="@+id/button2"
-        app:layout_constraintStart_toEndOf="@+id/buttonE"
-        app:layout_constraintTop_toBottomOf="@+id/button4" />
-
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="@drawable/calculator_button_main"
-        android:text="2"
-        android:textColor="?attr/primaryTextColor"
-        app:layout_constraintBottom_toTopOf="@+id/button0"
-        app:layout_constraintEnd_toStartOf="@+id/button3"
-        app:layout_constraintStart_toEndOf="@+id/button1"
-        app:layout_constraintTop_toBottomOf="@+id/button5" />
-
-    <Button
-        android:id="@+id/button3"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="@drawable/calculator_button_main"
-        android:text="3"
-        android:textColor="?attr/primaryTextColor"
-        app:layout_constraintBottom_toTopOf="@+id/buttonComma"
-        app:layout_constraintEnd_toStartOf="@+id/buttonPlus"
-        app:layout_constraintStart_toEndOf="@+id/button2"
-        app:layout_constraintTop_toBottomOf="@+id/button6" />
-
-    <Button
-        android:id="@+id/button4"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="@drawable/calculator_button_main"
-        android:text="4"
-        android:textColor="?attr/primaryTextColor"
-        app:layout_constraintBottom_toTopOf="@+id/button1"
-        app:layout_constraintEnd_toStartOf="@+id/button5"
-        app:layout_constraintStart_toEndOf="@+id/buttonD"
-        app:layout_constraintTop_toBottomOf="@+id/button7" />
-
-    <Button
-        android:id="@+id/button5"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="@drawable/calculator_button_main"
-        android:text="5"
-        android:textColor="?attr/primaryTextColor"
-        app:layout_constraintBottom_toTopOf="@+id/button2"
-        app:layout_constraintEnd_toStartOf="@+id/button6"
-        app:layout_constraintStart_toEndOf="@+id/button4"
-        app:layout_constraintTop_toBottomOf="@+id/button8" />
-
-    <Button
-        android:id="@+id/button6"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="@drawable/calculator_button_main"
-        android:text="6"
-        android:textColor="?attr/primaryTextColor"
-        app:layout_constraintBottom_toTopOf="@+id/button3"
-        app:layout_constraintEnd_toStartOf="@+id/buttonMinus"
-        app:layout_constraintStart_toEndOf="@+id/button5"
-        app:layout_constraintTop_toBottomOf="@+id/button9" />
-
-    <Button
-        android:id="@+id/button7"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="@drawable/calculator_button_main"
-        android:text="7"
-        android:textColor="?attr/primaryTextColor"
-        app:layout_constraintBottom_toTopOf="@+id/button4"
-        app:layout_constraintEnd_toStartOf="@+id/button8"
-        app:layout_constraintStart_toEndOf="@+id/buttonC"
-        app:layout_constraintTop_toBottomOf="@+id/buttonLSH" />
-
-    <Button
-        android:id="@+id/button8"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="@drawable/calculator_button_main"
-        android:text="8"
-        android:textColor="?attr/primaryTextColor"
-        app:layout_constraintBottom_toTopOf="@+id/button5"
-        app:layout_constraintEnd_toStartOf="@+id/button9"
-        app:layout_constraintStart_toEndOf="@+id/button7"
-        app:layout_constraintTop_toBottomOf="@+id/buttonRSH" />
-
-    <Button
-        android:id="@+id/button9"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="@drawable/calculator_button_main"
-        android:text="9"
-        android:textColor="?attr/primaryTextColor"
-        app:layout_constraintBottom_toTopOf="@+id/button6"
-        app:layout_constraintEnd_toStartOf="@+id/buttonMultiply"
-        app:layout_constraintStart_toEndOf="@+id/button8"
-        app:layout_constraintTop_toBottomOf="@+id/buttonNOT" />
-
-    <Button
-        android:id="@+id/buttonComma"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="@drawable/calculator_button_main"
-        android:text="."
-        android:textColor="?attr/primaryTextColor"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/buttonEquals"
-        app:layout_constraintStart_toEndOf="@+id/button0"
-        app:layout_constraintTop_toBottomOf="@+id/button3" />
-
-    <Button
-        android:id="@+id/buttonSign"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="@drawable/calculator_button_main"
-        android:text="+/-"
-        android:textColor="?attr/primaryTextColor"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/button0"
-        app:layout_constraintStart_toEndOf="@+id/buttonF"
-        app:layout_constraintTop_toBottomOf="@+id/button1" />
-
-    <Button
-        android:id="@+id/buttonA"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="@drawable/calculator_button_main"
-        android:text="A"
-        android:textColor="?attr/accentColor"
-        app:layout_constraintBottom_toTopOf="@+id/buttonB"
-        app:layout_constraintEnd_toStartOf="@+id/buttonMod"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
-
-    <Button
-        android:id="@+id/buttonB"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="@drawable/calculator_button_main"
-        android:text="B"
-        android:textColor="?attr/accentColor"
-        app:layout_constraintBottom_toTopOf="@+id/buttonC"
-        app:layout_constraintEnd_toStartOf="@+id/buttonLSH"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonA" />
-
-    <Button
-        android:id="@+id/buttonC"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="@drawable/calculator_button_main"
-        android:text="C"
-        android:textColor="?attr/accentColor"
-        app:layout_constraintBottom_toTopOf="@+id/buttonD"
-        app:layout_constraintEnd_toStartOf="@+id/button7"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonB" />
-
-    <Button
-        android:id="@+id/buttonD"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="@drawable/calculator_button_main"
-        android:text="D"
-        android:textColor="?attr/accentColor"
-        app:layout_constraintBottom_toTopOf="@+id/buttonE"
-        app:layout_constraintEnd_toStartOf="@+id/button4"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonC" />
-
-    <Button
-        android:id="@+id/buttonE"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="@drawable/calculator_button_main"
-        android:text="E"
-        android:textColor="?attr/accentColor"
-        app:layout_constraintBottom_toTopOf="@+id/buttonF"
-        app:layout_constraintEnd_toStartOf="@+id/button1"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonD" />
-
-    <Button
-        android:id="@+id/buttonF"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="@drawable/calculator_button_main"
-        android:text="F"
-        android:textColor="?attr/accentColor"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/buttonSign"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonE" />
-
-    <Button
-        android:id="@+id/buttonAND"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="@drawable/calculator_button_secondary"
-        android:text="And"
-        android:textColor="?attr/primaryTextColor"
-        app:layout_constraintBottom_toTopOf="@+id/buttonDivide"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/buttonOR"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
-
-    <Button
-        android:id="@+id/buttonNOT"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="@drawable/calculator_button_secondary"
-        android:text="Not"
-        android:textColor="?attr/primaryTextColor"
-        app:layout_constraintBottom_toTopOf="@+id/button9"
-        app:layout_constraintEnd_toStartOf="@+id/buttonDivide"
-        app:layout_constraintStart_toEndOf="@+id/buttonRSH"
-        app:layout_constraintTop_toBottomOf="@+id/buttonOR" />
-
-    <Button
-        android:id="@+id/buttonXOR"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="@drawable/calculator_button_secondary"
-        android:text="Xor"
-        android:textColor="?attr/primaryTextColor"
-        app:layout_constraintBottom_toTopOf="@+id/buttonRSH"
-        app:layout_constraintEnd_toStartOf="@+id/buttonOR"
-        app:layout_constraintStart_toEndOf="@+id/buttonMod"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
-
-    <Button
-        android:id="@+id/buttonOR"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="@drawable/calculator_button_secondary"
-        android:text="Or"
-        android:textColor="?attr/primaryTextColor"
-        app:layout_constraintBottom_toTopOf="@+id/buttonNOT"
-        app:layout_constraintEnd_toStartOf="@+id/buttonAND"
-        app:layout_constraintStart_toEndOf="@+id/buttonXOR"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
-
-    <Button
-        android:id="@+id/buttonRSH"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="@drawable/calculator_button_secondary"
-        android:text="Rsh"
-        android:textColor="?attr/primaryTextColor"
-        app:layout_constraintBottom_toTopOf="@+id/button8"
-        app:layout_constraintEnd_toStartOf="@+id/buttonNOT"
-        app:layout_constraintStart_toEndOf="@+id/buttonLSH"
-        app:layout_constraintTop_toBottomOf="@+id/buttonXOR" />
-
-    <Button
-        android:id="@+id/buttonLSH"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="@drawable/calculator_button_secondary"
-        android:text="Lsh"
-        android:textColor="?attr/primaryTextColor"
-        app:layout_constraintBottom_toTopOf="@+id/button7"
-        app:layout_constraintEnd_toStartOf="@+id/buttonRSH"
-        app:layout_constraintStart_toEndOf="@+id/buttonB"
-        app:layout_constraintTop_toBottomOf="@+id/buttonMod" />
-
-    <Button
-        android:id="@+id/buttonMod"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="@drawable/calculator_button_secondary"
-        android:text="Mod"
-        android:textColor="?attr/primaryTextColor"
-        app:layout_constraintBottom_toTopOf="@+id/buttonLSH"
-        app:layout_constraintEnd_toStartOf="@+id/buttonXOR"
-        app:layout_constraintStart_toEndOf="@+id/buttonA"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
-
-    <RadioGroup
-        android:id="@+id/radioGroup"
-        android:layout_width="69dp"
-        android:layout_height="104dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/inputField">
-
-        <RadioButton
-            android:id="@+id/radioButtonHex"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:textColor="?attr/primaryTextColor"
-            android:text="HEX" />
-
-        <RadioButton
-            android:id="@+id/radioButtonDec"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:checked="true"
-            android:textColor="?attr/primaryTextColor"
-            android:text="DEC" />
-
-        <RadioButton
-            android:id="@+id/radioButtonOct"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:textColor="?attr/primaryTextColor"
-            android:text="OCT" />
-
-        <RadioButton
-            android:id="@+id/radioButtonBin"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:textColor="?attr/primaryTextColor"
-            android:text="BIN" />
-    </RadioGroup>
-
-    <Button
-        android:id="@+id/buttonMode"
-        android:layout_width="75dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="8dp"
-        android:background="@drawable/calculator_button_main"
-        android:text="Mode"
-        android:textColor="?attr/primaryTextColor"
-        app:layout_constraintBottom_toBottomOf="@+id/radioGroup"
-        app:layout_constraintStart_toEndOf="@+id/radioGroup"
-        app:layout_constraintTop_toTopOf="@+id/buttonDel" />
-
-    <Button
-        android:id="@+id/buttonLength"
-        android:layout_width="75dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="8dp"
-        android:background="@drawable/calculator_button_main"
-        android:text="QWORD"
-        android:textColor="?attr/primaryTextColor"
-        app:layout_constraintBottom_toBottomOf="@+id/radioGroup"
-        app:layout_constraintStart_toEndOf="@+id/radioGroup"
-        app:layout_constraintTop_toTopOf="@+id/buttonDel" />
+<!--    android:layout_marginStart="8dp" android:layout_marginTop="8dp" android:layout_marginEnd="8dp"-->
+    <TextView android:id="@+id/dizit_tekst_viyu" android:layout_width="96dp" android:layout_height="48dp"
+        android:fontFamily="@font/u5" android:text="" android:textAlignment="textEnd"
+        android:textColor="?attr/primaryTextColor" android:textSize="@dimen/dizit_tekst_viyu_size"
+        app:layout_constraintStart_toEndOf="@+id/ekuation_tekst_viyu" app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/u2b_tekst_viyu" />
 
 
+<!--  app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toStartOf="@+id/buttonDel"-->
+
+<!-- //////////////////////////////// -->
+   <!-- android:layout_height="104dp" RadioGroup oriznl-->
+    <CheckBox android:id="@+id/heks_check_boks" android:checked="true" android:layout_width="0dp" android:layout_height="@dimen/btn_ro1_hait"
+        android:background="@color/backgroundColor" android:textColor="?attr/primaryTextColor"
+        android:text="@string/heks_cb_label" android:fontFamily="@font/u5" android:textAllCaps="false"
+        app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toStartOf="@id/decimal_precision_spinner"
+        app:layout_constraintTop_toBottomOf="@+id/ekuation_tekst_viyu" />
+
+    <Spinner  android:id="@+id/decimal_precision_spinner" android:layout_width="0dp" android:layout_height="0dp"
+        android:entries="@array/decimal_points_selection_array"
+        android:background="@drawable/calculator_button_main" android:textColor="?attr/primaryTextColor"
+        android:text="@string/decimal_point_label" android:fontFamily="@font/u5" android:textAllCaps="false" android:textSize="@dimen/int_button_label_size"
+        app:layout_constraintBottom_toBottomOf="@id/heks_check_boks" app:layout_constraintTop_toBottomOf="@+id/ekuation_tekst_viyu"
+        app:layout_constraintStart_toEndOf="@+id/heks_check_boks"   app:layout_constraintEnd_toStartOf="@id/buttonLength" />
+
+    <Button    android:id="@+id/buttonLength"    android:layout_width="0dp"    android:layout_height="0dp"
+        android:background="@drawable/calculator_button_main" android:textColor="?attr/primaryTextColor"
+        android:text="l8" android:fontFamily="@font/u5" android:textSize="@dimen/int_len_button_label_size" android:textAllCaps="false"
+        app:layout_constraintBottom_toBottomOf="@id/heks_check_boks" app:layout_constraintTop_toBottomOf="@+id/ekuation_tekst_viyu"
+        app:layout_constraintStart_toEndOf="@+id/decimal_precision_spinner"   app:layout_constraintEnd_toStartOf="@id/buttonDel" />
+
+<!--    <Button    android:id="@+id/buttonFdivide"    android:layout_width="0dp"    android:layout_height="0dp"-->
+<!--        android:background="@drawable/calculator_button_main" android:textColor="?attr/primaryTextColor"-->
+<!--        android:text="@string/phlot_div_button_label" android:fontFamily="@font/u5" android:textAllCaps="false" android:textSize="@dimen/f_tekst_size"-->
+<!--        app:layout_constraintBottom_toBottomOf="@id/heks_check_boks" app:layout_constraintTop_toBottomOf="@+id/inputField2"-->
+<!--        app:layout_constraintStart_toEndOf="@+id/buttonLength"   app:layout_constraintEnd_toStartOf="@id/buttonDel" />-->
+
+
+
+<!--  <Button    android:id="@+id/buttonMode"    android:layout_width="75dp"    android:layout_height="40dp"    android:layout_marginStart="8dp"-->
+<!--      android:background="@drawable/calculator_button_main"    android:text="Mode" android:textAllCaps="false"-->
+<!--      android:fontFamily="@font/u5"  android:textColor="?attr/primaryTextColor"-->
+<!--      app:layout_constraintTop_toTopOf="@+id/buttonDel" app:layout_constraintBottom_toBottomOf="@+id/heks_check_boks"-->
+<!--      app:layout_constraintStart_toEndOf="@+id/buttonLength"    />-->
+
+  <Button android:id="@+id/buttonDel" android:layout_width="0dp" android:layout_height="0dp"
+   android:background="@drawable/calculator_button_main" android:textColor="?attr/primaryTextColor"
+   android:text="B" android:fontFamily="@font/u5"  android:textAlignment="center"  android:textSize="@dimen/del_tekst_size"
+      app:layout_constraintBottom_toBottomOf="@id/heks_check_boks" app:layout_constraintTop_toBottomOf="@+id/ekuation_tekst_viyu"
+      app:layout_constraintStart_toEndOf="@+id/buttonLength" app:layout_constraintEnd_toEndOf="parent" />
+
+<!-- //////////////////////////////// -->
+    <Button android:id="@+id/buttonOR" android:layout_width="0dp" android:layout_height="@dimen/btn_ro2_hait"
+        android:background="@drawable/calculator_button_secondary" android:textColor="?attr/primaryTextColor"
+        android:fontFamily="@font/u5" android:text="or" android:textAllCaps="false"
+        app:layout_constraintEnd_toStartOf="@+id/buttonAND" app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/heks_check_boks" />
+
+    <Button android:id="@+id/buttonAND" android:layout_width="0dp" android:layout_height="0dp"
+        android:background="@drawable/calculator_button_secondary" android:textColor="?attr/primaryTextColor"
+        android:fontFamily="@font/u5" android:text="@string/And_operator_string" android:textAllCaps="false"
+        app:layout_constraintBottom_toBottomOf="@id/buttonOR" app:layout_constraintTop_toBottomOf="@+id/heks_check_boks"
+        app:layout_constraintStart_toEndOf="@+id/buttonOR" app:layout_constraintEnd_toStartOf="@+id/button_zor"  />
+
+  <Button    android:id="@+id/button_zor" android:layout_width="0dp"    android:layout_height="0dp"
+      android:background="@drawable/calculator_button_secondary" android:textAllCaps="false"
+      android:text="@string/zor_operator_string" android:fontFamily="@font/u5" android:textColor="?attr/primaryTextColor"
+      app:layout_constraintBottom_toBottomOf="@id/buttonOR" app:layout_constraintTop_toBottomOf="@+id/heks_check_boks"
+      app:layout_constraintStart_toEndOf="@+id/buttonAND"    app:layout_constraintEnd_toStartOf="@+id/buttonMod"    />
+
+    <Button    android:id="@+id/buttonMod"    android:layout_width="0dp"    android:layout_height="0dp"
+        android:background="@drawable/calculator_button_secondary"    android:text="@string/get_remainder_button_string"  android:textAllCaps="false"
+        android:fontFamily="@font/u5" android:textColor="?attr/primaryTextColor" android:textSize="@dimen/remainder_tekst_size"
+        app:layout_constraintBottom_toBottomOf="@id/buttonOR" app:layout_constraintTop_toBottomOf="@+id/heks_check_boks"
+        app:layout_constraintStart_toEndOf="@+id/button_zor" app:layout_constraintEnd_toStartOf="@+id/buttonSign"/>
+
+  <Button  android:id="@+id/buttonSign"  android:layout_width="0dp"  android:layout_height="0dp"
+      android:background="@drawable/calculator_button_main"
+      android:text="+/-"  android:textColor="?attr/primaryTextColor" android:textSize="@dimen/sign_tekst_size"
+      app:layout_constraintBottom_toBottomOf="@id/buttonOR" app:layout_constraintTop_toBottomOf="@+id/heks_check_boks"
+      app:layout_constraintStart_toEndOf="@+id/buttonMod" app:layout_constraintEnd_toEndOf="parent" />
+
+<!-- //////////////////////////////// -->
+  <Button    android:id="@+id/buttonNOT"    android:layout_width="0dp"    android:layout_height="@dimen/btn_ro3_hait"
+      android:background="@drawable/calculator_button_secondary" android:textAllCaps="false"
+      android:text="@string/not_operator_string" android:fontFamily="@font/u5" android:textColor="?attr/primaryTextColor"
+      app:layout_constraintStart_toStartOf="parent"     app:layout_constraintEnd_toStartOf="@+id/buttonLSH"
+      app:layout_constraintTop_toBottomOf="@+id/buttonOR" />/>
+
+  <Button    android:id="@+id/buttonLSH" android:fontFamily="@font/u5" android:text="@string/lsh_operator_string" android:layout_width="0dp" android:layout_height="0dp"
+   android:background="@drawable/calculator_button_secondary" android:textColor="?attr/primaryTextColor"  android:textAllCaps="false"
+      app:layout_constraintBottom_toBottomOf="@id/buttonNOT" app:layout_constraintTop_toBottomOf="@+id/buttonOR"
+   app:layout_constraintStart_toEndOf="@+id/buttonNOT" app:layout_constraintEnd_toStartOf="@+id/buttonRSH"    />
+
+  <Button    android:id="@+id/buttonRSH"    android:layout_width="0dp"    android:layout_height="0dp"
+   android:textColor="?attr/primaryTextColor" android:background="@drawable/calculator_button_secondary"
+   android:text="@string/rsh_operator_string" android:fontFamily="@font/u5" android:textAllCaps="false"
+      app:layout_constraintBottom_toBottomOf="@id/buttonNOT" app:layout_constraintTop_toBottomOf="@+id/buttonOR"
+      app:layout_constraintStart_toEndOf="@+id/buttonLSH"    app:layout_constraintEnd_toStartOf="@+id/buttonRDivide"    />
+
+    <Button android:id="@+id/buttonRDivide" android:layout_width="0dp" android:layout_height="0dp"
+        android:background="@drawable/calculator_button_main" android:text="@string/remainder_divide_operator_string"
+        android:fontFamily="@font/u5" android:textColor="?attr/accentColor"  android:textSize="@dimen/divide_tekst_size"
+        app:layout_constraintBottom_toBottomOf="@id/buttonNOT" app:layout_constraintTop_toBottomOf="@+id/buttonOR"
+        app:layout_constraintStart_toEndOf="@+id/buttonRSH" app:layout_constraintEnd_toStartOf="@+id/button_decimal_point"/>
+
+ <Button  android:id="@+id/button_decimal_point"  android:layout_width="0dp"  android:layout_height="0dp"
+      android:background="@drawable/calculator_button_main" android:textAlignment="gravity"
+      android:gravity="center_vertical|center_horizontal" android:text="@string/decimal_point_operator_string"  android:textColor="?attr/primaryTextColor"
+      android:fontFamily="@font/u5" android:textSize="@dimen/dot_tekst_size"
+     app:layout_constraintBottom_toBottomOf="@id/buttonNOT" app:layout_constraintTop_toBottomOf="@+id/buttonOR"
+      app:layout_constraintStart_toEndOf="@+id/buttonRDivide" app:layout_constraintEnd_toEndOf="parent" />
+
+
+
+<!-- //////////////////////////////// -->
+
+  <Button  android:id="@+id/buttonD"  android:layout_width="0dp"  android:layout_height="0dp"
+   android:background="@drawable/calculator_button_main"  android:fontFamily="@font/u5h" android:text="D"
+      android:textColor="?attr/accentColor" android:textSize="@dimen/dizits_tekst_size"
+      app:layout_constraintBottom_toTopOf="@+id/button9" app:layout_constraintTop_toBottomOf="@+id/buttonNOT"
+   app:layout_constraintStart_toStartOf="parent"    app:layout_constraintEnd_toStartOf="@+id/buttonE"    />
+
+  <Button  android:id="@+id/buttonE"  android:layout_width="0dp"  android:layout_height="0dp"
+   android:background="@drawable/calculator_button_main"  android:fontFamily="@font/u5h" android:text="E"
+      android:textColor="?attr/accentColor" android:textSize="@dimen/dizits_tekst_size"
+      app:layout_constraintBottom_toTopOf="@+id/buttonA" app:layout_constraintTop_toBottomOf="@+id/buttonNOT"
+   app:layout_constraintStart_toEndOf="@id/buttonD" app:layout_constraintEnd_toStartOf="@+id/buttonF"    />
+
+  <Button    android:id="@+id/buttonF"    android:layout_width="0dp"    android:layout_height="0dp"
+   android:background="@drawable/calculator_button_main"    android:fontFamily="@font/u5h" android:text="F"
+      android:textColor="?attr/accentColor" android:textSize="@dimen/dizits_tekst_size"
+      app:layout_constraintBottom_toTopOf="@+id/buttonB" app:layout_constraintTop_toBottomOf="@+id/buttonNOT"
+      app:layout_constraintStart_toEndOf="@id/buttonE" app:layout_constraintEnd_toStartOf="@+id/button0"    />
+
+  <Button android:id="@+id/button0" android:layout_width="0dp" android:layout_height="0dp"
+   android:background="@drawable/calculator_button_main"
+   android:fontFamily="@font/u5h" android:text="0"
+      android:textColor="?attr/accentColor" android:textSize="@dimen/dizits_tekst_size"
+      app:layout_constraintBottom_toTopOf="@+id/buttonC" app:layout_constraintTop_toBottomOf="@+id/buttonNOT"
+      app:layout_constraintStart_toEndOf="@id/buttonF" app:layout_constraintEnd_toStartOf="@+id/buttonMultiply"    />
+
+  <Button android:id="@+id/buttonMultiply" android:layout_width="0dp" android:layout_height="0dp"
+   android:background="@drawable/calculator_button_main" android:text="@string/multiply_operator_string"
+      android:textColor="?attr/accentColor" android:textSize="@dimen/dot_tekst_size"
+      app:layout_constraintBottom_toTopOf="@+id/buttonMinus" app:layout_constraintTop_toBottomOf="@+id/buttonNOT"
+   app:layout_constraintStart_toEndOf="@+id/button0" app:layout_constraintEnd_toEndOf="parent" />
+
+<!-- //////////////////////////////// -->
+  <Button  android:id="@+id/button9"  android:layout_width="0dp"  android:layout_height="0dp"
+   android:background="@drawable/calculator_button_main"  android:text="9"
+      android:textColor="?attr/accentColor" android:textSize="@dimen/dizits_tekst_size"
+      app:layout_constraintBottom_toTopOf="@+id/button5" app:layout_constraintTop_toBottomOf="@+id/buttonD"
+   app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toStartOf="@+id/buttonA"  />
+
+  <Button  android:id="@+id/buttonA"  android:layout_width="0dp"  android:layout_height="0dp"
+   android:background="@drawable/calculator_button_main"  android:fontFamily="@font/u5h" android:text="A"
+      android:textColor="?attr/accentColor" android:textSize="@dimen/dizits_tekst_size"
+      app:layout_constraintBottom_toTopOf="@+id/button6" app:layout_constraintTop_toBottomOf="@+id/buttonE"
+   app:layout_constraintStart_toEndOf="@id/button9" app:layout_constraintEnd_toStartOf="@+id/buttonB"  />
+
+  <Button  android:id="@+id/buttonB"  android:layout_width="0dp"  android:layout_height="0dp"
+   android:background="@drawable/calculator_button_main"  android:fontFamily="@font/u5h" android:text="B"
+      android:textColor="?attr/accentColor" android:textSize="@dimen/dizits_tekst_size"
+      app:layout_constraintBottom_toTopOf="@+id/button7" app:layout_constraintTop_toBottomOf="@+id/buttonF"
+   app:layout_constraintStart_toEndOf="@id/buttonA" app:layout_constraintEnd_toStartOf="@+id/buttonC"    />
+
+  <Button  android:id="@+id/buttonC"  android:layout_width="0dp"  android:layout_height="0dp"
+   android:background="@drawable/calculator_button_main"  android:fontFamily="@font/u5h" android:text="C"
+      android:textColor="?attr/accentColor" android:textSize="@dimen/dizits_tekst_size"
+      app:layout_constraintBottom_toTopOf="@+id/button8" app:layout_constraintTop_toBottomOf="@+id/button0"
+   app:layout_constraintStart_toEndOf="@id/buttonB" app:layout_constraintEnd_toStartOf="@+id/buttonMinus" />
+
+  <Button android:id="@+id/buttonMinus" android:layout_width="0dp" android:layout_height="0dp"
+   android:background="@drawable/calculator_button_main" android:text="-" android:textColor="?attr/accentColor"  android:textSize="@dimen/dot_tekst_size"
+      app:layout_constraintBottom_toTopOf="@+id/buttonPlus" app:layout_constraintTop_toBottomOf="@+id/buttonMultiply"
+   app:layout_constraintStart_toEndOf="@+id/buttonC" app:layout_constraintEnd_toEndOf="parent" />
+<!-- //////////////////////////////// -->
+   <Button android:id="@+id/button5" android:layout_width="0dp" android:layout_height="0dp"
+   android:background="@drawable/calculator_button_main" android:text="5"
+       android:textColor="?attr/accentColor" android:textSize="@dimen/dizits_tekst_size"
+       app:layout_constraintBottom_toTopOf="@+id/button1" app:layout_constraintTop_toBottomOf="@+id/button9"
+   app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toStartOf="@+id/button6" />
+
+  <Button android:id="@+id/button6" android:layout_width="0dp" android:layout_height="0dp"
+   android:background="@drawable/calculator_button_main" android:text="6"
+      android:textColor="?attr/accentColor" android:textSize="@dimen/dizits_tekst_size"
+      app:layout_constraintBottom_toTopOf="@+id/button2" app:layout_constraintTop_toBottomOf="@+id/buttonA"
+   app:layout_constraintStart_toEndOf="@+id/button5" app:layout_constraintEnd_toStartOf="@+id/button7" />
+
+  <Button android:id="@+id/button7" android:layout_width="0dp" android:layout_height="0dp"
+   android:background="@drawable/calculator_button_main" android:text="7"
+      android:textColor="?attr/accentColor" android:textSize="@dimen/dizits_tekst_size"
+      app:layout_constraintBottom_toTopOf="@+id/button3" app:layout_constraintTop_toBottomOf="@+id/buttonB"
+   app:layout_constraintStart_toEndOf="@+id/button6" app:layout_constraintEnd_toStartOf="@+id/button8" />
+
+  <Button android:id="@+id/button8" android:layout_width="0dp" android:layout_height="0dp"
+   android:background="@drawable/calculator_button_main" android:text="8"
+      android:textColor="?attr/accentColor" android:textSize="@dimen/dizits_tekst_size"
+      app:layout_constraintBottom_toTopOf="@+id/button4" app:layout_constraintTop_toBottomOf="@+id/buttonC"
+   app:layout_constraintStart_toEndOf="@+id/button7" app:layout_constraintEnd_toStartOf="@+id/buttonPlus" />
+
+  <Button android:id="@+id/buttonPlus" android:layout_width="0dp" android:layout_height="0dp"
+   android:background="@drawable/calculator_button_main" android:text="+" android:textColor="?attr/accentColor" android:textSize="@dimen/dot_tekst_size"
+      app:layout_constraintBottom_toTopOf="@+id/buttonEquals" app:layout_constraintTop_toBottomOf="@+id/buttonMinus"
+   app:layout_constraintStart_toEndOf="@+id/button8" app:layout_constraintEnd_toEndOf="parent" />
+<!-- //////////////////////////////// -->
+  <Button android:id="@+id/button1" android:layout_width="0dp" android:layout_height="0dp"
+   android:background="@drawable/calculator_button_main" android:text="1"
+      android:textColor="?attr/accentColor" android:textSize="@dimen/dizits_tekst_size"
+   app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintTop_toBottomOf="@+id/button5"
+   app:layout_constraintStart_toStartOf="parent"    app:layout_constraintEnd_toStartOf="@+id/button2"  />
+
+  <Button android:id="@+id/button2" android:layout_width="0dp" android:layout_height="0dp"
+   android:background="@drawable/calculator_button_main" android:text="2"
+      android:textColor="?attr/accentColor" android:textSize="@dimen/dizits_tekst_size"
+   app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintTop_toBottomOf="@+id/button6" 
+   app:layout_constraintStart_toEndOf="@+id/button1"  app:layout_constraintEnd_toStartOf="@+id/button3" />
+
+  <Button android:id="@+id/button3" android:layout_width="0dp" android:layout_height="0dp"
+   android:background="@drawable/calculator_button_main" android:text="3"
+      android:textColor="?attr/accentColor" android:textSize="@dimen/dizits_tekst_size"
+   app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintTop_toBottomOf="@+id/button7"
+   app:layout_constraintStart_toEndOf="@+id/button2" app:layout_constraintEnd_toStartOf="@+id/button4" />
+
+  <Button android:id="@+id/button4" android:layout_width="0dp" android:layout_height="0dp"
+   android:background="@drawable/calculator_button_main" android:text="4"
+      android:textColor="?attr/accentColor" android:textSize="@dimen/dizits_tekst_size"
+   app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintTop_toBottomOf="@+id/button8" 
+   app:layout_constraintStart_toEndOf="@+id/button3" app:layout_constraintEnd_toStartOf="@+id/buttonEquals" />
+
+  <Button android:id="@+id/buttonEquals" android:layout_width="0dp" android:layout_height="0dp"
+   android:background="@drawable/calculator_button_main" android:text="=" android:textColor="?attr/accentColor" android:textSize="@dimen/dot_tekst_size"
+   app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintTop_toBottomOf="@+id/buttonPlus"
+   app:layout_constraintStart_toEndOf="@+id/button4" app:layout_constraintEnd_toEndOf="parent" />
+<!-- //////////////////////////////// -->
 </android.support.constraint.ConstraintLayout>

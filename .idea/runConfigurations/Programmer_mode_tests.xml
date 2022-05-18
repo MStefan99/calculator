@@ -1,6 +1,6 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="Programmer mode tests" type="AndroidJUnit" factoryName="Android JUnit">
-    <module name="app" />
+    <module name="programmer-calculator.app" />
     <option name="PACKAGE_NAME" value="com.annushkaproject.programmerscalculator.ProgrammerTests" />
     <option name="MAIN_CLASS_NAME" value="" />
     <option name="METHOD_NAME" value="" />

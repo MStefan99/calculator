@@ -3,6 +3,8 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="accentColor">@color/accentColor</item>
+        <item name="dizits_tekst_color">@color/dizits_tekst_color</item>
+        <item name="app_bar_bg_color">@color/app_bar_bg_color</item>
         <item name="themeColor">@color/themeColor</item>
         <item name="primaryTextColor"> @color/primaryTextColor</item>
         <item name="secondaryTextColor">@color/secondaryTextColor</item>
