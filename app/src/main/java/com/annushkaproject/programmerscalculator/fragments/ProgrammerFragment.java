@@ -181,23 +181,18 @@ public class ProgrammerFragment extends Fragment {
         RadioGroup radioGroup = getView().findViewById(R.id.radioGroup);
         radioGroup.setOnCheckedChangeListener((v, id) -> {
             long number = Long.parseLong(textView.getText().toString(), mode.getBase());
-            switch (id) {
-                case R.id.radioButtonHex:
-                    mode = Mode.HEX;
-                    enableButtonsALL();
-                    break;
-                case R.id.radioButtonDec:
-                    mode = Mode.DEC;
-                    enableButtonsDEC();
-                    break;
-                case R.id.radioButtonOct:
-                    mode = Mode.OCT;
-                    enableButtonsOCT();
-                    break;
-                case R.id.radioButtonBin:
-                    mode = Mode.BIN;
-                    enableButtonsBIN();
-                    break;
+            if (id == R.id.radioButtonHex) {
+                mode = Mode.HEX;
+                enableButtonsALL();
+            } else if (id == R.id.radioButtonDec) {
+                mode = Mode.DEC;
+                enableButtonsDEC();
+            } else if (id == R.id.radioButtonOct) {
+                mode = Mode.OCT;
+                enableButtonsOCT();
+            } else if (id == R.id.radioButtonBin) {
+                mode = Mode.BIN;
+                enableButtonsBIN();
             }
             updateText(formatText(number));
             Log.d("ModeChanged", "Mode radio pressed, current value: " + mode.toString());
